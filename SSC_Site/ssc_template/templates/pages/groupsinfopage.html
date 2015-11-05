@@ -1,0 +1,31 @@
+{% extends "pages/page.html" %}
+{% load mezzanine_tags i18n %}
+
+{% block main %}{{ block.super }}
+<ul class="collapsible popout" data-collapsible="accordion">
+    {% for group_info in page.groupsinfopage.groupinfo_set.all %}
+    <li>
+        <div class="teal white-text collapsible-header {% if forloop.first %}active{% endif %}">{{group_info.title}}</div>
+        <div class="white collapsible-body">
+            <table class="centered bordered highlight">
+                <thead>
+                <tr>
+                    <th class="teal-text" data-field="id">{% trans 'Name' %}</th>
+                    <th class="teal-text" data-field="name">{% trans 'Duty' %}</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for member in group_info.groupmember_set.all %}
+                <tr>
+                    <td>{{ member.name }}</td>
+                    <td>{{ member.duty }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
