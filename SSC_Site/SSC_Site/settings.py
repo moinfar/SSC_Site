@@ -56,7 +56,41 @@ PAGE_MENU_TEMPLATES = (
 # field instance. When specifying the field class, the path
 # ``django.models.db.`` can be omitted for regular Django model fields.
 
-
+EXTRA_MODEL_FIELDS = (
+    # Relating blog posts to site pages in order to announce theme
+    (
+        # Dotted path to field.
+        "mezzanine.blog.models.BlogPost.page",
+        # Dotted path to field class.
+        "ForeignKey",
+        # Positional args for field class.
+        ("pages.Page",),
+        # Keyword args for field class.
+        {"blank": True, "null": True, "verbose_name": _("Related Page")},
+    ),
+    # Allow user to change read more text for blog posts
+    (
+        # Dotted path to field.
+        "mezzanine.blog.models.BlogPost.read_more_text",
+        # Dotted path to field class.
+        "django.db.models.CharField",
+        # Positional args for field class.
+        (_("Read More Text"),),
+        # Keyword args for field class.
+        {"blank": True, "null": True, "max_length": 500},
+    ),
+    # Add an awesome image to be used as a parallax for galleries
+    (
+        # Dotted path to field.
+        "mezzanine.galleries.models.Gallery.parallax_image",
+        # Dotted path to field class.
+        "mezzanine.core.fields.FileField",
+        # Positional args for field class.
+        (_("Parallax Image"),),
+        # Keyword args for field class.
+        {"blank": True, "null": True, "upload_to": "galleries/parallaxes", "format": "Image", "max_length": 500},
+    ),
+)
 
 # Setting to turn on featured images for blog posts. Defaults to False.
 
@@ -213,6 +247,7 @@ INSTALLED_APPS = (
     "mezzanine.blog",
     "mezzanine.forms",
     "mezzanine.galleries",
+    "ssc_configs",
     # "mezzanine.twitter",
     # "mezzanine.accounts",
     # "mezzanine.mobile",
@@ -238,6 +273,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 # these middleware classes will be applied in the order given, and in the
 # response phase the middleware will be applied in reverse order.
 MIDDLEWARE_CLASSES = (
+    'ssc_configs.ForceDefaultLanguageMiddleware',
+
     "mezzanine.core.middleware.UpdateCacheMiddleware",
 
     'django.contrib.sessions.middleware.SessionMiddleware',
