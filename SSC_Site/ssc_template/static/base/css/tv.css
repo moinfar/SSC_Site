@@ -1,0 +1,32 @@
+.ssc.tv.box {
+	background-color: black;
+	border: solid black 1px;
+    border-radius: 6px;
+    padding-top: 1%;
+}
+
+
+.main.ssc.tv.box {
+	margin-top: 7px;
+}
+
+.ssc.tv.stand {
+	background-color: black;
+	color: grey;
+	text-align: center;
+	border-radius: 0px 0px 6px 6px;
+	padding: 0px 10px 3px 10px;
+	margin: auto;
+}
+
+.ssc.tv.screen {
+	background-color: grey;
+	border: solid black 1px;
+	border-radius: 4px;
+	margin-left: 1.4%;
+	width: 48%;
+	float: left;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+}

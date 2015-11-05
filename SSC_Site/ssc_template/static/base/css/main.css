@@ -1,0 +1,125 @@
+html {
+	font-family: "IRANSans-web" !important;
+}
+
+body {
+	background:
+	linear-gradient(to right, rgba(240, 240, 240, 0.85),  rgba(240, 240, 240, 0.85)),
+	url('/static/base/image/pattern/3px-tile.png'),
+	linear-gradient(to right, rgba(240, 240, 240, 1),  rgba(240, 240, 240, 1));
+}
+
+#top-logo {
+	/*background-image: url('/static/base/image/SSC-unofficial-logo-white.png');*/
+	background-image: url('/static/base/image/SSC-unofficial-logo-black.png');
+	/*background-image: url('/static/base/image/SSC-logo.svg');*/
+	background-repeat: no-repeat;
+	background-size: contain;
+	padding-left: 100px;
+	/* padding-right: 10%; */
+	background-position: center 0px;
+}
+
+#top-lang {
+    margin-left: 4%;
+	margin-right: 4%;
+}
+
+
+.lang.flag {
+    background-repeat: no-repeat;
+	background-size: contain;
+	padding-left: 18px;
+	height: 14px;
+	background-position: center 0px;
+}
+
+
+.lang.fa.flag {
+    margin-top: 14px;
+    background-image: url('/static/base/image/fa.svg');
+}
+
+.lang.en.flag {
+    margin-top: 6px;
+    margin-bottom: 6px;
+    background-image: url('/static/base/image/en.svg');
+}
+
+#language_selector_form {
+    display: none;
+}
+
+.navbar.item {
+	color: #009688;
+	font-weight: bold;
+	text-align: right;
+}
+
+.navbar.item:hover{
+	border-bottom: solid #009688 3px;
+}
+
+.main.parallax-container {
+	height: 230px;
+}
+
+.gallery.parallax-container {
+	height: 230px;
+}
+
+
+.px-10.vertical.spacer {
+	height: 10px !important;
+}
+
+.px-20.vertical.spacer {
+	height: 20px !important;
+}
+
+.px-40.vertical.spacer {
+	height: 40px !important;
+}
+
+.px-20.horizontal.spacer {
+	width: 20px !important;
+}
+
+.px-40.horizontal.spacer {
+	width: 40px !important;
+}
+
+.right.spaced {
+	padding-left: 30px;
+}
+
+.left.spaced {
+	padding-right: 30px;
+}
+
+.full.width {
+	width: 100%;
+}
+
+.multiline {
+    word-break:break-all;
+}
+
+.breadcrumb.rtl > span {
+    float: right;
+}
+
+.breadcrumb.ltr > span {
+    float: left;
+}
+
+.category-box {
+    margin: 0px 0px 0px 7px !important;
+    padding: 4px;
+    border-radius: 7px;
+    font-size: .4em;
+}
+
+
+
+

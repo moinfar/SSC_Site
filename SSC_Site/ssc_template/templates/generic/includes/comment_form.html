@@ -1,0 +1,36 @@
+{% load i18n mezzanine_tags comment_tags %}
+
+<div class="card-panel">
+	<form class="comment-form" method="post" id="contactform" action="{{ comment_url }}#comment">
+
+		{% nevercache %}
+
+		{% csrf_token %}
+
+		{% for hidden in comment_form.hidden_fields %}
+		{{ hidden }}
+		{% endfor %}
+
+		<div class="row">
+			<div class="input-field right col s12 m6 l6">
+				<input type="text" value="{{comment_form.name.value}}" name="name" maxlength="50" id="id_name" class="" placeholder="{% trans 'Name' %}" >
+
+			</div>
+			<div class="input-field right col s12 m6 l6">
+				<input type="email" value="{{comment_form.email.value}}" name="email" id="id_email" placeholder="{% trans 'Email' %}">
+
+			</div>
+			<!--<div class="input-field right col s12 m6 l6">-->
+				<!--<input type="url" value="" name="{{comment_form.url.value}}" id="id_url" placeholder="Enter your webiste">-->
+			<!--</div>-->
+			<div class="input-field col s12 m12 l12">
+				<textarea rows="10" name="comment" id="id_comment" cols="40" class="" maxlength="1000" placeholder=""></textarea>
+			</div>
+			<button type="submit" class="btn btn-theme margintop10 pull-left">{% trans "Comment" %}</button>
+
+
+		</div>
+		{% endnevercache %}
+	</form>
+</div>
+

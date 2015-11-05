@@ -1,0 +1,99 @@
+{% extends "blog/blog_post_list.html" %}
+{% load mezzanine_tags comment_tags keyword_tags rating_tags i18n future disqus_tags %}
+
+{% block meta_title %}{{ blog_post.meta_title }}{% endblock %}
+
+{% block meta_keywords %}{% metablock %}
+{% keywords_for blog_post as tags %}
+{% for tag in tags %}{% if not forloop.first %}, {% endif %}{{ tag }}{% endfor %}
+{% endmetablock %}{% endblock %}
+
+{% block meta_description %}{% metablock %}
+{{ blog_post.description }}
+{% endmetablock %}{% endblock %}
+
+{% block title %}
+{{ blog_post.title }}
+{% endblock %}
+
+{% block breadcrumb_menu %}
+{{ block.super }}
+<span class="card-panel">
+    {{ blog_post.title }}
+</span>
+{% endblock %}
+
+{% block main %}
+
+{% block blog_post_main%}
+<article class="right post col s12 m6 l8">
+    <div class="main card-panel">
+        {% block blog_post_detail_content %}
+        {{ blog_post.content|richtext_filters|safe }}
+        {% endblock %}
+    </div>
+    {% comment "WE DO NOT NEED RATING" %}
+    <div class="card-panel">
+        {% block blog_post_detail_rating %}
+        <div class="panel panel-default rating">
+            <div class="panel-body">
+                {% rating_for blog_post %}
+            </div>
+        </div>
+        {% endblock %}
+    </div>
+    {% endcomment %}
+
+    {% block blog_post_detail_comments %}
+    {% if blog_post.allow_comments %}{% comments_for blog_post %}{% endif %}
+    {% endblock %}
+
+</article>
+{% with blog_post as post %}
+<article class="right post col s12 m6 l4">
+    {% include 'generic/aside_post_card.html' %}
+
+    {% block blog_post_detail_related_posts %}
+    {% if blog_post.related_posts.all %}
+
+    <div class="px-20 vertical spacer"></div>
+    <div id="related-posts">
+        <h4 class="teal-text">{% trans 'Related announcements' %}</h4>
+        <ul class="list-unstyled">
+            {% for post in blog_post.related_posts.all %}
+            {% include 'generic/post_card.html' %}
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    {% endblock %}
+
+
+</article>
+{% endwith %}
+
+{% block blog_post_list_post_content %}
+{% endblock %}
+
+
+{% block read_more %}
+{% endblock %}
+{% endblock %}
+
+{% endblock %}
+
+
+{% block extra_body %}
+<script>
+    $(function() {
+        $('.comment-form textarea').addClass("materialize-textarea");
+    });
+    $('#comment_container').imagesLoaded( function() {
+		$('#comment_container').masonry({
+			isOriginLeft: false,
+			itemSelector: '.comment',
+			transitionDuration: 1,
+		});
+	});
+</script>
+{% endblock %}

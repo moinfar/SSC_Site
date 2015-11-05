@@ -1,0 +1,42 @@
+{% extends 'generic/post_card.html' %}
+{% load i18n blog_tags mezzanine_tags keyword_tags jdate_tags %}
+
+
+{% block card_content %}
+{% endblock %}
+
+{% block card_tail %}
+<div class="card-content">
+    {% blocktrans with sometime=post.publish_date|get_jdate|jdateformat:"{d} {M} {y}"|farsi_digits %}Written On {{ sometime }}{% endblocktrans %}
+</div>
+{% if post.categories.all %}
+<div class="card-action">
+    {% with post.categories.all as categories %}
+    {% if categories %}
+    {% for category in categories %}
+    <a class="teal white-text category-box" style="font-size:.7em;" href="{% url 'blog_post_list_category' category.slug %}">
+        {{ category }}
+    </a>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+</div>
+{% endif %}
+
+{% block blog_post_detail_keywords %}
+{% keywords_for blog_post as tags %}
+{% if tags %}
+{% spaceless %}
+<div class="card-action">
+    {% trans "Tags" %}:
+    {% for tag in tags %}
+    <a class="orange black-text category-box" style="font-size:.7em;" href="{% url 'blog_post_list_tag' tag.slug %}">
+        {{ tag }}
+    </a>
+    {% endfor %}
+</div>
+{% endspaceless %}
+{% endif %}
+{% endblock %}
+
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load blog_tags i18n  mezzanine_tags staticfiles%}
+{% block meta_title %}{% trans "Home" %}{% endblock %}
+{% block title %}{% trans "Home" %}{% endblock %}
+
+{% block breadcrumb_wrapper %}
+{% endblock %}
+
+{% block title_wrapper %}
+{% endblock %}
+
+{% block breadcrumb_menu %}
+<li class="active">{% trans "Home" %}</li>
+{% endblock %}
+
+
+{% block all_content %}
+<div class="container" {% if LANGUAGE_BIDI %} dir="rtl"{% endif %} >
+    <div class="px-20 vertical spacer"></div>
+    <div class="row">
+        <div class="right col s12 m12 l4">
+            <!--<form action="login" method="POST">-->
+                <div class="card">
+                    <div class="card-content">
+                        <p>
+                            <input type="text" name="username" placeholder="{% trans 'Email' %}">
+                            <input type="password" name="password" placeholder="{% trans 'password' %}">
+                        </p>
+                        <p><br>
+                            <button name="submit" type="submit" class="waves-effect waves-light btn full width">
+                                {% trans 'Coming Soon' %}
+                            </button>
+                        </p>
+                    </div>
+                </div>
+            <!--</form>-->
+        </div>
+        <div class="col s12 m12 l8">
+            <div class="main ssc tv box">
+                <div class="ssc tv screen uni">
+                </div>
+                <div class="ssc tv screen our">
+                </div>
+            </div>
+            <div class="center-align">
+				<span class="ssc tv stand">
+					{% trans 'Recent News' %}
+				</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="px-10 vertical spacer"></div>
+<div class="main parallax-container">
+    <div class="parallax">
+        <img src="{{ settings.FIRST_PAGE_PARALLAX }}">
+    </div>
+</div>
+<div class="px-20 vertical spacer"></div>
+
+
+<div class="container">
+    <div class="row" id="post_container" {% if LANGUAGE_BIDI %} dir="rtl"{% endif %} >
+        {% blog_recent_posts 10 as recent_posts %}
+        {% for post in recent_posts %}
+
+        <div class="{% if LANGUAGE_BIDI %}right{% endif %} col s12 m6 l4 post">
+            {% include 'generic/post_card.html' %}
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+
+{% endblock %}
+
+
+{% block extra_body %}
+<script type="text/javascript">
+	$('#post_container').imagesLoaded( function() {
+		$('#post_container').masonry({
+			isOriginLeft: false,
+			itemSelector: '.post',
+			transitionDuration: 1,
+		});
+	});
+</script>
+{% endblock %}
+

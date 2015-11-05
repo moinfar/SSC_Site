@@ -1,0 +1,45 @@
+{% extends 'generic/post_card.html' %}
+{% load i18n mezzanine_tags jdate_tags %}
+
+
+
+{% block card_tail %}
+<div class="card-action">
+    {% blocktrans with sometime=post.publish_date|get_jdate|jdateformat:"{d} {M} {y}"|farsi_digits %}Written On {{ sometime }}{% endblocktrans %}
+</div>
+{% if not post.featured_image and blog_post.categories.all %}
+<div class="card-action">
+    {% with blog_post.categories.all as categories %}
+    {% if categories %}
+    {% for category in categories %}
+    <a class="teal white-text category-box" style="font-size:.7em;" href="{% url 'blog_post_list_category' category.slug %}">
+        {{ category }}
+    </a>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+</div>
+{% endif %}
+{{ block.super }}
+{% endblock %}
+
+{% block card_image %}
+{% if post.featured_image %}
+<div class="card-image">
+    <img src="{{ MEDIA_URL }}{% thumbnail post.featured_image 400 0%}">
+    <div class="card-title">
+        {% block inside_card_image %}
+        {% with blog_post.categories.all as categories %}
+        {% if categories %}
+        {% for category in categories %}
+        <a class="teal white-text category-box" href="{% url 'blog_post_list_category' category.slug %}">
+            {{ category }}
+        </a>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        {% endblock %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}

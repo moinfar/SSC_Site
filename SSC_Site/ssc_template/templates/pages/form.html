@@ -1,0 +1,49 @@
+{% extends "pages/page.html" %}
+
+{% load mezzanine_tags %}
+
+
+<div class="col-md-{% block main_col_size %}8{% endblock %}">
+{% block main %}
+    <div class="card-panel">
+    {{ block.super }}
+    {% if request.GET.sent %}
+        {% editable page.form.response %}
+        {{ page.form.response|richtext_filters|safe }}
+        {% endeditable %}
+    {% else %}
+        {% with page.form as page_form %}
+        {% editable page_form.content %}
+        {{ page_form.content|richtext_filters|safe }}
+        {% endeditable %}
+        {% endwith %}
+
+        {% errors_for form %}
+
+        <form class="mezzanine-form" method="post"{% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
+            {% fields_for form "includes/form_fields.html" %}
+            <div class="form-actions">
+                <input class="btn" type="submit" value="{{ page.form.button_text }}">
+            </div>
+        </form>
+    {% endif %}
+    </div>
+{% endblock %}
+</div>
+
+
+{% block extra_body %}
+{{ block.super }}
+<script>
+$(function() {
+    $('.mezzanine-form :input:visible:enabled:first').focus();
+    $('.mezzanine-form textarea').addClass("materialize-textarea");
+    $('.mezzanine-form input[type=checkbox]').addClass("filled-in");
+    $('.mezzanine-form input').addClass("validate");
+    $('.mezzanine-form select').material_select();
+    $('.mezzanine-form .select-dropdown').css("text-align", "center");
+    $('.mezzanine-form .select-wrapper li').css("text-align", "center");
+    $('.mezzanine-form input[type=date]').pickadate({selectMonths: true, selectYears: 15});
+});
+</script>
+{% endblock %}

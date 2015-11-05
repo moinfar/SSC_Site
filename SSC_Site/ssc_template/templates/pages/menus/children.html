@@ -1,0 +1,7 @@
+{% for page in page_branch %}
+<a href="{{ page.get_absolute_url }}">
+    <div class="card-panel">
+        {{ page.title }}
+    </div>
+</a>
+{% endfor %}

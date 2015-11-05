@@ -1,0 +1,35 @@
+@charset "utf-8";
+
+@font-face {
+	font-family: 'IRANSans-web';
+	src: url('IRANSans-Bold.eot?#') format('eot'),  /* IE6–8 */
+url('IRANSans-Bold.woff2') format('woff2'),  /* Chrome36+, Opera24+*/
+url('IRANSans-Bold.woff') format('woff');  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+	font-weight: bold;
+}
+
+
+@font-face {
+	font-family: 'IRANSans-web';
+	src: url('IRANSans-UltraLight.eot?#') format('eot'),  /* IE6–8 */
+url('IRANSans-UltraLight.woff2') format('woff2'),  /* Chrome36+, Opera24+*/
+url('IRANSans-UltraLight.woff') format('woff');  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+	font-weight: 200;
+}
+
+@font-face {
+	font-family: 'IRANSans-web';
+	src: url('IRANSans-Light-Expanded.eot?#') format('eot'),  /* IE6–8 */
+url('IRANSans-Light-Expanded.woff2') format('woff2'),  /* Chrome36+, Opera24+*/
+url('IRANSans-Light-Expanded.woff') format('woff');  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+	font-weight: 300;
+}
+
+
+@font-face {
+	font-family: 'IRANSans-web';
+	src: url('IRANSANSExpanded.eot?#') format('eot'),  /* IE6–8 */
+url('IRANSANSExpanded.woff2') format('woff2'),  /* Chrome36+, Opera24+*/
+url('IRANSANSExpanded.woff') format('woff');  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+	font-weight: normal;
+}
