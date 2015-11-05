@@ -1,0 +1,7 @@
+Mezzanine==4.0.1
+django-auth-ldap==1.2.7
+django-modeltranslation==0.10.1
+psycopg2==2.6.1
+python-memcached==1.57
+gunicorn==19.3.0
+jdatetime==1.7.1

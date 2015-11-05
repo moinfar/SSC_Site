@@ -1,0 +1,380 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-11-05 00:55+0330\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: SSC_Site/settings.py:22
+msgid "Media Library"
+msgstr "مدیریت رسانه‌ها"
+
+#: SSC_Site/settings.py:23
+msgid "SSC_Configs"
+msgstr "ویژه اس‌اس‌سی"
+
+#: SSC_Site/settings.py:46
+msgid "Top navigation bar"
+msgstr "نوار بالایی"
+
+#: SSC_Site/settings.py:47
+msgid "Left-hand tree"
+msgstr "نوار کناری"
+
+#: SSC_Site/settings.py:70
+msgid "Related Page"
+msgstr "صفحه‌ی مربوطه"
+
+#: SSC_Site/settings.py:79
+msgid "Read More Text"
+msgstr "متن ادامه‌ی نوشتار"
+
+#: SSC_Site/settings.py:90
+msgid "Parallax Image"
+msgstr "تصویر پارالاکس"
+
+#: SSC_Site/settings.py:139
+msgid "Persian"
+msgstr "فارسی"
+
+#: SSC_Site/settings.py:140
+msgid "English"
+msgstr "انگلیسی"
+
+#: ssc_configs/defaults.py:6
+msgid "Parallax of index page"
+msgstr "تصویر پارالاکس صفحه‌ی اصلی"
+
+#: ssc_configs/defaults.py:15
+msgid "Sequence of setting names available within templates."
+msgstr "مجموعه تنظیمات فایل دسترسی در قالب‌ها."
+
+#: ssc_configs/models.py:11
+msgid "Groups' Info Page"
+msgstr "صفحه‌ی اطلاعات گروه‌ها"
+
+#: ssc_configs/models.py:12
+msgid "Groups' Info Pages"
+msgstr "صفحات اطلاعات گروه‌ها"
+
+#: ssc_configs/models.py:16
+msgid "Containing Page"
+msgstr "صفحه‌ی شامل"
+
+#: ssc_configs/models.py:17
+msgid "Title"
+msgstr "عنوان"
+
+#: ssc_configs/models.py:20
+msgid "Group Info"
+msgstr "اطلاعات گروه"
+
+#: ssc_configs/models.py:21
+msgid "Groups Info"
+msgstr "اطلاعات گروه‌ها"
+
+#: ssc_configs/models.py:25
+msgid "Containing Group"
+msgstr "گروه شامل"
+
+#: ssc_configs/models.py:26
+msgid "Full Name"
+msgstr "نام و نام خانوادگی"
+
+#: ssc_configs/models.py:27 ssc_template/templates/pages/groupsinfopage.html:14
+msgid "Duty"
+msgstr "وظیفه"
+
+#: ssc_configs/models.py:30
+msgid "Group Member"
+msgstr "عضو گروه"
+
+#: ssc_configs/models.py:31
+msgid "Group Members"
+msgstr "اعضای گروه"
+
+#: ssc_template/templates/base.html:69
+msgid "Change"
+msgstr "تغییر"
+
+#: ssc_template/templates/base.html:185
+#, python-format
+msgid ""
+"\n"
+"                    &copy;\n"
+"                    <a %(ssc_link_attrs)s >Scientific Students Chapter of "
+"Computer Engineering Department</a>,\n"
+"                    <a %(sharif_link_attrs)s >Sharif University of "
+"Technology</a>\n"
+"                    "
+msgstr ""
+"\n"
+"                    &copy; کلیه‌ی حقوق این سایت متعلق به \n"
+"                    <a %(ssc_link_attrs)s >انجمن علمی دانشجویی دانشکده‌ی "
+"کامپیوتر</a> \n"
+"                    <a %(sharif_link_attrs)s >دانشگاه صنعتی شریف</a> است\n"
+"                    "
+
+#: ssc_template/templates/base.html:197
+#, python-format
+msgid ""
+"\n"
+"                    Pwered By\n"
+"                    %(powered_by)s\n"
+"                    -\n"
+"                    Designed By\n"
+"                    %(designer)s\n"
+"                    "
+msgstr ""
+"\n"
+"                    قدرت گرفته از \n"
+"                    %(powered_by)s\n"
+"                    -\n"
+"                    طراحی شده به دست \n"
+"                    %(designer)s\n"
+"                    "
+
+#: ssc_template/templates/blog/blog_post_detail.html:61
+msgid "Related announcements"
+msgstr "اطلاعیه‌های مرتبط"
+
+#: ssc_template/templates/blog/blog_post_list.html:4
+msgid "Blog"
+msgstr "وبلاگ"
+
+#: ssc_template/templates/blog/blog_post_list.html:22
+msgid "Announcements"
+msgstr "اطلاعیه‌ها"
+
+#: ssc_template/templates/blog/blog_post_list.html:27
+msgid "Tag:"
+msgstr "برچسب:"
+
+#: ssc_template/templates/blog/blog_post_list.html:29
+msgid "Category:"
+msgstr "دسته:"
+
+#: ssc_template/templates/blog/blog_post_list.html:33
+msgid "Author:"
+msgstr "نویسنده"
+
+#: ssc_template/templates/blog/blog_post_list.html:48
+msgid "Viewing announcements tagged"
+msgstr "اطلاعیه‌های با برچسب"
+
+#: ssc_template/templates/blog/blog_post_list.html:50
+msgid "Viewing announcements for the category"
+msgstr "اطلاعیه‌های با موضوع"
+
+#: ssc_template/templates/blog/blog_post_list.html:52
+msgid "Viewing announcements from"
+msgstr "اطلاعیه‌های نوشته‌شده به دست"
+
+#: ssc_template/templates/blog/blog_post_list.html:55
+msgid "Viewing announcements by"
+msgstr "اطلاعیه‌های نوشته‌شده به دست"
+
+#: ssc_template/templates/blog/blog_post_list.html:61
+msgid "Recent announcements"
+msgstr "اطلاعیه‌های اخیر"
+
+#: ssc_template/templates/blog/includes/filter_panel.html:7
+msgid "Recent Posts"
+msgstr "نوشتار‌های اخیر"
+
+#: ssc_template/templates/blog/includes/filter_panel.html:26
+msgid "Categories"
+msgstr "دسته‌ها"
+
+#: ssc_template/templates/blog/includes/filter_panel.html:41
+#: ssc_template/templates/generic/aside_post_card.html:31
+msgid "Tags"
+msgstr "برچسب‌ها"
+
+#: ssc_template/templates/blog/includes/filter_panel.html:60
+msgid "Authors"
+msgstr "نویسندگان"
+
+#: ssc_template/templates/blog/includes/filter_panel.html:77
+msgid "Archive"
+msgstr "بایگانی"
+
+#: ssc_template/templates/blog/includes/filter_panel.html:96
+msgid "Feeds"
+msgstr "خوراک‌ها"
+
+#: ssc_template/templates/blog/includes/filter_panel.html:99
+#: ssc_template/templates/blog/includes/filter_panel.html:103
+#: ssc_template/templates/blog/includes/filter_panel.html:107
+#: ssc_template/templates/blog/includes/filter_panel.html:111
+msgid "RSS"
+msgstr ""
+
+#: ssc_template/templates/blog/includes/filter_panel.html:100
+#: ssc_template/templates/blog/includes/filter_panel.html:104
+#: ssc_template/templates/blog/includes/filter_panel.html:108
+#: ssc_template/templates/blog/includes/filter_panel.html:112
+msgid "Atom"
+msgstr ""
+
+#: ssc_template/templates/generic/aside_post_card.html:10
+#: ssc_template/templates/generic/detailed_post_card.html:8
+#, python-format
+msgid "Written On %(sometime)s"
+msgstr "نوشته شده در %(sometime)s"
+
+#: ssc_template/templates/generic/includes/comment.html:10
+#, python-format
+msgid "written on%(sometime)s ago"
+msgstr "نوشته شده در %(sometime)s پیش"
+
+#: ssc_template/templates/generic/includes/comment.html:27
+msgid "There are currently no comments"
+msgstr "نظری تا کنون ثبت نشده‌است."
+
+#: ssc_template/templates/generic/includes/comment_form.html:16
+#: ssc_template/templates/pages/groupsinfopage.html:13
+msgid "Name"
+msgstr "نام"
+
+#: ssc_template/templates/generic/includes/comment_form.html:20
+#: ssc_template/templates/index.html:26
+msgid "Email"
+msgstr "رایانامه"
+
+#: ssc_template/templates/generic/includes/comment_form.html:29
+msgid "Comment"
+msgstr "نظر"
+
+#: ssc_template/templates/generic/includes/comments.html:4
+msgid "Comments"
+msgstr "نظرات"
+
+#: ssc_template/templates/generic/includes/comments.html:19
+msgid "New Comment"
+msgstr "نظر جدید"
+
+#: ssc_template/templates/generic/post_card.html:34
+msgid "Fill Out The Form"
+msgstr "پر کردن فرم"
+
+#: ssc_template/templates/generic/post_card.html:36
+msgid "Go To the Gallery"
+msgstr "مشاهده‌ی گالری"
+
+#: ssc_template/templates/generic/post_card.html:38
+msgid "Read More"
+msgstr "ادامه‌ی نوشتار"
+
+#: ssc_template/templates/includes/form_fields.html:46
+msgid "Choose File"
+msgstr "انتخاب فایل"
+
+#: ssc_template/templates/index.html:3 ssc_template/templates/index.html:4
+#: ssc_template/templates/index.html:13
+#: ssc_template/templates/pages/menus/breadcrumb.html:9
+#: ssc_template/templates/pages/menus/left_menu.html:11
+#: ssc_template/templates/pages/menus/main_menu.html:11
+#: ssc_template/templates/pages/menus/reversed_main_menu.html:29
+#: ssc_template/templates/search_results.html:13
+msgid "Home"
+msgstr "صفحه‌ی اصلی"
+
+#: ssc_template/templates/index.html:27
+msgid "password"
+msgstr "گذرواژه"
+
+#: ssc_template/templates/index.html:31
+msgid "Coming Soon"
+msgstr "به زودی"
+
+#: ssc_template/templates/index.html:47
+msgid "Recent News"
+msgstr "اکنون در مانیتور‌های لابی"
+
+#: ssc_template/templates/pages/gallery.html:35
+#, python-format
+msgid ""
+"\n"
+"                       Click <a href='%(url)s'>here</a> to see the original "
+"image.\n"
+"                       "
+msgstr ""
+"\n"
+"برای مشاهده‌ی عکس با کیفیت اصلی <a href='%(url)s'>اینجا</a>  کلیک کنید.\n"
+"                       "
+
+#: ssc_template/templates/search_results.html:5
+#: ssc_template/templates/search_results.html:6
+#: ssc_template/templates/search_results.html:15
+msgid "Search Results"
+msgstr "نتیجه‌ی جستجو"
+
+#: ssc_template/templates/search_results.html:22
+#, python-format
+msgid ""
+"\n"
+"No results were found in %(search_type)s matching your query: %(query)s\n"
+msgstr ""
+"\n"
+"No results were found in %(search_type)s matching your query: %(query)s\n"
+
+#: ssc_template/templates/search_results.html:26
+#, python-format
+msgid ""
+"\n"
+"Showing %(start)s to %(end)s of %(total)s results in %(search_type)s "
+"matching your query: %(query)s\n"
+msgstr ""
+"\n"
+"Showing %(start)s to %(end)s of %(total)s results in %(search_type)s "
+"matching your query: %(query)s\n"
+
+#: ssc_template/templates/search_results.html:37
+msgid "read more"
+msgstr "ادامه‌ی نوشتار"
+
+#: transaction_forms/models.py:7
+msgid "Gateway ID"
+msgstr ""
+
+#: transaction_forms/models.py:8
+msgid "Description"
+msgstr ""
+
+#: transaction_forms/models.py:9
+msgid "Amount"
+msgstr ""
+
+#: transaction_forms/models.py:12
+msgid "Payment Form"
+msgstr ""
+
+#: transaction_forms/models.py:13
+msgid "Payment Forms"
+msgstr ""
+
+#~ msgid "related_posts"
+#~ msgstr "نوشتار‌های مرتبط"
+
+#~ msgid "Posts"
+#~ msgstr "نوشتار‌ها"
+
+#~ msgid "Login"
+#~ msgstr "ورود"
+
+#~ msgid "%(sometime)s ago"
+#~ msgstr "%(sometime)s پیش"
