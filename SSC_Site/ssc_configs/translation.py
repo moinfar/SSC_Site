@@ -1,7 +1,16 @@
 from modeltranslation.translator import translator, TranslationOptions
-from .models import GroupsInfoPage, GroupInfo, GroupMember
+from .models import GroupsInfoPage, GroupInfo, GroupMember, Person, Duty
+from .models import GalleryContainerPage
 from mezzanine.blog.translation import TranslatedBlogPost
 from mezzanine.blog.models import BlogPost
+
+
+class TranslatedPerson(TranslationOptions):
+    fields = ("name",)
+
+
+class TranslatedDuty(TranslationOptions):
+    fields = ("title",)
 
 
 class TranslatedGroupsInfoPage(TranslationOptions):
@@ -13,9 +22,11 @@ class TranslatedGroupInfo(TranslationOptions):
 
 
 class TranslatedGroupMember(TranslationOptions):
-    fields = ('name', 'duty',)
+    fields = ()
 
 
+translator.register(Person, TranslatedPerson)
+translator.register(Duty, TranslatedDuty)
 translator.register(GroupsInfoPage, TranslatedGroupsInfoPage)
 translator.register(GroupInfo, TranslatedGroupInfo)
 translator.register(GroupMember, TranslatedGroupMember)
@@ -26,3 +37,9 @@ translator.register(GroupMember, TranslatedGroupMember)
 #
 # translator.unregister(BlogPost)
 # translator.register(BlogPost, TranslatedInjectedPage)
+
+
+class TranslatedGalleryContainerPage(TranslationOptions):
+    fields = ()
+
+translator.register(GalleryContainerPage, TranslatedGalleryContainerPage)

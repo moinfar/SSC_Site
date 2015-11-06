@@ -4,6 +4,30 @@ from mezzanine.core.models import Orderable
 from django.utils.translation import ugettext_lazy as _
 
 
+class Person(models.Model):
+    slug = models.CharField(max_length=255, blank=False, null=False, verbose_name=_("slug"), unique=True)
+    name = models.CharField(max_length=500, blank=False, null=False, verbose_name=_("Name"))
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _("Person")
+        verbose_name_plural = _("Persons")
+
+
+class Duty(models.Model):
+    slug = models.CharField(max_length=255, blank=False, null=False, verbose_name=_("slug"), unique=True)
+    title = models.CharField(max_length=500, blank=False, null=False, verbose_name=_("Title"))
+
+    def __unicode__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = _("Duty")
+        verbose_name_plural = _("Duty")
+
+
 class GroupsInfoPage(Page):
     pass
 
@@ -23,9 +47,17 @@ class GroupInfo(Orderable):
 
 class GroupMember(Orderable):
     group = models.ForeignKey("GroupInfo", verbose_name=_("Containing Group"))
-    name = models.CharField(max_length=500, blank=False, null=False, verbose_name=_("Full Name"))
-    duty = models.CharField(max_length=500, blank=True, null=True, verbose_name=_("Duty"))
+    person = models.ForeignKey("Person", verbose_name=_("Person"))
+    duty = models.ForeignKey("Duty", verbose_name=_("Duty"))
 
     class Meta:
         verbose_name = _("Group Member")
         verbose_name_plural = _("Group Members")
+
+
+class GalleryContainerPage(Page):
+    pass
+
+    class Meta:
+        verbose_name = _("Gallery Container Page")
+        verbose_name_plural = _("Gallery Container Pages")

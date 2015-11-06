@@ -18,8 +18,8 @@
                 <tbody>
                 {% for member in group_info.groupmember_set.all %}
                 <tr>
-                    <td>{{ member.name }}</td>
-                    <td>{{ member.duty }}</td>
+                    <td>{{ member.person.name }}</td>
+                    <td>{{ member.duty.title }}</td>
                 </tr>
                 {% endfor %}
                 </tbody>

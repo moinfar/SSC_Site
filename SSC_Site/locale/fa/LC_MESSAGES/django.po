@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-05 00:55+0330\n"
+"POT-Creation-Date: 2015-11-07 00:24+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,55 +62,78 @@ msgstr "تصویر پارالاکس صفحه‌ی اصلی"
 msgid "Sequence of setting names available within templates."
 msgstr "مجموعه تنظیمات فایل دسترسی در قالب‌ها."
 
-#: ssc_configs/models.py:11
-msgid "Groups' Info Page"
-msgstr "صفحه‌ی اطلاعات گروه‌ها"
+#: ssc_configs/models.py:8 ssc_configs/models.py:20
+msgid "slug"
+msgstr ""
 
-#: ssc_configs/models.py:12
-msgid "Groups' Info Pages"
-msgstr "صفحات اطلاعات گروه‌ها"
+#: ssc_configs/models.py:9
+#: ssc_template/templates/generic/includes/comment_form.html:16
+#: ssc_template/templates/pages/groupsinfopage.html:13
+msgid "Name"
+msgstr "نام"
+
+#: ssc_configs/models.py:15 ssc_configs/models.py:50
+msgid "Person"
+msgstr "شخص"
 
 #: ssc_configs/models.py:16
-msgid "Containing Page"
-msgstr "صفحه‌ی شامل"
+msgid "Persons"
+msgstr "اشخاص"
 
-#: ssc_configs/models.py:17
+#: ssc_configs/models.py:21 ssc_configs/models.py:41
 msgid "Title"
 msgstr "عنوان"
 
-#: ssc_configs/models.py:20
-msgid "Group Info"
-msgstr "اطلاعات گروه"
-
-#: ssc_configs/models.py:21
-msgid "Groups Info"
-msgstr "اطلاعات گروه‌ها"
-
-#: ssc_configs/models.py:25
-msgid "Containing Group"
-msgstr "گروه شامل"
-
-#: ssc_configs/models.py:26
-msgid "Full Name"
-msgstr "نام و نام خانوادگی"
-
-#: ssc_configs/models.py:27 ssc_template/templates/pages/groupsinfopage.html:14
+#: ssc_configs/models.py:27 ssc_configs/models.py:28 ssc_configs/models.py:51
+#: ssc_template/templates/pages/groupsinfopage.html:14
 msgid "Duty"
 msgstr "وظیفه"
 
-#: ssc_configs/models.py:30
+#: ssc_configs/models.py:35
+msgid "Groups' Info Page"
+msgstr "صفحه‌ی اطلاعات گروه‌ها"
+
+#: ssc_configs/models.py:36
+msgid "Groups' Info Pages"
+msgstr "صفحات اطلاعات گروه‌ها"
+
+#: ssc_configs/models.py:40
+msgid "Containing Page"
+msgstr "صفحه‌ی شامل"
+
+#: ssc_configs/models.py:44
+msgid "Group Info"
+msgstr "اطلاعات گروه"
+
+#: ssc_configs/models.py:45
+msgid "Groups Info"
+msgstr "اطلاعات گروه‌ها"
+
+#: ssc_configs/models.py:49
+msgid "Containing Group"
+msgstr "گروه شامل"
+
+#: ssc_configs/models.py:54
 msgid "Group Member"
 msgstr "عضو گروه"
 
-#: ssc_configs/models.py:31
+#: ssc_configs/models.py:55
 msgid "Group Members"
 msgstr "اعضای گروه"
 
-#: ssc_template/templates/base.html:69
+#: ssc_configs/models.py:62
+msgid "Gallery Container Page"
+msgstr "صفحه‌ی شامل گالری‌ها"
+
+#: ssc_configs/models.py:63
+msgid "Gallery Container Pages"
+msgstr "صفحات شامل گالری‌ها"
+
+#: ssc_template/templates/base.html:70
 msgid "Change"
 msgstr "تغییر"
 
-#: ssc_template/templates/base.html:185
+#: ssc_template/templates/base.html:186
 #, python-format
 msgid ""
 "\n"
@@ -128,7 +151,7 @@ msgstr ""
 "                    <a %(sharif_link_attrs)s >دانشگاه صنعتی شریف</a> است\n"
 "                    "
 
-#: ssc_template/templates/base.html:197
+#: ssc_template/templates/base.html:198
 #, python-format
 msgid ""
 "\n"
@@ -245,11 +268,6 @@ msgstr "نوشته شده در %(sometime)s پیش"
 msgid "There are currently no comments"
 msgstr "نظری تا کنون ثبت نشده‌است."
 
-#: ssc_template/templates/generic/includes/comment_form.html:16
-#: ssc_template/templates/pages/groupsinfopage.html:13
-msgid "Name"
-msgstr "نام"
-
 #: ssc_template/templates/generic/includes/comment_form.html:20
 #: ssc_template/templates/index.html:26
 msgid "Email"
@@ -288,7 +306,7 @@ msgstr "انتخاب فایل"
 #: ssc_template/templates/pages/menus/breadcrumb.html:9
 #: ssc_template/templates/pages/menus/left_menu.html:11
 #: ssc_template/templates/pages/menus/main_menu.html:11
-#: ssc_template/templates/pages/menus/reversed_main_menu.html:29
+#: ssc_template/templates/pages/menus/reversed_main_menu.html:30
 #: ssc_template/templates/search_results.html:13
 msgid "Home"
 msgstr "صفحه‌ی اصلی"
@@ -306,6 +324,7 @@ msgid "Recent News"
 msgstr "اکنون در مانیتور‌های لابی"
 
 #: ssc_template/templates/pages/gallery.html:35
+#: ssc_template/templates/pages/gallerycontainerpage.html:32
 #, python-format
 msgid ""
 "\n"
@@ -347,25 +366,8 @@ msgstr ""
 msgid "read more"
 msgstr "ادامه‌ی نوشتار"
 
-#: transaction_forms/models.py:7
-msgid "Gateway ID"
-msgstr ""
-
-#: transaction_forms/models.py:8
-msgid "Description"
-msgstr ""
-
-#: transaction_forms/models.py:9
-msgid "Amount"
-msgstr ""
-
-#: transaction_forms/models.py:12
-msgid "Payment Form"
-msgstr ""
-
-#: transaction_forms/models.py:13
-msgid "Payment Forms"
-msgstr ""
+#~ msgid "Full Name"
+#~ msgstr "نام و نام خانوادگی"
 
 #~ msgid "related_posts"
 #~ msgstr "نوشتار‌های مرتبط"
