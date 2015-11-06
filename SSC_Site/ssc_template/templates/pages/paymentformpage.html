@@ -1,0 +1,79 @@
+{% extends "pages/form.html" %}
+
+{% load mezzanine_tags l10n i18n humanize other_ssc_tags %}
+
+
+{% block main %}
+<div class="card-panel">
+    {% if perms.transactions.can_view_payment_transactions %}
+    <table class="white bordered striped">
+        <thead>
+        <tr>
+            {% for field in form_fields %}
+            <th>{{ field }}</th>
+            {% endfor %}
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for entry in transactions_info %}
+        <tr>
+            {% for value in entry %}
+            <td>{{value}}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+    {% if status == "form" %}
+
+    {{ page.paymentformpage.content|richtext_filters|safe }}
+
+    {% errors_for form %}
+    <form class="mezzanine-form" method="post"{% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
+
+        <br>
+        <div class="input-field left-align">
+            <select required name="payment_plan_id">
+                {% for plan in page.paymentformpage.pricegroup_set.all %}
+                <option value="{{ plan.id }}">
+                    {{ plan.group_identifier }} {% if LANGUAGE_CODE == "fa" or LANGUAGE_CODE == "fa-IR" %}({{ plan.payment_amount|get_persian_comma_separated_money }}{% else %}{{plan.payment_amount|intcomma }}{% endif %} {% trans 'Rials' %})
+                </option>
+                {% endfor %}
+            </select>
+            <label>{% trans 'Choose The Right One' %}</label>
+        </div>
+        <br>
+
+        {% fields_for form "includes/form_fields.html" %}
+        <div class="form-actions">
+            <input class="btn" type="submit" value="{% trans 'Send and Pay' %}" >
+        </div>
+    </form>
+    {% elif status == "design_error" %}
+    <div>
+        <h5 class="red-text center-align">
+            {% trans 'ERROR: Your form must contain a hidden field labeled UUID.' %}
+        </h5>
+    </div>
+    {% elif status == "gateway_error" %}
+    <div>
+        <h5 class="red-text center-align">
+            {% trans 'ERROR: Can not connect to payment gateway, please try again.' %}
+        </h5>
+    </div>
+    {% elif status == "payment" %}
+    <div>
+        <p class="center-align">
+            {% trans 'You are going to be redirected to Redirecting to Payment Page ...' %}
+            <br><br>
+            <a href="{{ payment_url }}">{% trans 'Click here if you were not redirected in 5 seconds' %}</a>
+        </p>
+    </div>
+    <script>
+    window.setTimeout(function(){ window.location = "{{ payment_url }}"; }, 5000);
+    </script>
+    {% endif %}
+</div>
+{% endblock %}

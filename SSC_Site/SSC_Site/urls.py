@@ -37,6 +37,7 @@ urlpatterns += patterns('',
     # one out.
 
     url("^$", direct_to_template, {"template": "index.html"}, name="home"),
+    url("^from_bank/(?P<transaction_type>\w+)/(?P<transaction_id>\d+)/$", 'transactions.page_processors.from_bank', name="transactions_from_bank"),
 
     # HOMEPAGE AS AN EDITABLE PAGE IN THE PAGE TREE
     # ---------------------------------------------

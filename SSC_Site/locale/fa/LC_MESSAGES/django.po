@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-07 00:24+0330\n"
+"POT-Creation-Date: 2015-11-07 00:25+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -336,6 +336,34 @@ msgstr ""
 "برای مشاهده‌ی عکس با کیفیت اصلی <a href='%(url)s'>اینجا</a>  کلیک کنید.\n"
 "                       "
 
+#: ssc_template/templates/pages/paymentformpage.html:41
+msgid "Rials"
+msgstr "﷼"
+
+#: ssc_template/templates/pages/paymentformpage.html:45
+msgid "Choose The Right One"
+msgstr "گزینه‌ی مناسب را انتخاب کنید"
+
+#: ssc_template/templates/pages/paymentformpage.html:51
+msgid "Send and Pay"
+msgstr "ارسال و پرداخت"
+
+#: ssc_template/templates/pages/paymentformpage.html:57
+msgid "ERROR: Your form must contain a hidden field labeled UUID."
+msgstr "خطا: فرم شما باید حاوی یک فیلد پنها با عنوان UUID باشد."
+
+#: ssc_template/templates/pages/paymentformpage.html:63
+msgid "ERROR: Can not connect to payment gateway, please try again."
+msgstr "خطا: در حال حاضر قادر به اتصال به درگاه پرداخت نیستیم، لطفا مجددا تلاش نمایید."
+
+#: ssc_template/templates/pages/paymentformpage.html:69
+msgid "You are going to be redirected to Redirecting to Payment Page ..."
+msgstr "شما در حال ارسال به درگاه پرداخت هستید."
+
+#: ssc_template/templates/pages/paymentformpage.html:71
+msgid "Click here if you were not redirected in 5 seconds"
+msgstr "اگر در ۵ ثانیه به درگاه منتقل نشدید، اینجا کلیک کنید."
+
 #: ssc_template/templates/search_results.html:5
 #: ssc_template/templates/search_results.html:6
 #: ssc_template/templates/search_results.html:15
@@ -365,6 +393,108 @@ msgstr ""
 #: ssc_template/templates/search_results.html:37
 msgid "read more"
 msgstr "ادامه‌ی نوشتار"
+
+#: transactions/models.py:9 transactions/models.py:11
+msgid "Gateway Type"
+msgstr "نوع درگاه"
+
+#: transactions/models.py:12
+msgid "Gateway ID"
+msgstr "آی‌دی درگاه"
+
+#: transactions/models.py:13
+msgid "Gateway API"
+msgstr "ای‌پی‌آی درگاه"
+
+#: transactions/models.py:16 transactions/models.py:41
+#: transactions/models.py:51 transactions/page_processors.py:43
+#: transactions/page_processors.py:142
+msgid "Price Group"
+msgstr "گروه قیمت"
+
+#: transactions/models.py:17 transactions/models.py:42
+msgid "Price Groups"
+msgstr "گروه‌های قیمت"
+
+#: transactions/models.py:23 transactions/models.py:28
+msgid "Payment Form"
+msgstr "فرم پرداخت"
+
+#: transactions/models.py:24
+msgid "Payment Gateway"
+msgstr "درگاه پرداخت"
+
+#: transactions/models.py:25
+msgid "Payment Description"
+msgstr "توضیحات پرداخت"
+
+#: transactions/models.py:29
+msgid "Payment Forms"
+msgstr "فرم‌های پرداخت"
+
+#: transactions/models.py:31
+msgid "Can View Payment Transactions"
+msgstr "می‌تواند تراکنش‌های پرداختی را مشاهده نماید"
+
+#: transactions/models.py:36
+msgid "Containing Payment Form"
+msgstr "صفحه‌ی شامل فرم"
+
+#: transactions/models.py:37
+msgid "Group Identifier"
+msgstr "مشخص‌کننده‌ی گروه"
+
+#: transactions/models.py:38 transactions/models.py:52
+#: transactions/page_processors.py:43
+msgid "Amount in Rials"
+msgstr "مقدار به ریال"
+
+#: transactions/models.py:46 transactions/page_processors.py:42
+msgid "Creation Time"
+msgstr "زمان ایجاد"
+
+#: transactions/models.py:47 transactions/page_processors.py:42
+msgid "Form Entry UUID"
+msgstr "UUID وارد شده"
+
+#: transactions/models.py:49 transactions/page_processors.py:42
+msgid "Bank Token"
+msgstr "توکن بانک"
+
+#: transactions/models.py:50 transactions/page_processors.py:42
+msgid "Random Token"
+msgstr "توکن تصادفی"
+
+#: transactions/models.py:54 transactions/page_processors.py:43
+msgid "Is Payed"
+msgstr "پرداخت‌شده"
+
+#: transactions/models.py:55 transactions/page_processors.py:43
+msgid "Payment Time"
+msgstr "زمان پرداخت"
+
+#: transactions/models.py:58
+msgid "Upal Payment Transaction"
+msgstr "تراکنش پرداختی یوپال"
+
+#: transactions/models.py:59
+msgid "Upal Payment Transactions"
+msgstr "تراکنش‌های پرداختی یوپال"
+
+#: transactions/page_processors.py:143
+msgid "Payment in Rials"
+msgstr "مقدار پرداخت به ریال"
+
+#: transactions/page_processors.py:161
+msgid "Successful Payment Transaction"
+msgstr "تراکنش پرداختی موفقیت آمیز بود"
+
+#: transactions/page_processors.py:168
+msgid "UnSuccessful Payment Transaction"
+msgstr "تراکنش پرداختی با مشکل مواجه شده‌است. لطفا چنانچه پرداخت شما موفق بوده‌است، ما را مطلع کنید."
+
+#~ msgid "Click here"
+#~ msgstr "اینجا کلیک‌کنید"
 
 #~ msgid "Full Name"
 #~ msgstr "نام و نام خانوادگی"

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+
+{% block meta_title %}{{ page.title }}{% endblock %}
+
+{% block meta_keywords %}{% endblock %}
+
+{% block meta_description %}{% endblock %}
+
+{% block title %}
+{{ page.title }}
+{% endblock %}
+
+{% block main %}
+<div class="card-panel">
+    <h4 class="teal-text center-align">{{ title }}</h4>
+    <p>{{ context.message }}</p>
+    {% for field, entry in context.fields %}
+    <p><h6>{{ field }}:</h6> {{ entry }}</p>
+    {% endfor %}
+</div>
+{% endblock %}
