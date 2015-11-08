@@ -120,6 +120,12 @@ body {
     font-size: .4em;
 }
 
+.new-post h5 {
+    margin: 0px;
+    padding: 7px;
+}
 
-
+.read-more {
+    margin: 0px;
+}
 

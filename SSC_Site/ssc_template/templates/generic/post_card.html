@@ -3,6 +3,9 @@
 {% with post|get_post_real_url as post_url %}
 <div class="card">
     {% if post.featured_image %}
+    {% if post|post_is_new %}
+    <div class="red white-text center-align new-post"><h5>{% trans 'New' %}</h5></div>
+    {% endif %}
     {% block card_image %}
     <a href="{{ post_url }}">
         <div class="card-image waves-effect waves-block waves-light">
@@ -27,17 +30,20 @@
     {% block card_tail %}
     {% block card_read_more %}
     <div class="card-action">
-        <a class="teal-text" href="{{ post_url }}">
-        {% if post.read_more_text %}
-            {{ post.read_more_text }}
-        {% else %}{% if post.page.form %}
-            {% trans "Fill Out The Form" %}
-        {% else %}{% if post.page.gallery %}
-            {% trans "Go To the Gallery" %}
-        {% else %}
-            {% trans "Read More" %}
-        {% endif %}{% endif %}{% endif %}
-        </a>
+        <h5 class="read-more">
+            <a class="teal-text" href="{{ post_url }}">
+                {% if post.read_more_text %}
+                {{ post.read_more_text }}
+                {% else %}{% if post.page.form %}
+                {% trans "Fill Out The Form" %}
+                {% else %}{% if post.page.gallery %}
+                {% trans "Go To the Gallery" %}
+                {% else %}
+                {% trans "Read More" %}
+                {% endif %}{% endif %}{% endif %}
+
+            </a>
+        </h5>
     </div>
     {% endblock %}
     {% endblock %}
