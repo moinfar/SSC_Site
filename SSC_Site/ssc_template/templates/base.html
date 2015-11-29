@@ -178,6 +178,32 @@
     {% endblock %}
 
 
+    <!-- Start of StatCounter Code for Default Guide -->
+    {% comment "Slow Stat Counter" %}
+        <script type="text/javascript">
+        var sc_project=10720056;
+        var sc_invisible=1;
+        var sc_security="2e00e523";
+        var scJsHost = (("https:" == document.location.protocol) ?
+        "https://secure." : "http://www.");
+        $(function() {
+        $("body").append("<sc"+"ript type='text/javascript' src='" +
+        scJsHost+
+        "statcounter.com/counter/counter.js'></"+"script>");
+        });
+        </script>
+        <noscript><div class="statcounter"><a title="hits counter"
+        href="http://statcounter.com/free-hit-counter/"
+        target="_blank"><img class="statcounter"
+        src="http://c.statcounter.com/10720056/0/2e00e523/1/"
+        alt="hits counter"></a></div></noscript>
+    {% endcomment %}
+    <a title="shopify visitor statistics"
+    href="http://statcounter.com/shopify/" target="_blank"><img
+    src="http://c.statcounter.com/10720056/0/2e00e523/1/"
+    alt="shopify visitor statistics" style="border:none;"></a>
+    <!-- End of StatCounter Code for Default Guide -->
+
 
     <footer class="teal page-footer white-text" {% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
         <div class="container">
@@ -216,6 +242,7 @@
 <script type="text/javascript" src="/static/base/js/tv.js"></script>
 {% endcompress %}
 {% block extra_body %}{% endblock %}
+
 
 </body>
 </html>
