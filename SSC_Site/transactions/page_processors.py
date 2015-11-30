@@ -1,6 +1,8 @@
 import uuid
 import hashlib
+import datetime
 from random import choice
+from itertools import chain
 from string import printable
 import requests as web_request
 from django.utils import timezone
@@ -20,6 +22,12 @@ from .models import PaymentFormPage, PriceGroup, UpalPaymentTransaction
 def payment_form_processor(request, page):
     payment_form = page.paymentformpage.payment_form
     payment_form.form.send_email = False
+
+    upal_transactions = get_upal_transactions_info(page.paymentformpage)
+
+    successful_payments = 0
+    if page.paymentformpage.payment_gateway.type == "upal":
+        successful_payments += upal_transactions.filter(is_payed=True).count()
 
     if payment_form.form.fields.filter(label="UUID").count() != 1:
         return {"status": "design_error"}
@@ -42,7 +50,12 @@ def payment_form_processor(request, page):
                 for title in [_("Creation Time"), _("Form Entry UUID"), _("Bank Token"), _("Random Token"),
                               _("Price Group"), _("Amount in Rials"), _("Is Payed"), _("Payment Time")]:
                     form_fields.append(title)
-                transactions = get_upal_transactions_info(page.paymentformpage)#.order_by("is_payed, creation_time")
+                upal_transactions.filter(creation_time__lt=timezone.now() - datetime.timedelta(minutes=20),
+                                         is_payed=None).update(is_payed=False)
+                successful_transactions = upal_transactions.filter(is_payed=True)
+                pending_transactions = upal_transactions.filter(is_payed=None)
+                failed_transactions = upal_transactions.filter(is_payed=False)
+                transactions = chain(successful_transactions, pending_transactions, failed_transactions)
                 transactions_info = []
                 for transaction in transactions:
                     entries = get_transaction_entries(transaction)
@@ -58,15 +71,43 @@ def payment_form_processor(request, page):
 
             return {"status": "form", "form": form["form"],
                     "form_fields": form_fields, "transactions_info": transactions_info}
+
+        if page.paymentformpage.capacity != 0:
+            if successful_payments >= page.paymentformpage.capacity:
+                return {"status": "at_full_capacity"}
+
         return {"status": "form", "form": form["form"]}
 
     plan = PriceGroup.objects.get(id=request.POST.get("payment_plan_id"))
+    if plan.capacity != 0:
+        plan_successful_payments = 0
+        if page.paymentformpage.payment_gateway.type == "upal":
+            plan_successful_payments += upal_transactions.filter(is_payed=True, price_group=plan).count()
+
+        if plan_successful_payments >= plan.capacity:
+            return {"status": "at_full_capacity"}
+
     transaction = new_payment(request, page.paymentformpage, plan, request_uuid)
 
     if transaction is None:
         return {"status": "gateway_error"}
 
     payment_url = 'http://upal.ir/transaction/submit?id={}'.format(transaction.bank_token)
+
+    if page.paymentformpage.capacity != 0:
+        if page.paymentformpage.payment_gateway.type == "upal":
+            pending_payments = successful_payments + upal_transactions.filter(
+                is_payed=None, creation_time__gt=timezone.now() - datetime.timedelta(minutes=10)).count()
+        if pending_payments > page.paymentformpage.capacity:
+            return {"status": "payment", "payment_url": payment_url, "warning": "reserved_list"}
+
+    if plan.capacity != 0:
+        if page.paymentformpage.payment_gateway.type == "upal":
+            plan_pending_payments = plan_successful_payments + upal_transactions.filter(
+                    is_payed=None, creation_time__gt=timezone.now() - datetime.timedelta(minutes=10),
+                    price_group=plan).count()
+        if plan_pending_payments > plan.capacity:
+            return {"status": "payment", "payment_url": payment_url, "warning": "reserved_list"}
 
     return {"status": "payment", "payment_url": payment_url}
 
@@ -167,9 +208,11 @@ def from_bank(request, transaction_type, transaction_id):
                 return render(request, 'pages/message.html', {"page": transaction.price_group.payment_form_page,
                                                               "title": _("Successful Payment Transaction"),
                                                               "context": context})
-                # else:
-                #     print(our_validation_md5.hexdigest())
-                #     print(validation_hash)
+            else:
+                # print(our_validation_md5.hexdigest())
+                # print(validation_hash)
+                transaction.is_payed = False
+                transaction.save()
 
     return render(request, 'pages/error.html', {"page": transaction.price_group.payment_form_page,
                                                 "title": _("UnSuccessful Payment Transaction")})

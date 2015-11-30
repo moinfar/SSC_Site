@@ -18,16 +18,17 @@ form_fieldsets = deepcopy(PageAdmin.fieldsets)
 form_fieldsets[0][1]["fields"].insert(+2, "payment_form")
 form_fieldsets[0][1]["fields"].insert(+3, "payment_gateway")
 form_fieldsets[0][1]["fields"].insert(+4, "payment_description")
-form_fieldsets[0][1]["fields"].insert(+5, "content")
+form_fieldsets[0][1]["fields"].insert(+5, "capacity")
+form_fieldsets[0][1]["fields"].insert(+6, "content")
 
 
 class PriceGroupInline(mezzanineAdmin.TabularDynamicInlineAdmin):
     model = PriceGroup
 
 
-class GalleryContainerPageAdmin(PageAdmin):
+class PaymentFormPageAdmin(PageAdmin):
     inlines = (PriceGroupInline,)
     fieldsets = form_fieldsets
 
 
-admin.site.register(PaymentFormPage, GalleryContainerPageAdmin)
+admin.site.register(PaymentFormPage, PaymentFormPageAdmin)

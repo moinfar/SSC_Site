@@ -20,10 +20,11 @@
 
         {% errors_for form %}
 
-        <form class="mezzanine-form" method="post"{% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
+        <form class="mezzanine-form" onsubmit="return sumbit_form();"
+              method="post"{% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
             {% fields_for form "includes/form_fields.html" %}
             <div class="form-actions">
-                <input class="btn" type="submit" value="{{ page.form.button_text }}">
+                <input class="submit btn" type="submit" value="{{ page.form.button_text }}">
             </div>
         </form>
     {% endif %}
@@ -45,5 +46,18 @@ $(function() {
     $('.mezzanine-form .select-wrapper li').css("text-align", "center");
     $('.mezzanine-form input[type=date]').pickadate({selectMonths: true, selectYears: 15});
 });
+
+var button_enabled = true;
+function sumbit_form() {
+    if (button_enabled == 0)
+        return false;
+    $(".submit.btn").addClass("disabled");
+    button_enabled = false;
+    window.setTimeout(function() {
+        $(".submit.btn").removeClass("disabled");
+        button_enabled = true;
+    }, 45000);
+    return true;
+}
 </script>
 {% endblock %}
