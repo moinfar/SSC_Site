@@ -1,9 +1,11 @@
 import locale
 import datetime
-from django import template
+from mezzanine import template
 from django.utils import timezone
 from django.forms.widgets import RadioSelect, CheckboxSelectMultiple
 from .jdate_tags import farsi_digits
+from screens.models import ScreenPage
+
 register = template.Library()
 
 
@@ -31,3 +33,15 @@ def post_is_new(post):
 @register.filter()
 def get_persian_comma_separated_money(number):
     return farsi_digits(format(number, ','))
+
+@register.filter()
+def has_expired(expirable_model):
+    return expirable_model.expiry_date and expirable_model.expiry_date < timezone.now()
+
+@register.filter()
+def has_published(publishable_model):
+    return publishable_model.publish_date < timezone.now()
+
+@register.as_tag
+def get_screenpage(screen_lable):
+    return ScreenPage.objects.get(label=screen_lable)

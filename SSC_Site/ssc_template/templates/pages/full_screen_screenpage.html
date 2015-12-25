@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}">
+{% load pages_tags mezzanine_tags i18n future staticfiles %}
+
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
+    <meta name="description" content="{% block meta_description %}{% endblock %}">
+    <title>{{ page.screenpage.title }}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
+
+    {% ifinstalled mezzanine.blog %}
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="{% url 'blog_post_feed' 'rss' %}">
+    <link rel="alternate" type="application/atom+xml" title="Atom" href="{% url 'blog_post_feed' 'atom' %}">
+    {% endifinstalled %}
+
+    {% compress css %}
+    <!-- Import iransans font -->
+    <link type="text/css" rel="stylesheet" href="/static/base/font/iransans/style.css"/>
+    <!-- Import materialize.css -->
+    <link type="text/css" rel="stylesheet" href="/static/materialize/css/materialize.css"  media="screen,projection"/>
+
+    <link type="text/css" rel="stylesheet" href="/static/base/css/screen.css"/>
+    {% endcompress %}
+    <style>
+        html {
+           font-family: "IRANSans-web" !important;
+        }
+    </style>
+
+    {% compress js %}
+    <script type="text/javascript" src="/static/base/js/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="/static/materialize/js/materialize.min.js"></script>
+
+    {% endcompress %}
+</head>
+
+<body dir="rtl" style="overflow:hidden;">
+
+<div class="screen slider" id="screen-image-slider">
+    <ul class="slides">
+    </ul>
+</div>
+
+
+{% compress js %}
+<script type="text/javascript" src="/static/base/js/screen.js"></script>
+
+<script type="text/javascript">
+
+    var last_hash = 0;
+
+    function load_slides() {
+
+        $.getJSON("./?view=json", function(data) {
+
+            if (data.status != 'OK')
+                console.log('NO VALID RESPONSE');
+
+            hash = data.hash;
+            if (hash == last_hash)
+                return;
+            last_hash = hash;
+
+            images = data.images;
+
+            $('#screen-image-slider .slides').html("");
+            $.each(images, function(index) {
+                image = images[index].image;
+                content = images[index].content;
+                if (image)
+                    $('#screen-image-slider .slides').append('<li style="background-color:white;">\
+                                <img src="'+ image +'">\
+                                <div class="large-screen black-text screen-text center-align caption">\
+                                    '+ content +'\
+                                </div>\
+                            </li>');
+                else
+                    $('#screen-image-slider .slides').append('<li style="background-color:white;">\
+                                <img src="data:image/gif;base64,R0lGODlhAQABAIABAP///wAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">\
+                                <div class="large-screen black-text screen-text center-align caption">\
+                                    '+ content +'\
+                                </div>\
+                            </li>');
+            });
+
+            $('#screen-image-slider').slider({interval: 10000, indicators: false, height: $('#screen-image-slider').width()*9/16});
+
+        });
+    };
+
+    load_slides();
+    window.setInterval(load_slides, 10000);
+
+</script>
+{% endcompress %}
+
+
+</body>
+</html>

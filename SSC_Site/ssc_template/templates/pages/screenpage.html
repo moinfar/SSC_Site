@@ -1,0 +1,101 @@
+{% extends "pages/page.html" %}
+
+{% load mezzanine_tags staticfiles i18n other_ssc_tags %}
+
+{% block extra_css %}
+<link type="text/css" rel="stylesheet" href="/static/base/css/screen.css"/>
+{% endblock %}
+
+
+{% block left_wrapper %}
+{% endblock %}
+
+{% block main_wrapper %}
+
+<div class="container">
+    <div class="card">
+        <div class="card-content">
+            {{ page.screenpage.content|richtext_filters|safe }}
+        </div>
+        {% if request.user.is_superuser %}
+        <div class="left-align card-action">
+            <a href="./?view=full_screen" class="waves-effect waves-light teal btn">
+                <h5 class="center-align white-text">
+                    {% trans 'View Full Screen Slider' %}
+                </h5>
+            </a>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="px-10 vertical spacer"></div>
+
+    <div class="card-panel">
+        {{ page.gallery.content|richtext_filters|safe }}
+        <div class="screen slider" id="screen-image-slider">
+            <ul class="slides">
+                {% with page.screenpage.current_images as screenimages %}
+                {% for screenimage in screenimages %}
+                <li style="background-color:white;">
+                    {% if screenimage.image %}
+                    <img src="{{ MEDIA_URL }}{% thumbnail screenimage.image 900 0 %}">
+                    {% else %}
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIABAP///wAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+                    {% endif %}
+                    <div class="large-screen black-text screen-text center-align caption">
+                        {{ screenimage.content|richtext_filters|safe}}
+                    </div>
+                </li>
+                {% endfor %}
+                {% endwith %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="px-10 vertical spacer"></div>
+
+    <div class="row" id="image_container">
+        {% if show = 'all' %}
+        {% with page.screenpage.all_images as screenimages %}
+            {% include 'includes/screen_thumbnails.html' %}
+        {% endwith %}
+        {% else %}
+        {% with page.screenpage.recent_images as screenimages %}
+            {% include 'includes/screen_thumbnails.html' %}
+            <div class="image col s12 m6 l4">
+                <a href="./?view=all">
+                    <div class="hoverable teal card-panel">
+                        <h5 class="center-align white-text">
+                            {% trans 'Show All Items' %}
+                        </h5>
+                    </div>
+                </a>
+            </div>
+        {% endwith %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+{% endblock %}
+
+{% block extra_body %}
+<script type="text/javascript" src="/static/base/js/screen.js"></script>
+
+<script type="text/javascript">
+	$('#image_container').imagesLoaded( function() {
+		$('#image_container').masonry({
+		    isOriginLeft: false,
+			itemSelector: '.image',
+			transitionDuration: 1,
+		});
+	});
+	$(document).ready(function(){
+        $('#screen-image-slider').slider({interval: 10000, indicators: true, height: $('#screen-image-slider').width()*9/16});
+    });
+</script>
+{% endblock %}
+
+

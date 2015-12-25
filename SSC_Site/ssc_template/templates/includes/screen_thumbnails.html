@@ -1,0 +1,20 @@
+{% load mezzanine_tags %}
+
+{% for screenimage in screenimages %}
+<div class="image col s12 m6 l4">
+    <div class="hoverable white card">
+        <div class="card-image">
+            {% if screenimage.image %}
+            <a href="{{ MEDIA_URL }}{% thumbnail screenimage.image 900 0 %}" data-lightbox="gallery">
+                <img alt="{{ image.description }}" src="{{ MEDIA_URL }}{% thumbnail screenimage.image 400 0 %}">
+            </a>
+            {% endif %}
+            {% if screenimage.content %}
+            <div class="white small-screen center-align card-action">
+                {{ screenimage.content|richtext_filters|safe}}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endfor %}

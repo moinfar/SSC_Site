@@ -1,3 +1,35 @@
+.large-screen {
+    font-size: 2.69em;
+}
+
+.small-screen {
+    font-size: 0.89em;
+}
+
+.very-small-screen {
+    font-size: 0.59em;
+}
+
+.screen.slider .indicators .indicator-item.active {
+    background-color: #009688;
+}
+
+.screen-text {
+    margin: 35px;
+}
+
+.screen.slider .slides li .caption p {
+    color: black;
+}
+
+.screen.slider .slides li .caption {
+    top: 0%;
+    left: 0%;
+    right: 0%;
+    width: 93%;
+    margin: 0 auto 0 auto;
+}
+
 .ssc.tv.box {
 	background-color: black;
 	border: solid black 1px;

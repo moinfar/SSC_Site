@@ -1,7 +1,11 @@
 {% extends "base.html" %}
-{% load blog_tags i18n  mezzanine_tags staticfiles%}
+{% load blog_tags i18n  mezzanine_tags staticfiles other_ssc_tags%}
 {% block meta_title %}{% trans "Home" %}{% endblock %}
 {% block title %}{% trans "Home" %}{% endblock %}
+
+{% block extra_css %}
+<link type="text/css" rel="stylesheet" href="/static/base/css/screen.css"/>
+{% endblock %}
 
 {% block breadcrumb_wrapper %}
 {% endblock %}
@@ -37,10 +41,43 @@
         </div>
         <div class="col s12 m12 l8">
             <div class="main ssc tv box">
-                <div class="ssc tv screen uni">
-                </div>
-                <div class="ssc tv screen our">
-                </div>
+                {% get_screenpage settings.SCREEN_LEFT as uni_screen %}
+                <a href="{{ uni_screen.get_absolute_url }}"
+                   class="ssc tv our screen slider" id="left-screen-image-slider" hidden>
+                    <ul class="slides">
+                        {% with uni_screen.current_images as screenimages %}
+                        {% for screenimage in screenimages %}
+                        <li style="background-color:white;">
+                            {% if screenimage.image %}
+                            <img src="{{ MEDIA_URL }}{% thumbnail screenimage.image 300 0 %}">
+                            {% endif %}
+                            <div class="very-small-screen black-text screen-text center-align caption">
+                                {{ screenimage.content|richtext_filters|safe}}
+                            </div>
+                        </li>
+                        {% endfor %}
+                        {% endwith %}
+                    </ul>
+                </a>
+
+                {% get_screenpage settings.SCREEN_RIGHT as ssc_screen %}
+                <a href="{{ ssc_screen.get_absolute_url }}"
+                   class="ssc tv our screen slider" id="right-screen-image-slider" hidden>
+                    <ul class="slides">
+                        {% with ssc_screen.current_images as screenimages %}
+                        {% for screenimage in screenimages %}
+                        <li style="background-color:white;">
+                            {% if screenimage.image %}
+                            <img src="{{ MEDIA_URL }}{% thumbnail screenimage.image 300 0 %}">
+                            {% endif %}
+                            <div class="very-small-screen black-text screen-text center-align caption">
+                                {{ screenimage.content|richtext_filters|safe}}
+                            </div>
+                        </li>
+                        {% endfor %}
+                        {% endwith %}
+                    </ul>
+                </a>
             </div>
             <div class="center-align">
 				<span class="ssc tv stand">
@@ -80,6 +117,8 @@
 
 
 {% block extra_body %}
+<script type="text/javascript" src="/static/base/js/screen.js"></script>
+
 <script type="text/javascript">
 	$('#post_container').imagesLoaded( function() {
 		$('#post_container').masonry({
@@ -90,4 +129,7 @@
 	});
 </script>
 {% endblock %}
+
+
+
 

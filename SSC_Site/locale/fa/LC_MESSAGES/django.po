@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-30 23:50+0330\n"
+"POT-Creation-Date: 2015-12-26 21:25+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,21 +46,73 @@ msgstr "متن ادامه‌ی نوشتار"
 msgid "Parallax Image"
 msgstr "تصویر پارالاکس"
 
-#: SSC_Site/settings.py:139
+#: SSC_Site/settings.py:141
 msgid "Persian"
 msgstr "فارسی"
 
-#: SSC_Site/settings.py:140
+#: SSC_Site/settings.py:142
 msgid "English"
 msgstr "انگلیسی"
+
+#: screens/defaults.py:6
+msgid "Label of left monitor page"
+msgstr "برچسب مانیتور سمت چپ"
+
+#: screens/defaults.py:14
+msgid "Label of right monitor page"
+msgstr "برچسب مانیتور سمت راست"
+
+#: screens/defaults.py:23 ssc_configs/defaults.py:15
+msgid "Sequence of setting names available within templates."
+msgstr "مجموعه تنظیمات فایل دسترسی در قالب‌ها."
+
+#: screens/models.py:11
+msgid "Label"
+msgstr "برچسب"
+
+#: screens/models.py:30
+msgid "Screen Page"
+msgstr "صفحه‌ی مانیتور"
+
+#: screens/models.py:31
+msgid "Screen Pages"
+msgstr "صفحات مانیتور"
+
+#: screens/models.py:58
+msgid "screen"
+msgstr "مانیتور"
+
+#: screens/models.py:60
+msgid "image"
+msgstr "تصویر"
+
+#: screens/models.py:62
+msgid "Published from"
+msgstr "منتشر شده از"
+
+#: screens/models.py:63
+msgid "With Published chosen, won't be shown until this time"
+msgstr "با انتخاب منتشر شده, تا این لحظه نمایش داده نمی‌شود."
+
+#: screens/models.py:65
+msgid "Expires on"
+msgstr "انقضا در"
+
+#: screens/models.py:66
+msgid "With Published chosen, won't be shown after this time"
+msgstr "با انتخاب منتشر شده, بعد از این لحظه نمایش داده نمی شود."
+
+#: screens/models.py:67
+msgid "is default"
+msgstr "تصویر پیشفرض"
+
+#: screens/models.py:77 screens/models.py:78
+msgid "Screen Image"
+msgstr "تصویر مانیتور"
 
 #: ssc_configs/defaults.py:6
 msgid "Parallax of index page"
 msgstr "تصویر پارالاکس صفحه‌ی اصلی"
-
-#: ssc_configs/defaults.py:15
-msgid "Sequence of setting names available within templates."
-msgstr "مجموعه تنظیمات فایل دسترسی در قالب‌ها."
 
 #: ssc_configs/models.py:8 ssc_configs/models.py:20
 msgid "slug"
@@ -129,11 +181,11 @@ msgstr "صفحه‌ی شامل گالری‌ها"
 msgid "Gallery Container Pages"
 msgstr "صفحات شامل گالری‌ها"
 
-#: ssc_template/templates/base.html:70
+#: ssc_template/templates/base.html:69
 msgid "Change"
 msgstr "تغییر"
 
-#: ssc_template/templates/base.html:186
+#: ssc_template/templates/base.html:211
 #, python-format
 msgid ""
 "\n"
@@ -151,7 +203,7 @@ msgstr ""
 "                    <a %(sharif_link_attrs)s >دانشگاه صنعتی شریف</a> است\n"
 "                    "
 
-#: ssc_template/templates/base.html:198
+#: ssc_template/templates/base.html:223
 #, python-format
 msgid ""
 "\n"
@@ -175,9 +227,6 @@ msgid "Related announcements"
 msgstr "اطلاعیه‌های مرتبط"
 
 #: ssc_template/templates/blog/blog_post_list.html:4
-msgid "Blog"
-msgstr "وبلاگ"
-
 #: ssc_template/templates/blog/blog_post_list.html:22
 msgid "Announcements"
 msgstr "اطلاعیه‌ها"
@@ -269,7 +318,7 @@ msgid "There are currently no comments"
 msgstr "نظری تا کنون ثبت نشده‌است."
 
 #: ssc_template/templates/generic/includes/comment_form.html:20
-#: ssc_template/templates/index.html:26
+#: ssc_template/templates/index.html:30
 msgid "Email"
 msgstr "رایانامه"
 
@@ -305,8 +354,16 @@ msgstr "ادامه‌ی نوشتار"
 msgid "Choose File"
 msgstr "انتخاب فایل"
 
+#: ssc_template/templates/includes/pagination.html:7
+msgid "Page"
+msgstr "صفحه"
+
+#: ssc_template/templates/includes/pagination.html:7
+msgid "of"
+msgstr "از"
+
 #: ssc_template/templates/index.html:3 ssc_template/templates/index.html:4
-#: ssc_template/templates/index.html:13
+#: ssc_template/templates/index.html:17
 #: ssc_template/templates/pages/menus/breadcrumb.html:9
 #: ssc_template/templates/pages/menus/left_menu.html:11
 #: ssc_template/templates/pages/menus/main_menu.html:11
@@ -315,15 +372,15 @@ msgstr "انتخاب فایل"
 msgid "Home"
 msgstr "صفحه‌ی اصلی"
 
-#: ssc_template/templates/index.html:27
+#: ssc_template/templates/index.html:31
 msgid "password"
 msgstr "گذرواژه"
 
-#: ssc_template/templates/index.html:31
+#: ssc_template/templates/index.html:35
 msgid "Coming Soon"
 msgstr "به زودی"
 
-#: ssc_template/templates/index.html:47
+#: ssc_template/templates/index.html:84
 msgid "Recent News"
 msgstr "اکنون در مانیتور‌های لابی"
 
@@ -387,6 +444,14 @@ msgstr "اگر در ۵ ثانیه به درگاه منتقل نشدید، این
 #: ssc_template/templates/pages/paymentformpage.html:103
 msgid "OK"
 msgstr "متوجه شدم"
+
+#: ssc_template/templates/pages/screenpage.html:24
+msgid "View Full Screen Slider"
+msgstr "مشاهده‌ی تمام صفحه‌ی تصاویر"
+
+#: ssc_template/templates/pages/screenpage.html:69
+msgid "Show All Items"
+msgstr "نمایش تمام موارد"
 
 #: ssc_template/templates/search_results.html:5
 #: ssc_template/templates/search_results.html:6
@@ -522,6 +587,9 @@ msgid "UnSuccessful Payment Transaction"
 msgstr ""
 "تراکنش پرداختی با مشکل مواجه شده‌است. لطفا چنانچه پرداخت شما موفق بوده‌است، ما "
 "را مطلع کنید."
+
+#~ msgid "Blog"
+#~ msgstr "وبلاگ"
 
 #~ msgid "Click here"
 #~ msgstr "اینجا کلیک‌کنید"
