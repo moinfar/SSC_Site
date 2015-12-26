@@ -97,6 +97,8 @@ EXTRA_MODEL_FIELDS = (
 
 BLOG_USE_FEATURED_IMAGE = True
 
+BLOG_SLUG = "announcements"
+
 # If True, the django-modeltranslation will be added to the
 # INSTALLED_APPS setting.
 USE_MODELTRANSLATION = True
