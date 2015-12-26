@@ -6,13 +6,13 @@
     {% include "generic/includes/disqus_comments.html" %}
     {% else %}
     <script>
-$(function() {
-    $('.reply').click(function() {
-        $('.comment-reply-form').hide();
-        $(this).siblings('.comment-reply-form').toggle();
+    $(function() {
+        $('.reply').click(function() {
+            $('.comment-reply-form').hide();
+            $(this).siblings('.comment-reply-form').toggle();
+        });
     });
-});
-</script>
+    </script>
     <style>.input_id_honeypot {display:none !important;}</style>
     {% comment_thread object_for_comments %}
     <div class="px-20 vertical spacer"></div>
