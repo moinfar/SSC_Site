@@ -26,9 +26,10 @@
         </tbody>
     </table>
     {% endif %}
-    {% if status == "form" %}
 
     {{ page.paymentformpage.content|richtext_filters|safe }}
+
+    {% if status == "form" %}
 
     {% errors_for form %}
     <form class="mezzanine-form" onsubmit="return sumbit_form();"
