@@ -1,9 +1,9 @@
 import uuid
+import string
 import hashlib
 import datetime
 from random import choice
 from itertools import chain
-from string import printable
 import requests as web_request
 from django.utils import timezone
 from mezzanine.forms import fields
@@ -114,7 +114,7 @@ def payment_form_processor(request, page):
 
 def new_payment(request, paymentformpage, plan, request_uuid):
     if paymentformpage.payment_gateway.type == "upal":
-        random_token = ''.join(choice(printable) for i in range(16))
+        random_token = ''.join(choice(string.lowercase + string.uppercase + string.digits) for i in range(16))
         transaction = UpalPaymentTransaction(creation_time=timezone.now(),
                                              uuid= request_uuid,
                                              random_token=random_token,
