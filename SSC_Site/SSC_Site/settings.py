@@ -243,6 +243,7 @@ INSTALLED_APPS = (
     "django.contrib.sitemaps",
     "django.contrib.staticfiles",
     "django.contrib.humanize",
+    "djcelery_email",
     "ssc_template",
     "mezzanine.boot",
     "mezzanine.conf",
@@ -323,6 +324,20 @@ OPTIONAL_APPS = (
     PACKAGE_NAME_FILEBROWSER,
     PACKAGE_NAME_GRAPPELLI,
 )
+
+
+
+##########
+# CELERY #
+##########
+
+BROKER_URL = 'redis://localhost:6379/1'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/1'
+EMAIL_BACKEND = 'djcelery_email.backends.CeleryEmailBackend'
+CELERY_EMAIL_TASK_CONFIG = {
+    'max_retries': 8,
+    'queue': 'mail_queue',
+}
 
 #######################
 # LDAP AUTHENTICATION #

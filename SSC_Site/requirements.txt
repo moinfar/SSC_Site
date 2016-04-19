@@ -5,3 +5,5 @@ psycopg2==2.6.1
 python-memcached==1.57
 gunicorn==19.3.0
 jdatetime==1.7.1
+redis==2.10.5
+django-celery-email==1.1.4
