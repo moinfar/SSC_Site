@@ -92,7 +92,8 @@ def payment_form_processor(request, page):
     if transaction is None:
         return {"status": "gateway_error"}
 
-    payment_url = 'http://upal.ir/transaction/submit?id={}'.format(transaction.bank_token)
+    #payment_url = 'https://upal.ir/transaction/submit?id={}'.format(transaction.bank_token)
+    payment_url = 'http://salam.im/transaction/submit?id={}'.format(transaction.bank_token)
 
     if page.paymentformpage.capacity != 0:
         if page.paymentformpage.payment_gateway.type == "upal":
@@ -123,7 +124,8 @@ def new_payment(request, paymentformpage, plan, request_uuid):
         transaction.save()
         return_url = request.build_absolute_uri(reverse('transactions_from_bank', args=('upal', transaction.id)))
         try:
-            payment_request = web_request.post("http://upal.ir//transaction/create",
+            #payment_request = web_request.post("https://upal.ir//transaction/create",
+            payment_request = web_request.post("http://salam.im//transaction/create",
                                                data={'gateway_id': paymentformpage.payment_gateway.gateway_id,
                                                      'amount': plan.payment_amount,
                                                      'description': u"{}-{}".format(paymentformpage.payment_description, plan.group_identifier),

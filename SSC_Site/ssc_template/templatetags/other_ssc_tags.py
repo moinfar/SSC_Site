@@ -45,3 +45,9 @@ def has_published(publishable_model):
 @register.as_tag
 def get_screenpage(screen_lable):
     return ScreenPage.objects.get(label=screen_lable)
+
+
+@register.filter()
+def add_transaction_fee(amount, fee):
+    return int(int(amount)*fee)
+
