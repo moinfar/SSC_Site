@@ -255,6 +255,7 @@ INSTALLED_APPS = (
     "mezzanine.galleries",
     "ssc_configs",
     "transactions",
+    "media_manager",
     "screens",
     # "mezzanine.twitter",
     # "mezzanine.accounts",

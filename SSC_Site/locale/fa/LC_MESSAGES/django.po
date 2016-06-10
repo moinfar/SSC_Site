@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-26 21:25+0330\n"
+"POT-Creation-Date: 2016-06-10 20:16+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,6 +53,56 @@ msgstr "فارسی"
 #: SSC_Site/settings.py:142
 msgid "English"
 msgstr "انگلیسی"
+
+#: media_manager/models.py:12
+msgid "Video Container Page"
+msgstr "صفحه‌ی شامل ویدئو‌ها"
+
+#: media_manager/models.py:13
+msgid "Video Container Pages"
+msgstr "صفحات شامل ویدئو‌ها"
+
+#: media_manager/models.py:17 ssc_configs/models.py:40
+msgid "Containing Page"
+msgstr "صفحه‌ی شامل"
+
+#: media_manager/models.py:18 ssc_configs/models.py:21 ssc_configs/models.py:41
+msgid "Title"
+msgstr "عنوان"
+
+#: media_manager/models.py:19
+#: ssc_template/templates/pages/videocontainerpage.html:22
+#: ssc_template/templates/pages/videocontainerpage.html:26
+msgid "Description"
+msgstr "توضیحات"
+
+#: media_manager/models.py:22 media_manager/models.py:27
+msgid "Video"
+msgstr "ویدئو‌"
+
+#: media_manager/models.py:23
+msgid "Videos"
+msgstr "ویدئو‌ها"
+
+#: media_manager/models.py:28
+msgid "Site name"
+msgstr "نام سایت"
+
+#: media_manager/models.py:28
+msgid "YouTube"
+msgstr "یوتیوب"
+
+#: media_manager/models.py:29
+msgid "Code"
+msgstr "کد"
+
+#: media_manager/models.py:32
+msgid "Video Frame"
+msgstr "فریم ویدئو"
+
+#: media_manager/models.py:33
+msgid "Video Frames"
+msgstr "فریم‌های ویدئو"
 
 #: screens/defaults.py:6
 msgid "Label of left monitor page"
@@ -148,10 +198,6 @@ msgstr "صفحه‌ی اطلاعات گروه‌ها"
 #: ssc_configs/models.py:36
 msgid "Groups' Info Pages"
 msgstr "صفحات اطلاعات گروه‌ها"
-
-#: ssc_configs/models.py:40
-msgid "Containing Page"
-msgstr "صفحه‌ی شامل"
 
 #: ssc_configs/models.py:44
 msgid "Group Info"
@@ -397,51 +443,51 @@ msgstr ""
 "برای مشاهده‌ی عکس با کیفیت اصلی <a href='%(url)s'>اینجا</a>  کلیک کنید.\n"
 "                       "
 
-#: ssc_template/templates/pages/paymentformpage.html:43
+#: ssc_template/templates/pages/paymentformpage.html:44
 msgid "Rials"
 msgstr "﷼"
 
-#: ssc_template/templates/pages/paymentformpage.html:44
+#: ssc_template/templates/pages/paymentformpage.html:45
 msgid "At Full Capacity"
 msgstr "ظرفیت تکمیل است"
 
-#: ssc_template/templates/pages/paymentformpage.html:48
+#: ssc_template/templates/pages/paymentformpage.html:49
 msgid "Choose The Right One"
 msgstr "گزینه‌ی مناسب را انتخاب کنید"
 
-#: ssc_template/templates/pages/paymentformpage.html:54
+#: ssc_template/templates/pages/paymentformpage.html:55
 msgid "Send and Pay"
 msgstr "ارسال و پرداخت"
 
-#: ssc_template/templates/pages/paymentformpage.html:60
+#: ssc_template/templates/pages/paymentformpage.html:61
 msgid "ERROR: Your form must contain a hidden field labeled UUID."
 msgstr "خطا: فرم شما باید حاوی یک فیلد پنها با عنوان UUID باشد."
 
-#: ssc_template/templates/pages/paymentformpage.html:66
+#: ssc_template/templates/pages/paymentformpage.html:67
 msgid "ERROR: Can not connect to payment gateway, please try again."
 msgstr ""
 "خطا: در حال حاضر قادر به اتصال به درگاه پرداخت نیستیم، لطفا مجددا تلاش "
 "نمایید."
 
-#: ssc_template/templates/pages/paymentformpage.html:75
+#: ssc_template/templates/pages/paymentformpage.html:76
 msgid "Unfortunately we have reached our maximum capacity."
 msgstr "متاسفانه ظرفیت تکمیل شده‌است."
 
-#: ssc_template/templates/pages/paymentformpage.html:84
+#: ssc_template/templates/pages/paymentformpage.html:85
 msgid ""
 "CAUTION: We are going to reach our maximum capacity, so we may put you in "
 "reservation list."
 msgstr "توجه: ظرفیت در حال تکمیل است. ممکن است در لیست رزرو قرار بگیرید."
 
-#: ssc_template/templates/pages/paymentformpage.html:88
+#: ssc_template/templates/pages/paymentformpage.html:89
 msgid "You are going to be redirected to Redirecting to Payment Page ..."
 msgstr "شما در حال ارسال به درگاه پرداخت هستید."
 
-#: ssc_template/templates/pages/paymentformpage.html:100
+#: ssc_template/templates/pages/paymentformpage.html:101
 msgid "Click here if you were not redirected in 5 seconds"
 msgstr "اگر در ۵ ثانیه به درگاه منتقل نشدید، اینجا کلیک کنید."
 
-#: ssc_template/templates/pages/paymentformpage.html:103
+#: ssc_template/templates/pages/paymentformpage.html:104
 msgid "OK"
 msgstr "متوجه شدم"
 

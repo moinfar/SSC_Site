@@ -1,0 +1,74 @@
+{% extends "pages/page.html" %}
+{% load mezzanine_tags i18n %}
+
+{% block main %}
+<div class="main card-panel">
+    {{ block.super }}
+
+    {{ page.videocontainerpage.content|richtext_filters|safe }}
+</div>
+
+<div class="px-40 vertical spacer"></div>
+
+{% for video in page.videocontainerpage.video_set.all %}
+    <div class="row">
+        <div class="col s12">
+            <ul class="teal-text tabs" dir="ltr">
+                {% if LANGUAGE_BIDI %}
+                    {% for videoframe in video.videoframe_set.all reversed %}
+                        <li class="tab col s3"><a class="teal-text" href="#videoframe-{{ videoframe.id }}">{{ videoframe.site }}</a></li>
+                    {% endfor %}
+                    <li class="tab col s3" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{%endif%}">
+                        <a class="active teal-text" href="#vide-description-{{video.id}}">{% trans 'Description' %}</a>
+                    </li>
+                {% else %}
+                    <li class="tab col s3" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{%endif%}">
+                        <a class="active teal-text" href="#vide-description-{{video.id}}">{% trans 'Description' %}</a>
+                    </li>
+                    {% for videoframe in video.videoframe_set.all %}
+                        <li class="tab col s3"><a class="teal-text" href="#videoframe-{{ videoframe.id }}">{{ videoframe.site }}</a></li>
+                    {% endfor %}
+                {%endif%}
+
+            </ul>
+        </div>
+        <div id="vide-description-{{video.id}}" class="col s12">
+            <div class="card-panel">
+                <h4 class="center">
+                    {{ video.title }}
+                </h4>
+                {{ video.description|richtext_filters|safe }}
+            </div>
+        </div>
+        {% for videoframe in video.videoframe_set.all %}
+            <div id="videoframe-{{ videoframe.id }}" class="col s12">
+                {{ videoframe.code|richtext_filters|safe }}
+            </div>
+        {% endfor %}
+    </div>
+    <div class="px-10 vertical spacer"></div>
+{% endfor %}
+
+{% endblock %}
+
+
+{% block extra_js %}
+{{ block.super }}
+{% endblock %}
+
+{% block extra_body %}
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('ul.tabs').tabs();
+    });
+    {% for video in page.videocontainerpage.video_set.all %}
+        $(document).ready(function(){
+            $('ul.tabs').tabs('select_tab', 'vide-description-{{video.id}}');
+        });
+    {% endfor %}
+    $( "iframe" ).each(function( index ) {
+        $(this).width("100%");
+        $(this).height($(this).width()*.6);
+    });
+</script>
+{% endblock %}

@@ -90,3 +90,7 @@ body .card .card-content .card-title {
     list-style-type: persian;
     list-style-position: inside;
 }
+
+.teal-text.tabs div.indicator {
+    background-color: #009688;
+}
