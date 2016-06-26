@@ -38,11 +38,15 @@
                 {% for screenimage in screenimages %}
                 <li style="background-color:white;">
                     {% if screenimage.image %}
-                    <img src="{{ MEDIA_URL }}{% thumbnail screenimage.image 900 0 %}">
+                    <img style="background-size: contain;
+                                background-repeat: no-repeat;
+                                background-position: center top;
+                                background-color:black;"
+                         src="{{ MEDIA_URL }}{% thumbnail screenimage.image 900 0 %}">
                     {% else %}
                     <img src="data:image/gif;base64,R0lGODlhAQABAIABAP///wAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
                     {% endif %}
-                    <div class="large-screen black-text screen-text center-align caption">
+                    <div class="medium-screen black-text screen-text center-align caption">
                         {{ screenimage.content|richtext_filters|safe}}
                     </div>
                 </li>
@@ -63,8 +67,8 @@
         {% with page.screenpage.recent_images as screenimages %}
             {% include 'includes/screen_thumbnails.html' %}
             <div class="image col s12 m6 l4">
-                <a href="./?view=all">
-                    <div class="hoverable teal card-panel">
+                <a class="hoverable teal card" style="display:block;" href="./?view=all">
+                    <div class="card-content">
                         <h5 class="center-align white-text">
                             {% trans 'Show All Items' %}
                         </h5>
@@ -87,13 +91,19 @@
 <script type="text/javascript">
 	$('#image_container').imagesLoaded( function() {
 		$('#image_container').masonry({
-		    isOriginLeft: false,
+		    {% if LANGUAGE_BIDI %}isOriginLeft: false,{% endif %}
 			itemSelector: '.image',
 			transitionDuration: 1,
 		});
 	});
 	$(document).ready(function(){
         $('#screen-image-slider').slider({interval: 10000, indicators: true, height: $('#screen-image-slider').width()*9/16});
+
+        $( ".image a" ).each(function( index ) {
+            $(this).height($(this).width()*9/16);
+        });
+
+        $('.tooltipped').tooltip();
     });
 </script>
 {% endblock %}

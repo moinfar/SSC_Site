@@ -49,7 +49,13 @@
                         {% for screenimage in screenimages %}
                         <li style="background-color:white;">
                             {% if screenimage.image %}
-                            <img src="{{ MEDIA_URL }}{% thumbnail screenimage.image 300 0 %}">
+                                <img style="background-size: contain;
+                                            background-repeat: no-repeat;
+                                            background-position: center top;
+                                            background-color:black;"
+                                     src="{{ MEDIA_URL }}{% thumbnail screenimage.image 300 0 %}">
+                            {% else %}
+                                <img src="data:image/gif;base64,R0lGODlhAQABAIABAP///wAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
                             {% endif %}
                             <div class="very-small-screen black-text screen-text center-align caption">
                                 {{ screenimage.content|richtext_filters|safe}}
@@ -68,7 +74,13 @@
                         {% for screenimage in screenimages %}
                         <li style="background-color:white;">
                             {% if screenimage.image %}
-                            <img src="{{ MEDIA_URL }}{% thumbnail screenimage.image 300 0 %}">
+                                <img style="background-size: contain;
+                                            background-repeat: no-repeat;
+                                            background-position: center top;
+                                            background-color:black;"
+                                     src="{{ MEDIA_URL }}{% thumbnail screenimage.image 300 0 %}">
+                            {% else %}
+                                <img src="data:image/gif;base64,R0lGODlhAQABAIABAP///wAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
                             {% endif %}
                             <div class="very-small-screen black-text screen-text center-align caption">
                                 {{ screenimage.content|richtext_filters|safe}}

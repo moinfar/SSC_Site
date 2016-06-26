@@ -1,20 +1,27 @@
-{% load mezzanine_tags %}
+{% load mezzanine_tags jdate_tags %}
 
 {% for screenimage in screenimages %}
-<div class="image col s12 m6 l4">
-    <div class="hoverable white card">
-        <div class="card-image">
-            {% if screenimage.image %}
-            <a href="{{ MEDIA_URL }}{% thumbnail screenimage.image 900 0 %}" data-lightbox="gallery">
-                <img alt="{{ image.description }}" src="{{ MEDIA_URL }}{% thumbnail screenimage.image 400 0 %}">
-            </a>
-            {% endif %}
-            {% if screenimage.content %}
-            <div class="white small-screen center-align card-action">
+<div class="image {% if LANGUAGE_BIDI %}right{% endif %} col s12 m6 l4">
+    <a class="hoverable tooltipped black card"
+       style="display:block;
+              background-image: url('{{ MEDIA_URL }}{% thumbnail screenimage.image 400 0 %}');
+              background-repeat: no-repeat;
+              background-position: center top;
+              background-size: contain;"
+       href="{{ MEDIA_URL }}{% thumbnail screenimage.image 900 0 %}" data-lightbox="gallery"
+       data-title="<span {% if LANGUAGE_BIDI %} dir='rtl'{% endif %}>{{screenimage.content|striptags|safe}}</span>"
+       {% if LANGUAGE_BIDI %} dir="rtl"{% endif %}
+       data-position="bottom" data-delay="50" data-tooltip="
+       {% if LANGUAGE_BIDI %}
+       {{ screenimage.publish_date|get_jdate|jdateformat:'{y} / {m} / {d}'|farsi_digits }}
+       {% else %}
+       {{ screenimage.publish_date }}
+       {% endif %}">
+        {% if screenimage.content %}
+            <div class="very-small-screen black-text screen-text center-align caption">
                 {{ screenimage.content|richtext_filters|safe}}
             </div>
-            {% endif %}
-        </div>
-    </div>
+        {% endif %}
+    </a>
 </div>
 {% endfor %}
