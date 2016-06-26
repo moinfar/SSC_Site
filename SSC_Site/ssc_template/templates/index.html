@@ -22,7 +22,7 @@
 <div class="container" {% if LANGUAGE_BIDI %} dir="rtl"{% endif %} >
     <div class="px-20 vertical spacer"></div>
     <div class="row">
-        <div class="right col s12 m12 l4">
+        <div class="{% if LANGUAGE_BIDI %}right{% endif %} col s12 m12 l4">
             <!--<form action="login" method="POST">-->
                 <div class="card">
                     <div class="card-content">
@@ -122,7 +122,7 @@
 <script type="text/javascript">
 	$('#post_container').imagesLoaded( function() {
 		$('#post_container').masonry({
-			isOriginLeft: false,
+			{% if LANGUAGE_BIDI %}isOriginLeft: false,{% endif %}
 			itemSelector: '.post',
 			transitionDuration: 1,
 		});

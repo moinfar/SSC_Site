@@ -27,7 +27,7 @@
     <div class="row" id="image_container">
         {% with page.gallery.images.all as images %}
         {% for image in images %}
-        <div class="image col s6 m4 l3">
+        <div class="image {% if LANGUAGE_BIDI %}right{% endif %} col s6 m4 l3">
             <div class="hoverable teal card">
                 <div class="card-image">
                     <a href="{{ MEDIA_URL }}{% thumbnail image.file 1100 0 %}" data-lightbox="gallery"
@@ -55,7 +55,7 @@
 <script type="text/javascript">
 	$('#image_container').imagesLoaded( function() {
 		$('#image_container').masonry({
-		    isOriginLeft: false,
+		    {% if LANGUAGE_BIDI %}isOriginLeft: false,{% endif %}
 			itemSelector: '.image',
 			transitionDuration: 1,
 		});
