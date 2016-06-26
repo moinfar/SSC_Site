@@ -2,12 +2,12 @@
     font-size: 2.69em;
 }
 
-.small-screen {
-    font-size: 0.89em;
+.medium-screen {
+    font-size: 2.1em;
 }
 
 .very-small-screen {
-    font-size: 0.59em;
+    font-size: 0.7em;
 }
 
 .screen.slider .indicators .indicator-item.active {
@@ -15,7 +15,7 @@
 }
 
 .screen-text {
-    margin: 35px;
+    margin: 5%;
 }
 
 .screen.slider .slides li .caption p {

@@ -71,7 +71,11 @@
                 content = images[index].content;
                 if (image)
                     $('#screen-image-slider .slides').append('<li style="background-color:white;">\
-                                <img src="'+ image +'">\
+                                <img style="background-size: contain;\
+                                            background-repeat: no-repeat;\
+                                            background-position: center top;\
+                                            background-color:black;"\
+                                 src="'+ image +'">\
                                 <div class="large-screen black-text screen-text center-align caption">\
                                     '+ content +'\
                                 </div>\
