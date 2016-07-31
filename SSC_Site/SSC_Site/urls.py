@@ -6,7 +6,7 @@ from django.contrib import admin
 
 from mezzanine.core.views import direct_to_template
 from mezzanine.conf import settings
-
+from shortener import urls as shortener_urls
 
 admin.autodiscover()
 
@@ -25,6 +25,7 @@ if settings.USE_MODELTRANSLATION:
         url('^i18n/$', 'django.views.i18n.set_language', name='set_language'),
     )
 
+
 urlpatterns += patterns('',
     # We don't want to presume how your homepage works, so here are a
     # few patterns you can use to set it up.
@@ -38,6 +39,7 @@ urlpatterns += patterns('',
 
     url("^$", direct_to_template, {"template": "index.html"}, name="home"),
     url("^from_bank/(?P<transaction_type>\w+)/(?P<transaction_id>\d+)/$", 'transactions.page_processors.from_bank', name="transactions_from_bank"),
+    url("^go/", include(shortener_urls)),
 
     # HOMEPAGE AS AN EDITABLE PAGE IN THE PAGE TREE
     # ---------------------------------------------

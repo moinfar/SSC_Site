@@ -7,3 +7,4 @@ gunicorn==19.3.0
 jdatetime==1.7.1
 redis==2.10.5
 django-celery-email==1.1.4
+-e git://github.com/khodabande/Shortener.git#egg=shortener

@@ -260,6 +260,7 @@ INSTALLED_APPS = (
     # "mezzanine.twitter",
     # "mezzanine.accounts",
     # "mezzanine.mobile",
+    "shortener",
 )
 
 # List of processors used by RequestContext to populate the context.
@@ -407,6 +408,15 @@ AUTHENTICATION_BACKENDS = (
     'django_auth_ldap.backend.LDAPBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
+
+##########################
+# URL Shortener Settings #
+##########################
+
+import string
+SHORTENER_SLUG_CHARSET = string.ascii_lowercase + string.digits
+SHORTENER_SLUG_LENGTH = 4
+
 
 ##################
 # LOCAL SETTINGS #
