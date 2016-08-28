@@ -68,3 +68,19 @@ class UpalPaymentTransaction(models.Model):
     class Meta:
         verbose_name = _("Upal Payment Transaction")
         verbose_name_plural = _("Upal Payment Transactions")
+
+
+class ZpalPaymentTransaction(models.Model):
+    creation_time = models.DateTimeField(blank=False, null=False, verbose_name=_("Creation Time"))
+    uuid = models.CharField(max_length=512, blank=True, null=True, verbose_name=_("Form Entry UUID"))
+    authority = models.CharField(max_length=36, blank=True, null=True, verbose_name=_("Authority"))
+    price_group = models.ForeignKey(PriceGroup, blank=False, null=False, verbose_name=_("Price Group"))
+    payment_amount = models.BigIntegerField(verbose_name=_("Amount in Rials"))
+
+    is_payed = models.NullBooleanField(verbose_name=_("Is Payed"))
+    ref_id = models.CharField(max_length=50, blank=True, null=True, verbose_name=_("Reference ID"))
+    payment_time = models.DateTimeField(blank=True, null=True, verbose_name=_("Payment Time"))
+
+    class Meta:
+        verbose_name = _("Upal Payment Transaction")
+        verbose_name_plural = _("Upal Payment Transactions")
