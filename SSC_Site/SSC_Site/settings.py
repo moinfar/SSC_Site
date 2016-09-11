@@ -253,6 +253,7 @@ INSTALLED_APPS = (
     "mezzanine.blog",
     "mezzanine.forms",
     "mezzanine.galleries",
+    "tempita",
     "ssc_configs",
     "transactions",
     "media_manager",
@@ -261,6 +262,7 @@ INSTALLED_APPS = (
     # "mezzanine.accounts",
     # "mezzanine.mobile",
     "shortener",
+    "certificates",
 )
 
 # List of processors used by RequestContext to populate the context.
@@ -326,6 +328,26 @@ OPTIONAL_APPS = (
     PACKAGE_NAME_FILEBROWSER,
     PACKAGE_NAME_GRAPPELLI,
 )
+
+#########################
+# FILE BROWSER SETTINGS #
+#########################
+
+FILEBROWSER_EXTENSIONS = {
+    'Image': ['.jpg', '.jpeg', '.gif', '.png', '.tif', '.tiff'],
+    'Document': ['.pdf', '.doc', '.rtf', '.txt', '.xls', '.csv'],
+    'Video': ['.mov', '.wmv', '.mpeg', '.mpg', '.avi', '.rm'],
+    'Audio': ['.mp3', '.mp4', '.wav', '.aiff', '.midi', '.m4p'],
+    'Compressed': ['.zip'],
+}
+
+FILEBROWSER_SELECT_FORMATS = {
+    'file': ['Image', 'Document', 'Video', 'Audio', 'Compressed'],
+    'image': ['Image'],
+    'document': ['Document'],
+    'media': ['Video', 'Audio'],
+    'compressed': ['Compressed'],
+}
 
 
 

@@ -7,6 +7,7 @@ from django.contrib import admin
 from mezzanine.core.views import direct_to_template
 from mezzanine.conf import settings
 from shortener import urls as shortener_urls
+from certificates import urls as certificate_urls
 
 admin.autodiscover()
 
@@ -40,6 +41,7 @@ urlpatterns += patterns('',
     url("^$", direct_to_template, {"template": "index.html"}, name="home"),
     url("^from_bank/(?P<transaction_type>\w+)/(?P<transaction_id>\d+)/$", 'transactions.page_processors.from_bank', name="transactions_from_bank"),
     url("^go/", include(shortener_urls)),
+    url("^cert/", include(certificate_urls)),
 
     # HOMEPAGE AS AN EDITABLE PAGE IN THE PAGE TREE
     # ---------------------------------------------

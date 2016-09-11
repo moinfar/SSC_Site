@@ -9,3 +9,4 @@ redis==2.10.5
 django-celery-email==1.1.4
 -e git://github.com/khodabande/Shortener.git#egg=shortener
 zeep==0.14.0
+Tempita==0.5.2
