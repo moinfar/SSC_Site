@@ -263,6 +263,7 @@ INSTALLED_APPS = (
     # "mezzanine.mobile",
     "shortener",
     "certificates",
+    "subprocess_manager",
 )
 
 # List of processors used by RequestContext to populate the context.
@@ -438,6 +439,13 @@ AUTHENTICATION_BACKENDS = (
 import string
 SHORTENER_SLUG_CHARSET = string.ascii_lowercase + string.digits
 SHORTENER_SLUG_LENGTH = 4
+
+
+########################
+# Certificate Settings #
+########################
+
+XELATEX_PATH = '/usr/bin/xelatex'
 
 
 ##################
