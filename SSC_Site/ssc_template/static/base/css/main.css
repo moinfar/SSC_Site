@@ -25,6 +25,17 @@ body {
 	margin-right: 4%;
 }
 
+.social-icon {
+	opacity: 0.4;
+	margin: 0px 5px;
+	transition: opacity .25s ease-in-out;
+   -moz-transition: opacity .25s ease-in-out;
+   -webkit-transition: opacity .25s ease-in-out;
+}
+
+.social-icon:hover {
+	opacity: 0.6;
+}
 
 .lang.flag {
     background-repeat: no-repeat;
