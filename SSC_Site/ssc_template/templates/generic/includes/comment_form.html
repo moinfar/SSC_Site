@@ -26,7 +26,7 @@
 			<div class="input-field col s12 m12 l12">
 				<textarea rows="10" name="comment" id="id_comment" cols="40" class="" maxlength="1000" placeholder=""></textarea>
 			</div>
-			مقدار عبارت را وارد کنید:
+			{{ comment_form.captcha.label }}
 			{{ comment_form.captcha }}
 
 			<button type="submit" class="btn btn-theme margintop10 pull-left">{% trans "Comment" %}</button>

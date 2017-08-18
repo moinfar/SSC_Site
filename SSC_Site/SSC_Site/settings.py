@@ -446,7 +446,7 @@ AUTHENTICATION_BACKENDS = (
 
 import string
 SHORTENER_SLUG_CHARSET = string.ascii_lowercase + string.digits
-SHORTENER_SLUG_LENGTH = 8
+SHORTENER_SLUG_LENGTH = 4
 
 
 ########################

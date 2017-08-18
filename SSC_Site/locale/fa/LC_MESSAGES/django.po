@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-10 20:16+0430\n"
+"POT-Creation-Date: 2017-08-19 00:07+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,13 +46,43 @@ msgstr "متن ادامه‌ی نوشتار"
 msgid "Parallax Image"
 msgstr "تصویر پارالاکس"
 
-#: SSC_Site/settings.py:141
+#: SSC_Site/settings.py:146
 msgid "Persian"
 msgstr "فارسی"
 
-#: SSC_Site/settings.py:142
+#: SSC_Site/settings.py:147
 msgid "English"
 msgstr "انگلیسی"
+
+#: certificates/admin.py:16
+msgid "Compiling"
+msgstr ""
+
+#: certificates/admin.py:18
+msgid "Compile"
+msgstr ""
+
+#: certificates/admin.py:33
+msgid "Download"
+msgstr ""
+
+#: certificates/models.py:9 ssc_configs/models.py:9
+#: ssc_template/templates/generic/includes/comment_form.html:16
+#: ssc_template/templates/pages/groupsinfopage.html:13
+msgid "Name"
+msgstr "نام"
+
+#: certificates/models.py:10
+msgid "Data (CSV)"
+msgstr ""
+
+#: certificates/models.py:12
+msgid "Template (Zip)"
+msgstr ""
+
+#: certificates/models.py:15
+msgid "Compile process"
+msgstr ""
 
 #: media_manager/models.py:12
 msgid "Video Container Page"
@@ -66,7 +96,8 @@ msgstr "صفحات شامل ویدئو‌ها"
 msgid "Containing Page"
 msgstr "صفحه‌ی شامل"
 
-#: media_manager/models.py:18 ssc_configs/models.py:21 ssc_configs/models.py:41
+#: media_manager/models.py:18 src/shortener/shortener/models.py:19
+#: ssc_configs/models.py:21 ssc_configs/models.py:41
 msgid "Title"
 msgstr "عنوان"
 
@@ -103,6 +134,14 @@ msgstr "فریم ویدئو"
 #: media_manager/models.py:33
 msgid "Video Frames"
 msgstr "فریم‌های ویدئو"
+
+#: mezzacaptcha/forms.py:10
+msgid "Please enter the value"
+msgstr "مقدار عبارت را وارد کنید"
+
+#: mezzacaptcha/models.py:17
+msgid "Captcha"
+msgstr ""
 
 #: screens/defaults.py:6
 msgid "Label of left monitor page"
@@ -160,6 +199,34 @@ msgstr "تصویر پیشفرض"
 msgid "Screen Image"
 msgstr "تصویر مانیتور"
 
+#: src/shortener/shortener/models.py:21
+msgid "Slug"
+msgstr ""
+
+#: src/shortener/shortener/models.py:23
+msgid "Views Count"
+msgstr ""
+
+#: src/shortener/shortener/models.py:25
+#, fuzzy
+#| msgid "Payment Time"
+msgid "Submit Time"
+msgstr "زمان پرداخت"
+
+#: src/shortener/shortener/models.py:26
+#, fuzzy
+#| msgid "Change"
+msgid "Last Change"
+msgstr "تغییر"
+
+#: src/shortener/shortener/models.py:44
+msgid "Short Link"
+msgstr ""
+
+#: src/shortener/shortener/models.py:45
+msgid "Short Links"
+msgstr ""
+
 #: ssc_configs/defaults.py:6
 msgid "Parallax of index page"
 msgstr "تصویر پارالاکس صفحه‌ی اصلی"
@@ -168,12 +235,6 @@ msgstr "تصویر پارالاکس صفحه‌ی اصلی"
 msgid "slug"
 msgstr ""
 
-#: ssc_configs/models.py:9
-#: ssc_template/templates/generic/includes/comment_form.html:16
-#: ssc_template/templates/pages/groupsinfopage.html:13
-msgid "Name"
-msgstr "نام"
-
 #: ssc_configs/models.py:15 ssc_configs/models.py:50
 msgid "Person"
 msgstr "شخص"
@@ -181,10 +242,6 @@ msgstr "شخص"
 #: ssc_configs/models.py:16
 msgid "Persons"
 msgstr "اشخاص"
-
-#: ssc_configs/models.py:21 ssc_configs/models.py:41
-msgid "Title"
-msgstr "عنوان"
 
 #: ssc_configs/models.py:27 ssc_configs/models.py:28 ssc_configs/models.py:51
 #: ssc_template/templates/pages/groupsinfopage.html:14
@@ -231,7 +288,7 @@ msgstr "صفحات شامل گالری‌ها"
 msgid "Change"
 msgstr "تغییر"
 
-#: ssc_template/templates/base.html:211
+#: ssc_template/templates/base.html:218
 #, python-format
 msgid ""
 "\n"
@@ -249,7 +306,7 @@ msgstr ""
 "                    <a %(sharif_link_attrs)s >دانشگاه صنعتی شریف</a> است\n"
 "                    "
 
-#: ssc_template/templates/base.html:223
+#: ssc_template/templates/base.html:230
 #, python-format
 msgid ""
 "\n"
@@ -368,7 +425,7 @@ msgstr "نظری تا کنون ثبت نشده‌است."
 msgid "Email"
 msgstr "رایانامه"
 
-#: ssc_template/templates/generic/includes/comment_form.html:29
+#: ssc_template/templates/generic/includes/comment_form.html:32
 msgid "Comment"
 msgstr "نظر"
 
@@ -381,6 +438,7 @@ msgid "New Comment"
 msgstr "نظر جدید"
 
 #: ssc_template/templates/generic/post_card.html:7
+#: subprocess_manager/models.py:12
 msgid "New"
 msgstr "جدید"
 
@@ -426,7 +484,7 @@ msgstr "گذرواژه"
 msgid "Coming Soon"
 msgstr "به زودی"
 
-#: ssc_template/templates/index.html:84
+#: ssc_template/templates/index.html:96
 msgid "Recent News"
 msgstr "اکنون در مانیتور‌های لابی"
 
@@ -495,7 +553,7 @@ msgstr "متوجه شدم"
 msgid "View Full Screen Slider"
 msgstr "مشاهده‌ی تمام صفحه‌ی تصاویر"
 
-#: ssc_template/templates/pages/screenpage.html:69
+#: ssc_template/templates/pages/screenpage.html:73
 msgid "Show All Items"
 msgstr "نمایش تمام موارد"
 
@@ -529,6 +587,52 @@ msgstr ""
 msgid "read more"
 msgstr "ادامه‌ی نوشتار"
 
+#: subprocess_manager/models.py:13
+msgid "Running"
+msgstr ""
+
+#: subprocess_manager/models.py:14
+msgid "Success"
+msgstr ""
+
+#: subprocess_manager/models.py:15
+msgid "Error"
+msgstr ""
+
+#: subprocess_manager/models.py:16
+msgid "Timeout"
+msgstr ""
+
+#: subprocess_manager/models.py:19
+#, fuzzy
+#| msgid "Comment"
+msgid "Command"
+msgstr "نظر"
+
+#: subprocess_manager/models.py:21
+msgid "Timeout (s)"
+msgstr ""
+
+#: subprocess_manager/models.py:22
+msgid "Input"
+msgstr ""
+
+#: subprocess_manager/models.py:23
+msgid "Output"
+msgstr ""
+
+#: subprocess_manager/models.py:24
+msgid "Errors"
+msgstr ""
+
+#: subprocess_manager/models.py:25
+msgid "Status"
+msgstr ""
+
+#: subprocess_manager/models.py:27
+msgid "Process ID"
+msgstr ""
+
 #: transactions/models.py:9 transactions/models.py:11
 msgid "Gateway Type"
 msgstr "نوع درگاه"
@@ -542,8 +646,9 @@ msgid "Gateway API"
 msgstr "ای‌پی‌آی درگاه"
 
 #: transactions/models.py:16 transactions/models.py:53
-#: transactions/models.py:62 transactions/page_processors.py:51
-#: transactions/page_processors.py:189
+#: transactions/models.py:62 transactions/models.py:77
+#: transactions/page_processors.py:56 transactions/page_processors.py:80
+#: transactions/page_processors.py:272 transactions/page_processors.py:336
 msgid "Price Group"
 msgstr "گروه قیمت"
 
@@ -584,55 +689,70 @@ msgid "Group Identifier"
 msgstr "مشخص‌کننده‌ی گروه"
 
 #: transactions/models.py:43 transactions/models.py:63
-#: transactions/page_processors.py:51
+#: transactions/models.py:78 transactions/page_processors.py:56
+#: transactions/page_processors.py:81
 msgid "Amount in Rials"
 msgstr "مقدار به ریال"
 
-#: transactions/models.py:58 transactions/page_processors.py:50
+#: transactions/models.py:58 transactions/models.py:74
+#: transactions/page_processors.py:55 transactions/page_processors.py:80
 msgid "Creation Time"
 msgstr "زمان ایجاد"
 
-#: transactions/models.py:59 transactions/page_processors.py:50
+#: transactions/models.py:59 transactions/models.py:75
+#: transactions/page_processors.py:55 transactions/page_processors.py:80
 msgid "Form Entry UUID"
 msgstr "UUID وارد شده"
 
-#: transactions/models.py:60 transactions/page_processors.py:50
+#: transactions/models.py:60 transactions/page_processors.py:55
 msgid "Bank Token"
 msgstr "توکن بانک"
 
-#: transactions/models.py:61 transactions/page_processors.py:50
+#: transactions/models.py:61 transactions/page_processors.py:55
 msgid "Random Token"
 msgstr "توکن تصادفی"
 
-#: transactions/models.py:65 transactions/page_processors.py:51
+#: transactions/models.py:65 transactions/models.py:80
+#: transactions/page_processors.py:56 transactions/page_processors.py:81
 msgid "Is Payed"
 msgstr "پرداخت‌شده"
 
-#: transactions/models.py:66 transactions/page_processors.py:51
+#: transactions/models.py:66 transactions/models.py:82
+#: transactions/page_processors.py:56 transactions/page_processors.py:81
 msgid "Payment Time"
 msgstr "زمان پرداخت"
 
-#: transactions/models.py:69
+#: transactions/models.py:69 transactions/models.py:85
 msgid "Upal Payment Transaction"
 msgstr "تراکنش پرداختی یوپال"
 
-#: transactions/models.py:70
+#: transactions/models.py:70 transactions/models.py:86
 msgid "Upal Payment Transactions"
 msgstr "تراکنش‌های پرداختی یوپال"
 
-#: transactions/page_processors.py:190
-msgid "Payment in Rials"
-msgstr "مقدار پرداخت به ریال"
+#: transactions/models.py:76 transactions/page_processors.py:80
+#, fuzzy
+#| msgid "Author:"
+msgid "Authority"
+msgstr "نویسنده"
 
-#: transactions/page_processors.py:209
-msgid "Successful Payment Transaction"
-msgstr "تراکنش پرداختی موفقیت آمیز بود"
+#: transactions/models.py:81 transactions/page_processors.py:81
+msgid "Reference ID"
+msgstr ""
 
-#: transactions/page_processors.py:218
+#: transactions/page_processors.py:236
 msgid "UnSuccessful Payment Transaction"
 msgstr ""
 "تراکنش پرداختی با مشکل مواجه شده‌است. لطفا چنانچه پرداخت شما موفق بوده‌است، ما "
 "را مطلع کنید."
+
+#: transactions/page_processors.py:273 transactions/page_processors.py:337
+msgid "Payment in Rials"
+msgstr "مقدار پرداخت به ریال"
+
+#: transactions/page_processors.py:292 transactions/page_processors.py:356
+msgid "Successful Payment Transaction"
+msgstr "تراکنش پرداختی موفقیت آمیز بود"
 
 #~ msgid "Blog"
 #~ msgstr "وبلاگ"
