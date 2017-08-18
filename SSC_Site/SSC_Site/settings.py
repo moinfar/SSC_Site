@@ -99,6 +99,11 @@ BLOG_USE_FEATURED_IMAGE = True
 
 BLOG_SLUG = "announcements"
 
+# Captcha settings
+CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
+CAPTCHA_NOISE_FUNCTIONS = ('captcha.helpers.noise_dots',)
+COMMENT_FORM_CLASS = "mezzacaptcha.forms.CaptchaThreadedCommentForm"
+
 # If True, the django-modeltranslation will be added to the
 # INSTALLED_APPS setting.
 USE_MODELTRANSLATION = True
@@ -245,6 +250,8 @@ INSTALLED_APPS = (
     "django.contrib.humanize",
     "djcelery_email",
     "ssc_template",
+    "captcha",
+    "mezzacaptcha",
     "mezzanine.boot",
     "mezzanine.conf",
     "mezzanine.core",

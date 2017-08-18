@@ -1,6 +1,8 @@
 Mezzanine==4.0.1
 django-auth-ldap==1.2.7
 django-modeltranslation==0.10.1
+django-simple-captcha==0.5.5
+bleach<2.0.0
 psycopg2==2.6.1
 python-memcached==1.57
 gunicorn==19.3.0
