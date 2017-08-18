@@ -56,8 +56,8 @@ class AdminThumbMixin(object):
 
 class ScreenImage(RichText, AdminThumbMixin):
     screen = models.ForeignKey(ScreenPage, related_name="images", verbose_name=_("screen"))
-    image = FileField(null=True, blank=True, max_length=500, format="Image",
-                      upload_to="screens/images", verbose_name=_("image"))
+    image = FileField(null=True, blank=True, max_length=500, upload_to="screens/images",
+                      verbose_name=_("image"))
 
     publish_date = models.DateTimeField(_("Published from"),
                                         help_text=_("With Published chosen, won't be shown until this time"),
