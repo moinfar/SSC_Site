@@ -9,3 +9,4 @@ SSC_Site/media
 SSC_Site/forms
 SSC_Site/gunicorn.*
 migrations/
+.idea/
