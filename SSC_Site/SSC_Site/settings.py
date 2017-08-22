@@ -100,7 +100,6 @@ BLOG_USE_FEATURED_IMAGE = True
 BLOG_SLUG = "announcements"
 
 # Captcha settings
-CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
 CAPTCHA_NOISE_FUNCTIONS = ('captcha.helpers.noise_dots',)
 COMMENT_FORM_CLASS = "mezzacaptcha.forms.CaptchaThreadedCommentForm"
 

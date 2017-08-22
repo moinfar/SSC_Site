@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-19 00:07+0430\n"
+"POT-Creation-Date: 2017-08-22 12:45+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,11 +46,11 @@ msgstr "متن ادامه‌ی نوشتار"
 msgid "Parallax Image"
 msgstr "تصویر پارالاکس"
 
-#: SSC_Site/settings.py:146
+#: SSC_Site/settings.py:145
 msgid "Persian"
 msgstr "فارسی"
 
-#: SSC_Site/settings.py:147
+#: SSC_Site/settings.py:146
 msgid "English"
 msgstr "انگلیسی"
 
@@ -136,8 +136,8 @@ msgid "Video Frames"
 msgstr "فریم‌های ویدئو"
 
 #: mezzacaptcha/forms.py:10
-msgid "Please enter the value"
-msgstr "مقدار عبارت را وارد کنید"
+msgid "Please enter the captcha"
+msgstr "حروف تصویر را وارد کنید"
 
 #: mezzacaptcha/models.py:17
 msgid "Captcha"

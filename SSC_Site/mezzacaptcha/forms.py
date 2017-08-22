@@ -7,4 +7,4 @@ from django.utils.translation import ugettext_lazy as _
 class CaptchaThreadedCommentForm(ThreadedCommentForm):
     """ Adds a captcha field to the comment form in blog
     """
-    captcha = CaptchaField(label=_("Please enter the value"))
+    captcha = CaptchaField(label=_("Please enter the captcha"))
