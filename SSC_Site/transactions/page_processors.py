@@ -226,6 +226,7 @@ def get_transaction_entries(transaction):
 
 def from_bank(request, transaction_type, transaction_id):
     ret = None
+
     if transaction_type == 'upal':
         transaction = UpalPaymentTransaction.objects.get(id=transaction_id)
         ret = from_bank_upal(request, transaction)
@@ -302,7 +303,7 @@ def from_bank_zpal(request, transaction):
     if authority == transaction.authority:
         client = Client('https://www.zarinpal.com/pg/services/WebGate/wsdl')
         validation_parameters = {
-            'MerchantID': PaymentGateway.objects.get(type='zpal').gateway_id,
+            'MerchantID': transaction.price_group.payment_form_page.payment_gateway.gateway_id,
             'Authority': authority,
             'Amount': transaction.payment_amount/10,
         }
