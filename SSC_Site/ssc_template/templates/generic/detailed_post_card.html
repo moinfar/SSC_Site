@@ -12,7 +12,7 @@
     {% with blog_post.categories.all as categories %}
     {% if categories %}
     {% for category in categories %}
-    <a class="teal white-text category-box" style="font-size:.7em;" href="{% url 'blog_post_list_category' category.slug %}">
+    <a class="blue white-text category-box" style="font-size:.7em;" href="{% url 'blog_post_list_category' category.slug %}">
         {{ category }}
     </a>
     {% endfor %}
@@ -32,7 +32,7 @@
         {% with blog_post.categories.all as categories %}
         {% if categories %}
         {% for category in categories %}
-        <a class="teal white-text category-box" href="{% url 'blog_post_list_category' category.slug %}">
+        <a class="blue white-text category-box" href="{% url 'blog_post_list_category' category.slug %}">
             {{ category }}
         </a>
         {% endfor %}

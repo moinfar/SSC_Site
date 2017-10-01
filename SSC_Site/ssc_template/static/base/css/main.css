@@ -62,13 +62,12 @@ body {
 }
 
 .navbar.item {
-	color: #009688;
 	font-weight: bold;
 	text-align: right;
 }
 
 .navbar.item:hover{
-	border-bottom: solid #009688 3px;
+	border-bottom: solid #1E88E5 3px;
 }
 
 .main.parallax-container {

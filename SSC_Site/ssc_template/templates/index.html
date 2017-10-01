@@ -22,24 +22,24 @@
 <div class="container" {% if LANGUAGE_BIDI %} dir="rtl"{% endif %} >
     <div class="px-20 vertical spacer"></div>
     <div class="row">
-        <div class="{% if LANGUAGE_BIDI %}right{% endif %} col s12 m12 l4">
-            <!--<form action="login" method="POST">-->
-                <div class="card">
-                    <div class="card-content">
-                        <p>
-                            <input type="text" name="username" placeholder="{% trans 'Email' %}">
-                            <input type="password" name="password" placeholder="{% trans 'password' %}">
-                        </p>
-                        <p><br>
-                            <button name="submit" type="submit" class="waves-effect waves-light btn full width">
-                                {% trans 'Coming Soon' %}
-                            </button>
-                        </p>
-                    </div>
-                </div>
-            <!--</form>-->
-        </div>
-        <div class="col s12 m12 l8">
+        <!--<div class="{% if LANGUAGE_BIDI %}right{% endif %} col s12 m12 l4">-->
+            <!--&lt;!&ndash;<form action="login" method="POST">&ndash;&gt;-->
+                <!--<div class="card">-->
+                    <!--<div class="card-content">-->
+                        <!--<p>-->
+                            <!--<input type="text" name="username" placeholder="{% trans 'Email' %}">-->
+                            <!--<input type="password" name="password" placeholder="{% trans 'password' %}">-->
+                        <!--</p>-->
+                        <!--<p><br>-->
+                            <!--<button name="submit" type="submit" class="waves-effect waves-light btn full width">-->
+                                <!--{% trans 'Coming Soon' %}-->
+                            <!--</button>-->
+                        <!--</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--&lt;!&ndash;</form>&ndash;&gt;-->
+        <!--</div>-->
+        <div class="col s12">
             <div class="main ssc tv box">
                 {% get_screenpage settings.SCREEN_LEFT as uni_screen %}
                 <a href="{{ uni_screen.get_absolute_url }}"

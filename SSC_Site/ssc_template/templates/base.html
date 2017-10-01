@@ -47,7 +47,7 @@
 
 
 <header class="navbar-fixed">
-    <nav class="white blue-text text-darken-2">
+    <nav class="blue darken-4 white-text">
         <div class="nav-wrapper container">
 
             <a href="/" class="{% if LANGUAGE_BIDI %}left{% else %}right{%endif%}
@@ -145,7 +145,7 @@
          {% else %}
          class="center-align container" dir="ltr"
          {% endif %} >
-        <h2 class="teal-text">{% block title %}{% endblock %}</h2>
+        <h2 class="blue-text">{% block title %}{% endblock %}</h2>
     </div>
 
     {% endblock %}
@@ -204,7 +204,7 @@
     <!-- End of StatCounter Code for Default Guide -->
 
 
-    <footer class="teal page-footer white-text" {% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
+    <footer class="blue page-footer white-text" {% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
         <div class="container">
             <div class="row">
                 <div class="center-align">

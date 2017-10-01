@@ -19,7 +19,7 @@
         </div>
         {% if request.user.is_superuser %}
         <div class="left-align card-action">
-            <a href="./?view=full_screen" class="waves-effect waves-light teal btn">
+            <a href="./?view=full_screen" class="waves-effect waves-light blue btn">
                 <h5 class="center-align white-text">
                     {% trans 'View Full Screen Slider' %}
                 </h5>
@@ -67,7 +67,7 @@
         {% with page.screenpage.recent_images as screenimages %}
             {% include 'includes/screen_thumbnails.html' %}
             <div class="image col s12 m6 l4">
-                <a class="hoverable teal card" style="display:block;" href="./?view=all">
+                <a class="hoverable blue card" style="display:block;" href="./?view=all">
                     <div class="card-content">
                         <h5 class="center-align white-text">
                             {% trans 'Show All Items' %}

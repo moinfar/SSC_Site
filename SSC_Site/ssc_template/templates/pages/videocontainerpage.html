@@ -13,20 +13,20 @@
 {% for video in page.videocontainerpage.video_set.all %}
     <div class="row">
         <div class="col s12">
-            <ul class="teal-text tabs" dir="ltr">
+            <ul class="blue-text tabs" dir="ltr">
                 {% if LANGUAGE_BIDI %}
                     {% for videoframe in video.videoframe_set.all reversed %}
-                        <li class="tab col s3"><a class="teal-text" href="#videoframe-{{ videoframe.id }}">{{ videoframe.site }}</a></li>
+                        <li class="tab col s3"><a class="blue-text" href="#videoframe-{{ videoframe.id }}">{{ videoframe.site }}</a></li>
                     {% endfor %}
                     <li class="tab col s3" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{%endif%}">
-                        <a class="active teal-text" href="#vide-description-{{video.id}}">{% trans 'Description' %}</a>
+                        <a class="active blue-text" href="#vide-description-{{video.id}}">{% trans 'Description' %}</a>
                     </li>
                 {% else %}
                     <li class="tab col s3" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{%endif%}">
-                        <a class="active teal-text" href="#vide-description-{{video.id}}">{% trans 'Description' %}</a>
+                        <a class="active blue-text" href="#vide-description-{{video.id}}">{% trans 'Description' %}</a>
                     </li>
                     {% for videoframe in video.videoframe_set.all %}
-                        <li class="tab col s3"><a class="teal-text" href="#videoframe-{{ videoframe.id }}">{{ videoframe.site }}</a></li>
+                        <li class="tab col s3"><a class="blue-text" href="#videoframe-{{ videoframe.id }}">{{ videoframe.site }}</a></li>
                     {% endfor %}
                 {%endif%}
 

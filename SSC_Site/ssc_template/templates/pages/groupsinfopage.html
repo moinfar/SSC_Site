@@ -5,13 +5,13 @@
 <ul class="collapsible popout" data-collapsible="accordion">
     {% for group_info in page.groupsinfopage.groupinfo_set.all %}
     <li>
-        <div class="teal white-text collapsible-header {% if forloop.first %}active{% endif %}">{{group_info.title}}</div>
+        <div class="blue white-text collapsible-header {% if forloop.first %}active{% endif %}">{{group_info.title}}</div>
         <div class="white collapsible-body">
             <table class="centered bordered highlight">
                 <thead>
                 <tr>
-                    <th class="teal-text" data-field="id">{% trans 'Name' %}</th>
-                    <th class="teal-text" data-field="name">{% trans 'Duty' %}</th>
+                    <th class="blue-text" data-field="id">{% trans 'Name' %}</th>
+                    <th class="blue-text" data-field="name">{% trans 'Duty' %}</th>
                 </tr>
                 </thead>
 

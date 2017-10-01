@@ -4,7 +4,7 @@
 {% if page.has_children_in_menu %}
 <div class="col s12 m12 l12">
     <div class="card-panel">
-        <h3 class="center"><a class="teal-text" href="{{ page.get_absolute_url }}">{{ page.title }}</a></h3>
+        <h3 class="center"><a class="blue-text" href="{{ page.get_absolute_url }}">{{ page.title }}</a></h3>
         <div class="row">
             {% page_menu page 'includes/gallery_container_card.html' %}
         </div>
@@ -13,7 +13,7 @@
 {% else %}
 <div class="col s12 m6 l6">
     <div class="card">
-        <a class="teal-text" href="{{ page.get_absolute_url }}">
+        <a class="blue-text" href="{{ page.get_absolute_url }}">
             <div class="card-image waves-effect waves-block waves-light">
                 {% if page.gallery.parallax_image %}
                 <img src="{{ MEDIA_URL }}{% thumbnail page.gallery.parallax_image 600 0 %}">
@@ -21,7 +21,7 @@
             </div>
         </a>
         <div class="center text card-action">
-            <h6><a class="teal-text" href="{{ page.get_absolute_url }}">{{ page.title }}</a></h6>
+            <h6><a class="blue-text" href="{{ page.get_absolute_url }}">{{ page.title }}</a></h6>
         </div>
     </div>
 </div>
