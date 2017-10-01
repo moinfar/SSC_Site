@@ -12,6 +12,7 @@ from mezzanine.conf import settings
 
 XELATEX_PATH = getattr(settings, 'XELATEX_PATH', 'xelatex')
 
+
 def compile_certificate(request, cid, *args, **kwargs):
     if not request.user.has_perm('certificates.can_compile'):
         raise Http404
@@ -19,9 +20,11 @@ def compile_certificate(request, cid, *args, **kwargs):
     data_path = os.path.join(settings.MEDIA_ROOT, cert.data.path)
     with open(data_path) as data_file:
         template_path = os.path.join(settings.MEDIA_ROOT, cert.template.path)
-        output_dir = os.path.join(os.path.dirname(template_path), os.path.basename(template_path) + '.tmp')
+        output_dir = os.path.join(os.path.dirname(template_path),
+                                  os.path.basename(template_path) + '.tmp')
         main_tex_path = os.path.join(output_dir, 'main.tex')
-        compile_command = '%s -halt-on-error -output-directory=%s %s' % (XELATEX_PATH, output_dir, main_tex_path)
+        compile_command = '%s -halt-on-error -output-directory=%s %s' % (
+        XELATEX_PATH, output_dir, main_tex_path)
         p = cert.compile_process
         p.command = compile_command
         p.shell = False

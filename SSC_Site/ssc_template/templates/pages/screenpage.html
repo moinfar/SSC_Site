@@ -59,7 +59,7 @@
     <div class="px-10 vertical spacer"></div>
 
     <div class="row" id="image_container">
-        {% if show = 'all' %}
+        {% if show == 'all' %}
         {% with page.screenpage.all_images as screenimages %}
             {% include 'includes/screen_thumbnails.html' %}
         {% endwith %}

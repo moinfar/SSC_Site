@@ -1,5 +1,7 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
-urlpatterns = patterns('certificates.views',
-    url(r'^compile/(?P<cid>\d+)$', 'compile_certificate', name='compile_certificate'),
-)
+from certificates.views import compile_certificate
+
+urlpatterns = [
+    url(r'^compile/(?P<cid>\d+)$', compile_certificate, name='compile_certificate'),
+]

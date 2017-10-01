@@ -47,7 +47,7 @@ def payment_form_processor(request, page):
 
     form = form_processor(request, payment_form)
 
-    if isinstance(form, dict) and form.has_key("form"):
+    if isinstance(form, dict) and "form" in form:
         if request.user.has_perm('transactions.can_view_payment_transactions'):
             if page.paymentformpage.payment_gateway.type == "upal":
                 form_fields = page.paymentformpage.payment_form.form.fields.all().order_by("id")
@@ -171,7 +171,7 @@ def new_upal_payment(request, paymentformpage, plan, request_uuid):
         payment_request = web_request.post("http://salam.im//transaction/create",
                                            data={'gateway_id': paymentformpage.payment_gateway.gateway_id,
                                                  'amount': plan.payment_amount,
-                                                 'description': u"{}-{}".format(paymentformpage.payment_description, plan.group_identifier),
+                                                 'description': "{}-{}".format(paymentformpage.payment_description, plan.group_identifier),
                                                  'rand': random_token,
                                                  'redirect_url': return_url,
                                                  })
@@ -199,7 +199,7 @@ def new_zpal_payment(request, paymentformpage, plan, request_uuid):
         payment_parameters = {
             'MerchantID': paymentformpage.payment_gateway.gateway_id,
             'Amount': plan.payment_amount/10,
-            'Description': u"{}-{}".format(paymentformpage.payment_description, plan.group_identifier),
+            'Description': "{}-{}".format(paymentformpage.payment_description, plan.group_identifier),
             'CallbackURL': return_url,
         }
         payment_request = client.service.PaymentRequest(**payment_parameters)

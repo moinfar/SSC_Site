@@ -17,7 +17,7 @@ class PaymentGateway(models.Model):
         verbose_name_plural = _("Price Groups")
 
     def __str__(self):
-        return u"{} - {}".format(self.type, self.title)
+        return "{} - {}".format(self.type, self.title)
 
 
 class PaymentFormPage(Page, RichText):

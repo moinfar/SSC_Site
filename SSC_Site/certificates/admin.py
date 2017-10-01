@@ -22,15 +22,15 @@ class CertificateAdmin(admin.ModelAdmin):
     def get_compile_process(self, obj):
         if obj.compile_process:
             link = urlresolvers.reverse("admin:subprocess_manager_subprocess_change", args=[obj.compile_process.id])
-            return u'<a href="%s">%s</a>' % (link, obj.compile_process.status)
+            return '<a href="%s">%s</a>' % (link, obj.compile_process.status)
         else:
-            return u''
+            return ''
     get_compile_process.short_description = 'Compile Status'
     get_compile_process.allow_tags = True
 
     def get_pdf_output(self, obj):
         filename = 'certificates/out/cert_%d.pdf' % obj.id
-        return u'<a href="%s">%s</a>' % (settings.MEDIA_URL + filename, _("Download"))
+        return '<a href="%s">%s</a>' % (settings.MEDIA_URL + filename, _("Download"))
     get_pdf_output.short_description = 'PDF Output'
     get_pdf_output.allow_tags = True
 
