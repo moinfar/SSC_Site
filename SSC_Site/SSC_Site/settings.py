@@ -296,7 +296,11 @@ INSTALLED_APPS = (
     'shortener',
     'certificates',
     'subprocess_manager',
+    'dbbackup',
 )
+
+DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+DBBACKUP_STORAGE_OPTIONS = {'location': '/var/backups'}
 
 # List of middleware classes to use. Order is important; in the request phase,
 # these middleware classes will be applied in the order given, and in the
