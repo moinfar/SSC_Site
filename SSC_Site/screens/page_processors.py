@@ -29,9 +29,9 @@ def screen_page_processor(request, page):
                 else:
                     images += [dict(content=screen_image.content, image=None)]
 
-            hash = hashlib.md5(json.dumps(images, ensure_ascii=True)).hexdigest()
+            hash = hashlib.md5(json.dumps(images, ensure_ascii=True).encode()).hexdigest()
 
-            result = json.dumps({'status': 'OK', 'hash': hash, 'images': images}, ensure_ascii=False, encoding='utf8')
+            result = json.dumps({'status': 'OK', 'hash': hash, 'images': images}, ensure_ascii=False)
             return HttpResponse(result, content_type='application/json; charset=utf-8')
 
     return {'show': 'recent'}
