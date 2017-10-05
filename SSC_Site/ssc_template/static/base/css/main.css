@@ -4,8 +4,8 @@ html {
 
 body {
 	background:
-	linear-gradient(to right, rgba(240, 240, 240, 0.25),  rgba(240, 240, 240, 0.25)),
-	url('/static/base/image/pattern/new-pattern2.jpg');
+	linear-gradient(to right, rgba(240, 240, 240, 0.45),  rgba(240, 240, 240, 0)),
+	url('/static/base/image/pattern/new-pattern3.jpg');
 /*	linear-gradient(to right, rgba(240, 240, 240, 1),  rgba(240, 240, 240, 1)); */
 }
 
