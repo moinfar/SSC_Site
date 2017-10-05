@@ -4,14 +4,14 @@ html {
 
 body {
 	background:
-	linear-gradient(to right, rgba(240, 240, 240, 0.85),  rgba(240, 240, 240, 0.85)),
-	url('/static/base/image/pattern/3px-tile.png'),
-	linear-gradient(to right, rgba(240, 240, 240, 1),  rgba(240, 240, 240, 1));
+	linear-gradient(to right, rgba(240, 240, 240, 0.25),  rgba(240, 240, 240, 0.25)),
+	url('/static/base/image/pattern/new-pattern2.jpg');
+/*	linear-gradient(to right, rgba(240, 240, 240, 1),  rgba(240, 240, 240, 1)); */
 }
 
 #top-logo {
-	/*background-image: url('/static/base/image/SSC-unofficial-logo-white.png');*/
-	background-image: url('/static/base/image/SSC-unofficial-logo-black.png');
+	background-image: url('/static/base/image/SSC-unofficial-logo-white.png');
+	/* background-image: url('/static/base/image/SSC-unofficial-logo-black.png'); */
 	/*background-image: url('/static/base/image/SSC-logo.svg');*/
 	background-repeat: no-repeat;
 	background-size: contain;

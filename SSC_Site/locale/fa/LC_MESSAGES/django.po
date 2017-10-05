@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-22 12:45+0430\n"
+"POT-Creation-Date: 2017-10-05 12:38+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -96,8 +96,7 @@ msgstr "صفحات شامل ویدئو‌ها"
 msgid "Containing Page"
 msgstr "صفحه‌ی شامل"
 
-#: media_manager/models.py:18 src/shortener/shortener/models.py:19
-#: ssc_configs/models.py:21 ssc_configs/models.py:41
+#: media_manager/models.py:18 ssc_configs/models.py:21 ssc_configs/models.py:41
 msgid "Title"
 msgstr "عنوان"
 
@@ -198,34 +197,6 @@ msgstr "تصویر پیشفرض"
 #: screens/models.py:77 screens/models.py:78
 msgid "Screen Image"
 msgstr "تصویر مانیتور"
-
-#: src/shortener/shortener/models.py:21
-msgid "Slug"
-msgstr ""
-
-#: src/shortener/shortener/models.py:23
-msgid "Views Count"
-msgstr ""
-
-#: src/shortener/shortener/models.py:25
-#, fuzzy
-#| msgid "Payment Time"
-msgid "Submit Time"
-msgstr "زمان پرداخت"
-
-#: src/shortener/shortener/models.py:26
-#, fuzzy
-#| msgid "Change"
-msgid "Last Change"
-msgstr "تغییر"
-
-#: src/shortener/shortener/models.py:44
-msgid "Short Link"
-msgstr ""
-
-#: src/shortener/shortener/models.py:45
-msgid "Short Links"
-msgstr ""
 
 #: ssc_configs/defaults.py:6
 msgid "Parallax of index page"
@@ -485,7 +456,7 @@ msgid "Coming Soon"
 msgstr "به زودی"
 
 #: ssc_template/templates/index.html:96
-msgid "Recent News"
+msgid "Currently on the monitors"
 msgstr "اکنون در مانیتور‌های لابی"
 
 #: ssc_template/templates/pages/gallery.html:35
@@ -647,8 +618,8 @@ msgstr "ای‌پی‌آی درگاه"
 
 #: transactions/models.py:16 transactions/models.py:53
 #: transactions/models.py:62 transactions/models.py:77
-#: transactions/page_processors.py:56 transactions/page_processors.py:80
-#: transactions/page_processors.py:272 transactions/page_processors.py:336
+#: transactions/page_processors.py:57 transactions/page_processors.py:87
+#: transactions/page_processors.py:299 transactions/page_processors.py:365
 msgid "Price Group"
 msgstr "گروه قیمت"
 
@@ -689,18 +660,18 @@ msgid "Group Identifier"
 msgstr "مشخص‌کننده‌ی گروه"
 
 #: transactions/models.py:43 transactions/models.py:63
-#: transactions/models.py:78 transactions/page_processors.py:56
-#: transactions/page_processors.py:81
+#: transactions/models.py:78 transactions/page_processors.py:57
+#: transactions/page_processors.py:88
 msgid "Amount in Rials"
 msgstr "مقدار به ریال"
 
 #: transactions/models.py:58 transactions/models.py:74
-#: transactions/page_processors.py:55 transactions/page_processors.py:80
+#: transactions/page_processors.py:55 transactions/page_processors.py:86
 msgid "Creation Time"
 msgstr "زمان ایجاد"
 
 #: transactions/models.py:59 transactions/models.py:75
-#: transactions/page_processors.py:55 transactions/page_processors.py:80
+#: transactions/page_processors.py:55 transactions/page_processors.py:86
 msgid "Form Entry UUID"
 msgstr "UUID وارد شده"
 
@@ -708,17 +679,17 @@ msgstr "UUID وارد شده"
 msgid "Bank Token"
 msgstr "توکن بانک"
 
-#: transactions/models.py:61 transactions/page_processors.py:55
+#: transactions/models.py:61 transactions/page_processors.py:56
 msgid "Random Token"
 msgstr "توکن تصادفی"
 
 #: transactions/models.py:65 transactions/models.py:80
-#: transactions/page_processors.py:56 transactions/page_processors.py:81
+#: transactions/page_processors.py:57 transactions/page_processors.py:88
 msgid "Is Payed"
 msgstr "پرداخت‌شده"
 
 #: transactions/models.py:66 transactions/models.py:82
-#: transactions/page_processors.py:56 transactions/page_processors.py:81
+#: transactions/page_processors.py:58 transactions/page_processors.py:89
 msgid "Payment Time"
 msgstr "زمان پرداخت"
 
@@ -730,29 +701,39 @@ msgstr "تراکنش پرداختی یوپال"
 msgid "Upal Payment Transactions"
 msgstr "تراکنش‌های پرداختی یوپال"
 
-#: transactions/models.py:76 transactions/page_processors.py:80
+#: transactions/models.py:76 transactions/page_processors.py:86
 #, fuzzy
 #| msgid "Author:"
 msgid "Authority"
 msgstr "نویسنده"
 
-#: transactions/models.py:81 transactions/page_processors.py:81
+#: transactions/models.py:81 transactions/page_processors.py:88
 msgid "Reference ID"
 msgstr ""
 
-#: transactions/page_processors.py:236
+#: transactions/page_processors.py:262
 msgid "UnSuccessful Payment Transaction"
 msgstr ""
 "تراکنش پرداختی با مشکل مواجه شده‌است. لطفا چنانچه پرداخت شما موفق بوده‌است، ما "
 "را مطلع کنید."
 
-#: transactions/page_processors.py:273 transactions/page_processors.py:337
+#: transactions/page_processors.py:300 transactions/page_processors.py:366
 msgid "Payment in Rials"
 msgstr "مقدار پرداخت به ریال"
 
-#: transactions/page_processors.py:292 transactions/page_processors.py:356
+#: transactions/page_processors.py:320 transactions/page_processors.py:386
 msgid "Successful Payment Transaction"
 msgstr "تراکنش پرداختی موفقیت آمیز بود"
+
+#, fuzzy
+#~| msgid "Payment Time"
+#~ msgid "Submit Time"
+#~ msgstr "زمان پرداخت"
+
+#, fuzzy
+#~| msgid "Change"
+#~ msgid "Last Change"
+#~ msgstr "تغییر"
 
 #~ msgid "Blog"
 #~ msgstr "وبلاگ"

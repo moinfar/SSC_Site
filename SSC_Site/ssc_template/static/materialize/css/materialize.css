@@ -5343,7 +5343,7 @@ input[type=range]:focus::-ms-fill-upper {
     .side-nav li.active {
       background-color: rgba(0, 0, 0, 0.05); }
   .side-nav li > a {
-    color: rgba(0, 0, 0, 0.87);
+    color: #0D47A1;
     display: block;
     font-size: 14px;
     font-weight: 500;
@@ -5467,7 +5467,7 @@ input[type=range]:focus::-ms-fill-upper {
   right: 0;
   height: 120vh;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 997;
+  z-index: 980;
   will-change: opacity; }
 
 /*
