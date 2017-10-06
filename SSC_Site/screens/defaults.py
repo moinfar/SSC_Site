@@ -1,5 +1,5 @@
-from mezzanine.conf import register_setting
 from django.utils.translation import ugettext_lazy as _
+from mezzanine.conf import register_setting
 
 register_setting(
     name="SCREEN_LEFT",
@@ -25,4 +25,3 @@ register_setting(
     default=("SCREEN_LEFT", "SCREEN_RIGHT"),
     append=True,
 )
-

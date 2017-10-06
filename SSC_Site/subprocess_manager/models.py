@@ -1,8 +1,8 @@
-import os
+import signal
 import subprocess
 import threading
-import signal
 
+import os
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
