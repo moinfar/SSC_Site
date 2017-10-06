@@ -95,10 +95,10 @@
                     window.location = "{{ payment_url }}";
                 one_time_flag = 1;
             }
-            window.setTimeout(function() {location.reload();}, 60*5000);
+            location.reload();
             </script>
             <noscript>
-                <a href="{{ payment_url }}">{% trans 'Click here if you were not redirected in 5 seconds' %}</a>
+                <a href="{{ payment_url }}">{% trans 'Click here if you were not redirected' %}</a>
             </noscript>
             {% if warning and warning == "reserved_list" %}
             <p class="center-align"><button class="btn" onclick="redirect();" >{% trans 'OK' %}</button></p>
