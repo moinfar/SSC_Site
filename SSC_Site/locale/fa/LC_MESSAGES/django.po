@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-05 12:38+0330\n"
+"POT-Creation-Date: 2017-10-06 12:37+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,55 +18,55 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: SSC_Site/settings.py:22
+#: SSC_Site/settings.py:19
 msgid "Media Library"
 msgstr "مدیریت رسانه‌ها"
 
-#: SSC_Site/settings.py:23
+#: SSC_Site/settings.py:20
 msgid "SSC_Configs"
 msgstr "ویژه اس‌اس‌سی"
 
-#: SSC_Site/settings.py:46
+#: SSC_Site/settings.py:43
 msgid "Top navigation bar"
 msgstr "نوار بالایی"
 
-#: SSC_Site/settings.py:47
+#: SSC_Site/settings.py:44
 msgid "Left-hand tree"
 msgstr "نوار کناری"
 
-#: SSC_Site/settings.py:70
+#: SSC_Site/settings.py:67
 msgid "Related Page"
 msgstr "صفحه‌ی مربوطه"
 
-#: SSC_Site/settings.py:79
+#: SSC_Site/settings.py:76
 msgid "Read More Text"
 msgstr "متن ادامه‌ی نوشتار"
 
-#: SSC_Site/settings.py:90
+#: SSC_Site/settings.py:87
 msgid "Parallax Image"
 msgstr "تصویر پارالاکس"
 
-#: SSC_Site/settings.py:145
+#: SSC_Site/settings.py:143
 msgid "Persian"
 msgstr "فارسی"
 
-#: SSC_Site/settings.py:146
+#: SSC_Site/settings.py:144
 msgid "English"
 msgstr "انگلیسی"
 
-#: certificates/admin.py:16
+#: certificates/admin.py:18
 msgid "Compiling"
 msgstr ""
 
-#: certificates/admin.py:18
+#: certificates/admin.py:21
 msgid "Compile"
 msgstr ""
 
-#: certificates/admin.py:33
+#: certificates/admin.py:39
 msgid "Download"
 msgstr ""
 
-#: certificates/models.py:9 ssc_configs/models.py:9
+#: certificates/models.py:9 ssc_configs/models.py:10
 #: ssc_template/templates/generic/includes/comment_form.html:16
 #: ssc_template/templates/pages/groupsinfopage.html:13
 msgid "Name"
@@ -92,11 +92,11 @@ msgstr "صفحه‌ی شامل ویدئو‌ها"
 msgid "Video Container Pages"
 msgstr "صفحات شامل ویدئو‌ها"
 
-#: media_manager/models.py:17 ssc_configs/models.py:40
+#: media_manager/models.py:17 ssc_configs/models.py:42
 msgid "Containing Page"
 msgstr "صفحه‌ی شامل"
 
-#: media_manager/models.py:18 ssc_configs/models.py:21 ssc_configs/models.py:41
+#: media_manager/models.py:18 ssc_configs/models.py:23 ssc_configs/models.py:43
 msgid "Title"
 msgstr "عنوان"
 
@@ -118,29 +118,25 @@ msgstr "ویدئو‌ها"
 msgid "Site name"
 msgstr "نام سایت"
 
-#: media_manager/models.py:28
+#: media_manager/models.py:29
 msgid "YouTube"
 msgstr "یوتیوب"
 
-#: media_manager/models.py:29
+#: media_manager/models.py:30
 msgid "Code"
 msgstr "کد"
 
-#: media_manager/models.py:32
+#: media_manager/models.py:33
 msgid "Video Frame"
 msgstr "فریم ویدئو"
 
-#: media_manager/models.py:33
+#: media_manager/models.py:34
 msgid "Video Frames"
 msgstr "فریم‌های ویدئو"
 
-#: mezzacaptcha/forms.py:10
-msgid "Please enter the captcha"
-msgstr "حروف تصویر را وارد کنید"
-
-#: mezzacaptcha/models.py:17
+#: mezzacaptcha/forms.py:9 mezzacaptcha/models.py:15
 msgid "Captcha"
-msgstr ""
+msgstr "تاییدیه"
 
 #: screens/defaults.py:6
 msgid "Label of left monitor page"
@@ -154,47 +150,47 @@ msgstr "برچسب مانیتور سمت راست"
 msgid "Sequence of setting names available within templates."
 msgstr "مجموعه تنظیمات فایل دسترسی در قالب‌ها."
 
-#: screens/models.py:11
+#: screens/models.py:13
 msgid "Label"
 msgstr "برچسب"
 
-#: screens/models.py:30
+#: screens/models.py:32
 msgid "Screen Page"
 msgstr "صفحه‌ی مانیتور"
 
-#: screens/models.py:31
+#: screens/models.py:33
 msgid "Screen Pages"
 msgstr "صفحات مانیتور"
 
-#: screens/models.py:58
+#: screens/models.py:61
 msgid "screen"
 msgstr "مانیتور"
 
-#: screens/models.py:60
+#: screens/models.py:63
 msgid "image"
 msgstr "تصویر"
 
-#: screens/models.py:62
+#: screens/models.py:65
 msgid "Published from"
 msgstr "منتشر شده از"
 
-#: screens/models.py:63
+#: screens/models.py:67
 msgid "With Published chosen, won't be shown until this time"
 msgstr "با انتخاب منتشر شده, تا این لحظه نمایش داده نمی‌شود."
 
-#: screens/models.py:65
+#: screens/models.py:69
 msgid "Expires on"
 msgstr "انقضا در"
 
-#: screens/models.py:66
+#: screens/models.py:71
 msgid "With Published chosen, won't be shown after this time"
 msgstr "با انتخاب منتشر شده, بعد از این لحظه نمایش داده نمی شود."
 
-#: screens/models.py:67
+#: screens/models.py:72
 msgid "is default"
 msgstr "تصویر پیشفرض"
 
-#: screens/models.py:77 screens/models.py:78
+#: screens/models.py:82 screens/models.py:83
 msgid "Screen Image"
 msgstr "تصویر مانیتور"
 
@@ -202,56 +198,56 @@ msgstr "تصویر مانیتور"
 msgid "Parallax of index page"
 msgstr "تصویر پارالاکس صفحه‌ی اصلی"
 
-#: ssc_configs/models.py:8 ssc_configs/models.py:20
+#: ssc_configs/models.py:8 ssc_configs/models.py:21
 msgid "slug"
 msgstr ""
 
-#: ssc_configs/models.py:15 ssc_configs/models.py:50
+#: ssc_configs/models.py:16 ssc_configs/models.py:52
 msgid "Person"
 msgstr "شخص"
 
-#: ssc_configs/models.py:16
+#: ssc_configs/models.py:17
 msgid "Persons"
 msgstr "اشخاص"
 
-#: ssc_configs/models.py:27 ssc_configs/models.py:28 ssc_configs/models.py:51
+#: ssc_configs/models.py:29 ssc_configs/models.py:30 ssc_configs/models.py:53
 #: ssc_template/templates/pages/groupsinfopage.html:14
 msgid "Duty"
 msgstr "وظیفه"
 
-#: ssc_configs/models.py:35
+#: ssc_configs/models.py:37
 msgid "Groups' Info Page"
 msgstr "صفحه‌ی اطلاعات گروه‌ها"
 
-#: ssc_configs/models.py:36
+#: ssc_configs/models.py:38
 msgid "Groups' Info Pages"
 msgstr "صفحات اطلاعات گروه‌ها"
 
-#: ssc_configs/models.py:44
+#: ssc_configs/models.py:46
 msgid "Group Info"
 msgstr "اطلاعات گروه"
 
-#: ssc_configs/models.py:45
+#: ssc_configs/models.py:47
 msgid "Groups Info"
 msgstr "اطلاعات گروه‌ها"
 
-#: ssc_configs/models.py:49
+#: ssc_configs/models.py:51
 msgid "Containing Group"
 msgstr "گروه شامل"
 
-#: ssc_configs/models.py:54
+#: ssc_configs/models.py:56
 msgid "Group Member"
 msgstr "عضو گروه"
 
-#: ssc_configs/models.py:55
+#: ssc_configs/models.py:57
 msgid "Group Members"
 msgstr "اعضای گروه"
 
-#: ssc_configs/models.py:62
+#: ssc_configs/models.py:64
 msgid "Gallery Container Page"
 msgstr "صفحه‌ی شامل گالری‌ها"
 
-#: ssc_configs/models.py:63
+#: ssc_configs/models.py:65
 msgid "Gallery Container Pages"
 msgstr "صفحات شامل گالری‌ها"
 
@@ -396,9 +392,13 @@ msgstr "نظری تا کنون ثبت نشده‌است."
 msgid "Email"
 msgstr "رایانامه"
 
+#: ssc_template/templates/generic/includes/comment_form.html:27
+msgid "Comment text"
+msgstr "متن نظر"
+
 #: ssc_template/templates/generic/includes/comment_form.html:32
-msgid "Comment"
-msgstr "نظر"
+msgid "Send comment"
+msgstr "ثبت نظر"
 
 #: ssc_template/templates/generic/includes/comments.html:4
 msgid "Comments"
@@ -604,126 +604,132 @@ msgstr ""
 msgid "Process ID"
 msgstr ""
 
-#: transactions/models.py:9 transactions/models.py:11
+#: transactions/models.py:10 transactions/models.py:12
 msgid "Gateway Type"
 msgstr "نوع درگاه"
 
-#: transactions/models.py:12
+#: transactions/models.py:14
 msgid "Gateway ID"
 msgstr "آی‌دی درگاه"
 
-#: transactions/models.py:13
+#: transactions/models.py:16
 msgid "Gateway API"
 msgstr "ای‌پی‌آی درگاه"
 
-#: transactions/models.py:16 transactions/models.py:53
-#: transactions/models.py:62 transactions/models.py:77
-#: transactions/page_processors.py:57 transactions/page_processors.py:87
-#: transactions/page_processors.py:299 transactions/page_processors.py:365
+#: transactions/models.py:19 transactions/models.py:60
+#: transactions/models.py:73 transactions/models.py:90
+#: transactions/page_processors.py:58 transactions/page_processors.py:88
+#: transactions/page_processors.py:300 transactions/page_processors.py:366
 msgid "Price Group"
 msgstr "گروه قیمت"
 
-#: transactions/models.py:17 transactions/models.py:54
+#: transactions/models.py:20 transactions/models.py:61
 msgid "Price Groups"
 msgstr "گروه‌های قیمت"
 
-#: transactions/models.py:24 transactions/models.py:33
+#: transactions/models.py:27 transactions/models.py:37
 msgid "Payment Form"
 msgstr "فرم پرداخت"
 
-#: transactions/models.py:25
+#: transactions/models.py:29
 msgid "Payment Gateway"
 msgstr "درگاه پرداخت"
 
-#: transactions/models.py:27
+#: transactions/models.py:31
 msgid "Payment Description"
 msgstr "توضیحات پرداخت"
 
-#: transactions/models.py:30
+#: transactions/models.py:34
 msgid "At Full Capacity Message"
 msgstr "پیام ظرفیت پر شده"
 
-#: transactions/models.py:34
+#: transactions/models.py:38
 msgid "Payment Forms"
 msgstr "فرم‌های پرداخت"
 
-#: transactions/models.py:36
+#: transactions/models.py:40
 msgid "Can View Payment Transactions"
 msgstr "می‌تواند تراکنش‌های پرداختی را مشاهده نماید"
 
-#: transactions/models.py:41
+#: transactions/models.py:46
 msgid "Containing Payment Form"
 msgstr "صفحه‌ی شامل فرم"
 
-#: transactions/models.py:42
+#: transactions/models.py:48
 msgid "Group Identifier"
 msgstr "مشخص‌کننده‌ی گروه"
 
-#: transactions/models.py:43 transactions/models.py:63
-#: transactions/models.py:78 transactions/page_processors.py:57
-#: transactions/page_processors.py:88
+#: transactions/models.py:49 transactions/models.py:74
+#: transactions/models.py:91 transactions/page_processors.py:58
+#: transactions/page_processors.py:89
 msgid "Amount in Rials"
 msgstr "مقدار به ریال"
 
-#: transactions/models.py:58 transactions/models.py:74
-#: transactions/page_processors.py:55 transactions/page_processors.py:86
+#: transactions/models.py:65 transactions/models.py:85
+#: transactions/page_processors.py:56 transactions/page_processors.py:87
 msgid "Creation Time"
 msgstr "زمان ایجاد"
 
-#: transactions/models.py:59 transactions/models.py:75
-#: transactions/page_processors.py:55 transactions/page_processors.py:86
+#: transactions/models.py:67 transactions/models.py:87
+#: transactions/page_processors.py:56 transactions/page_processors.py:87
 msgid "Form Entry UUID"
 msgstr "UUID وارد شده"
 
-#: transactions/models.py:60 transactions/page_processors.py:55
+#: transactions/models.py:69 transactions/page_processors.py:56
 msgid "Bank Token"
 msgstr "توکن بانک"
 
-#: transactions/models.py:61 transactions/page_processors.py:56
+#: transactions/models.py:71 transactions/page_processors.py:57
 msgid "Random Token"
 msgstr "توکن تصادفی"
 
-#: transactions/models.py:65 transactions/models.py:80
-#: transactions/page_processors.py:57 transactions/page_processors.py:88
+#: transactions/models.py:76 transactions/models.py:93
+#: transactions/page_processors.py:58 transactions/page_processors.py:89
 msgid "Is Payed"
 msgstr "پرداخت‌شده"
 
-#: transactions/models.py:66 transactions/models.py:82
-#: transactions/page_processors.py:58 transactions/page_processors.py:89
+#: transactions/models.py:77 transactions/models.py:95
+#: transactions/page_processors.py:59 transactions/page_processors.py:90
 msgid "Payment Time"
 msgstr "زمان پرداخت"
 
-#: transactions/models.py:69 transactions/models.py:85
+#: transactions/models.py:80 transactions/models.py:98
 msgid "Upal Payment Transaction"
 msgstr "تراکنش پرداختی یوپال"
 
-#: transactions/models.py:70 transactions/models.py:86
+#: transactions/models.py:81 transactions/models.py:99
 msgid "Upal Payment Transactions"
 msgstr "تراکنش‌های پرداختی یوپال"
 
-#: transactions/models.py:76 transactions/page_processors.py:86
+#: transactions/models.py:88 transactions/page_processors.py:87
 #, fuzzy
 #| msgid "Author:"
 msgid "Authority"
 msgstr "نویسنده"
 
-#: transactions/models.py:81 transactions/page_processors.py:88
+#: transactions/models.py:94 transactions/page_processors.py:89
 msgid "Reference ID"
 msgstr ""
 
-#: transactions/page_processors.py:262
+#: transactions/page_processors.py:263
 msgid "UnSuccessful Payment Transaction"
 msgstr ""
 "تراکنش پرداختی با مشکل مواجه شده‌است. لطفا چنانچه پرداخت شما موفق بوده‌است، ما "
 "را مطلع کنید."
 
-#: transactions/page_processors.py:300 transactions/page_processors.py:366
+#: transactions/page_processors.py:301 transactions/page_processors.py:367
 msgid "Payment in Rials"
 msgstr "مقدار پرداخت به ریال"
 
-#: transactions/page_processors.py:320 transactions/page_processors.py:386
+#: transactions/page_processors.py:321 transactions/page_processors.py:387
 msgid "Successful Payment Transaction"
 msgstr "تراکنش پرداختی موفقیت آمیز بود"
+
+#~ msgid "Comment"
+#~ msgstr "نظر"
+
+#~ msgid "Please enter the captcha"
+#~ msgstr "حروف تصویر را وارد کنید"
 
 #, fuzzy
 #~| msgid "Payment Time"
