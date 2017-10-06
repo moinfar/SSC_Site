@@ -2,18 +2,17 @@
 {% load i18n mezzanine_tags jdate_tags %}
 
 
+
 {% block card_tail %}
 <div class="card-action">
-    {% blocktrans with sometime=post.publish_date|get_jdate|jdateformat:"{d} {M} {y}"|farsi_digits
-    %}Written On {{ sometime }}{% endblocktrans %}
+    {% blocktrans with sometime=post.publish_date|get_jdate|jdateformat:"{d} {M} {y}"|farsi_digits %}Written On {{ sometime }}{% endblocktrans %}
 </div>
 {% if not post.featured_image and blog_post.categories.all %}
 <div class="card-action">
     {% with blog_post.categories.all as categories %}
     {% if categories %}
     {% for category in categories %}
-    <a class="blue white-text category-box" style="font-size:.7em;"
-       href="{% url 'blog_post_list_category' category.slug %}">
+    <a class="blue white-text category-box" style="font-size:.7em;" href="{% url 'blog_post_list_category' category.slug %}">
         {{ category }}
     </a>
     {% endfor %}
@@ -33,8 +32,7 @@
         {% with blog_post.categories.all as categories %}
         {% if categories %}
         {% for category in categories %}
-        <a class="blue white-text category-box"
-           href="{% url 'blog_post_list_category' category.slug %}">
+        <a class="blue white-text category-box" href="{% url 'blog_post_list_category' category.slug %}">
             {{ category }}
         </a>
         {% endfor %}

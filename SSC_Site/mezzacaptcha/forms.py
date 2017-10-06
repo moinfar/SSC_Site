@@ -1,5 +1,5 @@
-from captcha.fields import ReCaptchaField
 from mezzanine.generic.forms import ThreadedCommentForm
+from captcha.fields import ReCaptchaField
 
 
 class CaptchaThreadedCommentForm(ThreadedCommentForm):

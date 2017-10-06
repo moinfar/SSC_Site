@@ -1,11 +1,13 @@
+
+
 from django.conf.urls import include, url
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.views.i18n import set_language
-from mezzanine.conf import settings
-from mezzanine.core.views import direct_to_template
-from shortener import urls as shortener_urls
 
+from mezzanine.core.views import direct_to_template
+from mezzanine.conf import settings
+from shortener import urls as shortener_urls
 from certificates import urls as certificate_urls
 from transactions.page_processors import from_bank
 
@@ -23,6 +25,7 @@ if settings.USE_MODELTRANSLATION:
     urlpatterns += [
         url('^i18n/$', set_language, name='set_language'),
     ]
+
 
 urlpatterns += [
     url('^$', direct_to_template, {'template': 'index.html'}, name='home'),

@@ -1,9 +1,10 @@
 import json
-
 import hashlib
-from django.http import HttpResponse
-from django.shortcuts import render
+
 from mezzanine.conf import settings
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.utils.translation import ugettext as _
 from mezzanine.pages.page_processors import processor_for
 
 from .models import ScreenPage
@@ -30,8 +31,7 @@ def screen_page_processor(request, page):
 
             hash = hashlib.md5(json.dumps(images, ensure_ascii=True).encode()).hexdigest()
 
-            result = json.dumps({'status': 'OK', 'hash': hash, 'images': images},
-                                ensure_ascii=False)
+            result = json.dumps({'status': 'OK', 'hash': hash, 'images': images}, ensure_ascii=False)
             return HttpResponse(result, content_type='application/json; charset=utf-8')
 
     return {'show': 'recent'}

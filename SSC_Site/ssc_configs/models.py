@@ -1,12 +1,11 @@
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
-from mezzanine.core.models import Orderable
 from mezzanine.pages.models import Page
+from mezzanine.core.models import Orderable
+from django.utils.translation import ugettext_lazy as _
 
 
 class Person(models.Model):
-    slug = models.CharField(max_length=255, blank=False, null=False, verbose_name=_("slug"),
-                            unique=True)
+    slug = models.CharField(max_length=255, blank=False, null=False, verbose_name=_("slug"), unique=True)
     name = models.CharField(max_length=500, blank=False, null=False, verbose_name=_("Name"))
 
     def __unicode__(self):
@@ -18,8 +17,7 @@ class Person(models.Model):
 
 
 class Duty(models.Model):
-    slug = models.CharField(max_length=255, blank=False, null=False, verbose_name=_("slug"),
-                            unique=True)
+    slug = models.CharField(max_length=255, blank=False, null=False, verbose_name=_("slug"), unique=True)
     title = models.CharField(max_length=500, blank=False, null=False, verbose_name=_("Title"))
 
     def __unicode__(self):

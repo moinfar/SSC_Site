@@ -17,60 +17,57 @@
     {% endif %}
 
 
-    <div class="input-field left-align" {% if field.field.type==
-    "booleanfield" %} dir="ltr" {% endif %}>
+    <div class="input-field left-align" {% if field.field.type == "booleanfield" %} dir="ltr" {% endif %}>
     {% if field.field.widget|is_radio_select %}
-    {% if field.label %}<p class="grey-text text-lighten-1">&nbsp;&nbsp;{{ field.label }}</p>{%
-    endif %}
-    {% for radio in field %}
+    {% if field.label %}<p class="grey-text text-lighten-1">&nbsp;&nbsp;{{ field.label }}</p>{% endif %}
+        {% for radio in field %}
         <span>
             {{ radio.tag }}
             <label for="{{ field.auto_id }}_{{ radio.index }}">
                 <span class="left spaced">{{ radio.choice_label }}</span>
             </label>
         </span>
-    {% endfor %}
+        {% endfor %}
     <p></p>
     {% elif field.field.widget|is_multiple_checkbox %}
-    {% if field.label %}<p class="grey-text text-lighten-1">&nbsp;&nbsp;{{ field.label }}</p>{%
-    endif %}
-    {% for check in field %}
+    {% if field.label %}<p class="grey-text text-lighten-1">&nbsp;&nbsp;{{ field.label }}</p>{% endif %}
+        {% for check in field %}
         <span>
             {{ check.tag }}
             <label for="{{ field.auto_id }}_{{ check.index }}">
                 <span class="left spaced">{{ check.choice_label }}</span>
             </label>
         </span>
-    {% endfor %}
+        {% endfor %}
     <p></p>
     {% elif field.field.type == "filefield" %}
-    <div class="file-field input-field">
-        <div class="btn">
-            <span>{% trans "Choose File" %}</span>
-            <input id="{{ field.auto_id }}" name="{{ field.name }}" type="file">
+        <div class="file-field input-field">
+            <div class="btn">
+                <span>{% trans "Choose File" %}</span>
+                <input id="{{ field.auto_id }}" name="{{ field.name }}"  type="file">
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+            </div>
         </div>
-        <div class="file-path-wrapper">
-            <input class="file-path validate" type="text">
-        </div>
-    </div>
     {% else %}
-    {{ field }}
-    {% if field.label %}
-    <label class="control-label" for="{{ field.auto_id }}" dir="rtl">
-        {% if field.field.required %} * {% endif %}{{ field.label }}
-    </label>
+        {{ field }}
+        {% if field.label %}
+        <label class="control-label" for="{{ field.auto_id }}" dir="rtl">
+            {% if field.field.required %} * {% endif %}{{ field.label }}
+        </label>
+        {% endif %}
     {% endif %}
-    {% endif %}
-</div>
+    </div>
 
-{% if field.errors %}
-<p class="help-block">
-    {% for e in field.errors %}
-    {% if not forloop.first %} / {% endif %}{{ e }}
-    {% endfor %}
-</p>
-{% endif %}
-<div class="px-10 vertical spacer"></div>
+    {% if field.errors %}
+    <p class="help-block">
+        {% for e in field.errors %}
+        {% if not forloop.first %} / {% endif %}{{ e }}
+        {% endfor %}
+    </p>
+    {% endif %}
+    <div class="px-10 vertical spacer"></div>
 </div>
 {% endif %}
 {% endfor %}

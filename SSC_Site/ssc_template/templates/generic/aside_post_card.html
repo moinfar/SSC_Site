@@ -7,16 +7,14 @@
 
 {% block card_tail %}
 <div class="card-content">
-    {% blocktrans with sometime=post.publish_date|get_jdate|jdateformat:"{d} {M} {y}"|farsi_digits
-    %}Written On {{ sometime }}{% endblocktrans %}
+    {% blocktrans with sometime=post.publish_date|get_jdate|jdateformat:"{d} {M} {y}"|farsi_digits %}Written On {{ sometime }}{% endblocktrans %}
 </div>
 {% if post.categories.all %}
 <div class="card-action">
     {% with post.categories.all as categories %}
     {% if categories %}
     {% for category in categories %}
-    <a class="blue white-text category-box" style="font-size:.7em;"
-       href="{% url 'blog_post_list_category' category.slug %}">
+    <a class="blue white-text category-box" style="font-size:.7em;" href="{% url 'blog_post_list_category' category.slug %}">
         {{ category }}
     </a>
     {% endfor %}
@@ -32,8 +30,7 @@
 <div class="card-action">
     {% trans "Tags" %}:
     {% for tag in tags %}
-    <a class="orange black-text category-box" style="font-size:.7em;"
-       href="{% url 'blog_post_list_tag' tag.slug %}">
+    <a class="orange black-text category-box" style="font-size:.7em;" href="{% url 'blog_post_list_tag' tag.slug %}">
         {{ tag }}
     </a>
     {% endfor %}

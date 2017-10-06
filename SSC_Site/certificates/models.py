@@ -1,6 +1,6 @@
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
 from mezzanine.core.fields import FileField
+from django.utils.translation import ugettext_lazy as _
 
 from subprocess_manager.models import Subprocess
 
@@ -20,7 +20,7 @@ class Certificate(models.Model):
             self.compile_process = Subprocess.objects.create()
             super(Certificate, self).save()
 
-    def delete(self, using=None, **kwargs):
+    def delete(self, using=None):
         if self.compiler:
             self.compiler.delete()
 

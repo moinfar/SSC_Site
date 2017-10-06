@@ -1,5 +1,5 @@
-from django.utils.translation import ugettext_lazy as _
 from mezzanine.conf import register_setting
+from django.utils.translation import ugettext_lazy as _
 
 register_setting(
     name="FIRST_PAGE_PARALLAX",
@@ -17,3 +17,4 @@ register_setting(
     default=("FIRST_PAGE_PARALLAX",),
     append=True,
 )
+

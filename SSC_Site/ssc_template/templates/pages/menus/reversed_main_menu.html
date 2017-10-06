@@ -7,28 +7,26 @@
 {% for page in page_branch reversed %}
 {% if page.in_menu %}
 {% if page.has_children_in_menu %}
-<li {% if page.is_current_or_ascendant %}class="active" {% endif %}>
+<li {% if page.is_current_or_ascendant %}class="active"{% endif %}>
     <a href="{{ page.get_absolute_url }}"
        class="normal navbar dropdown-button item"
-       {% if LANGUAGE_BIDI %} dir="rtl" {% endif %}
+       {% if LANGUAGE_BIDI %} dir="rtl"{% endif %}
        data-activates="reversed-menu-{{ page.html_id }}">
         {{ page.title }}
     </a>
     {% page_menu page %}
 </li>
 {% else %}
-<li {% if page.is_current_or_ascendant %}class="active" {% endif %}>
-    <a href="{{ page.get_absolute_url }}" class="normal navbar item" {% if LANGUAGE_BIDI %}
-       dir="rtl" {% endif %}>
+<li {% if page.is_current_or_ascendant %}class="active"{% endif %}>
+    <a href="{{ page.get_absolute_url }}" class="normal navbar item" {% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
         {{ page.title }}
     </a>
 </li>
 {% endif %}
 {% endif %}
 {% if not has_home and page.is_primary and forloop.last %}
-<li {% if on_home %}class="active" {% endif %}>
-    <a href="{% url 'home' %}" class="normal navbar item" {% if LANGUAGE_BIDI %} dir="rtl" {% endif
-       %}>
+<li {% if on_home %}class="active"{% endif %}>
+    <a href="{% url 'home' %}" class="normal navbar item" {% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
         {% trans "Home" %}
     </a>
 </li>
@@ -40,7 +38,7 @@
     {% for page in page_branch %}
     {% if page.in_menu %}
     <li class="{% if page.is_current_or_ascendant %}active{% endif %}">
-        <a href="{{ page.get_absolute_url }}" {% if LANGUAGE_BIDI %} dir="rtl" {% endif %}>
+        <a href="{{ page.get_absolute_url }}" {% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
             {{ page.title }}
         </a>
     </li>

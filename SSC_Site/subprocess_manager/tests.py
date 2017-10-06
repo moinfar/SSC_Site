@@ -1,5 +1,4 @@
 from mezzanine.core.tests import TestCase
-
 from subprocess_manager.models import Subprocess
 
 

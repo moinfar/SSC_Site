@@ -10,7 +10,7 @@
               background-size: contain;"
        href="{{ MEDIA_URL }}{% thumbnail screenimage.image 900 0 %}" data-lightbox="gallery"
        data-title="<span {% if LANGUAGE_BIDI %} dir='rtl'{% endif %}>{{screenimage.content|striptags|safe}}</span>"
-       {% if LANGUAGE_BIDI %} dir="rtl" {% endif %}
+       {% if LANGUAGE_BIDI %} dir="rtl"{% endif %}
        data-position="bottom" data-delay="50" data-tooltip="
        {% if LANGUAGE_BIDI %}
        {{ screenimage.publish_date|get_jdate|jdateformat:'{y} / {m} / {d}'|farsi_digits }}
@@ -18,9 +18,9 @@
        {{ screenimage.publish_date }}
        {% endif %}">
         {% if screenimage.content %}
-        <div class="very-small-screen black-text screen-text center-align caption">
-            {{ screenimage.content|richtext_filters|safe}}
-        </div>
+            <div class="very-small-screen black-text screen-text center-align caption">
+                {{ screenimage.content|richtext_filters|safe}}
+            </div>
         {% endif %}
     </a>
 </div>

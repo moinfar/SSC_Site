@@ -1,24 +1,23 @@
-import datetime
-import string
 import uuid
-from itertools import chain
-
+import string
 import hashlib
-import requests as web_request
-from django.core.urlresolvers import reverse
-from django.shortcuts import render
-from django.utils import timezone
-from django.utils.translation import ugettext as _
-from mezzanine.conf import settings
-from mezzanine.forms import fields
-from mezzanine.forms.models import FieldEntry
-from mezzanine.forms.page_processors import form_processor
-from mezzanine.pages.page_processors import processor_for
-from mezzanine.utils.email import split_addresses, send_mail_template
+import datetime
 from random import choice
+from itertools import chain
+import requests as web_request
+from django.utils import timezone
+from mezzanine.forms import fields
+from mezzanine.conf import settings
+from django.shortcuts import render
+from django.core.urlresolvers import reverse
+from mezzanine.forms.models import FieldEntry
+from django.utils.translation import ugettext as _
+from mezzanine.pages.page_processors import processor_for
+from mezzanine.forms.page_processors import form_processor
+from mezzanine.utils.email import split_addresses, send_mail_template
 from zeep import Client
-
 from .models import PaymentFormPage, PriceGroup, UpalPaymentTransaction, ZpalPaymentTransaction
+from transactions.models import PaymentGateway
 
 
 @processor_for(PaymentFormPage)
@@ -197,7 +196,7 @@ def new_upal_payment(request, paymentformpage, plan, request_uuid):
                                                    plan.group_identifier),
                                                'rand': random_token,
                                                'redirect_url': return_url,
-                                           })
+                                               })
     except web_request.ConnectionError:
         transaction.delete()
         return None

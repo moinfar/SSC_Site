@@ -18,8 +18,7 @@
 
 {% if page.gallery.parallax_image %}
 <div class="gallery parallax-container">
-    <div class="parallax"><img
-            src="{{ MEDIA_URL }}{% thumbnail page.gallery.parallax_image 1100 0 %}"></div>
+    <div class="parallax"><img src="{{ MEDIA_URL }}{% thumbnail page.gallery.parallax_image 1100 0 %}"></div>
 </div>
 {% endif %}
 <div class="px-10 vertical spacer"></div>
@@ -31,15 +30,13 @@
         <div class="image {% if LANGUAGE_BIDI %}right{% endif %} col s6 m4 l3">
             <div class="hoverable blue card">
                 <div class="card-image">
-                    <a href="{{ MEDIA_URL }}{% thumbnail image.file 1100 0 %}"
-                       data-lightbox="gallery"
+                    <a href="{{ MEDIA_URL }}{% thumbnail image.file 1100 0 %}" data-lightbox="gallery"
                        data-title="
                        {% blocktrans with url=image.file.url %}
                        Click <a href='{{ url }}'>here</a> to see the original image.
                        {% endblocktrans %}
                        ">
-                        <img alt="{{ image.description }}"
-                             src="{{ MEDIA_URL }}{% thumbnail image.file 300 0 %}">
+                        <img alt="{{ image.description }}" src="{{ MEDIA_URL }}{% thumbnail image.file 300 0 %}">
                     </a>
                 </div>
             </div>
@@ -63,7 +60,6 @@
 			transitionDuration: 1,
 		});
 	});
-
 </script>
 {% endblock %}
 

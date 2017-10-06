@@ -33,19 +33,15 @@
 
     {% errors_for form %}
     <form class="mezzanine-form" onsubmit="return sumbit_form();"
-          method="post" {% if form.is_multipart %} enctype="multipart/form-data" {% endif %}>
+          method="post"{% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
 
         <br>
         <div class="input-field left-align">
             <select required name="payment_plan_id">
                 {% for plan in page.paymentformpage.pricegroup_set.all %}
                 <option value="{{ plan.id }}"
-                        {% if plan.is_full %} disabled {% endif %}>
-                    {{ plan.group_identifier }} {% if LANGUAGE_CODE == "fa" or LANGUAGE_CODE ==
-                    "fa-IR" %}({{
-                    plan.payment_amount|add_transaction_fee:1.01|get_persian_comma_separated_money
-                    }}{% else %}{{plan.payment_amount|add_transaction_fee:1.01|intcomma }}{% endif
-                    %} {% trans 'Rials' %})
+                {% if plan.is_full %} disabled {% endif %}>
+                    {{ plan.group_identifier }} {% if LANGUAGE_CODE == "fa" or LANGUAGE_CODE == "fa-IR" %}({{ plan.payment_amount|add_transaction_fee:1.01|get_persian_comma_separated_money }}{% else %}{{plan.payment_amount|add_transaction_fee:1.01|intcomma }}{% endif %} {% trans 'Rials' %})
                     {% if plan.is_full %} - {% trans 'At Full Capacity' %} {% endif %}
                 </option>
                 {% endfor %}
@@ -56,7 +52,7 @@
 
         {% fields_for form "includes/form_fields.html" %}
         <div class="form-actions">
-            <input class="submit btn" type="submit" value="{% trans 'Send and Pay' %}">
+            <input class="submit btn" type="submit" value="{% trans 'Send and Pay' %}" >
         </div>
     </form>
     {% elif status == "design_error" %}
@@ -85,15 +81,14 @@
     <div>
         <p class="center-align">
             {% if warning and warning == "reserved_list" %}
-        <h6 class="red-text center-align">
-            {% trans 'CAUTION: We are going to reach our maximum capacity, so we may put you in
-            reservation list.' %}
-        </h6>
-        {% endif %}
-        <br>
-        {% trans 'You are going to be redirected to Redirecting to Payment Page ...' %}
-        <br><br>
-        <script>
+            <h6 class="red-text center-align">
+                {% trans 'CAUTION: We are going to reach our maximum capacity, so we may put you in reservation list.' %}
+            </h6>
+            {% endif %}
+            <br>
+            {% trans 'You are going to be redirected to Redirecting to Payment Page ...' %}
+            <br><br>
+            <script>
             var one_time_flag = 0;
             function redirect() {
                 if (one_time_flag == 0)
@@ -101,19 +96,15 @@
                 one_time_flag = 1;
             }
             window.setTimeout(function() {location.reload();}, 60*5000);
-
-        </script>
-        <noscript>
-            <a href="{{ payment_url }}">{% trans 'Click here if you were not redirected in 5
-                seconds' %}</a>
-        </noscript>
-        {% if warning and warning == "reserved_list" %}
-        <p class="center-align">
-            <button class="btn" onclick="redirect();">{% trans 'OK' %}</button>
-        </p>
-        {% else %}
-        <script>window.setTimeout(redirect, 5000);</script>
-        {% endif %}
+            </script>
+            <noscript>
+                <a href="{{ payment_url }}">{% trans 'Click here if you were not redirected in 5 seconds' %}</a>
+            </noscript>
+            {% if warning and warning == "reserved_list" %}
+            <p class="center-align"><button class="btn" onclick="redirect();" >{% trans 'OK' %}</button></p>
+            {% else %}
+            <script>window.setTimeout(redirect, 5000);</script>
+            {% endif %}
         </p>
     </div>
 

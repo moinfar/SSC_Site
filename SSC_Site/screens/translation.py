@@ -1,5 +1,4 @@
 from modeltranslation.translator import translator, TranslationOptions
-
 from .models import ScreenPage, ScreenImage
 
 
@@ -13,3 +12,4 @@ class TranslatedScreenImage(TranslationOptions):
 
 translator.register(ScreenPage, TranslatedScreenPage)
 translator.register(ScreenImage, TranslatedScreenImage)
+

@@ -27,15 +27,13 @@
         <div class="image col s6 m4 l3">
             <div class="hoverable blue card">
                 <div class="card-image">
-                    <a href="{{ MEDIA_URL }}{% thumbnail image.file 1100 0 %}"
-                       data-lightbox="gallery"
+                    <a href="{{ MEDIA_URL }}{% thumbnail image.file 1100 0 %}" data-lightbox="gallery"
                        data-title="
                        {% blocktrans with url=image.file.url %}
                        Click <a href='{{ url }}'>here</a> to see the original image.
                        {% endblocktrans %}
                        ">
-                        <img alt="{{ image.description }}"
-                             src="{{ MEDIA_URL }}{% thumbnail image.file 300 0 %}">
+                        <img alt="{{ image.description }}" src="{{ MEDIA_URL }}{% thumbnail image.file 300 0 %}">
                     </a>
                 </div>
             </div>
