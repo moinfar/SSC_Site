@@ -10,7 +10,7 @@
 
 {% block breadcrumb_menu %}
 <li>
-    <a href="{% url "home" %}">{% trans "Home" %}</a>
+    <a href="{% url " home" %}">{% trans "Home" %}</a>
 </li>
 <li class="active">{% trans "Search Results" %}</li>
 {% endblock %}
@@ -19,14 +19,16 @@
 
 {% if results.paginator.count == 0 %}
 <p>
-{% blocktrans %}
-No results were found in {{ search_type }} matching your query: {{ query }}
-{% endblocktrans %}
-{% else %}
-{% blocktrans with start=results.start_index end=results.end_index total=results.paginator.count %}
-Showing {{ start }} to {{ end }} of {{ total }} results in {{ search_type }} matching your query: {{ query }}
-{% endblocktrans %}
-{% endif %}
+    {% blocktrans %}
+    No results were found in {{ search_type }} matching your query: {{ query }}
+    {% endblocktrans %}
+    {% else %}
+    {% blocktrans with start=results.start_index end=results.end_index total=results.paginator.count
+    %}
+    Showing {{ start }} to {{ end }} of {{ total }} results in {{ search_type }} matching your
+    query: {{ query }}
+    {% endblocktrans %}
+    {% endif %}
 </p>
 
 <div id="search-results">

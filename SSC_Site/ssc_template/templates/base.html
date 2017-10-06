@@ -8,19 +8,23 @@
     <meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
     <meta name="description" content="{% block meta_description %}{% endblock %}">
 
-    <title>{% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
+    <title>{% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE
+        }}{% endif %}</title>
     <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
 
     {% ifinstalled mezzanine.blog %}
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="{% url 'blog_post_feed' 'rss' %}">
-    <link rel="alternate" type="application/atom+xml" title="Atom" href="{% url 'blog_post_feed' 'atom' %}">
+    <link rel="alternate" type="application/rss+xml" title="RSS"
+          href="{% url 'blog_post_feed' 'rss' %}">
+    <link rel="alternate" type="application/atom+xml" title="Atom"
+          href="{% url 'blog_post_feed' 'atom' %}">
     {% endifinstalled %}
 
     {% compress css %}
     <!-- Import iransans font -->
     <link type="text/css" rel="stylesheet" href="/static/base/font/iransans/style.css?v=1.1"/>
     <!-- Import materialize.css -->
-    <link type="text/css" rel="stylesheet" href="/static/materialize/css/materialize.css?v=1.1"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="/static/materialize/css/materialize.css?v=1.1"
+          media="screen,projection"/>
     <!-- Import LightBox -->
     <link type="text/css" rel="stylesheet" href="/static/lightbox/css/lightbox.css?v=1.1">
 
@@ -61,18 +65,20 @@
                 <select name="language" class="form-control">
                     {% for language in languages %}
                     <option value="{{ language.code }}"
-                            {% if language.code == LANGUAGE_CODE %}selected="selected"{% endif %}>
+                            {% if language.code== LANGUAGE_CODE %}selected="selected" {% endif %}>
                         {{ language.name_local }}
                     </option>
                     {% endfor %}
                 </select>
-                <input type="submit" class="btn btn-default" value="{% trans "Change" %}" />
+                <input type="submit" class="btn btn-default" value="{% trans " Change" %}" />
             </form>
             <span href="/" class="{% if LANGUAGE_BIDI %}left{% else %}right{%endif%}
             waves-effect waves-light black-text" id="top-lang">
                 {% for language in languages %}
-                <div class="tooltipped lang {{ language.code }} flag" onclick="setlang('{{ language.code }}');"
-                data-position="right" data-delay="50" data-tooltip="{{ language.name_local }}" >&nbsp;</div>
+                <div class="tooltipped lang {{ language.code }} flag"
+                     onclick="setlang('{{ language.code }}');"
+                     data-position="right" data-delay="50" data-tooltip="{{ language.name_local }}">
+                    &nbsp;</div>
                 {% endfor %}
             </span>
             <script>
@@ -80,13 +86,15 @@
                     $("#language_selector_form .form-control").val(lang);
                     $("#language_selector_form").submit();
                 }
+
             </script>
             {% endif %}
 
             <a href="#" data-activates="mobile-nav" class="{% if LANGUAGE_BIDI %}right{% else %}left{%endif%}
             button-collapse {% if LANGUAGE_BIDI %}rtl{% else %}ltr{%endif%} waves-effect waves-light">
                 <!-- <i class="material-icons">menu</i> -->
-                <img src="/static/base/image/menu-icon.svg" class="mobile-menu-trigger" height="100%">
+                <img src="/static/base/image/menu-icon.svg" class="mobile-menu-trigger"
+                     height="100%">
             </a>
 
 
@@ -108,7 +116,6 @@
 </header>
 
 
-
 <div id="wrapper">
 
     {% block all_content %}
@@ -120,7 +127,8 @@
         <div class="messages">
             {% for message in messages %}
             <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <button type="button" class="close" data-dismiss="alert"
+                        aria-hidden="true">&times;</button>
                 {{ message }}
             </div>
             {% endfor %}
@@ -133,7 +141,7 @@
     {% block breadcrumb_wrapper %}
     <div class="px-10 vertical spacer"></div>
     <div class="breadcrumb {% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %} container"
-         {% if LANGUAGE_BIDI %} dir="rtl"{% endif %} >
+         {% if LANGUAGE_BIDI %} dir="rtl" {% endif %}>
         {% spaceless %}
         {% block breadcrumb_menu %}{% page_menu "pages/menus/breadcrumb.html" %}{% endblock %}
         {% endspaceless %}
@@ -144,7 +152,7 @@
          class="center-align container" dir="rtl"
          {% else %}
          class="center-align container" dir="ltr"
-         {% endif %} >
+         {% endif %}>
         <h2 class="blue-text">{% block title %}{% endblock %}</h2>
     </div>
 
@@ -152,7 +160,8 @@
 
     <div class="px-10 vertical spacer"></div>
 
-    <section id="{% block section_id %}content{% endblock %}" {% if LANGUAGE_BIDI %} dir="rtl"{% endif %} >
+    <section id="{% block section_id %}content{% endblock %}" {% if LANGUAGE_BIDI %} dir="rtl" {%
+             endif %}>
         {% block main_wrapper %}
         <div class="container">
             <div class="row">
@@ -179,7 +188,7 @@
 
     <!-- Start of StatCounter Code for Default Guide -->
     {% comment "Slow Stat Counter" %}
-        <script type="text/javascript">
+    <script type="text/javascript">
         var sc_project=10720056;
         var sc_invisible=1;
         var sc_security="2e00e523";
@@ -190,35 +199,46 @@
         scJsHost+
         "statcounter.com/counter/counter.js'></"+"script>");
         });
-        </script>
-        <noscript><div class="statcounter"><a title="hits counter"
-        href="http://statcounter.com/free-hit-counter/"
-        target="_blank"><img class="statcounter"
-        src="http://c.statcounter.com/10720056/0/2e00e523/1/"
-        alt="hits counter"></a></div></noscript>
+
+    </script>
+    <noscript>
+        <div class="statcounter"><a title="hits counter"
+                                    href="http://statcounter.com/free-hit-counter/"
+                                    target="_blank"><img class="statcounter"
+                                                         src="http://c.statcounter.com/10720056/0/2e00e523/1/"
+                                                         alt="hits counter"></a></div>
+    </noscript>
     {% endcomment %}
     <a title="shopify visitor statistics"
-    href="http://statcounter.com/shopify/" target="_blank"><img
-    src="http://c.statcounter.com/10720056/0/2e00e523/1/"
-    alt="shopify visitor statistics" style="border:none;"></a>
+       href="http://statcounter.com/shopify/" target="_blank"><img
+            src="http://c.statcounter.com/10720056/0/2e00e523/1/"
+            alt="shopify visitor statistics" style="border:none;"></a>
     <!-- End of StatCounter Code for Default Guide -->
 
 
-    <footer class="blue page-footer white-text" {% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
+    <footer class="blue page-footer white-text" {% if LANGUAGE_BIDI %} dir="rtl" {% endif %}>
         <div class="container">
             <div class="row">
                 <div class="center-align">
-                    <a href="https://twitter.com/ssc_public"><img src="{% static 'base/image/social/twitter.png' %}" class="social-icon"/></a>
-                    <a href="https://instagram.com/ssc_public"><img src="{% static 'base/image/social/instagram.png' %}" class="social-icon"/></a>
-                    <a href="https://telegram.me/ssc_public"><img src="{% static 'base/image/social/telegram.png' %}" class="social-icon"/></a>
+                    <a href="https://twitter.com/ssc_public"><img
+                            src="{% static 'base/image/social/twitter.png' %}" class="social-icon"/></a>
+                    <a href="https://instagram.com/ssc_public"><img
+                            src="{% static 'base/image/social/instagram.png' %}"
+                            class="social-icon"/></a>
+                    <a href="https://telegram.me/ssc_public"><img
+                            src="{% static 'base/image/social/telegram.png' %}"
+                            class="social-icon"/></a>
                 </div>
             </div>
             <div class="row">
                 <div class="center-align">
-                    {% blocktrans with ssc_link_attrs='class="blue-text text-lighten-4" href="http://ssc.ce.sharif.edu"' sharif_link_attrs='class="blue-text text-lighten-4" href="http://sharif.edu"' %}
+                    {% blocktrans with ssc_link_attrs='class="blue-text text-lighten-4"
+                    href="http://ssc.ce.sharif.edu"' sharif_link_attrs='class="blue-text
+                    text-lighten-4" href="http://sharif.edu"' %}
                     &copy;
-                    <a {{ ssc_link_attrs }} >Students Scientific Chapter of Computer Engineering Department</a>,
-                    <a {{ sharif_link_attrs }} >Sharif University of Technology</a>
+                    <a {{ ssc_link_attrs }}>Students Scientific Chapter of Computer Engineering
+                        Department</a>,
+                    <a {{ sharif_link_attrs }}>Sharif University of Technology</a>
                     {% endblocktrans %}
                 </div>
 
@@ -227,7 +247,11 @@
         <div class="footer-copyright">
             <div class="container">
                 <div class="grey-text text-lighten-4 left">
-                    {% blocktrans with powered_by='<a class="blue-text text-lighten-4" href="http://mezzanine.jupo.org/">Mezzanine</a>, <a class="blue-text text-lighten-4" href="http://materializecss.com/">Materialize</a>' designer='<a class="blue-text text-lighten-4" href="http://mr.amira.li">Mr.AmirA.li</a>' %}
+                    {% blocktrans with powered_by='<a class="blue-text text-lighten-4"
+                                                      href="http://mezzanine.jupo.org/">Mezzanine</a>,
+                    <a class="blue-text text-lighten-4" href="http://materializecss.com/">Materialize</a>'
+                    designer='<a class="blue-text text-lighten-4" href="http://mr.amira.li">Mr.AmirA.li</a>'
+                    %}
                     Pwered By
                     {{ powered_by }}
                     -

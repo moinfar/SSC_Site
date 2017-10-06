@@ -7,25 +7,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
     <meta name="description" content="{% block meta_description %}{% endblock %}">
-    <title>{{ page.screenpage.title }}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
+    <title>{{ page.screenpage.title }}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{%
+        endif %}</title>
     <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
 
     {% ifinstalled mezzanine.blog %}
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="{% url 'blog_post_feed' 'rss' %}">
-    <link rel="alternate" type="application/atom+xml" title="Atom" href="{% url 'blog_post_feed' 'atom' %}">
+    <link rel="alternate" type="application/rss+xml" title="RSS"
+          href="{% url 'blog_post_feed' 'rss' %}">
+    <link rel="alternate" type="application/atom+xml" title="Atom"
+          href="{% url 'blog_post_feed' 'atom' %}">
     {% endifinstalled %}
 
     {% compress css %}
     <!-- Import iransans font -->
     <link type="text/css" rel="stylesheet" href="/static/base/font/iransans/style.css"/>
     <!-- Import materialize.css -->
-    <link type="text/css" rel="stylesheet" href="/static/materialize/css/materialize.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="/static/materialize/css/materialize.css"
+          media="screen,projection"/>
 
     <link type="text/css" rel="stylesheet" href="/static/base/css/screen.css"/>
     {% endcompress %}
     <style>
         html {
-           font-family: "IRANSans-web" !important;
+        font-family: "IRANSans-web" !important;
         }
     </style>
 
@@ -96,6 +100,7 @@
 
     load_slides();
     window.setInterval(load_slides, 10000);
+
 
 </script>
 {% endcompress %}

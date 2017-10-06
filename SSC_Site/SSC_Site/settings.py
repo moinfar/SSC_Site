@@ -1,8 +1,5 @@
-
-
 import os
 from django.utils.translation import ugettext_lazy as _
-
 
 ######################
 # MEZZANINE SETTINGS #
@@ -19,7 +16,7 @@ from django.utils.translation import ugettext_lazy as _
 
 ADMIN_MENU_ORDER = (
     ('Content', ('pages.Page', 'blog.BlogPost',
-       'generic.ThreadedComment', (_('Media Library'), 'fb_browse'),)),
+                 'generic.ThreadedComment', (_('Media Library'), 'fb_browse'),)),
     (_('SSC_Configs'), ('ssc_configs.GroupInfo',)),
     ('Site', ('sites.Site', 'redirects.Redirect', 'conf.Setting')),
     ('Users', ('auth.User', 'auth.Group',)),
@@ -89,7 +86,8 @@ EXTRA_MODEL_FIELDS = (
         # Positional args for field class.
         (_('Parallax Image'),),
         # Keyword args for field class.
-        {'blank': True, 'null': True, 'upload_to': 'galleries/parallaxes', 'format': 'Image', 'max_length': 500},
+        {'blank': True, 'null': True, 'upload_to': 'galleries/parallaxes', 'format': 'Image',
+         'max_length': 500},
     ),
 )
 
@@ -112,7 +110,6 @@ USE_MODELTRANSLATION = True
 # Use HTML5 special inputs
 
 FORMS_USE_HTML5 = True
-
 
 ########################
 # MAIN DJANGO SETTINGS #
@@ -167,7 +164,6 @@ USE_L10N = True
 # a mode you'd pass directly to os.chmod.
 FILE_UPLOAD_PERMISSIONS = 0o644
 
-
 #############
 # DATABASES #
 #############
@@ -188,7 +184,6 @@ DATABASES = {
         'PORT': '',
     }
 }
-
 
 #########
 # PATHS #
@@ -257,9 +252,7 @@ TEMPLATES = [
     },
 ]
 
-
 LOCALE_PATHS = (os.path.join(PROJECT_ROOT, 'locale'),)
-
 
 ################
 # APPLICATIONS #
@@ -320,7 +313,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
 
     'mezzanine.core.request.CurrentRequestMiddleware',
     'mezzanine.core.middleware.RedirectFallbackMiddleware',
@@ -392,22 +384,22 @@ CELERY_EMAIL_TASK_CONFIG = {
 #######################
 
 import ldap
-from django_auth_ldap.config import LDAPSearch, GroupOfNamesType, PosixGroupType
+from django_auth_ldap.config import LDAPSearch, PosixGroupType
 
 # Baseline configuration.
 AUTH_LDAP_SERVER_URI = 'ldap://localhost'
 
 LDAP_SEARCH_DOMAIN = 'dc=ssc,dc=ce,dc=sharif,dc=edu'
 
-AUTH_LDAP_BIND_DN = 'cn=admin,'+LDAP_SEARCH_DOMAIN
+AUTH_LDAP_BIND_DN = 'cn=admin,' + LDAP_SEARCH_DOMAIN
 AUTH_LDAP_BIND_PASSWORD = 'pass'
-AUTH_LDAP_USER_SEARCH = LDAPSearch('ou=users,'+LDAP_SEARCH_DOMAIN,
+AUTH_LDAP_USER_SEARCH = LDAPSearch('ou=users,' + LDAP_SEARCH_DOMAIN,
                                    ldap.SCOPE_SUBTREE, '(uid=%(user)s)')
 # or perhaps:
 # AUTH_LDAP_USER_DN_TEMPLATE = 'uid=%(user)s,ou=users,dc=example,dc=com'
 
 # Set up the basic group parameters.
-AUTH_LDAP_GROUP_SEARCH = LDAPSearch('ou=groups,'+LDAP_SEARCH_DOMAIN,
+AUTH_LDAP_GROUP_SEARCH = LDAPSearch('ou=groups,' + LDAP_SEARCH_DOMAIN,
                                     ldap.SCOPE_SUBTREE, '(objectClass=groupOfNames)'
                                     )
 AUTH_LDAP_GROUP_TYPE = PosixGroupType()
@@ -428,9 +420,9 @@ AUTH_LDAP_PROFILE_ATTR_MAP = {
 }
 
 AUTH_LDAP_USER_FLAGS_BY_GROUP = {
-    'is_active': 'cn=active,ou=groups,'+LDAP_SEARCH_DOMAIN,
-    'is_staff': 'cn=staff,ou=groups,'+LDAP_SEARCH_DOMAIN,
-    'is_superuser': 'cn=superuser,ou=groups,'+LDAP_SEARCH_DOMAIN,
+    'is_active': 'cn=active,ou=groups,' + LDAP_SEARCH_DOMAIN,
+    'is_staff': 'cn=staff,ou=groups,' + LDAP_SEARCH_DOMAIN,
+    'is_superuser': 'cn=superuser,ou=groups,' + LDAP_SEARCH_DOMAIN,
 }
 
 # AUTH_LDAP_PROFILE_FLAGS_BY_GROUP = {
@@ -447,7 +439,6 @@ AUTH_LDAP_FIND_GROUP_PERMS = True
 AUTH_LDAP_CACHE_GROUPS = True
 AUTH_LDAP_GROUP_CACHE_TIMEOUT = 3600
 
-
 # Keep ModelBackend around for per-user permissions and maybe a local
 # superuser.
 AUTHENTICATION_BACKENDS = (
@@ -460,16 +451,15 @@ AUTHENTICATION_BACKENDS = (
 ##########################
 
 import string
+
 SHORTENER_SLUG_CHARSET = string.ascii_lowercase + string.digits
 SHORTENER_SLUG_LENGTH = 8
-
 
 ########################
 # Certificate Settings #
 ########################
 
 XELATEX_PATH = '/usr/bin/xelatex'
-
 
 ##################
 # LOCAL SETTINGS #
@@ -485,7 +475,6 @@ XELATEX_PATH = '/usr/bin/xelatex'
 f = os.path.join(PROJECT_APP_PATH, 'local_settings.py')
 if os.path.exists(f):
     exec(open(f, 'rb').read())
-
 
 ####################
 # DYNAMIC SETTINGS #

@@ -4,7 +4,8 @@
 {% if page.has_children_in_menu %}
 <div class="col s12 m12 l12">
     <div class="card-panel">
-        <h3 class="center"><a class="blue-text" href="{{ page.get_absolute_url }}">{{ page.title }}</a></h3>
+        <h3 class="center"><a class="blue-text" href="{{ page.get_absolute_url }}">{{ page.title
+            }}</a></h3>
         <div class="row">
             {% page_menu page 'includes/gallery_container_card.html' %}
         </div>

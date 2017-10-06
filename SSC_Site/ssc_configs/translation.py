@@ -1,8 +1,7 @@
 from modeltranslation.translator import translator, TranslationOptions
-from .models import GroupsInfoPage, GroupInfo, GroupMember, Person, Duty
+
 from .models import GalleryContainerPage
-from mezzanine.blog.translation import TranslatedBlogPost
-from mezzanine.blog.models import BlogPost
+from .models import GroupsInfoPage, GroupInfo, GroupMember, Person, Duty
 
 
 class TranslatedPerson(TranslationOptions):
@@ -41,5 +40,6 @@ translator.register(GroupMember, TranslatedGroupMember)
 
 class TranslatedGalleryContainerPage(TranslationOptions):
     fields = ()
+
 
 translator.register(GalleryContainerPage, TranslatedGalleryContainerPage)

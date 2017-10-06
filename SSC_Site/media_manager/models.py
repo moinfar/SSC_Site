@@ -1,8 +1,8 @@
 from django.db import models
-from mezzanine.pages.models import Page, RichText
+from django.utils.translation import ugettext_lazy as _
 from mezzanine.core.fields import RichTextField
 from mezzanine.core.models import Orderable
-from django.utils.translation import ugettext_lazy as _
+from mezzanine.pages.models import Page, RichText
 
 
 class VideoContainerPage(Page, RichText):
@@ -25,10 +25,10 @@ class Video(Orderable):
 
 class VideoFrame(models.Model):
     video = models.ForeignKey("Video", verbose_name=_("Video"))
-    site = models.CharField(max_length=50, blank=False, null=False, verbose_name=_("Site name"), default=_("YouTube"))
+    site = models.CharField(max_length=50, blank=False, null=False, verbose_name=_("Site name"),
+                            default=_("YouTube"))
     code = models.CharField(max_length=500, blank=False, null=False, verbose_name=_("Code"))
 
     class Meta:
         verbose_name = _("Video Frame")
         verbose_name_plural = _("Video Frames")
-

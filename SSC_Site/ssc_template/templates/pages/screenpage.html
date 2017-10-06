@@ -61,20 +61,20 @@
     <div class="row" id="image_container">
         {% if show == 'all' %}
         {% with page.screenpage.all_images as screenimages %}
-            {% include 'includes/screen_thumbnails.html' %}
+        {% include 'includes/screen_thumbnails.html' %}
         {% endwith %}
         {% else %}
         {% with page.screenpage.recent_images as screenimages %}
-            {% include 'includes/screen_thumbnails.html' %}
-            <div class="image col s12 m6 l4">
-                <a class="hoverable blue card" style="display:block;" href="./?view=all">
-                    <div class="card-content">
-                        <h5 class="center-align white-text">
-                            {% trans 'Show All Items' %}
-                        </h5>
-                    </div>
-                </a>
-            </div>
+        {% include 'includes/screen_thumbnails.html' %}
+        <div class="image col s12 m6 l4">
+            <a class="hoverable blue card" style="display:block;" href="./?view=all">
+                <div class="card-content">
+                    <h5 class="center-align white-text">
+                        {% trans 'Show All Items' %}
+                    </h5>
+                </div>
+            </a>
+        </div>
         {% endwith %}
         {% endif %}
     </div>
@@ -105,6 +105,7 @@
 
         $('.tooltipped').tooltip();
     });
+
 </script>
 {% endblock %}
 

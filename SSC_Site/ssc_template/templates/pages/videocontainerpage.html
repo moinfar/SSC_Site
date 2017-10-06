@@ -11,42 +11,46 @@
 <div class="px-40 vertical spacer"></div>
 
 {% for video in page.videocontainerpage.video_set.all %}
-    <div class="row">
-        <div class="col s12">
-            <ul class="blue-text tabs" dir="ltr">
-                {% if LANGUAGE_BIDI %}
-                    {% for videoframe in video.videoframe_set.all reversed %}
-                        <li class="tab col s3"><a class="blue-text" href="#videoframe-{{ videoframe.id }}">{{ videoframe.site }}</a></li>
-                    {% endfor %}
-                    <li class="tab col s3" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{%endif%}">
-                        <a class="active blue-text" href="#vide-description-{{video.id}}">{% trans 'Description' %}</a>
-                    </li>
-                {% else %}
-                    <li class="tab col s3" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{%endif%}">
-                        <a class="active blue-text" href="#vide-description-{{video.id}}">{% trans 'Description' %}</a>
-                    </li>
-                    {% for videoframe in video.videoframe_set.all %}
-                        <li class="tab col s3"><a class="blue-text" href="#videoframe-{{ videoframe.id }}">{{ videoframe.site }}</a></li>
-                    {% endfor %}
-                {%endif%}
+<div class="row">
+    <div class="col s12">
+        <ul class="blue-text tabs" dir="ltr">
+            {% if LANGUAGE_BIDI %}
+            {% for videoframe in video.videoframe_set.all reversed %}
+            <li class="tab col s3"><a class="blue-text" href="#videoframe-{{ videoframe.id }}">{{
+                videoframe.site }}</a></li>
+            {% endfor %}
+            <li class="tab col s3" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{%endif%}">
+                <a class="active blue-text" href="#vide-description-{{video.id}}">{% trans
+                    'Description' %}</a>
+            </li>
+            {% else %}
+            <li class="tab col s3" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{%endif%}">
+                <a class="active blue-text" href="#vide-description-{{video.id}}">{% trans
+                    'Description' %}</a>
+            </li>
+            {% for videoframe in video.videoframe_set.all %}
+            <li class="tab col s3"><a class="blue-text" href="#videoframe-{{ videoframe.id }}">{{
+                videoframe.site }}</a></li>
+            {% endfor %}
+            {%endif%}
 
-            </ul>
-        </div>
-        <div id="vide-description-{{video.id}}" class="col s12">
-            <div class="card-panel">
-                <h4 class="center">
-                    {{ video.title }}
-                </h4>
-                {{ video.description|richtext_filters|safe }}
-            </div>
-        </div>
-        {% for videoframe in video.videoframe_set.all %}
-            <div id="videoframe-{{ videoframe.id }}" class="col s12">
-                {{ videoframe.code|richtext_filters|safe }}
-            </div>
-        {% endfor %}
+        </ul>
     </div>
-    <div class="px-10 vertical spacer"></div>
+    <div id="vide-description-{{video.id}}" class="col s12">
+        <div class="card-panel">
+            <h4 class="center">
+                {{ video.title }}
+            </h4>
+            {{ video.description|richtext_filters|safe }}
+        </div>
+    </div>
+    {% for videoframe in video.videoframe_set.all %}
+    <div id="videoframe-{{ videoframe.id }}" class="col s12">
+        {{ videoframe.code|richtext_filters|safe }}
+    </div>
+    {% endfor %}
+</div>
+<div class="px-10 vertical spacer"></div>
 {% endfor %}
 
 {% endblock %}
@@ -70,5 +74,6 @@
         $(this).width("100%");
         $(this).height($(this).width()*.6);
     });
+
 </script>
 {% endblock %}

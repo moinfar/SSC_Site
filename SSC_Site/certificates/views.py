@@ -1,14 +1,14 @@
 import csv
-import os
 import zipfile
-from django.core.files import File
-from django.core.files.base import ContentFile
-from django.http import Http404, HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+
+import os
 import shutil
 import tempita
-from certificates.models import Certificate
+from django.http import Http404, HttpResponseRedirect
+from django.shortcuts import get_object_or_404
 from mezzanine.conf import settings
+
+from certificates.models import Certificate
 
 XELATEX_PATH = getattr(settings, 'XELATEX_PATH', 'xelatex')
 
@@ -24,7 +24,7 @@ def compile_certificate(request, cid, *args, **kwargs):
                                   os.path.basename(template_path) + '.tmp')
         main_tex_path = os.path.join(output_dir, 'main.tex')
         compile_command = '%s -halt-on-error -output-directory=%s %s' % (
-        XELATEX_PATH, output_dir, main_tex_path)
+            XELATEX_PATH, output_dir, main_tex_path)
         p = cert.compile_process
         p.command = compile_command
         p.shell = False

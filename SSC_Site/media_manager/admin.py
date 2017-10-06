@@ -14,6 +14,7 @@ class VideoContainerPageAdmin(PageAdmin):
     inlines = (VideoInline,)
     fieldsets = deepcopy(PageAdmin.fieldsets)
 
+
 admin.site.register(VideoContainerPage, VideoContainerPageAdmin)
 
 
@@ -22,16 +23,13 @@ class VideoFrameInline(mezzanineAdmin.TabularDynamicInlineAdmin):
 
 
 class VideoAdmin(mezzanineAdmin.BaseTranslationModelAdmin):
-    fieldsets = ((None, {"fields": ("page", "title", "description", )}),)
-    inlines = (VideoFrameInline, )
+    fieldsets = ((None, {"fields": ("page", "title", "description",)}),)
+    inlines = (VideoFrameInline,)
     list_display = ("page", "title")
     list_display_links = ("title",)
     list_editable = ("page",)
     list_filter = ("page", "title",)
     search_fields = ("page", "title", "description")
 
+
 admin.site.register(Video, VideoAdmin)
-
-
-
-

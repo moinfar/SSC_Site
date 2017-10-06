@@ -1,7 +1,5 @@
-from django.utils.translation import ugettext_lazy as _
-
 from captcha import fields as captcha_fields
-
+from django.utils.translation import ugettext_lazy as _
 from mezzanine.forms import fields as mezzanine_fields
 
 ## Figure out what to register us as

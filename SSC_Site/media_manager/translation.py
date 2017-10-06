@@ -1,4 +1,5 @@
 from modeltranslation.translator import translator, TranslationOptions
+
 from .models import VideoContainerPage, VideoFrame, Video
 
 
@@ -11,7 +12,7 @@ class TranslatedVideo(TranslationOptions):
 
 
 class TranslatedVideoFrame(TranslationOptions):
-        fields = ()
+    fields = ()
 
 
 translator.register(VideoContainerPage, TranslatedVideoContainerPage)

@@ -5,7 +5,9 @@
 <ul class="collapsible popout" data-collapsible="accordion">
     {% for group_info in page.groupsinfopage.groupinfo_set.all %}
     <li>
-        <div class="blue white-text collapsible-header {% if forloop.first %}active{% endif %}">{{group_info.title}}</div>
+        <div class="blue white-text collapsible-header {% if forloop.first %}active{% endif %}">
+            {{group_info.title}}
+        </div>
         <div class="white collapsible-body">
             <table class="centered bordered highlight">
                 <thead>
@@ -24,7 +26,7 @@
                 {% endfor %}
                 </tbody>
             </table>
-            </div>
+        </div>
     </li>
     {% endfor %}
 </ul>

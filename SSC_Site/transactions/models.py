@@ -1,16 +1,19 @@
 from django.db import models
-from mezzanine.pages.models import Page, RichText, RichTextPage
-from mezzanine.forms.models import Form
-from mezzanine.core.models import Orderable
 from django.utils.translation import ugettext_lazy as _
+from mezzanine.core.models import Orderable
+from mezzanine.forms.models import Form
+from mezzanine.pages.models import Page, RichText
 
 
 class PaymentGateway(models.Model):
-    title = models.CharField(max_length=255, blank=False, null=False, verbose_name=_("Gateway Type"))
+    title = models.CharField(max_length=255, blank=False, null=False,
+                             verbose_name=_("Gateway Type"))
     type = models.CharField(max_length=64, blank=False, null=False,
-                                    default="upal", verbose_name=_("Gateway Type"))
-    gateway_id = models.CharField(max_length=256, blank=False, null=False, verbose_name=_("Gateway ID"))
-    gateway_api = models.CharField(max_length=512, blank=False, null=False, verbose_name=_("Gateway API"))
+                            default="upal", verbose_name=_("Gateway Type"))
+    gateway_id = models.CharField(max_length=256, blank=False, null=False,
+                                  verbose_name=_("Gateway ID"))
+    gateway_api = models.CharField(max_length=512, blank=False, null=False,
+                                   verbose_name=_("Gateway API"))
 
     class Meta:
         verbose_name = _("Price Group")
@@ -22,7 +25,8 @@ class PaymentGateway(models.Model):
 
 class PaymentFormPage(Page, RichText):
     payment_form = models.ForeignKey(Form, null=False, verbose_name=_("Payment Form"))
-    payment_gateway = models.ForeignKey(PaymentGateway, null=False, verbose_name=_("Payment Gateway"))
+    payment_gateway = models.ForeignKey(PaymentGateway, null=False,
+                                        verbose_name=_("Payment Gateway"))
     payment_description = models.CharField(max_length=256, blank=False, null=False,
                                            verbose_name=_("Payment Description"))
     capacity = models.IntegerField(default=0)
@@ -38,8 +42,10 @@ class PaymentFormPage(Page, RichText):
 
 
 class PriceGroup(Orderable):
-    payment_form_page = models.ForeignKey(PaymentFormPage, verbose_name=_("Containing Payment Form"))
-    group_identifier = models.CharField(max_length=256, blank=False, null=False, verbose_name=_("Group Identifier"))
+    payment_form_page = models.ForeignKey(PaymentFormPage,
+                                          verbose_name=_("Containing Payment Form"))
+    group_identifier = models.CharField(max_length=256, blank=False, null=False,
+                                        verbose_name=_("Group Identifier"))
     payment_amount = models.BigIntegerField(verbose_name=_("Amount in Rials"))
     capacity = models.IntegerField(default=0)
 
@@ -47,7 +53,8 @@ class PriceGroup(Orderable):
         if self.capacity == 0:
             return False
         if self.payment_form_page.payment_gateway.type == "upal":
-            return UpalPaymentTransaction.objects.filter(is_payed=True, price_group=self).count() >= self.capacity
+            return UpalPaymentTransaction.objects.filter(is_payed=True,
+                                                         price_group=self).count() >= self.capacity
 
     class Meta:
         verbose_name = _("Price Group")
@@ -56,10 +63,14 @@ class PriceGroup(Orderable):
 
 class UpalPaymentTransaction(models.Model):
     creation_time = models.DateTimeField(blank=False, null=False, verbose_name=_("Creation Time"))
-    uuid = models.CharField(max_length=512, blank=True, null=True, verbose_name=_("Form Entry UUID"))
-    bank_token = models.CharField(max_length=256, blank=True, null=True, verbose_name=_("Bank Token"))
-    random_token = models.CharField(max_length=64, blank=False, null=False, verbose_name=_("Random Token"))
-    price_group = models.ForeignKey(PriceGroup, blank=False, null=False, verbose_name=_("Price Group"))
+    uuid = models.CharField(max_length=512, blank=True, null=True,
+                            verbose_name=_("Form Entry UUID"))
+    bank_token = models.CharField(max_length=256, blank=True, null=True,
+                                  verbose_name=_("Bank Token"))
+    random_token = models.CharField(max_length=64, blank=False, null=False,
+                                    verbose_name=_("Random Token"))
+    price_group = models.ForeignKey(PriceGroup, blank=False, null=False,
+                                    verbose_name=_("Price Group"))
     payment_amount = models.BigIntegerField(verbose_name=_("Amount in Rials"))
 
     is_payed = models.NullBooleanField(verbose_name=_("Is Payed"))
@@ -72,9 +83,11 @@ class UpalPaymentTransaction(models.Model):
 
 class ZpalPaymentTransaction(models.Model):
     creation_time = models.DateTimeField(blank=False, null=False, verbose_name=_("Creation Time"))
-    uuid = models.CharField(max_length=512, blank=True, null=True, verbose_name=_("Form Entry UUID"))
+    uuid = models.CharField(max_length=512, blank=True, null=True,
+                            verbose_name=_("Form Entry UUID"))
     authority = models.CharField(max_length=36, blank=True, null=True, verbose_name=_("Authority"))
-    price_group = models.ForeignKey(PriceGroup, blank=False, null=False, verbose_name=_("Price Group"))
+    price_group = models.ForeignKey(PriceGroup, blank=False, null=False,
+                                    verbose_name=_("Price Group"))
     payment_amount = models.BigIntegerField(verbose_name=_("Amount in Rials"))
 
     is_payed = models.NullBooleanField(verbose_name=_("Is Payed"))

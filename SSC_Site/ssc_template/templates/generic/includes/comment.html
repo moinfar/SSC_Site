@@ -1,24 +1,25 @@
 {% load i18n mezzanine_tags comment_tags rating_tags jdate_tags %}
 
 <div class="row" id="comment_container">
-{% for comment in comments_for_thread %}
-<div class="comment col s12 m6 l6">
-<div id="comment-{{ comment.id }}" class="card">
+    {% for comment in comments_for_thread %}
+    <div class="comment col s12 m6 l6">
+        <div id="comment-{{ comment.id }}" class="card">
 
-    {% if not comment.is_removed and comment.is_public or request.user.is_staff %}
-    <a {% if comment.url %} href="{{ request.path }}#comment-{{ comment.id }}" {% endif %}>
-    <div class="card-content tooltipped" data-tooltip="{% blocktrans with sometime=comment.submit_date|timesince|farsi_digits %}written on{{ sometime }} ago{% endblocktrans %}">
-        {{ comment.user_name }} :
-    </div>
-    </a>
-    <div class="card-action">
-        {{ comment.comment|comment_filter }}
-    </div>
-    {% endif %}
+            {% if not comment.is_removed and comment.is_public or request.user.is_staff %}
+            <a {% if comment.url %} href="{{ request.path }}#comment-{{ comment.id }}" {% endif %}>
+                <div class="card-content tooltipped"
+                     data-tooltip="{% blocktrans with sometime=comment.submit_date|timesince|farsi_digits %}written on{{ sometime }} ago{% endblocktrans %}">
+                    {{ comment.user_name }} :
+                </div>
+            </a>
+            <div class="card-action">
+                {{ comment.comment|comment_filter }}
+            </div>
+            {% endif %}
 
-</div>
-</div>
-{% endfor %}
+        </div>
+    </div>
+    {% endfor %}
 </div>
 
 

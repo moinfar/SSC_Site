@@ -19,25 +19,25 @@
 
 
 {% block all_content %}
-<div class="container" {% if LANGUAGE_BIDI %} dir="rtl"{% endif %} >
+<div class="container" {% if LANGUAGE_BIDI %} dir="rtl" {% endif %}>
     <div class="px-20 vertical spacer"></div>
     <div class="row">
         <!--<div class="{% if LANGUAGE_BIDI %}right{% endif %} col s12 m12 l4">-->
-            <!--&lt;!&ndash;<form action="login" method="POST">&ndash;&gt;-->
-                <!--<div class="card">-->
-                    <!--<div class="card-content">-->
-                        <!--<p>-->
-                            <!--<input type="text" name="username" placeholder="{% trans 'Email' %}">-->
-                            <!--<input type="password" name="password" placeholder="{% trans 'password' %}">-->
-                        <!--</p>-->
-                        <!--<p><br>-->
-                            <!--<button name="submit" type="submit" class="waves-effect waves-light btn full width">-->
-                                <!--{% trans 'Coming Soon' %}-->
-                            <!--</button>-->
-                        <!--</p>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--&lt;!&ndash;</form>&ndash;&gt;-->
+        <!--&lt;!&ndash;<form action="login" method="POST">&ndash;&gt;-->
+        <!--<div class="card">-->
+        <!--<div class="card-content">-->
+        <!--<p>-->
+        <!--<input type="text" name="username" placeholder="{% trans 'Email' %}">-->
+        <!--<input type="password" name="password" placeholder="{% trans 'password' %}">-->
+        <!--</p>-->
+        <!--<p><br>-->
+        <!--<button name="submit" type="submit" class="waves-effect waves-light btn full width">-->
+        <!--{% trans 'Coming Soon' %}-->
+        <!--</button>-->
+        <!--</p>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;</form>&ndash;&gt;-->
         <!--</div>-->
         <div class="col s12">
             <div class="main ssc tv box">
@@ -49,13 +49,13 @@
                         {% for screenimage in screenimages %}
                         <li style="background-color:white;">
                             {% if screenimage.image %}
-                                <img style="background-size: contain;
+                            <img style="background-size: contain;
                                             background-repeat: no-repeat;
                                             background-position: center top;
                                             background-color:black;"
-                                     src="{{ MEDIA_URL }}{% thumbnail screenimage.image 300 0 %}">
+                                 src="{{ MEDIA_URL }}{% thumbnail screenimage.image 300 0 %}">
                             {% else %}
-                                <img src="data:image/gif;base64,R0lGODlhAQABAIABAP///wAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAIABAP///wAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
                             {% endif %}
                             <div class="very-small-screen black-text screen-text center-align caption">
                                 {{ screenimage.content|richtext_filters|safe}}
@@ -74,13 +74,13 @@
                         {% for screenimage in screenimages %}
                         <li style="background-color:white;">
                             {% if screenimage.image %}
-                                <img style="background-size: contain;
+                            <img style="background-size: contain;
                                             background-repeat: no-repeat;
                                             background-position: center top;
                                             background-color:black;"
-                                     src="{{ MEDIA_URL }}{% thumbnail screenimage.image 300 0 %}">
+                                 src="{{ MEDIA_URL }}{% thumbnail screenimage.image 300 0 %}">
                             {% else %}
-                                <img src="data:image/gif;base64,R0lGODlhAQABAIABAP///wAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAIABAP///wAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
                             {% endif %}
                             <div class="very-small-screen black-text screen-text center-align caption">
                                 {{ screenimage.content|richtext_filters|safe}}
@@ -101,7 +101,6 @@
 </div>
 
 
-
 <div class="px-10 vertical spacer"></div>
 <div class="main parallax-container">
     <div class="parallax">
@@ -112,7 +111,7 @@
 
 
 <div class="container">
-    <div class="row" id="post_container" {% if LANGUAGE_BIDI %} dir="rtl"{% endif %} >
+    <div class="row" id="post_container" {% if LANGUAGE_BIDI %} dir="rtl" {% endif %}>
         {% blog_recent_posts 10 as recent_posts %}
         {% for post in recent_posts %}
 
@@ -139,6 +138,7 @@
 			transitionDuration: 1,
 		});
 	});
+
 </script>
 {% endblock %}
 
