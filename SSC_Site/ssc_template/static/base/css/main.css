@@ -37,6 +37,10 @@ body {
 	opacity: 0.6;
 }
 
+.input-field label {
+    pointer-events: all;
+}
+
 .lang.flag {
     background-repeat: no-repeat;
 	background-size: contain;
@@ -44,7 +48,6 @@ body {
 	height: 14px;
 	background-position: center 0px;
 }
-
 
 .lang.fa.flag {
     margin-top: 14px;
