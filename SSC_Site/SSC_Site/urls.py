@@ -28,13 +28,12 @@ if settings.USE_MODELTRANSLATION:
 
 
 urlpatterns += [
-    url("^$", direct_to_template, {"template": "index.html"}, name="home"),
-    url("^from_bank/(?P<transaction_type>\w+)/(?P<transaction_id>\d+)/$", from_bank,
-        name="transactions_from_bank"),
-    url("^go/", include(shortener_urls)),
-    url("^cert/", include(certificate_urls)),
-    url("^captcha/", include('captcha.urls')),
-    url("^", include("mezzanine.urls")),
+    url('^$', direct_to_template, {'template': 'index.html'}, name='home'),
+    url('^from_bank/(?P<transaction_type>\w+)/(?P<transaction_id>\d+)/$', from_bank,
+        name='transactions_from_bank'),
+    url('^go/', include(shortener_urls)),
+    url('^cert/', include(certificate_urls)),
+    url('^', include('mezzanine.urls')),
 ]
 
 # Adds ``STATIC_URL`` to the context of error pages, so that error

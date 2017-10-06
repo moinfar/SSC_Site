@@ -17,4 +17,4 @@ mezzanine_fields.NAMES = list(mezzanine_fields.NAMES)
 mezzanine_fields.NAMES.append((ID, _('Captcha')))
 mezzanine_fields.NAMES = tuple(mezzanine_fields.NAMES)
 
-mezzanine_fields.CLASSES[ID] = captcha_fields.CaptchaField
+mezzanine_fields.CLASSES[ID] = captcha_fields.ReCaptchaField

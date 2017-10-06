@@ -99,8 +99,10 @@ BLOG_USE_FEATURED_IMAGE = True
 
 BLOG_SLUG = 'announcements'
 
-# Captcha settings
-CAPTCHA_NOISE_FUNCTIONS = ('captcha.helpers.noise_dots',)
+# ReCaptcha settings
+RECAPTCHA_PUBLIC_KEY = '6LeQbTMUAAAAANtR7JIMvi6UpUiHdCvXYAwJt1WD'
+RECAPTCHA_PRIVATE_KEY = 'SathSathSahtSath'
+NOCAPTCHA = True
 COMMENT_FORM_CLASS = 'mezzacaptcha.forms.CaptchaThreadedCommentForm'
 
 # If True, the django-modeltranslation will be added to the

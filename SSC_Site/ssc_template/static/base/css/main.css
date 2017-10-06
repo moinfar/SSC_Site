@@ -5,7 +5,7 @@ html {
 body {
 	background:
 	linear-gradient(to right, rgba(240, 240, 240, 0.45),  rgba(240, 240, 240, 0)),
-	url('/static/base/image/pattern/new-pattern3.jpg');
+	url('/static/base/image/pattern/new-pattern3.jpg?v=1.1.1');
 /*	linear-gradient(to right, rgba(240, 240, 240, 1),  rgba(240, 240, 240, 1)); */
 }
 
