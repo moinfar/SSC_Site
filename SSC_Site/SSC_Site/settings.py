@@ -315,8 +315,6 @@ MIDDLEWARE_CLASSES = (
 
     'mezzanine.core.request.CurrentRequestMiddleware',
     'mezzanine.core.middleware.RedirectFallbackMiddleware',
-    'mezzanine.core.middleware.TemplateForDeviceMiddleware',
-    'mezzanine.core.middleware.TemplateForHostMiddleware',
     'mezzanine.core.middleware.AdminLoginInterfaceSelectorMiddleware',
     'mezzanine.core.middleware.SitePermissionMiddleware',
     # Uncomment the following if using any of the SSL settings:
