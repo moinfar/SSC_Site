@@ -28,7 +28,7 @@ isodate==0.5.4
 jdatetime==1.9.0
 kombu==4.1.0
 lxml==4.0.0
-# TODO: replace this with a newer version of Mezzanine which supports Django>=1.11.6 and the comments bug is fixed
+# TODO: replace this with a newer version of Mezzanine the comments bug is fixed
 -e git://github.com/Kianoosh76/mezzanine.git#egg=Mezzanine
 oauthlib==2.0.4
 olefile==0.44
