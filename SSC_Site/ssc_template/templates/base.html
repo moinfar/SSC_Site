@@ -162,13 +162,13 @@
                     {% endblock %}
                 </div>
 
-                <!--{% block left_wrapper %}-->
-                <!--<div class="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %} col s12 m4 l4">-->
-                    <!--{% block left_panel %}-->
-                    <!-- page_menu page "pages/menus/children.html" -->
-                    <!--{% endblock %}-->
-                <!--</div>-->
-                <!--{% endblock %}-->
+                {% block left_wrapper %}
+                <div class="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %} col s12 m4 l4">
+                    {% block left_panel %}
+					{% page_menu page "pages/menus/children.html" %} 
+                    {% endblock %}
+                </div>
+                {% endblock %}
 
             </div>
         </div>
