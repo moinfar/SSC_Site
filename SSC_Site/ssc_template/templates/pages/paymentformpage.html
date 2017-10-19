@@ -22,7 +22,7 @@
             redirect();
         </script>;
     {% else %}
-        <div class="card-panel">
+        <div class="card-panel" style="overflow-x: scroll">
             {% if perms.transactions.can_view_payment_transactions %}
             <table class="white bordered striped">
                 <thead>
