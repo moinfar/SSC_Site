@@ -7,7 +7,7 @@
 {% block main %}
     <div class="card-panel" style="overflow-x: scroll">
     {{ block.super }}
-    {% if perms.forms.can_add_form %} <!-- TODO @Kianoosh: This is not standard! Add a new permission in forms:'can_view_entries' -->
+    {% if perms.forms.add_form %} <!-- TODO @Kianoosh: This is not standard! Add a new permission in forms:'view_entries' -->
         <table class="white bordered striped">
             <thead>
             <tr>
