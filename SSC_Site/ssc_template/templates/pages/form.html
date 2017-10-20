@@ -1,12 +1,33 @@
 {% extends "pages/page.html" %}
 
 {% load mezzanine_tags %}
-
+{% load other_ssc_tags %}
 
 <div class="col-md-{% block main_col_size %}8{% endblock %}">
 {% block main %}
-    <div class="card-panel">
+    <div class="card-panel" style="overflow-x: scroll">
     {{ block.super }}
+    {% if perms.forms.can_add_form %} <!-- TODO @Kianoosh: This is not standard! Add a new permission in forms:'can_view_entries' -->
+        <table class="white bordered striped">
+            <thead>
+            <tr>
+                {% for field in page.form.fields.all %}
+                <th>{{ field }}</th>
+                {% endfor %}
+            </tr>
+            </thead>
+            <tbody>
+                {% for entry in page.form.entries.all %}
+                <tr>
+                    {% for field in entry.fields.all %}
+                    <td>{{ field.value }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
     {% if request.GET.sent %}
         {% editable page.form.response %}
         {{ page.form.response|richtext_filters|safe }}
