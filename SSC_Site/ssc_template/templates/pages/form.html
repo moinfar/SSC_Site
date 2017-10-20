@@ -19,7 +19,7 @@
             <tbody>
                 {% for entry in page.form.entries.all %}
                 <tr>
-                    {% for field in entry.fields.all %}
+                    {% for field in entry.fields.all|dictsort:'field_id' %}
                     <td>{{ field.value }}</td>
                     {% endfor %}
                 </tr>
