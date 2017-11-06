@@ -456,7 +456,7 @@ msgid "Coming Soon"
 msgstr "به زودی"
 
 #: ssc_template/templates/index.html:96
-msgid "Currently on the monitors"
+msgid "Currently on the screens"
 msgstr "اکنون در مانیتور‌های لابی"
 
 #: ssc_template/templates/pages/gallery.html:35
