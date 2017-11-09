@@ -12,3 +12,4 @@ SSC_Site/gunicorn.*
 !**/migrations/__init__.py
 .idea/
 __pycache__/
+django.mo
