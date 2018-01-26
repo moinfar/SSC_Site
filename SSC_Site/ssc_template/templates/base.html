@@ -161,7 +161,9 @@
                 {% block left_wrapper %}
                 <div class="{% if not LANGUAGE_BIDI %}right{% endif %} col s12 m4 l4">
                     {% block left_panel %}
-					{% page_menu page "pages/menus/children.html" %}
+                    {% if page %}
+					    {% page_menu page "pages/menus/children.html" %}
+                    {% endif %}
                     {% endblock %}
                 </div>
                 {% endblock %}
