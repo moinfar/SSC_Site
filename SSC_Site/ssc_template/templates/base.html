@@ -11,7 +11,7 @@
     <meta name="description" content="{% block meta_description %}{% endblock %}">
 
     <title>{% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
-    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
+    <link rel="shortcut icon" href="{{ site_url }}{% static 'img/favicon.ico' %}">
 
     {% ifinstalled mezzanine.blog %}
     <link rel="alternate" type="application/rss+xml" title="RSS" href="{% url 'blog_post_feed' 'rss' %}">
@@ -220,10 +220,10 @@
         <div class="container">
             <div class="row">
                 <div class="center-align">
-                    <a href="https://www.linkedin.com/company/11417433/"><img src="{% static 'base/image/social/linkedin.png' %}" class="social-icon"/></a>
-                    <a href="https://twitter.com/ssc_public"><img src="{% static 'base/image/social/twitter.png' %}" class="social-icon"/></a>
-                    <a href="https://instagram.com/ssc_public"><img src="{% static 'base/image/social/instagram.png' %}" class="social-icon"/></a>
-                    <a href="https://telegram.me/ssc_public"><img src="{% static 'base/image/social/telegram.png' %}" class="social-icon"/></a>
+                    <a href="https://www.linkedin.com/company/11417433/"><img src="{{ site_url }}{% static 'base/image/social/linkedin.png' %}" class="social-icon"/></a>
+                    <a href="https://twitter.com/ssc_public"><img src="{{ site_url }}{% static 'base/image/social/twitter.png' %}" class="social-icon"/></a>
+                    <a href="https://instagram.com/ssc_public"><img src="{{ site_url }}{% static 'base/image/social/instagram.png' %}" class="social-icon"/></a>
+                    <a href="https://telegram.me/ssc_public"><img src="{{ site_url }}{% static 'base/image/social/telegram.png' %}" class="social-icon"/></a>
                 </div>
             </div>
             <div class="row">
@@ -240,12 +240,14 @@
         <div class="footer-copyright">
             <div class="container">
                 <div class="grey-text text-lighten-4 left">
-                    {% blocktrans with powered_by='<a class="blue-text text-lighten-4" href="http://mezzanine.jupo.org/">Mezzanine</a>, <a class="blue-text text-lighten-4" href="http://materializecss.com/">Materialize</a>' designer='<a class="blue-text text-lighten-4" href="http://mr.amira.li">Mr.AmirA.li</a>' %}
+                    {% blocktrans with powered_by='<a class="blue-text text-lighten-4" href="http://mezzanine.jupo.org/">Mezzanine</a>, <a class="blue-text text-lighten-4" href="http://materializecss.com/">Materialize</a>' designer='<a class="blue-text text-lighten-4" href="http://mr.amira.li">Mr.AmirA.li</a>' maintainer='<a class="blue-text text-lighten-4" href="http://ce.sharif.edu/~kabbasi">Kianoosh Abbasi</a>' %}
                     Pwered By
                     {{ powered_by }}
                     -
                     Designed By
                     {{ designer }}
+                    ,
+                    {{ maintainer }}
                     {% endblocktrans %}
                 </div>
             </div>
