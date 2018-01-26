@@ -154,6 +154,9 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
 SITE_ID = 1
 
+# Be careful! SITE_URL should NOT end in slash (see its usage in templates such as base.html)
+SITE_URL = 'SathSathSathSath'
+
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
 USE_I18N = True
@@ -243,6 +246,7 @@ TEMPLATES = [
                 'django.template.context_processors.tz',
                 'mezzanine.conf.context_processors.settings',
                 'mezzanine.pages.context_processors.page',
+                'ssc_configs.context_processors.custom',
             ],
             'builtins': [
                 'mezzanine.template.loader_tags'
