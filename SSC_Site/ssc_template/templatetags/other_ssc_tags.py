@@ -1,5 +1,6 @@
 import datetime
 
+from captcha.fields import ReCaptchaField
 from django.forms.widgets import RadioSelect, CheckboxSelectMultiple
 from django.utils import timezone
 from mezzanine import template
@@ -50,3 +51,8 @@ def has_published(publishable_model):
 @register.as_tag
 def get_screenpage(screen_lable):
     return ScreenPage.objects.get(label=screen_lable)
+
+
+@register.filter()
+def is_captcha_field(field):
+    return isinstance(field, ReCaptchaField)

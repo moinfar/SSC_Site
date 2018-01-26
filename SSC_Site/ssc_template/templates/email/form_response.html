@@ -1,35 +1,62 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static i18n other_ssc_tags %}
 
 {% block js %} {% endblock %}
 
 {% block body %}
-<body>
-    {% block title_wrapper %} {{ block.super }} {% endblock %}
-    {% block title %} ایمیل تایید اطلاعات وارد‌شده{% endblock %}
+<body {% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
+
+    <header class="navbar-fixed">
+    <nav class="blue darken-4 white-text">
+        <div class="nav-wrapper container">
+
+            <a href="{{ site_url }}" class="{% if LANGUAGE_BIDI %}left{% else %}right{%endif%}
+             waves-effect waves-light" id="top-logo">
+                &nbsp;
+            </a>
+        </div>
+    </nav>
+    </header>
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col s12 m12 l12">
+                <div class="panel panel-danger">
+                    <div class="panel-heading"><h3 class="panel-title blue-text">ایمیل تایید اطلاعات وارد‌شده</h3></div>
+                    <div class="panel-body">
+
+                        {% if message %}
+                        {{ message }}
+                        {% else %}
+                        با سلام.
+                        <br>
+                        اطلاعات شما به شرح زیر در سایت انجمن علمی ثبت شد.
+                        {% endif %}
+                    <br>
+                        در صورت وجود هرگونه مشکل،  لطفا از طریق فرم تماس با ما در سایت انجمن پیگیری نمایید و از پاسخ دادن به این ایمیل خودداری کنید.
+                    </div>
+
+                    <div class="card-panel">
+                        <table class="bordered striped centered" style="background-color: white">
+
+                        {% for field, value in fields %}
+                            {% if not field.is_captcha_field %}
+                                <tr>
+                                <td><b>{{ field }}</b></td>
+                                <td>{{ value|linebreaks }}</td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     {% block footer %} {{ block.super }} {% endblock %}
 </body>
 {% endblock %}
-
-{#
-{% block all_content %}
-<h1 class="blue-text">سلام و خسته نباشید</h1>
-<body>
-    <img src="{{ site_url }}{% static 'base/image/error/404.png' %}">
-
-    {% block main %}
-    {% if message %}<p>{{ message }}</p>{% endif %}
-    <table border="0">
-    {% for field, value in fields %}
-    <tr>
-        <td><b>{{ field }}:</b></td>
-        <td>{{ value|linebreaks }}</td>
-    </tr>
-    {% endfor %}
-    </table>
-    {% endblock %}
-</body>
-{% endblock %}
-#}
 
