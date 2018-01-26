@@ -140,12 +140,15 @@
     </div>
     {% endblock %}
     <div class="row"></div>
+
     {% block title_wrapper %}
     <div {% if LANGUAGE_BIDI %}
          class="center-align container" dir="rtl"
          {% else %}
          class="center-align container" dir="ltr"
          {% endif %} >
+        {% block title_image %}
+        {% endblock %}
         <h2 class="blue-text">{% block title %}{% endblock %}</h2>
     </div>
 

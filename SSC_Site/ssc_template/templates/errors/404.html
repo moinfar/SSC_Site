@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+    {% trans 'OOPS...!' %}
+    <br><br>
+    {% trans 'Requested page not found' %}
+{% endblock %}
+
+{% block title_image %}
+    <img class="responsive-img" src="{% static 'base/image/error/404.png' %}">
+{% endblock %}

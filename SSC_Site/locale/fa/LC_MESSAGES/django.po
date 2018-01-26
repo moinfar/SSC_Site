@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-06 12:37+0330\n"
+"POT-Creation-Date: 2018-01-26 15:42+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -255,7 +255,7 @@ msgstr "صفحات شامل گالری‌ها"
 msgid "Change"
 msgstr "تغییر"
 
-#: ssc_template/templates/base.html:218
+#: ssc_template/templates/base.html:226
 #, python-format
 msgid ""
 "\n"
@@ -273,7 +273,7 @@ msgstr ""
 "                    <a %(sharif_link_attrs)s >دانشگاه صنعتی شریف</a> است\n"
 "                    "
 
-#: ssc_template/templates/base.html:230
+#: ssc_template/templates/base.html:238
 #, python-format
 msgid ""
 "\n"
@@ -372,6 +372,14 @@ msgstr ""
 msgid "Atom"
 msgstr ""
 
+#: ssc_template/templates/errors/404.html:6
+msgid "OOPS...!"
+msgstr "متاسفیم!"
+
+#: ssc_template/templates/errors/404.html:8
+msgid "Requested page not found"
+msgstr "صفحه درخواستی یافت نشد"
+
 #: ssc_template/templates/generic/aside_post_card.html:10
 #: ssc_template/templates/generic/detailed_post_card.html:8
 #, python-format
@@ -439,7 +447,7 @@ msgstr "از"
 
 #: ssc_template/templates/index.html:3 ssc_template/templates/index.html:4
 #: ssc_template/templates/index.html:17
-#: ssc_template/templates/pages/menus/breadcrumb.html:9
+#: ssc_template/templates/pages/menus/breadcrumb.html:8
 #: ssc_template/templates/pages/menus/left_menu.html:11
 #: ssc_template/templates/pages/menus/main_menu.html:11
 #: ssc_template/templates/pages/menus/reversed_main_menu.html:30
@@ -472,49 +480,41 @@ msgstr ""
 "برای مشاهده‌ی عکس با کیفیت اصلی <a href='%(url)s'>اینجا</a>  کلیک کنید.\n"
 "                       "
 
-#: ssc_template/templates/pages/paymentformpage.html:44
+#: ssc_template/templates/pages/paymentformpage.html:62
 msgid "Rials"
 msgstr "﷼"
 
-#: ssc_template/templates/pages/paymentformpage.html:45
+#: ssc_template/templates/pages/paymentformpage.html:63
 msgid "At Full Capacity"
 msgstr "ظرفیت تکمیل است"
 
-#: ssc_template/templates/pages/paymentformpage.html:49
+#: ssc_template/templates/pages/paymentformpage.html:67
 msgid "Choose The Right One"
 msgstr "گزینه‌ی مناسب را انتخاب کنید"
 
-#: ssc_template/templates/pages/paymentformpage.html:55
+#: ssc_template/templates/pages/paymentformpage.html:73
 msgid "Send and Pay"
 msgstr "ارسال و پرداخت"
 
-#: ssc_template/templates/pages/paymentformpage.html:61
+#: ssc_template/templates/pages/paymentformpage.html:79
 msgid "ERROR: Your form must contain a hidden field labeled UUID."
 msgstr "خطا: فرم شما باید حاوی یک فیلد پنها با عنوان UUID باشد."
 
-#: ssc_template/templates/pages/paymentformpage.html:67
+#: ssc_template/templates/pages/paymentformpage.html:85
 msgid "ERROR: Can not connect to payment gateway, please try again."
 msgstr ""
 "خطا: در حال حاضر قادر به اتصال به درگاه پرداخت نیستیم، لطفا مجددا تلاش "
 "نمایید."
 
-#: ssc_template/templates/pages/paymentformpage.html:76
+#: ssc_template/templates/pages/paymentformpage.html:94
 msgid "Unfortunately we have reached our maximum capacity."
 msgstr "متاسفانه ظرفیت تکمیل شده‌است."
 
-#: ssc_template/templates/pages/paymentformpage.html:85
+#: ssc_template/templates/pages/paymentformpage.html:103
 msgid ""
 "CAUTION: We are going to reach our maximum capacity, so we may put you in "
 "reservation list."
 msgstr "توجه: ظرفیت در حال تکمیل است. ممکن است در لیست رزرو قرار بگیرید."
-
-#: ssc_template/templates/pages/paymentformpage.html:89
-msgid "You are going to be redirected to Redirecting to Payment Page ..."
-msgstr "شما در حال ارسال به درگاه پرداخت هستید."
-
-#: ssc_template/templates/pages/paymentformpage.html:101
-msgid "Click here if you were not redirected in 5 seconds"
-msgstr "اگر در ۵ ثانیه به درگاه منتقل نشدید، اینجا کلیک کنید."
 
 #: ssc_template/templates/pages/paymentformpage.html:104
 msgid "OK"
@@ -724,6 +724,12 @@ msgstr "مقدار پرداخت به ریال"
 #: transactions/page_processors.py:321 transactions/page_processors.py:387
 msgid "Successful Payment Transaction"
 msgstr "تراکنش پرداختی موفقیت آمیز بود"
+
+#~ msgid "You are going to be redirected to Redirecting to Payment Page ..."
+#~ msgstr "شما در حال ارسال به درگاه پرداخت هستید."
+
+#~ msgid "Click here if you were not redirected in 5 seconds"
+#~ msgstr "اگر در ۵ ثانیه به درگاه منتقل نشدید، اینجا کلیک کنید."
 
 #~ msgid "Comment"
 #~ msgstr "نظر"
