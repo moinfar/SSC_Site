@@ -27,14 +27,18 @@
                     <div class="panel-body">
 
                         {% if message %}
-                        {{ message }}
+                            {{ message }}
                         {% else %}
-                        با سلام.
-                        <br>
-                        اطلاعات شما به شرح زیر در سایت انجمن علمی ثبت شد.
+                            {% trans 'Hi.' %}
+                            <br>
+                            {% trans 'Your information has been recorded in the SSC site as provided below.' %}
                         {% endif %}
                     <br>
-                        در صورت وجود هرگونه مشکل،  لطفا از طریق فرم تماس با ما در سایت انجمن پیگیری نمایید و از پاسخ دادن به این ایمیل خودداری کنید.
+                        {% blocktrans with contact_us='<a class="blue-text" href="{{ site_url }}/contact-us/">contact us form</a>' %}
+                            In the case of any problems, please contact us via
+                            {{ contact_us }}
+                            and never reply this email.
+                        {% endblocktrans %}
                     </div>
 
                     <div class="card-panel">

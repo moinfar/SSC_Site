@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-26 15:42+0330\n"
+"POT-Creation-Date: 2018-01-26 23:01+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -251,11 +251,11 @@ msgstr "صفحه‌ی شامل گالری‌ها"
 msgid "Gallery Container Pages"
 msgstr "صفحات شامل گالری‌ها"
 
-#: ssc_template/templates/base.html:69
+#: ssc_template/templates/base.html:74
 msgid "Change"
 msgstr "تغییر"
 
-#: ssc_template/templates/base.html:226
+#: ssc_template/templates/base.html:231
 #, python-format
 msgid ""
 "\n"
@@ -273,15 +273,17 @@ msgstr ""
 "                    <a %(sharif_link_attrs)s >دانشگاه صنعتی شریف</a> است\n"
 "                    "
 
-#: ssc_template/templates/base.html:238
+#: ssc_template/templates/base.html:243
 #, python-format
 msgid ""
 "\n"
-"                    Pwered By\n"
+"                    Powered By\n"
 "                    %(powered_by)s\n"
 "                    -\n"
 "                    Designed By\n"
 "                    %(designer)s\n"
+"                    ,\n"
+"                    %(maintainer)s\n"
 "                    "
 msgstr ""
 "\n"
@@ -290,6 +292,9 @@ msgstr ""
 "                    -\n"
 "                    طراحی شده به دست \n"
 "                    %(designer)s\n"
+"                    %(maintainer)s\n"
+"                    ,\n"
+"                    %(maintainer)s\n"
 "                    "
 
 #: ssc_template/templates/blog/blog_post_detail.html:61
@@ -371,6 +376,31 @@ msgstr ""
 #: ssc_template/templates/blog/includes/filter_panel.html:112
 msgid "Atom"
 msgstr ""
+
+#: ssc_template/templates/email/form_response.html:32
+msgid "Hi."
+msgstr "با سلام."
+
+#: ssc_template/templates/email/form_response.html:34
+msgid "Your information has been recorded in the SSC site as provided below."
+msgstr "اطلاعات شما به شرح زیر در سایت انجمن علمی ثبت شد."
+
+#: ssc_template/templates/email/form_response.html:37
+msgid ""
+"\n"
+"                            In the case of any problems, please contact us "
+"via\n"
+"                            %(contact_us)s\n"
+"                            and never reply this email.\n"
+"                        "
+msgstr ""
+"\n"
+"                            در صورت بروز هرگونه مشکل، لطفا از  طریق  "
+""
+"                            %(contact_us)s\n"
+"                            پیگیری کنید و از پاسخ‌دادن به این ایمیل خودداری کنید.\n"
+"                        "
+
 
 #: ssc_template/templates/errors/404.html:6
 msgid "OOPS...!"
