@@ -153,7 +153,7 @@ DEBUG = False
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
 SITE_ID = 1
-SITE_URL = 'ssc.ce.sharif.edu'
+SITE_URL = 'ssc.ce.sharif.edu/'
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
