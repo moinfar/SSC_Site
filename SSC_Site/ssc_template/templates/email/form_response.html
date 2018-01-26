@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>مرسی از ایمیلی که زدی!</title>
-</head>
-<body>
+{% load static %}
 
-</body>
-</html>
+<img src="{{ site_url }}static/base/image/error/404.png">
+
+{% block main %}
+{% if message %}<p>{{ message }}</p>{% endif %}
+<table border="0">
+{% for field, value in fields %}
+<tr>
+    <td><b>{{ field }}:</b></td>
+    <td>{{ value|linebreaks }}</td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}
