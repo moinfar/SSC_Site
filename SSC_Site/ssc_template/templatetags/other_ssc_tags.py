@@ -54,5 +54,5 @@ def get_screenpage(screen_lable):
 
 
 @register.filter()
-def is_captcha_field(field):
+def is_captcha(field):
     return isinstance(field, ReCaptchaField)

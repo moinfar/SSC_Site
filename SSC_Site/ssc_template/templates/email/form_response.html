@@ -41,7 +41,7 @@
                         <table class="bordered striped centered" style="background-color: white">
 
                         {% for field, value in fields %}
-                            {% if not field.is_captcha_field %}
+                            {% if not field|is_captcha %}
                                 <tr>
                                 <td><b>{{ field }}</b></td>
                                 <td>{{ value|linebreaks }}</td>
