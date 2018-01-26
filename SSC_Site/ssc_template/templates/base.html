@@ -18,15 +18,15 @@
 
     {% compress css %}
     <!-- Import iransans font -->
-    <link type="text/css" rel="stylesheet" href="/static/base/font/iransans/style.css?v=1.1"/>
+    <link type="text/css" rel="stylesheet" href="/static/base/font/iransans/style.css?v=1.2"/>
     <!-- Import materialize.css -->
-    <link type="text/css" rel="stylesheet" href="/static/materialize/css/materialize.css?v=1.1"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="/static/materialize/css/materialize.css?v=1.2"  media="screen,projection"/>
     <!-- Import LightBox -->
-    <link type="text/css" rel="stylesheet" href="/static/lightbox/css/lightbox.css?v=1.1">
+    <link type="text/css" rel="stylesheet" href="/static/lightbox/css/lightbox.css?v=1.2">
 
     <!-- Custom Styles materialize.css -->
-    <link type="text/css" rel="stylesheet" href="/static/base/css/main.css?v=1.1.2"/>
-    <link type="text/css" rel="stylesheet" href="/static/base/css/materialize-config.css?v=1.1"/>
+    <link type="text/css" rel="stylesheet" href="/static/base/css/main.css?v=1.2"/>
+    <link type="text/css" rel="stylesheet" href="/static/base/css/materialize-config.css?v=1.2"/>
 
     {% block extra_css %}{% endblock %}
     {% endcompress %}
@@ -139,6 +139,7 @@
         {% endspaceless %}
     </div>
     {% endblock %}
+    <div class="row"></div>
     {% block title_wrapper %}
     <div {% if LANGUAGE_BIDI %}
          class="center-align container" dir="rtl"
@@ -157,18 +158,19 @@
         <div class="container">
             <div class="row">
 
-                <div class="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %} col s12 m8 l8">
-                    {% block main %}
-                    {% endblock %}
-                </div>
-
                 {% block left_wrapper %}
-                <div class="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %} col s12 m4 l4">
+                <div class="{% if not LANGUAGE_BIDI %}right{% endif %} col s14 m4 l4">
                     {% block left_panel %}
-					{% page_menu page "pages/menus/children.html" %} 
+					{% page_menu page "pages/menus/children.html" %}
                     {% endblock %}
                 </div>
                 {% endblock %}
+
+
+                <div class="col s8 m8 l8">
+                    {% block main %}
+                    {% endblock %}
+                </div>
 
             </div>
         </div>

@@ -2243,7 +2243,7 @@ td, th {
     position: relative;
     /* sort out borders */ }
     table.responsive-table td:empty:before {
-      content: '\00a0'; }
+      content: ''; }
     table.responsive-table th,
     table.responsive-table td {
       margin: 0;
@@ -2257,7 +2257,7 @@ td, th {
         display: block;
         padding: 0 10px 0 0; }
         table.responsive-table thead tr th::before {
-          content: "\00a0"; }
+          content: ""; }
     table.responsive-table tbody {
       display: block;
       width: auto;
