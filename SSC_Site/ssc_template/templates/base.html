@@ -149,7 +149,9 @@
          {% endif %} >
         {% block title_image %}
         {% endblock %}
-        <h2 class="blue-text">{% block title %}{% endblock %}</h2>
+        <a href="{{ page.url }}">
+            <h2 class="blue-text">{% block title %}{% endblock %}</h2>
+        </a>
     </div>
 
     {% endblock %}
