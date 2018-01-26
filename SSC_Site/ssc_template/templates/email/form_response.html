@@ -34,9 +34,9 @@
                             {% trans 'Your information has been recorded in the SSC site as provided below.' %}
                         {% endif %}
                     <br>
-                        {% blocktrans with link_begin='<a class="blue-text" href="{{ site_url }}/contact-us/">' link_end='</a>' %}
+                        {% blocktrans with link_begin='<a class="blue-text" href="' link_middle'=/contact-us/">' link_end='</a>' %}
                             In the case of any problems, please contact us via
-                            {{ link_begin }}
+                            {{ link_begin }}{{ site_url }}{{ link_middle }}
                             contact us form
                             {{ link_end }}
                             and never reply this email.
