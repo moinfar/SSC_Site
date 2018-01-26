@@ -153,7 +153,6 @@ DEBUG = False
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
 SITE_ID = 1
-SITE_URL = 'http://ssc.ce.sharif.edu/'
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -244,7 +243,6 @@ TEMPLATES = [
                 'django.template.context_processors.tz',
                 'mezzanine.conf.context_processors.settings',
                 'mezzanine.pages.context_processors.page',
-                'ssc_configs.context_processors.custom'
             ],
             'builtins': [
                 'mezzanine.template.loader_tags'
