@@ -386,7 +386,6 @@ msgid "Your information has been recorded in the SSC site as provided below."
 msgstr "اطلاعات شما به شرح زیر در سایت انجمن علمی ثبت شد."
 
 #: ssc_template/templates/email/form_response.html:37
-#, fuzzy, python-format
 msgid ""
 "\n"
 "                            In the case of any problems, please contact us "
