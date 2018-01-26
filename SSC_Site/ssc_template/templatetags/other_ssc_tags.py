@@ -1,5 +1,6 @@
 import datetime
 
+from mezzanine.forms import fields as mezzanine_fields
 from captcha.fields import ReCaptchaField
 from django.forms.widgets import RadioSelect, CheckboxSelectMultiple
 from django.utils import timezone
@@ -54,5 +55,10 @@ def get_screenpage(screen_lable):
 
 
 @register.filter()
-def is_captcha_field(field):
-    return isinstance(field, ReCaptchaField)
+def is_captcha(field):
+    return field.field_type == mezzanine_fields.CAPTCHA
+
+
+@register.filter()
+def get_at_index(list, index):
+    return list[index]

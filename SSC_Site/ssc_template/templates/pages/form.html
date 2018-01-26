@@ -12,7 +12,9 @@
             <thead>
             <tr>
                 {% for field in page.form.fields.all %}
-                <th>{{ field }}</th>
+                {% if not field|is_captcha %}
+                    <th>{{ field }}</th>
+                {% endif %}
                 {% endfor %}
             </tr>
             </thead>
@@ -20,7 +22,9 @@
                 {% for entry in page.form.entries.all %}
                 <tr>
                     {% for field in entry.fields.all|dictsort:'field_id' %}
-                    <td>{{ field.value }}</td>
+                    {% if not page.form.fields.all|get_at_index:forloop.counter0|is_captcha %}
+                        <td>{{ field.value }}</td>
+                    {% endif %}
                     {% endfor %}
                 </tr>
                 {% endfor %}
