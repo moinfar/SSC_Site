@@ -1,15 +1,28 @@
+{% extends 'base.html' %}
 {% load static %}
 
-<img src="{{ site_url }}static/base/image/error/404.png">
 
-{% block main %}
-{% if message %}<p>{{ message }}</p>{% endif %}
-<table border="0">
-{% for field, value in fields %}
-<tr>
-    <td><b>{{ field }}:</b></td>
-    <td>{{ value|linebreaks }}</td>
-</tr>
-{% endfor %}
-</table>
-{% endblock %}
+{% with site_url="http://ssc.ce.sharif.edu/" %}
+    {% block all_content %}
+    <h1 class="blue-text">سلام و خسته نباشید</h1>
+    <body>
+        <img src="{{ site_url }}{% static 'base/image/error/404.png' %}">
+    
+        {% block main %}
+        {% if message %}<p>{{ message }}</p>{% endif %}
+        <table border="0">
+        {% for field, value in fields %}
+        <tr>
+            <td><b>{{ field }}:</b></td>
+            <td>{{ value|linebreaks }}</td>
+        </tr>
+        {% endfor %}
+        </table>
+        {% endblock %}
+    </body>
+    {% endblock %}
+
+    {% block stat_counter %}
+    {% endblock %}
+
+{% endwith %}
