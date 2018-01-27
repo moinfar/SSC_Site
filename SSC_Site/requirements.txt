@@ -12,12 +12,13 @@ Django==1.10.8
 django-appconf==1.0.2
 django-auth-ldap==1.2.16
 django-celery-email==2.0.0
+django-compressor==2.2
 django-contrib-comments==1.8.0
 django-dbbackup==3.2.0
 django-extensions==1.9.1
 django-modeltranslation==0.12.1
 django-recaptcha==1.3.1
--e git://github.com/Kianoosh76/Shortener.git#egg=django_shortener
+-e git://github.com/Kianoosh76/Shortener.git@6b55abb0e0b443afbf52cbbd9466bf30f3af1501#egg=django_shortener
 filebrowser-safe==0.4.7
 future==0.16.0
 grappelli-safe==0.4.7
@@ -28,8 +29,7 @@ isodate==0.5.4
 jdatetime==1.9.0
 kombu==4.1.0
 lxml==4.0.0
-# TODO: replace this with a newer version of Mezzanine the comments bug is fixed
--e git://github.com/Kianoosh76/mezzanine.git#egg=Mezzanine
+-e git://github.com/Kianoosh76/mezzanine.git@d69f6db50612d7832a660c2cdc7d79462815f4a9#egg=Mezzanine
 oauthlib==2.0.4
 olefile==0.44
 Pillow==4.3.0
@@ -37,10 +37,12 @@ psycopg2==2.7.3.1
 pyldap==2.4.37
 python-memcached==1.58
 pytz==2017.2
+rcssmin==1.0.6
 redis==2.10.6
 requests==2.18.4
 requests-oauthlib==0.8.0
 requests-toolbelt==0.8.0
+rjsmin==1.0.12
 six==1.11.0
 Tempita==0.5.2
 tzlocal==1.4

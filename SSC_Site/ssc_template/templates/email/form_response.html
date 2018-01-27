@@ -3,6 +3,8 @@
 
 {% block js %} {% endblock %}
 
+{% block css %} {% compress css inline %} {{ block.super }} {% endcompress %} {% endblock %}
+
 {% block body %}
 <body {% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
 

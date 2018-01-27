@@ -16,31 +16,29 @@
     <link rel="alternate" type="application/atom+xml" title="Atom" href="{% url 'blog_post_feed' 'atom' %}">
     {% endifinstalled %}
 
-    {% compress css %}
+    {% block css %}
     <!-- Import iransans font -->
-    <link type="text/css" rel="stylesheet" href="{{ site_url }}{% static 'base/font/iransans/style.css' %}?v=1.2"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'base/font/iransans/style.css' %}?v=1.2"/>
     <!-- Import materialize.css -->
-    <link type="text/css" rel="stylesheet" href="{{ site_url }}{% static 'materialize/css/materialize.css' %}?v=1.2"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'materialize/css/materialize.css' %}?v=1.2"  media="screen,projection"/>
     <!-- Import LightBox -->
-    <link type="text/css" rel="stylesheet" href="{{ site_url }}{% static 'lightbox/css/lightbox.css' %}?v=1.2">
+    <link type="text/css" rel="stylesheet" href="{% static 'lightbox/css/lightbox.css' %}?v=1.2">
 
     <!-- Custom Styles materialize.css -->
-    <link type="text/css" rel="stylesheet" href="{{ site_url }}{% static 'base/css/main.css' %}?v=1.2"/>
-    <link type="text/css" rel="stylesheet" href="{{ site_url }}{% static 'base/css/materialize-config.css' %}?v=1.2"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'base/css/main.css' %}?v=1.2"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'base/css/materialize-config.css' %}?v=1.2"/>
 
     {% block extra_css %}{% endblock %}
-    {% endcompress %}
+    {% endblock %}
 
 
     {% block js %}
-    {% compress js %}
-    <script type="text/javascript" src="{{ site_url }}{% static 'base/js/jquery-2.1.3.min.js' %}?v=1.1"></script>
-    <script type="text/javascript" src="{{ site_url }}{% static 'materialize/js/materialize.min.js' %}?v=1.1"></script>
-    <script type="text/javascript" src="{{ site_url }}{% static 'base/js/masonry.pkgd.min.js' %}?v=1.1"></script>
-    <script type="text/javascript" src="{{ site_url }}{% static 'base/js/imagesloaded.pkgd.min.js' %}?v=1.1"></script>
+    <script type="text/javascript" src="{% static 'base/js/jquery-2.1.3.min.js' %}?v=1.1"></script>
+    <script type="text/javascript" src="{% static 'materialize/js/materialize.min.js' %}?v=1.1"></script>
+    <script type="text/javascript" src="{% static 'base/js/masonry.pkgd.min.js' %}?v=1.1"></script>
+    <script type="text/javascript" src="{% static 'base/js/imagesloaded.pkgd.min.js' %}?v=1.1"></script>
 
     {% block extra_js %}{% endblock %}
-    {% endcompress %}
     {% endblock %}
 
     {% block extra_head %}{% endblock %}
@@ -258,8 +256,8 @@
 </div>
 
 {% compress js %}
-<script type="text/javascript" src="{{ site_url }}{% static 'lightbox/js/lightbox.min.js' %}?v=1.1"></script>
-<script type="text/javascript" src="{{ site_url }}{% static 'base/js/main.js' %}?v=1.1"></script>
+<script type="text/javascript" src="{% static 'lightbox/js/lightbox.min.js' %}?v=1.1"></script>
+<script type="text/javascript" src="{% static 'base/js/main.js' %}?v=1.1"></script>
 {% endcompress %}
 {% block extra_body %}{% endblock %}
 
