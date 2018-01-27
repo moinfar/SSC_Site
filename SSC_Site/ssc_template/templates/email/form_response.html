@@ -3,7 +3,14 @@
 
 {% block js %} {% endblock %}
 
-{% block css %} {% compress css inline %} {{ block.super }} {% endcompress %} {% endblock %}
+{% block css %}
+        <!-- Import iransans font -->
+        <link type="text/css" rel="stylesheet" href="{% static 'base/font/iransans/style.css' %}?v=1.2"/>
+    {% compress css inline %}
+        <!-- Import materialize.css -->
+        <link type="text/css" rel="stylesheet" href="{% static 'materialize/css/materialize-email.min.css' %}?v=1.2"  media="screen,projection"/>
+    {% endcompress %}
+{% endblock %}
 
 {% block body %}
 <body {% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
