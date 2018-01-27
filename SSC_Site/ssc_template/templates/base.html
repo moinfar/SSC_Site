@@ -17,6 +17,8 @@
     {% endifinstalled %}
 
     {% block css %}
+
+    {% compress css %}
     <!-- Import iransans font -->
     <link type="text/css" rel="stylesheet" href="{% static 'base/font/iransans/style.css' %}?v=1.2"/>
     <!-- Import materialize.css -->
@@ -27,17 +29,20 @@
     <!-- Custom Styles materialize.css -->
     <link type="text/css" rel="stylesheet" href="{% static 'base/css/main.css' %}?v=1.2"/>
     <link type="text/css" rel="stylesheet" href="{% static 'base/css/materialize-config.css' %}?v=1.2"/>
+    {% endcompress %}
 
     {% block extra_css %}{% endblock %}
     {% endblock %}
 
 
     {% block js %}
+    {% compress js %}
     <script type="text/javascript" src="{% static 'base/js/jquery-2.1.3.min.js' %}?v=1.1"></script>
     <script type="text/javascript" src="{% static 'materialize/js/materialize.min.js' %}?v=1.1"></script>
     <script type="text/javascript" src="{% static 'base/js/masonry.pkgd.min.js' %}?v=1.1"></script>
     <script type="text/javascript" src="{% static 'base/js/imagesloaded.pkgd.min.js' %}?v=1.1"></script>
 
+    {% endcompress %}
     {% block extra_js %}{% endblock %}
     {% endblock %}
 

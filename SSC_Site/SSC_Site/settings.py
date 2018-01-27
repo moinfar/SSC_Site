@@ -298,7 +298,7 @@ INSTALLED_APPS = (
     'compressor',
 )
 
-COMPRESS_ENABLED = True
+COMPRESS_ENABLED = True  # For local testing, you might change this to False in local_settings.py
 DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
 DBBACKUP_STORAGE_OPTIONS = {'location': '/var/backups'}
 
