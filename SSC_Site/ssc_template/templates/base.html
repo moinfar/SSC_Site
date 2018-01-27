@@ -18,7 +18,6 @@
 
     {% block css %}
 
-    {% compress css %}
     <!-- Import iransans font -->
     <link type="text/css" rel="stylesheet" href="{% static 'base/font/iransans/style.css' %}?v=1.2"/>
     <!-- Import materialize.css -->
@@ -29,7 +28,6 @@
     <!-- Custom Styles materialize.css -->
     <link type="text/css" rel="stylesheet" href="{% static 'base/css/main.css' %}?v=1.2"/>
     <link type="text/css" rel="stylesheet" href="{% static 'base/css/materialize-config.css' %}?v=1.2"/>
-    {% endcompress %}
 
     {% block extra_css %}{% endblock %}
     {% endblock %}
