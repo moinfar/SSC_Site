@@ -1,13 +1,14 @@
 {% extends "pages/page.html" %}
 
 {% load mezzanine_tags %}
-{% load other_ssc_tags %}
+{% load other_ssc_tags i18n %}
 
 <div class="col-md-{% block main_col_size %}8{% endblock %}">
 {% block main %}
     <div class="card-panel" style="overflow-x: scroll">
     {{ block.super }}
     {% if perms.forms.add_form %} <!-- TODO @Kianoosh: This is not standard! Add a new permission in forms:'view_entries' -->
+        <h2 class="blue-text">{% trans 'responses' %} ({{ page.form.entries.count }})</h2>
         <table class="white bordered striped">
             <thead>
             <tr>

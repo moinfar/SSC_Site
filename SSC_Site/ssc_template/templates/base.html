@@ -118,76 +118,79 @@
 <div id="wrapper">
 
     {% block all_content %}
-    <div class="container">
-
-        {% comment "MESSAGES?" %}
-        {% nevercache %}
-        {% if messages %}
-        <div class="messages">
-            {% for message in messages %}
-            <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                {{ message }}
-            </div>
-            {% endfor %}
-        </div>
-        {% endif %}
-        {% endnevercache %}
-        {% endcomment %}
-
-    </div>
-    {% block breadcrumb_wrapper %}
-    <div class="px-10 vertical spacer"></div>
-    <div class="breadcrumb {% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %} container"
-         {% if LANGUAGE_BIDI %} dir="rtl"{% endif %} >
-        {% spaceless %}
-        {% block breadcrumb_menu %}{% page_menu "pages/menus/breadcrumb.html" %}{% endblock %}
-        {% endspaceless %}
-    </div>
-    {% endblock %}
-    <div class="row"></div>
-
-    {% block title_wrapper %}
-    <div {% if LANGUAGE_BIDI %}
-         class="center-align container" dir="rtl"
-         {% else %}
-         class="center-align container" dir="ltr"
-         {% endif %} >
-        {% block title_image %}
-        {% endblock %}
-        <a href="{{ page.url }}">
-            <h2 class="blue-text">{% block title %}{% endblock %}</h2>
-        </a>
-    </div>
-
-    {% endblock %}
-
-    <div class="px-10 vertical spacer"></div>
-
-    <section id="{% block section_id %}content{% endblock %}" {% if LANGUAGE_BIDI %} dir="rtl"{% endif %} >
-        {% block main_wrapper %}
         <div class="container">
-            <div class="row">
 
-                {% block left_wrapper %}
-                <div class="{% if not LANGUAGE_BIDI %}right{% endif %} col s12 m4 l4">
-                    {% block left_panel %}
-                    {% if page %}
-					    {% page_menu page "pages/menus/children.html" %}
-                    {% endif %}
-                    {% endblock %}
+            {% comment "MESSAGES?" %}
+            {% nevercache %}
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    {{ message }}
                 </div>
-                {% endblock %}
-
-                <div class="col s12 m8 l8">
-                    {% block main %}
-                    {% endblock %}
-                </div>
-
+                {% endfor %}
             </div>
+            {% endif %}
+            {% endnevercache %}
+            {% endcomment %}
+
+        </div>
+
+        {% block breadcrumb_wrapper %}
+        <div class="px-10 vertical spacer"></div>
+        <div class="breadcrumb {% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %} container"
+             {% if LANGUAGE_BIDI %} dir="rtl"{% endif %} >
+            {% spaceless %}
+            {% block breadcrumb_menu %}{% page_menu "pages/menus/breadcrumb.html" %}{% endblock %}
+            {% endspaceless %}
         </div>
         {% endblock %}
-    </section>
+
+        <div class="row"></div>
+
+        {% block title_wrapper %}
+        <div {% if LANGUAGE_BIDI %}
+             class="center-align container" dir="rtl"
+             {% else %}
+             class="center-align container" dir="ltr"
+             {% endif %} >
+            {% block title_image %}
+            {% endblock %}
+            <a href="{{ page.url }}">
+                <h2 class="blue-text">{% block title %}{% endblock %}</h2>
+            </a>
+        </div>
+
+        {% endblock %}
+
+        <div class="px-10 vertical spacer"></div>
+
+        <section id="{% block section_id %}content{% endblock %}" {% if LANGUAGE_BIDI %} dir="rtl"{% endif %} >
+            {% block main_wrapper %}
+            <div class="container">
+                <div class="row">
+
+                    {% block left_wrapper %}
+                    <div class="{% if not LANGUAGE_BIDI %}right{% endif %} col s12 m4 l4">
+                        {% block left_panel %}
+                        {% if page %}
+                            {% page_menu page "pages/menus/children.html" %}
+                        {% endif %}
+                        {% endblock %}
+                    </div>
+                    {% endblock %}
+
+                    <div class="col s12 m8 l8">
+                        {% block main %}
+                        {% endblock %}
+                    </div>
+
+                </div>
+            </div>
+            {% endblock %}
+        </section>
+
     {% endblock %}
 
     <!-- Start of StatCounter Code for Default Guide -->

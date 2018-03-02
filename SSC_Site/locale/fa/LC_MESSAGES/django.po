@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-26 23:21+0330\n"
+"POT-Creation-Date: 2018-03-02 18:52+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -251,11 +251,11 @@ msgstr "صفحه‌ی شامل گالری‌ها"
 msgid "Gallery Container Pages"
 msgstr "صفحات شامل گالری‌ها"
 
-#: ssc_template/templates/base.html:74
+#: ssc_template/templates/base.html:75
 msgid "Change"
 msgstr "تغییر"
 
-#: ssc_template/templates/base.html:231
+#: ssc_template/templates/base.html:232
 #, python-format
 msgid ""
 "\n"
@@ -273,7 +273,7 @@ msgstr ""
 "                    <a %(sharif_link_attrs)s >دانشگاه صنعتی شریف</a> است\n"
 "                    "
 
-#: ssc_template/templates/base.html:243
+#: ssc_template/templates/base.html:244
 #, python-format
 msgid ""
 "\n"
@@ -385,6 +385,7 @@ msgid "Your information has been recorded in the SSC site as provided below."
 msgstr "اطلاعات شما به شرح زیر در سایت انجمن علمی ثبت شد."
 
 #: ssc_template/templates/email/form_response.html:37
+#, python-format
 msgid ""
 "\n"
 "                            In the case of any problems, please contact us "
@@ -498,6 +499,10 @@ msgstr "به زودی"
 #: ssc_template/templates/index.html:96
 msgid "Currently on the screens"
 msgstr "اکنون در مانیتور‌های لابی"
+
+#: ssc_template/templates/pages/form.html:11
+msgid "responses"
+msgstr "پاسخ‌ها"
 
 #: ssc_template/templates/pages/gallery.html:35
 #: ssc_template/templates/pages/gallerycontainerpage.html:32
