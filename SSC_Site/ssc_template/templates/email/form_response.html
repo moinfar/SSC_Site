@@ -24,7 +24,7 @@
         <tbody>
             {% for field, value in fields %}
                 {% if not field|is_captcha %}
-                    <tr>
+                    <tr {% if forloop.counter0|divisibleby:2 %} style="background-color: #f2f2f2" {% endif %}>
                     <td><b>{{ field }}</b></td>
                     <td>{{ value|linebreaks }}</td>
                     </tr>
