@@ -94,9 +94,9 @@ footer > a {
 <body>
 
     <header>
-        <a href="http://ssc.ce.sharif.edu"><img src="http://ssc.ce.sharif.edu/static/base/image/SSC-unofficial-logo-white.png" class="logo"></a>
+        <a href="http://ssc.ce.sharif.edu"><img src="{{ site_url }}{% static 'base/image/SSC-unofficial-logo-white.png' %}" class="logo"></a>
         <span class="title">
-            انجمن علمی دانشکده کامپیوتر
+            {% trans "Students' Scientific Chapter" %}
         </span>
     </header>
 
@@ -124,6 +124,7 @@ footer > a {
                     <a href="https://twitter.com/ssc_public"><img src="{{ site_url }}{% static 'base/image/social/twitter.png' %}" class="social-icon"/></a>
                     <a href="https://instagram.com/ssc_public"><img src="{{ site_url }}{% static 'base/image/social/instagram.png' %}" class="social-icon"/></a>
                     <a href="https://telegram.me/ssc_public"><img src="{{ site_url }}{% static 'base/image/social/telegram.png' %}" class="social-icon"/></a>
+            </div>
             <br>
             <span style="color: white">
                 {% blocktrans with ssc_link_attrs='class="blue-text text-lighten-4" href="{{ site_url }}"' sharif_link_attrs='class="blue-text text-lighten-4" href="http://sharif.edu"' %}

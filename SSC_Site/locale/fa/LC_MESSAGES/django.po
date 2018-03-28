@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-29 01:37+0430\n"
+"POT-Creation-Date: 2018-03-29 01:48+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -376,7 +376,12 @@ msgstr ""
 msgid "Atom"
 msgstr ""
 
+#: ssc_template/templates/email/email_base.html:99
+msgid "Students' Scientific Chapter"
+msgstr "            انجمن علمی دانشکده کامپیوتر"
+
 #: ssc_template/templates/email/email_base.html:130
+#, python-format
 msgid ""
 "\n"
 "                &copy;\n"
@@ -402,6 +407,7 @@ msgid "Your information has been recorded in the SSC site as provided below."
 msgstr "اطلاعات شما به شرح زیر در سایت انجمن علمی ثبت شد."
 
 #: ssc_template/templates/email/form_response.html:13
+#, python-format
 msgid ""
 "\n"
 "        In the case of any inconsistencies, please contact us via\n"
