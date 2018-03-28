@@ -1,1 +1,36 @@
-{% extends 'email_base.html' %}
+{% extends 'email/email_base.html' %}
+{% load static i18n other_ssc_tags compress %}
+
+{% block message %}
+    {% if message %}
+        {{ message }}
+    {% else %}
+        {% trans 'Hi.' %}
+        <br>
+        {% trans 'Your information has been recorded in the SSC site as provided below.' %}
+    {% endif %}
+    <br>
+    {% blocktrans%}
+        In the case of any problems, please contact us via
+        <a class="blue-text" href="{{ site_url }}">
+        contact us form
+        </a>
+        and never reply this email.
+    {% endblocktrans %}
+{% endblock %}
+
+{% block content %}
+    <table class="center">
+        <tbody>
+            {% for field, value in fields %}
+                {% if not field|is_captcha %}
+                    <tr>
+                    <td><b>{{ field }}</b></td>
+                    <td>{{ value|linebreaks }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+

@@ -8,6 +8,16 @@ header {
     background: #082e68;
 }
 
+.title {
+    float: right;
+    color: white;
+    margin-right: 5px;
+    height: 45px;
+    line-height: 45px;
+    vertical-align: middle;
+    font-size: 15px;
+}
+
 .center {
     margin: 0 auto;
 }
@@ -18,8 +28,10 @@ header {
 }
 
 #main{
-	background:
-	linear-gradient(to right, rgba(240, 240, 240, 0.45), rgba(240, 240, 240, 0)),
+    {% if LANGUAGE_BIDI %}
+        direction: rtl;
+    {% endif %}
+    background: linear-gradient(to right, rgba(240, 240, 240, 0.45), rgba(240, 240, 240, 0)),
 	url('http://ssc.ce.sharif.edu/static/base/image/pattern/new-pattern3.jpg?v=1.1.1');
 }
 
@@ -43,7 +55,7 @@ td {
     text-align: center;
 }
 
-tr:nth-child(odd){
+tr: nth-child(odd){
     background-color: #f2f2f2
 }
 
@@ -66,7 +78,7 @@ footer {
     .content {
         width: 90%;
         font-size: inherit;
-        margin-top; 0px;
+        margin-top: 0px;
     }
 }
 
@@ -77,69 +89,57 @@ footer {
 
     <header>
         <a href="http://ssc.ce.sharif.edu"><img src="http://ssc.ce.sharif.edu/static/base/image/SSC-unofficial-logo-white.png" class="logo"></a>
-        <span style="float: right; color: white; margin-right: 5px; height: 45px; line-height: 45px; vertical-align: middle; font-size: 15px;">
+        <span class="title">
             انجمن علمی دانشکده کامپیوتر
         </span>
     </header>
 
-    <div id="main" style="direction: rtl">
+    <div id="main">
         <br>
         <div class="content center">
-        <div style="background-color: rgba(255, 255, 255, 0.7); color: black">
-                سلام و وقت بخیر! شما فرم تماس با مای سایت رو با این مطالب پر کرده‌اید:
-    <br>
-                در صورت وجود هر گونه مشکل، لطفا از طریق فرم تماس با ما در سایت پیگیری کنید و از پاسخ‌دادن به این ایمیل خودداری نمایید.
+            <div style="background-color: rgba(255, 255, 255, 0.7); color: black">
+                {% block message %}
+                {% endblock %}
 
-        </div>
-    <br>
-        <div style="background-color: white"><br>
-        <table class="center">
-            <tbody>
-            <tr style="background-color: #f2f2f2">
-            <td><b>
-                عنوان متن
-                </b></td><td>
-                سلام اکبری هستم
-            </td>
-            </tr>
-            <tr>
-            <td><b>
-    نام و نام خوانندگی
-                </b></td><td>
-    علرضا هستم از اعضای تیمفوبتا فردوسی و از باشگاه داران به  نام اعرضبه ستزنمسیزس
-            </td>
-            </tr>
-            <tr style="background-color: #f2f2f2">
-            <td><b>
-                سخن آخری
-                </b></td><td>
-    نههههه
-            </td>
-            </tr>
-            </tbody>
-        </table>
+                    سلام و وقت بخیر! شما فرم تماس با مای سایت رو با این مطالب پر کرده‌اید:
+                    <br>
+                    در صورت وجود هر گونه مشکل، لطفا از طریق فرم تماس با ما در سایت پیگیری کنید و از پاسخ‌دادن به این ایمیل خودداری نمایید.
+
+            </div>
             <br>
+            <div style="background-color: white"><br>
+                {% block content %}
+                {% endblock %}
+                <br>
             </div>
             <br><br>
-    </div>
-
-
-    <footer>
-        <br><br>
-        <div class="center">
-            <a href="https://www.linkedin.com/company/11417433/"><img src="http://ssc.ce.sharif.edu/static/base/image/social/linkedin.png" class="social-icon"/></a>
-            <a href="https://twitter.com/ssc_public"><img src="http://ssc.ce.sharif.edu/static/base/image/social/twitter.png" class="social-icon"/></a>
-            <a href="https://instagram.com/ssc_public"><img src="http://ssc.ce.sharif.edu/static/base/image/social/instagram.png" class="social-icon"/></a>
-            <a href="https://telegram.me/ssc_public"><img src="http://ssc.ce.sharif.edu/static/base/image/social/telegram.png" class="social-icon"/></a>
         </div>
 
-        <br>
-        <span style="color: white">
-            کلیه حقوق متعلق به برادران اکبری است
-        <br>
-        <br>
-        </span>
-    </footer>
+
+        <footer>
+            <br><br>
+            <div class="center">
+                <a href="https://www.linkedin.com/company/11417433/"><img src="http://ssc.ce.sharif.edu/static/base/image/social/linkedin.png" class="social-icon"/></a>
+                <a href="https://twitter.com/ssc_public"><img src="http://ssc.ce.sharif.edu/static/base/image/social/twitter.png" class="social-icon"/></a>
+                <a href="https://instagram.com/ssc_public"><img src="http://ssc.ce.sharif.edu/static/base/image/social/instagram.png" class="social-icon"/></a>
+                <a href="https://telegram.me/ssc_public"><img src="http://ssc.ce.sharif.edu/static/base/image/social/telegram.png" class="social-icon"/></a>
+            </div>
+
+            <br>
+            <span style="color: white">
+                {% blocktrans with powered_by='<a class="blue-text text-lighten-4" href="http://mezzanine.jupo.org/">Mezzanine</a>, <a class="blue-text text-lighten-4" href="http://materializecss.com/">Materialize</a>' designer='<a class="blue-text text-lighten-4" href="http://mr.amira.li">Mr.AmirA.li</a>' maintainer='<a class="blue-text text-lighten-4" href="http://ce.sharif.edu/~kabbasi">Kianoosh Abbasi</a>' %}
+                Powered By
+                {{ powered_by }}
+                -
+                Designed By
+                {{ designer }}
+                ,
+                {{ maintainer }}
+                {% endblocktrans %}
+            <br>
+            <br>
+            </span>
+        </footer>
     </div>
 
 </body>
