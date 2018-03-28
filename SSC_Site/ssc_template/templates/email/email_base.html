@@ -1,3 +1,5 @@
+{% load static %}
+
 <head>
     <style>
 
@@ -119,22 +121,16 @@ footer {
         <footer>
             <br><br>
             <div class="center">
-                <a href="https://www.linkedin.com/company/11417433/"><img src="http://ssc.ce.sharif.edu/static/base/image/social/linkedin.png" class="social-icon"/></a>
-                <a href="https://twitter.com/ssc_public"><img src="http://ssc.ce.sharif.edu/static/base/image/social/twitter.png" class="social-icon"/></a>
-                <a href="https://instagram.com/ssc_public"><img src="http://ssc.ce.sharif.edu/static/base/image/social/instagram.png" class="social-icon"/></a>
-                <a href="https://telegram.me/ssc_public"><img src="http://ssc.ce.sharif.edu/static/base/image/social/telegram.png" class="social-icon"/></a>
-            </div>
-
+                    <a href="https://www.linkedin.com/company/11417433/"><img src="{{ site_url }}{% static 'base/image/social/linkedin.png' %}" class="social-icon"/></a>
+                    <a href="https://twitter.com/ssc_public"><img src="{{ site_url }}{% static 'base/image/social/twitter.png' %}" class="social-icon"/></a>
+                    <a href="https://instagram.com/ssc_public"><img src="{{ site_url }}{% static 'base/image/social/instagram.png' %}" class="social-icon"/></a>
+                    <a href="https://telegram.me/ssc_public"><img src="{{ site_url }}{% static 'base/image/social/telegram.png' %}" class="social-icon"/></a>
             <br>
             <span style="color: white">
-                {% blocktrans with powered_by='<a class="blue-text text-lighten-4" href="http://mezzanine.jupo.org/">Mezzanine</a>, <a class="blue-text text-lighten-4" href="http://materializecss.com/">Materialize</a>' designer='<a class="blue-text text-lighten-4" href="http://mr.amira.li">Mr.AmirA.li</a>' maintainer='<a class="blue-text text-lighten-4" href="http://ce.sharif.edu/~kabbasi">Kianoosh Abbasi</a>' %}
-                Powered By
-                {{ powered_by }}
-                -
-                Designed By
-                {{ designer }}
-                ,
-                {{ maintainer }}
+                {% blocktrans with ssc_link_attrs='class="blue-text text-lighten-4" href="http://ssc.ce.sharif.edu"' sharif_link_attrs='class="blue-text text-lighten-4" href="http://sharif.edu"' %}
+                &copy;
+                <a {{ ssc_link_attrs }} >Students Scientific Chapter of Computer Engineering Department</a>,
+                <a {{ sharif_link_attrs }} >Sharif University of Technology</a>
                 {% endblocktrans %}
             <br>
             <br>

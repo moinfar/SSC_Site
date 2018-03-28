@@ -1,5 +1,5 @@
 {% extends 'email/email_base.html' %}
-{% load static i18n other_ssc_tags compress %}
+{% load i18n other_ssc_tags mezzanine_tags %}
 
 {% block message %}
     {% if message %}
@@ -12,7 +12,7 @@
     <br>
     {% blocktrans%}
         In the case of any problems, please contact us via
-        <a class="blue-text" href="{{ site_url }}">
+        <a class="blue-text" href="{{ site_url }} contact-us/">
         contact us form
         </a>
         and never reply this email.
