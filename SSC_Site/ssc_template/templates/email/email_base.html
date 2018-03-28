@@ -57,7 +57,7 @@ td {
     text-align: center;
 }
 
-tr: nth-child(odd){
+tr:nth-child(odd){
     background-color: #f2f2f2
 }
 
@@ -127,7 +127,7 @@ footer {
                     <a href="https://telegram.me/ssc_public"><img src="{{ site_url }}{% static 'base/image/social/telegram.png' %}" class="social-icon"/></a>
             <br>
             <span style="color: white">
-                {% blocktrans with ssc_link_attrs='class="blue-text text-lighten-4" href="http://ssc.ce.sharif.edu"' sharif_link_attrs='class="blue-text text-lighten-4" href="http://sharif.edu"' %}
+                {% blocktrans with ssc_link_attrs='class="blue-text text-lighten-4" href="{{ site_url }}"' sharif_link_attrs='class="blue-text text-lighten-4" href="http://sharif.edu"' %}
                 &copy;
                 <a {{ ssc_link_attrs }} >Students Scientific Chapter of Computer Engineering Department</a>,
                 <a {{ sharif_link_attrs }} >Sharif University of Technology</a>

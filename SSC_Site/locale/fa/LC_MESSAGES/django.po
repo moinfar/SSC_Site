@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-02 18:52+0330\n"
+"POT-Creation-Date: 2018-03-29 01:37+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -255,7 +255,7 @@ msgstr "صفحات شامل گالری‌ها"
 msgid "Change"
 msgstr "تغییر"
 
-#: ssc_template/templates/base.html:232
+#: ssc_template/templates/base.html:235
 #, python-format
 msgid ""
 "\n"
@@ -273,7 +273,7 @@ msgstr ""
 "                    <a %(sharif_link_attrs)s >دانشگاه صنعتی شریف</a> است\n"
 "                    "
 
-#: ssc_template/templates/base.html:244
+#: ssc_template/templates/base.html:247
 #, python-format
 msgid ""
 "\n"
@@ -376,28 +376,43 @@ msgstr ""
 msgid "Atom"
 msgstr ""
 
-#: ssc_template/templates/email/form_response.html:32
+#: ssc_template/templates/email/email_base.html:130
+msgid ""
+"\n"
+"                &copy;\n"
+"                <a %(ssc_link_attrs)s >Students Scientific Chapter of "
+"Computer Engineering Department</a>,\n"
+"                <a %(sharif_link_attrs)s >Sharif University of Technology</"
+"a>\n"
+"                "
+msgstr ""
+"\n"
+"                    &copy; کلیه‌ی حقوق این سایت متعلق به \n"
+"                    <a %(ssc_link_attrs)s >انجمن علمی دانشجویی دانشکده‌ی "
+"کامپیوتر</a> \n"
+"                    <a %(sharif_link_attrs)s >دانشگاه صنعتی شریف</a> است\n"
+"                    "
+
+#: ssc_template/templates/email/form_response.html:8
 msgid "Hi."
 msgstr "با سلام."
 
-#: ssc_template/templates/email/form_response.html:34
+#: ssc_template/templates/email/form_response.html:10
 msgid "Your information has been recorded in the SSC site as provided below."
 msgstr "اطلاعات شما به شرح زیر در سایت انجمن علمی ثبت شد."
 
-#: ssc_template/templates/email/form_response.html:37
-#, python-format
+#: ssc_template/templates/email/form_response.html:13
 msgid ""
 "\n"
-"                            In the case of any problems, please contact us "
-"via\n"
-"                            <a class=\"blue-text\" href=\"%(site_url)s\">\n"
-"                            contact us form\n"
-"                            </a>\n"
-"                            and never reply this email.\n"
-"                        "
+"        In the case of any inconsistencies, please contact us via\n"
+"        <a class=\"blue-text\" href=\"%(site_url)scontact-us/\">\n"
+"        contact us form\n"
+"        </a>\n"
+"        and never reply this email.\n"
+"    "
 msgstr ""
 "\n"
-"                            در صورت وجود هر گونه مشکل،  لطفا از طریق\n"
+"                            در صورت وجود هر گونه مغایرت،  لطفا از طریق\n"
 "                            <a class=\"blue-text\" href=\"%(site_url)s\">\n"
 "                            فرم تماس با ما\n"
 "                            </a>\n"
@@ -612,10 +627,8 @@ msgid "Timeout"
 msgstr ""
 
 #: subprocess_manager/models.py:19
-#, fuzzy
-#| msgid "Comment"
 msgid "Command"
-msgstr "نظر"
+msgstr "دستور"
 
 #: subprocess_manager/models.py:21
 msgid "Timeout (s)"
@@ -739,10 +752,8 @@ msgid "Upal Payment Transactions"
 msgstr "تراکنش‌های پرداختی یوپال"
 
 #: transactions/models.py:88 transactions/page_processors.py:87
-#, fuzzy
-#| msgid "Author:"
 msgid "Authority"
-msgstr "نویسنده"
+msgstr "قدرت"
 
 #: transactions/models.py:94 transactions/page_processors.py:89
 msgid "Reference ID"
@@ -774,15 +785,11 @@ msgstr "تراکنش پرداختی موفقیت آمیز بود"
 #~ msgid "Please enter the captcha"
 #~ msgstr "حروف تصویر را وارد کنید"
 
-#, fuzzy
-#~| msgid "Payment Time"
 #~ msgid "Submit Time"
-#~ msgstr "زمان پرداخت"
+#~ msgstr "زمان ارسال"
 
-#, fuzzy
-#~| msgid "Change"
 #~ msgid "Last Change"
-#~ msgstr "تغییر"
+#~ msgstr "آخرین تغییر"
 
 #~ msgid "Blog"
 #~ msgstr "وبلاگ"
