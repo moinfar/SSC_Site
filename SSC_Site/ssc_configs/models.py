@@ -15,6 +15,10 @@ class Announcement(models.Model):
                                               "separated by comma, enter or space"))
     message = models.TextField(verbose_name=_('message'))
     language = models.CharField(max_length=2, choices=settings.LANGUAGES, default=settings.LANGUAGES[0][0])
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.subject
 
     def clean(self):
         super().clean()
@@ -34,6 +38,7 @@ class Announcement(models.Model):
     class Meta:
         verbose_name = _("Announcement")
         verbose_name_plural = _("Announcements")
+        ordering = ("-date",)
 
 
 class Person(models.Model):
