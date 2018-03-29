@@ -1,7 +1,48 @@
+import re
+from django.conf import settings
+from django.core.exceptions import ValidationError
+from django.core.mail import send_mail
+from django.core.validators import validate_email
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from mezzanine.core.models import Orderable
 from mezzanine.pages.models import Page
+from mezzanine.utils.email import send_mail_template
+
+
+class Announcement(models.Model):
+    subject = models.CharField(max_length=1000, verbose_name=_("subject"), )
+    recipients = models.TextField(verbose_name=_("recipients"),
+                                  help_text=_("enter recipients' emails "
+                                              "separated by comma, enter or space"))
+    message = models.TextField(verbose_name=_('message'))
+
+    def clean(self):
+        super().clean()
+        self.recipient_list = [recipient for recipient in re.split(',| |\n|\r', self.recipients) if recipient]
+        invalid_addresses = []
+        print(self.recipients)
+        for recipient in self.recipient_list:
+            print(recipient, len(recipient))
+            try:
+                validate_email(recipient)
+            except ValidationError:
+                invalid_addresses.append(recipient)
+
+        if invalid_addresses:
+            raise ValidationError({'recipients': 'Invalid email addresses: ' + ", ".join(invalid_addresses)})
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        if self.pk is None:
+            send_mail(subject=self.subject,
+                      from_email=settings.DEFAULT_FROM_EMAIL,
+                      message="", html_message=self.message, recipient_list=self.recipient_list)
+        return super().save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = _("Announcement")
+        verbose_name_plural = _("Announcements")
 
 
 class Person(models.Model):

@@ -5,12 +5,33 @@ from mezzanine.blog.models import BlogPost
 from mezzanine.core import admin as mezzanineAdmin
 from mezzanine.pages.admin import PageAdmin
 
+from ssc_configs.models import Announcement
 from .models import GalleryContainerPage
 from .models import GroupsInfoPage, GroupInfo, GroupMember, Person, Duty
 
 blog_fieldsets = deepcopy(BlogPostAdmin.fieldsets)
 blog_fieldsets[0][1]["fields"].insert(+1, "page")
 blog_fieldsets[0][1]["fields"].insert(-1, "read_more_text")
+
+
+class AnnouncementAdmin(admin.ModelAdmin):
+    list_display = ['id', 'subject']
+
+    def get_all_fields(self):
+        return list(map(lambda x: x.name, Announcement._meta.fields))
+
+    def add_view(self, *args, **kwargs):
+        self.readonly_fields = []
+        self.fields = self.get_all_fields().remove('id')
+        return super().add_view(*args, **kwargs)
+
+    def change_view(self, *args, **kwargs):
+        self.readonly_fields = self.get_all_fields()
+        self.fields = []
+        return super().change_view(*args, **kwargs)
+
+
+admin.site.register(Announcement, AnnouncementAdmin)
 
 
 class MyBlogPostAdmin(BlogPostAdmin):
