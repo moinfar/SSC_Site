@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n mezzanine_tags blog_tags keyword_tags disqus_tags %}
 
-{% block meta_title %}{% if page %}{{ page.meta_title }}{% else %}{% trans "Announcements" %}{% endif %}{% endblock %}
+{% block meta_title %}{% if page %}{{ page.meta_title }}{% else %}{% trans "Blog" %}{% endif %}{% endblock %}
 
 {% block meta_keywords %}{% metablock %}
 {% keywords_for page as keywords %}
@@ -19,7 +19,7 @@
 {% block breadcrumb_menu %}
 {{ block.super }}
 <span class="card-panel">
-    <a href="{% url 'blog_post_list' %}">{% trans "Announcements" %}</a>
+    <a href="{% url 'blog_post_list' %}">{% trans "Blog" %}</a>
 </span>
 {% if tag or category or year or month or author %}
 <span class="card-panel">{% spaceless %}
@@ -45,20 +45,20 @@
 {% if tag or category or year or month or author %}
 {% block blog_post_list_filterinfo %}
 {% if tag %}
-{% trans "Viewing announcements tagged" %} {{ tag }}
+{% trans "Viewing blog posts tagged" %} {{ tag }}
 {% else %}{% if category %}
-{% trans "Viewing announcements for the category" %} {{ category }}
+{% trans "Viewing blog posts for the category" %} {{ category }}
 {% else %}{% if year or month %}
-{% trans "Viewing announcements from" %} {% if month %}{{ month }}, {% endif %}
+{% trans "Viewing blog posts from" %} {% if month %}{{ month }}, {% endif %}
 {{ year }}
 {% else %}{% if author %}
-{% trans "Viewing announcements by" %}
+{% trans "Viewing blog posts by" %}
 {{ author.get_full_name|default:author.username }}
 {% endif %}{% endif %}{% endif %}{% endif %}
 {% endblock %}
 {% else %}
 {% block blog_recent_posts_title %}
-{% trans "Recent announcements" %}
+{% trans "Recent blog posts" %}
 {% endblock %}
 {% endif %}
 {% endblock %}

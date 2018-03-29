@@ -95,7 +95,7 @@ EXTRA_MODEL_FIELDS = (
 
 BLOG_USE_FEATURED_IMAGE = True
 
-BLOG_SLUG = 'announcements'
+BLOG_SLUG = 'blog posts'
 
 # ReCaptcha settings
 RECAPTCHA_PUBLIC_KEY = '6LeQbTMUAAAAANtR7JIMvi6UpUiHdCvXYAwJt1WD'

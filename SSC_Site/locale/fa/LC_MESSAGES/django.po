@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-29 17:28+0430\n"
+"POT-Creation-Date: 2018-03-29 18:25+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -297,13 +297,13 @@ msgstr ""
 "                    "
 
 #: ssc_template/templates/blog/blog_post_detail.html:61
-msgid "Related announcements"
-msgstr "اطلاعیه‌های مرتبط"
+msgid "Related blog posts"
+msgstr "پست‌های مرتبط"
 
 #: ssc_template/templates/blog/blog_post_list.html:4
 #: ssc_template/templates/blog/blog_post_list.html:22
-msgid "Announcements"
-msgstr "اطلاعیه‌ها"
+msgid "Blog"
+msgstr "بلاگ"
 
 #: ssc_template/templates/blog/blog_post_list.html:27
 msgid "Tag:"
@@ -318,24 +318,24 @@ msgid "Author:"
 msgstr "نویسنده"
 
 #: ssc_template/templates/blog/blog_post_list.html:48
-msgid "Viewing announcements tagged"
-msgstr "اطلاعیه‌های با برچسب"
+msgid "Viewing blog posts tagged"
+msgstr "پست‌های با برچسب"
 
 #: ssc_template/templates/blog/blog_post_list.html:50
-msgid "Viewing announcements for the category"
-msgstr "اطلاعیه‌های با موضوع"
+msgid "Viewing blog posts for the category"
+msgstr "پست‌های با موضوع"
 
 #: ssc_template/templates/blog/blog_post_list.html:52
-msgid "Viewing announcements from"
-msgstr "اطلاعیه‌های نوشته‌شده به دست"
+msgid "Viewing blog posts from"
+msgstr "پست‌های نوشته‌شده به دست"
 
 #: ssc_template/templates/blog/blog_post_list.html:55
-msgid "Viewing announcements by"
-msgstr "اطلاعیه‌های نوشته‌شده به دست"
+msgid "Viewing blog posts by"
+msgstr "پست‌های نوشته‌شده به دست"
 
 #: ssc_template/templates/blog/blog_post_list.html:61
-msgid "Recent announcements"
-msgstr "اطلاعیه‌های اخیر"
+msgid "Recent blog posts"
+msgstr "پست‌های اخیر بلاگ"
 
 #: ssc_template/templates/blog/includes/filter_panel.html:7
 msgid "Recent Posts"
@@ -376,11 +376,11 @@ msgstr ""
 msgid "Atom"
 msgstr ""
 
-#: ssc_template/templates/email/email_base.html:55
+#: ssc_template/templates/email/email_base.html:51
 msgid "Students' Scientific Chapter"
 msgstr "            انجمن علمی دانشکده کامپیوتر"
 
-#: ssc_template/templates/email/email_base.html:89
+#: ssc_template/templates/email/email_base.html:85
 #, python-format
 msgid ""
 "\n"
@@ -779,6 +779,15 @@ msgstr "مقدار پرداخت به ریال"
 msgid "Successful Payment Transaction"
 msgstr "تراکنش پرداختی موفقیت آمیز بود"
 
+#~ msgid "Related announcements"
+#~ msgstr "اطلاعیه‌های مرتبط"
+
+#~ msgid "Announcements"
+#~ msgstr "اطلاعیه‌ها"
+
+#~ msgid "Recent announcements"
+#~ msgstr "اطلاعیه‌های اخیر"
+
 #~ msgid "You are going to be redirected to Redirecting to Payment Page ..."
 #~ msgstr "شما در حال ارسال به درگاه پرداخت هستید."
 
@@ -796,9 +805,6 @@ msgstr "تراکنش پرداختی موفقیت آمیز بود"
 
 #~ msgid "Last Change"
 #~ msgstr "آخرین تغییر"
-
-#~ msgid "Blog"
-#~ msgstr "وبلاگ"
 
 #~ msgid "Click here"
 #~ msgstr "اینجا کلیک‌کنید"
