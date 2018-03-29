@@ -216,7 +216,7 @@ msgstr "متن ایمیل"
 
 #: ssc_configs/models.py:35
 msgid "Announcement"
-msgstr "اطلاعیه‌ها"
+msgstr "اطلاعیه"
 
 #: ssc_configs/models.py:36
 msgid "Announcements"
