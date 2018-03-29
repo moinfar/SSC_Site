@@ -33,10 +33,6 @@ table, td, tr {
     }
 }
 
-footer a {
-    color: #BBDEFB;
-}
-
     </style>
 
     <link type="text/css" rel="stylesheet" href="{{ site_url }}{% static 'base/font/iransans/style.css' %}?v=1.2"/>
@@ -86,7 +82,7 @@ footer a {
 
             <br>
             <span style="color: white">
-                {% blocktrans with ssc_link_attrs='class="blue-text text-lighten-4" href="http://ssc.ce.sharif.edu/"' sharif_link_attrs='class="blue-text text-lighten-4" href="http://sharif.edu"' %}
+                {% blocktrans with ssc_link_attrs='class="blue-text text-lighten-4" href="http://ssc.ce.sharif.edu/" style="color: #BBDEFB"' sharif_link_attrs='class="blue-text text-lighten-4" href="http://sharif.edu" style="color: #BBDEFB"' %}
                 &copy;
                 <a {{ ssc_link_attrs }} >Students Scientific Chapter of Computer Engineering Department</a>,
                 <a {{ sharif_link_attrs }} >Sharif University of Technology</a>
