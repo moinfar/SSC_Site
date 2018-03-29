@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
 from django.core.validators import validate_email
 from django.db import models
+from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 from mezzanine.core.models import Orderable
 from mezzanine.pages.models import Page
@@ -35,9 +36,10 @@ class Announcement(models.Model):
     def save(self, *args, **kwargs):
         self.full_clean()
         if self.pk is None:
+            message = render_to_string('email/announcement.html', context={'message': self.message})
             send_mail(subject=self.subject,
                       from_email=settings.DEFAULT_FROM_EMAIL,
-                      message="", html_message=self.message, recipient_list=self.recipient_list)
+                      message="", html_message=message, recipient_list=self.recipient_list)
         return super().save(*args, **kwargs)
 
     class Meta:
