@@ -39,11 +39,13 @@ class AnnouncementAdmin(admin.ModelAdmin):
         context = {'message': obj.message, 'request': request, 'site_url': settings.SITE_URL}
         context.update(context_settings())
         if obj.pk is None:
+            former_language = translation.get_language()
             translation.activate(obj.language)
             message = get_template('email/announcement.html').render(context=context)
             send_mail(subject=obj.subject,
                       from_email=settings.DEFAULT_FROM_EMAIL,
                       message="", html_message=message, recipient_list=obj.recipient_list)
+            translation.activate(former_language)
         return super().save_model(request, obj, form, change)
 
 admin.site.register(Announcement, AnnouncementAdmin)
