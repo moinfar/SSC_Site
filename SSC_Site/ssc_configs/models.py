@@ -3,6 +3,7 @@ from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from mezzanine.conf import settings
 from mezzanine.core.models import Orderable
 from mezzanine.pages.models import Page
 
@@ -13,6 +14,7 @@ class Announcement(models.Model):
                                   help_text=_("enter recipients' emails "
                                               "separated by comma, enter or space"))
     message = models.TextField(verbose_name=_('message'))
+    language = models.CharField(max_length=2, choices=settings.LANGUAGES, default=settings.LANGUAGES[0][0])
 
     def clean(self):
         super().clean()

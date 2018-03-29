@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.core.mail import send_mail
 from django.template.loader import get_template
 from django.conf import settings
+from django.utils import translation
 from mezzanine.blog.admin import BlogPostAdmin
 from mezzanine.blog.models import BlogPost
 from mezzanine.core import admin as mezzanineAdmin
@@ -35,9 +36,10 @@ class AnnouncementAdmin(admin.ModelAdmin):
         return super().change_view(*args, **kwargs)
 
     def save_model(self, request, obj, form, change):
-        context = {'message': obj.message, 'request': request}
+        context = {'message': obj.message, 'request': request, 'site_url': settings.SITE_URL}
         context.update(context_settings())
         if obj.pk is None:
+            translation.activate(obj.language)
             message = get_template('email/announcement.html').render(context=context)
             send_mail(subject=obj.subject,
                       from_email=settings.DEFAULT_FROM_EMAIL,
