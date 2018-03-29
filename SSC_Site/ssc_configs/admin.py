@@ -8,7 +8,6 @@ from mezzanine.blog.admin import BlogPostAdmin
 from mezzanine.blog.models import BlogPost
 from mezzanine.core import admin as mezzanineAdmin
 from mezzanine.pages.admin import PageAdmin
-from mezzanine.conf.context_processors import settings as context_settings
 
 from ssc_configs.models import Announcement
 from .models import GalleryContainerPage
@@ -37,7 +36,6 @@ class AnnouncementAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         context = {'message': obj.message, 'request': request, 'site_url': settings.SITE_URL}
-        context.update(context_settings())
         if obj.pk is None:
             former_language = translation.get_language()
             translation.activate(obj.language)
