@@ -1,15 +1,10 @@
 import re
-from django.conf import settings
 from django.core.exceptions import ValidationError
-from django.core.mail import send_mail
 from django.core.validators import validate_email
 from django.db import models
-from django.shortcuts import render
-from django.template.loader import render_to_string, get_template
 from django.utils.translation import ugettext_lazy as _
 from mezzanine.core.models import Orderable
 from mezzanine.pages.models import Page
-from mezzanine.conf.context_processors import settings as context_settings
 
 
 class Announcement(models.Model):
@@ -33,17 +28,6 @@ class Announcement(models.Model):
 
         if invalid_addresses:
             raise ValidationError({'recipients': 'Invalid email addresses: ' + ", ".join(invalid_addresses)})
-
-    def save(self, *args, **kwargs):
-        self.full_clean()
-        context = {'message': self.message}
-        context.update(context_settings())
-        if self.pk is None:
-            message = get_template('email/announcement.html').render(context=context)
-            send_mail(subject=self.subject,
-                      from_email=settings.DEFAULT_FROM_EMAIL,
-                      message="", html_message=message, recipient_list=self.recipient_list)
-        return super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = _("Announcement")

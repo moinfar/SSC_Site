@@ -1,9 +1,13 @@
 from copy import deepcopy
 from django.contrib import admin
+from django.core.mail import send_mail
+from django.template.loader import get_template
+from django.conf import settings
 from mezzanine.blog.admin import BlogPostAdmin
 from mezzanine.blog.models import BlogPost
 from mezzanine.core import admin as mezzanineAdmin
 from mezzanine.pages.admin import PageAdmin
+from mezzanine.conf.context_processors import settings as context_settings
 
 from ssc_configs.models import Announcement
 from .models import GalleryContainerPage
@@ -30,6 +34,15 @@ class AnnouncementAdmin(admin.ModelAdmin):
         self.fields = []
         return super().change_view(*args, **kwargs)
 
+    def save_model(self, request, obj, form, change):
+        context = {'message': obj.message, 'request': request}
+        context.update(context_settings())
+        if obj.pk is None:
+            message = get_template('email/announcement.html').render(context=context)
+            send_mail(subject=obj.subject,
+                      from_email=settings.DEFAULT_FROM_EMAIL,
+                      message="", html_message=message, recipient_list=obj.recipient_list)
+        return super().save_model(request, obj, form, change)
 
 admin.site.register(Announcement, AnnouncementAdmin)
 
