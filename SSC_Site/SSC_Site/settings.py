@@ -17,10 +17,9 @@ from django.utils.translation import ugettext_lazy as _
 ADMIN_MENU_ORDER = (
     ('Content', ('pages.Page', 'blog.BlogPost',
                  'generic.ThreadedComment', (_('Media Library'), 'fb_browse'),)),
-    (_('SSC_Configs'), ('ssc_configs.GroupInfo',)),
+    (_('SSC_Configs'), ('ssc_configs.GroupInfo', 'ssc_configs.Duty', 'ssc_configs.Person')),
     ('Site', ('sites.Site', 'redirects.Redirect', 'conf.Setting')),
     ('Users', ('auth.User', 'auth.Group',)),
-
 )
 
 # A three item sequence, each containing a sequence of template tags

@@ -9,7 +9,7 @@ class Person(models.Model):
                             unique=True)
     name = models.CharField(max_length=500, blank=False, null=False, verbose_name=_("Name"))
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     class Meta:
@@ -22,7 +22,7 @@ class Duty(models.Model):
                             unique=True)
     title = models.CharField(max_length=500, blank=False, null=False, verbose_name=_("Title"))
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     class Meta:
