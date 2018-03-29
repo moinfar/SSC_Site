@@ -10,9 +10,9 @@
         {% trans 'Your information has been recorded in the SSC site as provided below.' %}
     {% endif %}
     <br>
-    {% blocktrans %}
-        In the case of any inconsistencies, please contact us via
-        <a class="blue-text" href="{{ site_url }}contact-us/">
+    {% blocktrans with contact_us_link_attrs='class="blue-text" href="{{ site_url }}contact-us/"' %}
+        In case of any inconsistencies, please contact us via
+        <a {{ contact_us_link_attrs }} >
         contact us form
         </a>
         and never reply this email.
