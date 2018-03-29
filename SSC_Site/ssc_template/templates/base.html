@@ -138,13 +138,15 @@
         </div>
 
         {% block breadcrumb_wrapper %}
-        <div class="px-10 vertical spacer"></div>
-        <div class="breadcrumb {% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %} container"
-             {% if LANGUAGE_BIDI %} dir="rtl"{% endif %} >
-            {% spaceless %}
-            {% block breadcrumb_menu %}{% page_menu "pages/menus/breadcrumb.html" %}{% endblock %}
-            {% endspaceless %}
-        </div>
+        {% if request.user.is_staff %}
+            <div class="px-10 vertical spacer"></div>
+            <div class="breadcrumb {% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %} container"
+                 {% if LANGUAGE_BIDI %} dir="rtl"{% endif %} >
+                {% spaceless %}
+                {% block breadcrumb_menu %}{% page_menu "pages/menus/breadcrumb.html" %}{% endblock %}
+                {% endspaceless %}
+            </div>
+        {% endif %}
         {% endblock %}
 
         <div class="row"></div>
