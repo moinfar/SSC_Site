@@ -8,7 +8,7 @@ from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 from mezzanine.core.models import Orderable
 from mezzanine.pages.models import Page
-from mezzanine.utils.email import send_mail_template
+from mezzanine.conf.context_processors import settings as context_settings
 
 
 class Announcement(models.Model):
@@ -35,8 +35,10 @@ class Announcement(models.Model):
 
     def save(self, *args, **kwargs):
         self.full_clean()
+        context = {'message': self.message}
+        context.update(context_settings())
         if self.pk is None:
-            message = render_to_string('email/announcement.html', context={'message': self.message})
+            message = render_to_string('email/announcement.html', context=context)
             send_mail(subject=self.subject,
                       from_email=settings.DEFAULT_FROM_EMAIL,
                       message="", html_message=message, recipient_list=self.recipient_list)
