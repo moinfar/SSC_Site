@@ -20,16 +20,16 @@
 {% endblock %}
 
 {% block content %}
-    <table class="center">
+    <table style="border-collapse: collapse; width: 95%; margin: 0 auto;">
         <tbody>
-            {% for field, value in fields %}
+        {% for field, value in fields %}
                 {% if not field|is_captcha %}
                     <tr {% if forloop.counter0|divisibleby:2 %} style="background-color: #f2f2f2" {% endif %}>
-                    <td><b>{{ field }}</b></td>
-                    <td>{{ value|linebreaks }}</td>
+                        <td><b>{{ field }}</b></td>
+                        <td>{{ value|linebreaks }}</td>
                     </tr>
                 {% endif %}
-            {% endfor %}
+        {% endfor %}
         </tbody>
     </table>
 {% endblock %}
