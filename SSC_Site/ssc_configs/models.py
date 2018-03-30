@@ -14,8 +14,16 @@ class Announcement(models.Model):
     recipients = models.TextField(verbose_name=_("recipients"),
                                   help_text=_("enter recipients' emails "
                                               "separated by comma, enter or space"))
-    message = RichTextField(verbose_name=_('message'))
-    language = models.CharField(max_length=2, choices=settings.LANGUAGES, default=settings.LANGUAGES[0][0])
+    message = RichTextField(verbose_name=_('message (don\'t use table)'),
+                            help_text=_("IMPORTANT WARNING: PLEASE DO NOT USE TABLE IN EMAIL! "
+                                        "By the time I'm writing this, "
+                                        "tables of this editor are rendered awfully"
+                                        " by the mail clients. "
+                                        "Make sure they are ok first by sending a test email "
+                                        "containing your desired table. (Don't take account "
+                                        "for the previewer of the editor)"))
+    language = models.CharField(max_length=2, choices=settings.LANGUAGES,
+                                default=settings.LANGUAGES[0][0])
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -23,7 +31,8 @@ class Announcement(models.Model):
 
     def clean(self):
         super().clean()
-        self.recipient_list = [recipient for recipient in re.split(',| |\n|\r', self.recipients) if recipient]
+        self.recipient_list = [recipient for recipient in re.split(',| |\n|\r', self.recipients) if
+                               recipient]
         invalid_addresses = []
         print(self.recipients)
         for recipient in self.recipient_list:
@@ -34,7 +43,8 @@ class Announcement(models.Model):
                 invalid_addresses.append(recipient)
 
         if invalid_addresses:
-            raise ValidationError({'recipients': 'Invalid email addresses: ' + ", ".join(invalid_addresses)})
+            raise ValidationError(
+                {'recipients': 'Invalid email addresses: ' + ", ".join(invalid_addresses)})
 
     class Meta:
         verbose_name = _("Announcement")
