@@ -1,4 +1,5 @@
 import re
+from ckeditor.fields import RichTextField
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.db import models
@@ -13,7 +14,7 @@ class Announcement(models.Model):
     recipients = models.TextField(verbose_name=_("recipients"),
                                   help_text=_("enter recipients' emails "
                                               "separated by comma, enter or space"))
-    message = models.TextField(verbose_name=_('message'))
+    message = RichTextField(verbose_name=_('message'))
     language = models.CharField(max_length=2, choices=settings.LANGUAGES, default=settings.LANGUAGES[0][0])
     date = models.DateTimeField(auto_now_add=True)
 
