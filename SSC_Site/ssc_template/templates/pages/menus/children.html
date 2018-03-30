@@ -1,4 +1,4 @@
-{% for page in page_branch %}
+{% for page in page_branch reversed %}
 <a href="{{ page.get_absolute_url }}">
     <div class="card-panel">
         {{ page.title }}
