@@ -45,7 +45,7 @@ table, td, tr {
 </head>
 
 <body>
-
+    {% autoescape off %}
     <header style="width: 100%; height: 50px; background: #082e68;">
         <a href="{{ site_url }}"><img src="{{ site_url }}{% static 'base/image/SSC-unofficial-logo-white.png' %}" style="float: {% if LANGUAGE_BIDI %} left {% else %} right {% endif %}; height: 50px;"></a>
         <span style="float: {% if LANGUAGE_BIDI %} right {% else %} left {% endif %}; color: white; margin-right: 5px; height: 50px; line-height: 50px; vertical-align: middle; font-size: 15px;">
@@ -98,5 +98,5 @@ table, td, tr {
         </footer>
 
     </div>
-
+    {% endautoescape %}
 </body>
