@@ -2,7 +2,7 @@
 {% load i18n other_ssc_tags %}
 
 {% block message %}
-    {{ message|linebreaks }}
+    {{ message|linebreaks|safe }}
 {% endblock %}
 
 {% block content_wrapper %}

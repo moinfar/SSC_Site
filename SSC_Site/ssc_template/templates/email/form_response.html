@@ -3,7 +3,7 @@
 
 {% block message %}
     {% if message %}
-        {{ message }}
+        {{ message|safe }}
     {% else %}
         {% trans 'Hi.' %}
         <br>
