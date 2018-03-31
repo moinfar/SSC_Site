@@ -3,6 +3,7 @@ from ckeditor.fields import RichTextField
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.db import models
+from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 from mezzanine.conf import settings
 from mezzanine.core.models import Orderable
@@ -51,6 +52,10 @@ class Announcement(models.Model):
         verbose_name_plural = _("Announcements")
         ordering = ("-date",)
 
+
+class Attachment(models.Model):
+    announcement = models.ForeignKey(to=Announcement, related_name='attachments')
+    file = models.FileField(upload_to='attachments/')
 
 class Person(models.Model):
     slug = models.CharField(max_length=255, blank=False, null=False, verbose_name=_("slug"),

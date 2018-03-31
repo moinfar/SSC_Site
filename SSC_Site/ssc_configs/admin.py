@@ -1,9 +1,12 @@
+import html
+
 from copy import deepcopy
 from django.contrib import admin
 from django.core.mail import send_mail
 from django.template.loader import get_template
 from django.conf import settings
 from django.utils import translation
+from django.utils.html import format_html
 from mezzanine.blog.admin import BlogPostAdmin
 from mezzanine.blog.models import BlogPost
 from mezzanine.core import admin as mezzanineAdmin
@@ -21,22 +24,23 @@ blog_fieldsets[0][1]["fields"].insert(-1, "read_more_text")
 class AnnouncementAdmin(admin.ModelAdmin):
     list_display = ['id', 'date', 'subject']
 
-    def get_all_fields(self):
-        return list(map(lambda x: x.name, Announcement._meta.fields))
-
     def add_view(self, *args, **kwargs):
         self.readonly_fields = []
-        self.fields = self.get_all_fields().remove('id')
+        self.exclude = []
         return super().add_view(*args, **kwargs)
 
     def change_view(self, *args, **kwargs):
-        self.readonly_fields = self.get_all_fields()
-        self.fields = []
+        self.readonly_fields = ['id', 'subject', 'language', 'date', 'message_safe', 'recipients']
+        self.exclude = ['message']
         return super().change_view(*args, **kwargs)
+
+    def message_safe(self, obj):
+        return format_html(html.unescape(obj.message))
+    message_safe.short_description = 'message'
 
     def save_model(self, request, obj, form, change):
         context = {'message': obj.message, 'request': request, 'site_url': settings.SITE_URL}
-        if obj.pk is None:
+        if False and obj.pk is None:
             former_language = translation.get_language()
             translation.activate(obj.language)
             message = get_template('email/announcement.html').render(context=context)

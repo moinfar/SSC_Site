@@ -104,7 +104,10 @@ COMMENT_FORM_CLASS = 'mezzacaptcha.forms.CaptchaThreadedCommentForm'
 # RichTextField Settings
 RICHTEXT_WIDGET_CLASS = 'ckeditor.widgets.CKEditorWidget'
 
-# CKEditor Settings
+#####################
+# CKEDITOR SETTINGS #
+#####################
+
 # Full Configuration provided here, you can comment/uncomment for further changes
 # If you decide to remove some tools, please do not remove it from code and just comment it out!
 # So next developer will be able to role them back if neccessary
