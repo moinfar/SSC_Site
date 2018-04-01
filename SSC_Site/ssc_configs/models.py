@@ -57,6 +57,10 @@ class Attachment(models.Model):
     announcement = models.ForeignKey(to=Announcement, related_name='attachments')
     file = models.FileField(upload_to='attachments/')
 
+    def __str__(self):
+        return '<a href="{url}">{name}</a>'.format(url=self.file.url, name=self.file.name)
+
+
 class Person(models.Model):
     slug = models.CharField(max_length=255, blank=False, null=False, verbose_name=_("slug"),
                             unique=True)
