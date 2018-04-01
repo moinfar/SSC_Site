@@ -3,6 +3,7 @@ from ckeditor.fields import RichTextField
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.db import models
+from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 from mezzanine.conf import settings
@@ -58,7 +59,7 @@ class Attachment(models.Model):
     file = models.FileField(upload_to='attachments/')
 
     def __str__(self):
-        return '<a href="{url}">{name}</a>'.format(url=self.file.url, name=self.file.name)
+        return format_html('<a href="{url}">{name}</a>'.format(url=self.file.url, name=self.file.name))
 
 
 class Person(models.Model):

@@ -59,9 +59,9 @@ class AnnouncementAdmin(admin.ModelAdmin):
             translation.activate(obj.language)
             message = get_template('email/announcement.html').render(context=context)
             connection = get_connection()
-            email = EmailMultiAlternatives(subject=obj.subject, to=obj.recipient_list,
+            email = EmailMultiAlternatives(subject=obj.subject, body=message, to=obj.recipient_list,
                                            connection=connection)
-            email.attach_alternative(message, 'text/html')
+            email.content_subtype = 'html'
             self.announcement = obj
             self.email = email  # Email will be sent when attachments are saved and accessible
             translation.activate(former_language)
