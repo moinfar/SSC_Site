@@ -3,6 +3,7 @@ from ckeditor.fields import RichTextField
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.db import models
+from django.utils.deconstruct import deconstructible
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
@@ -36,9 +37,7 @@ class Announcement(models.Model):
         self.recipient_list = [recipient for recipient in re.split(',| |\n|\r', self.recipients) if
                                recipient]
         invalid_addresses = []
-        print(self.recipients)
         for recipient in self.recipient_list:
-            print(recipient, len(recipient))
             try:
                 validate_email(recipient)
             except ValidationError:
@@ -54,9 +53,19 @@ class Announcement(models.Model):
         ordering = ("-date",)
 
 
+@deconstructible
+class SizeValidator:
+    def __init__(self, max_size): # in mega bytes
+        self.max_size = max_size
+
+    def __call__(self, obj):
+        if obj.size > self.max_size * 1024 * 1024:
+            raise ValidationError('File size must not be greater than {} MB'.format(self.max_size))
+
+
 class Attachment(models.Model):
     announcement = models.ForeignKey(to=Announcement, related_name='attachments')
-    file = models.FileField(upload_to='attachments/')
+    file = models.FileField(upload_to='attachments/', validators=[SizeValidator(0.5)])
 
     def __str__(self):
         return format_html('<a href="{url}">{name}</a>'.format(url=self.file.url, name=self.file.name))
