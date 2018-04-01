@@ -1,4 +1,6 @@
-from __future__ import unicode_literals
+DEBUG = '%(debug)s'
+
+SITE_URL = '%(site_url)s'
 
 SECRET_KEY = "%(secret_key)s"
 NEVERCACHE_KEY = "%(nevercache_key)s"
@@ -36,3 +38,10 @@ CACHES = {
 }
 
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+
+EMAIL_HOST = '%(email_host)s'
+EMAIL_HOST_USER = '%(email_host_user)s'
+DEFAULT_FROM_EMAIL = '%(default_from_email)s'
+EMAIL_HOST_PASSWORD = '%(email_host_password)s'
+EMAIL_PORT = '%(email_port)s'
+EMAIL_USE_TLS = True
