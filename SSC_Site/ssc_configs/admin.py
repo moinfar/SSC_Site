@@ -58,9 +58,8 @@ class AnnouncementAdmin(admin.ModelAdmin):
             former_language = translation.get_language()
             translation.activate(obj.language)
             message = get_template('email/announcement.html').render(context=context)
-            from_email = settings.ANNOUNCEMENT_FROM_EMAIL if hasattr(settings, 'ANNOUNCEMENT_FROM_EMAIL') else None
             email = EmailMultiAlternatives(subject=obj.subject,
-                                           from_email=from_email,
+                                           from_email=obj.from_email,
                                            body=message, to=obj.recipient_list)
             email.content_subtype = 'html'
             self.announcement = obj

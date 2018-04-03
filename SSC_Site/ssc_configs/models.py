@@ -12,7 +12,15 @@ from mezzanine.core.models import Orderable
 from mezzanine.pages.models import Page
 
 
+def get_announcement_from_emails():
+    emails = settings.ANNOUNCEMENT_FROM_EMAILS if hasattr(settings,
+                                                          'ANNOUNCEMENT_FROM_EMAILS') else []
+    emails.append(settings.DEFAULT_FROM_EMAIL)
+    return [(email, email) for email in emails]
+
+
 class Announcement(models.Model):
+    from_email = models.CharField(max_length=100, choices=get_announcement_from_emails())
     subject = models.CharField(max_length=1000, verbose_name=_("subject"), )
     recipients = models.TextField(verbose_name=_("recipients"),
                                   help_text=_("enter recipients' emails "
@@ -55,7 +63,7 @@ class Announcement(models.Model):
 
 @deconstructible
 class SizeValidator:
-    def __init__(self, max_size): # in mega bytes
+    def __init__(self, max_size):  # in mega bytes
         self.max_size = max_size
 
     def __call__(self, obj):
@@ -68,7 +76,8 @@ class Attachment(models.Model):
     file = models.FileField(upload_to='attachments/', validators=[SizeValidator(0.5)])
 
     def __str__(self):
-        return format_html('<a href="{url}">{name}</a>'.format(url=self.file.url, name=self.file.name))
+        return format_html(
+            '<a href="{url}">{name}</a>'.format(url=self.file.url, name=self.file.name))
 
 
 class Person(models.Model):
