@@ -39,8 +39,8 @@ class AnnouncementAdmin(admin.ModelAdmin):
         return super().add_view(*args, **kwargs)
 
     def change_view(self, *args, **kwargs):
-        self.readonly_fields = ['id', 'subject', 'language', 'date', 'message_safe', 'attachments'
-            ,'recipients']
+        self.readonly_fields = ['id', 'from_email', 'subject', 'language', 'date', 'message_safe',
+                                'attachments', 'recipients']
         self.inlines = []
         self.exclude = ['message']
         return super().change_view(*args, **kwargs)
