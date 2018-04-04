@@ -12,42 +12,14 @@ from mezzanine.conf import settings
 from mezzanine.core.models import Orderable
 from mezzanine.pages.models import Page
 
+from ssc_configs.utils import EmailListTextField
+
 
 def get_announcement_from_emails():
     emails = settings.ANNOUNCEMENT_FROM_EMAILS if hasattr(settings,
                                                           'ANNOUNCEMENT_FROM_EMAILS') else []
     emails.append(settings.DEFAULT_FROM_EMAIL)
     return [(email, email) for email in emails]
-
-
-class EmailListFormField(forms.CharField):
-    def widget_attrs(self, widget):
-        attrs = super().widget_attrs(widget)
-        attrs['rows'] = '1'
-        return attrs
-
-
-class EmailListTextField(models.TextField):
-    @staticmethod
-    def to_list(value):
-        return [email_address for email_address in re.split(',| |\n|\r', value or '') if
-                email_address]
-
-    def formfield(self, **kwargs):
-        help_text = _("enter email addresses separated by comma, enter or space")
-        kwargs.update({'form_class': EmailListFormField, 'help_text': help_text})
-        return super().formfield(**kwargs)
-
-    def validate(self, value, model_instance):
-        invalid_addresses = []
-        for email in self.to_list(value):
-            try:
-                validate_email(email)
-            except ValidationError:
-                invalid_addresses.append(email)
-
-        if invalid_addresses:
-            raise ValidationError('Invalid email addresses: ' + ", ".join(invalid_addresses))
 
 
 class MailingList(models.Model):
@@ -80,10 +52,12 @@ class Announcement(models.Model):
     date = models.DateTimeField(auto_now_add=True)
 
     cc = EmailListTextField(verbose_name=_('CC'), null=True, blank=True)
-    cc_mailing_lists = models.ManyToManyField(to=MailingList, blank=True, related_name='+')
+    cc_mailing_lists = models.ManyToManyField(to=MailingList, blank=True, related_name='+',
+                                              verbose_name=_('CC mailing lists'))
 
     bcc = EmailListTextField(verbose_name=_('BCC'), null=True, blank=True)
-    bcc_mailing_lists = models.ManyToManyField(to=MailingList, blank=True, related_name='+')
+    bcc_mailing_lists = models.ManyToManyField(to=MailingList, blank=True, related_name='+',
+                                               verbose_name=_('BCC mailing lists'))
 
     def __str__(self):
         return self.subject

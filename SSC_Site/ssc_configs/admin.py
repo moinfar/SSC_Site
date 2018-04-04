@@ -15,43 +15,15 @@ from mezzanine.blog.models import BlogPost
 from mezzanine.core import admin as mezzanineAdmin
 from mezzanine.pages.admin import PageAdmin
 
-from ssc_configs.models import Announcement, Attachment, MailingList, EmailListTextField
+from ssc_configs.forms import AnnouncementForm
+from ssc_configs.models import Announcement, Attachment, MailingList
 from .models import GalleryContainerPage
 from .models import GroupsInfoPage, GroupInfo, GroupMember, Person, Duty
-
-blog_fieldsets = deepcopy(BlogPostAdmin.fieldsets)
-blog_fieldsets[0][1]["fields"].insert(+1, "page")
-blog_fieldsets[0][1]["fields"].insert(-1, "read_more_text")
 
 
 class AttachmentInline(admin.TabularInline):
     model = Attachment
     extra = 1
-
-class AnnouncementForm(forms.ModelForm):
-    class Meta:
-        model = Announcement
-        fields = '__all__'
-
-    def clean(self):
-        super().clean()
-        if self.instance.pk:
-            return
-        all_recipients = EmailListTextField.to_list(self.cleaned_data['recipients']) + [
-            mailing_list.get_emails_list() for mailing_list in self.cleaned_data['recipients_mailing_lists']
-        ]
-        if not all_recipients:
-            raise ValidationError('Recipients email address cannot be empty. Please enter '
-                                  'at least one valid email address or select mailing lists '
-                                  'with valid emails')
-        self.cleaned_data['all_recipients'] = all_recipients
-
-        self.cleaned_data['all_cc'] = EmailListTextField.to_list(self.cleaned_data['cc']) + [
-            mailing_list.get_emails_list() for mailing_list in self.cleaned_data['cc_mailing_lists']
-        ]
-        self.cleaned_data['all_bcc'] = EmailListTextField.to_list(self.cleaned_data['bcc']) + [
-            mailing_list.get_emails_list() for mailing_list in self.cleaned_data['bcc_mailing_lists']
-        ]
 
 
 class AnnouncementAdmin(admin.ModelAdmin):
@@ -65,8 +37,10 @@ class AnnouncementAdmin(admin.ModelAdmin):
                  ('recipients', {'fields': ['recipients', 'recipients_mailing_lists'],
                                  'description': 'Enter email addresses directly or choose one '
                                                 'or more mailing list'}),
-                 ('cc', {'fields': ['cc', 'cc_mailing_lists'], 'classes': ['collapse', 'collapse-closed']}),
-                 ('bcc', {'fields': ['bcc', 'bcc_mailing_lists'], 'classes': ['collapse', 'collapse-closed']}),
+                 ('cc', {'fields': ['cc', 'cc_mailing_lists'],
+                         'classes': ['collapse', 'collapse-closed']}),
+                 ('bcc', {'fields': ['bcc', 'bcc_mailing_lists'],
+                          'classes': ['collapse', 'collapse-closed']}),
                  ]
 
     def add_view(self, *args, **kwargs):
@@ -77,9 +51,11 @@ class AnnouncementAdmin(admin.ModelAdmin):
 
     def change_view(self, *args, **kwargs):
         self.readonly_fields = ['id', 'from_email', 'subject', 'language', 'date', 'message_safe',
-                                'attachments', 'recipients', 'recipients_mailing_lists']
+                                'attachments', 'recipients', 'recipients_mailing_lists', 'cc',
+                                'cc_mailing_lists', 'bcc', 'bcc_mailing_lists']
         self.inlines = []
         self.exclude = ['message']
+        self.fieldsets = []
         return super().change_view(*args, **kwargs)
 
     def attachments(self, obj):
@@ -90,6 +66,7 @@ class AnnouncementAdmin(admin.ModelAdmin):
 
     def message_safe(self, obj):
         return format_html(html.unescape(obj.message))
+
     message_safe.short_description = 'message'
 
     def save_model(self, request, obj, form, change):
@@ -115,11 +92,17 @@ class AnnouncementAdmin(admin.ModelAdmin):
             for attachment in self.announcement.attachments.all():
                 file = attachment.file
                 self.email.attach(file.name, file.read())
-            #self.email.send()
+            self.email.send()
         return ret
+
 
 admin.site.register(Announcement, AnnouncementAdmin)
 admin.site.register(MailingList)
+
+blog_fieldsets = deepcopy(BlogPostAdmin.fieldsets)
+blog_fieldsets[0][1]["fields"].insert(+1, "page")
+blog_fieldsets[0][1]["fields"].insert(-1, "read_more_text")
+
 
 class MyBlogPostAdmin(BlogPostAdmin):
     fieldsets = blog_fieldsets
@@ -138,6 +121,7 @@ class PersonAdmin(mezzanineAdmin.BaseTranslationModelAdmin):
 
 
 admin.site.register(Person, PersonAdmin)
+
 
 class DutyAdmin(mezzanineAdmin.BaseTranslationModelAdmin):
     fieldsets = ((None, {"fields": ("slug", "title")}),)
