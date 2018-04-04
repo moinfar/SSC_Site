@@ -28,7 +28,8 @@ class EmailListFormField(forms.CharField):
 
 
 class EmailListTextField(models.TextField):
-    def to_list(self, value):
+    @staticmethod
+    def to_list(value):
         return [email_address for email_address in re.split(',| |\n|\r', value or '') if
                 email_address]
 
@@ -56,13 +57,16 @@ class MailingList(models.Model):
     def __str__(self):
         return self.name
 
+    def get_emails_list(self):
+        return EmailListTextField.to_list(self.email_addresses)
+
 
 class Announcement(models.Model):
     from_email = models.CharField(max_length=100, choices=get_announcement_from_emails(),
                                   verbose_name=_('from email'))
     subject = models.CharField(max_length=1000, verbose_name=_("subject"))
-    recipients = EmailListTextField(verbose_name=_("recipients"))
-    recipients_mailing_lists = models.ManyToManyField(to=MailingList)
+    recipients = EmailListTextField(verbose_name=_("recipients"), null=True, blank=True)
+    recipients_mailing_lists = models.ManyToManyField(to=MailingList, blank=True)
     message = RichTextField(verbose_name=_('message (don\'t use table)'),
                             help_text=_("IMPORTANT WARNING: PLEASE DO NOT USE TABLE IN EMAIL! "
                                         "By the time I'm writing this, "
@@ -74,6 +78,12 @@ class Announcement(models.Model):
     language = models.CharField(max_length=2, choices=settings.LANGUAGES,
                                 default=settings.LANGUAGES[0][0], verbose_name=_('language'))
     date = models.DateTimeField(auto_now_add=True)
+
+    cc = EmailListTextField(verbose_name=_('CC'), null=True, blank=True)
+    cc_mailing_lists = models.ManyToManyField(to=MailingList, blank=True, related_name='+')
+
+    bcc = EmailListTextField(verbose_name=_('BCC'), null=True, blank=True)
+    bcc_mailing_lists = models.ManyToManyField(to=MailingList, blank=True, related_name='+')
 
     def __str__(self):
         return self.subject

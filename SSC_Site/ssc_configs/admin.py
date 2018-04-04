@@ -2,18 +2,20 @@ import html
 
 import os
 from copy import deepcopy
+from django import forms
 from django.contrib import admin
+from django.core.exceptions import ValidationError
 from django.core.mail.message import EmailMultiAlternatives
 from django.template.loader import get_template
 from django.conf import settings
 from django.utils import translation
-from django.utils.html import format_html
+from django.utils.html import format_html, strip_tags
 from mezzanine.blog.admin import BlogPostAdmin
 from mezzanine.blog.models import BlogPost
 from mezzanine.core import admin as mezzanineAdmin
 from mezzanine.pages.admin import PageAdmin
 
-from ssc_configs.models import Announcement, Attachment, MailingList
+from ssc_configs.models import Announcement, Attachment, MailingList, EmailListTextField
 from .models import GalleryContainerPage
 from .models import GroupsInfoPage, GroupInfo, GroupMember, Person, Duty
 
@@ -26,11 +28,46 @@ class AttachmentInline(admin.TabularInline):
     model = Attachment
     extra = 1
 
+class AnnouncementForm(forms.ModelForm):
+    class Meta:
+        model = Announcement
+        fields = '__all__'
+
+    def clean(self):
+        super().clean()
+        if self.instance.pk:
+            return
+        all_recipients = EmailListTextField.to_list(self.cleaned_data['recipients']) + [
+            mailing_list.get_emails_list() for mailing_list in self.cleaned_data['recipients_mailing_lists']
+        ]
+        if not all_recipients:
+            raise ValidationError('Recipients email address cannot be empty. Please enter '
+                                  'at least one valid email address or select mailing lists '
+                                  'with valid emails')
+        self.cleaned_data['all_recipients'] = all_recipients
+
+        self.cleaned_data['all_cc'] = EmailListTextField.to_list(self.cleaned_data['cc']) + [
+            mailing_list.get_emails_list() for mailing_list in self.cleaned_data['cc_mailing_lists']
+        ]
+        self.cleaned_data['all_bcc'] = EmailListTextField.to_list(self.cleaned_data['bcc']) + [
+            mailing_list.get_emails_list() for mailing_list in self.cleaned_data['bcc_mailing_lists']
+        ]
+
 
 class AnnouncementAdmin(admin.ModelAdmin):
-    list_display = ['id', 'date', 'subject']
-    # filter_vertical = ['recipients_mailing_lists']
-    search_fields = ['recipients_mailing_lists']
+    list_display = ['id', 'date', 'subject', 'message_preview']
+    list_display_links = ['id', 'subject', 'message_preview']
+    search_fields = ['subject', 'message']
+    filter_horizontal = ['recipients_mailing_lists', 'cc_mailing_lists', 'bcc_mailing_lists']
+    form = AnnouncementForm
+
+    fieldsets = [('', {'fields': ['from_email', 'subject', 'message', 'language']}),
+                 ('recipients', {'fields': ['recipients', 'recipients_mailing_lists'],
+                                 'description': 'Enter email addresses directly or choose one '
+                                                'or more mailing list'}),
+                 ('cc', {'fields': ['cc', 'cc_mailing_lists'], 'classes': ['collapse', 'collapse-closed']}),
+                 ('bcc', {'fields': ['bcc', 'bcc_mailing_lists'], 'classes': ['collapse', 'collapse-closed']}),
+                 ]
 
     def add_view(self, *args, **kwargs):
         self.readonly_fields = []
@@ -40,7 +77,7 @@ class AnnouncementAdmin(admin.ModelAdmin):
 
     def change_view(self, *args, **kwargs):
         self.readonly_fields = ['id', 'from_email', 'subject', 'language', 'date', 'message_safe',
-                                'attachments', 'recipients']
+                                'attachments', 'recipients', 'recipients_mailing_lists']
         self.inlines = []
         self.exclude = ['message']
         return super().change_view(*args, **kwargs)
@@ -48,19 +85,24 @@ class AnnouncementAdmin(admin.ModelAdmin):
     def attachments(self, obj):
         return format_html('<br>'.join([str(attachment) for attachment in obj.attachments.all()]))
 
+    def message_preview(self, obj):
+        return strip_tags(html.unescape(obj.message))[:20]
+
     def message_safe(self, obj):
         return format_html(html.unescape(obj.message))
     message_safe.short_description = 'message'
 
     def save_model(self, request, obj, form, change):
-        context = {'message': obj.message, 'request': request, 'site_url': settings.SITE_URL}
         if obj.pk is None:
+            context = {'message': obj.message, 'request': request, 'site_url': settings.SITE_URL}
             former_language = translation.get_language()
             translation.activate(obj.language)
             message = get_template('email/announcement.html').render(context=context)
             email = EmailMultiAlternatives(subject=obj.subject,
                                            from_email=obj.from_email,
-                                           body=message, to=obj.recipient_list)
+                                           body=message, to=form.cleaned_data['all_recipients'],
+                                           cc=form.cleaned_data['all_cc'],
+                                           bcc=form.cleaned_data['all_bcc'])
             email.content_subtype = 'html'
             self.announcement = obj
             self.email = email  # Email will be sent when attachments are saved and accessible
@@ -73,7 +115,7 @@ class AnnouncementAdmin(admin.ModelAdmin):
             for attachment in self.announcement.attachments.all():
                 file = attachment.file
                 self.email.attach(file.name, file.read())
-            self.email.send()
+            #self.email.send()
         return ret
 
 admin.site.register(Announcement, AnnouncementAdmin)
