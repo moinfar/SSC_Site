@@ -3,7 +3,6 @@ import html
 import os
 from copy import deepcopy
 from django.contrib import admin
-from django.core.mail import send_mail, get_connection
 from django.core.mail.message import EmailMultiAlternatives
 from django.template.loader import get_template
 from django.conf import settings
@@ -12,10 +11,9 @@ from django.utils.html import format_html
 from mezzanine.blog.admin import BlogPostAdmin
 from mezzanine.blog.models import BlogPost
 from mezzanine.core import admin as mezzanineAdmin
-from mezzanine.core.admin import TabularDynamicInlineAdmin
 from mezzanine.pages.admin import PageAdmin
 
-from ssc_configs.models import Announcement, Attachment
+from ssc_configs.models import Announcement, Attachment, MailingList
 from .models import GalleryContainerPage
 from .models import GroupsInfoPage, GroupInfo, GroupMember, Person, Duty
 
@@ -31,6 +29,8 @@ class AttachmentInline(admin.TabularInline):
 
 class AnnouncementAdmin(admin.ModelAdmin):
     list_display = ['id', 'date', 'subject']
+    # filter_vertical = ['recipients_mailing_lists']
+    search_fields = ['recipients_mailing_lists']
 
     def add_view(self, *args, **kwargs):
         self.readonly_fields = []
@@ -77,7 +77,7 @@ class AnnouncementAdmin(admin.ModelAdmin):
         return ret
 
 admin.site.register(Announcement, AnnouncementAdmin)
-
+admin.site.register(MailingList)
 
 class MyBlogPostAdmin(BlogPostAdmin):
     fieldsets = blog_fieldsets
@@ -96,7 +96,6 @@ class PersonAdmin(mezzanineAdmin.BaseTranslationModelAdmin):
 
 
 admin.site.register(Person, PersonAdmin)
-
 
 class DutyAdmin(mezzanineAdmin.BaseTranslationModelAdmin):
     fieldsets = ((None, {"fields": ("slug", "title")}),)

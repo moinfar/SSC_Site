@@ -1,5 +1,6 @@
 import re
 from ckeditor.fields import RichTextField
+from django import forms
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.db import models
@@ -19,12 +20,49 @@ def get_announcement_from_emails():
     return [(email, email) for email in emails]
 
 
+class EmailListFormField(forms.CharField):
+    def widget_attrs(self, widget):
+        attrs = super().widget_attrs(widget)
+        attrs['rows'] = '1'
+        return attrs
+
+
+class EmailListTextField(models.TextField):
+    def to_list(self, value):
+        return [email_address for email_address in re.split(',| |\n|\r', value or '') if
+                email_address]
+
+    def formfield(self, **kwargs):
+        help_text = _("enter email addresses separated by comma, enter or space")
+        kwargs.update({'form_class': EmailListFormField, 'help_text': help_text})
+        return super().formfield(**kwargs)
+
+    def validate(self, value, model_instance):
+        invalid_addresses = []
+        for email in self.to_list(value):
+            try:
+                validate_email(email)
+            except ValidationError:
+                invalid_addresses.append(email)
+
+        if invalid_addresses:
+            raise ValidationError('Invalid email addresses: ' + ", ".join(invalid_addresses))
+
+
+class MailingList(models.Model):
+    name = models.CharField(max_length=100, verbose_name=_('name'))
+    email_addresses = EmailListTextField(verbose_name=_('email addresses'))
+
+    def __str__(self):
+        return self.name
+
+
 class Announcement(models.Model):
-    from_email = models.CharField(max_length=100, choices=get_announcement_from_emails())
-    subject = models.CharField(max_length=1000, verbose_name=_("subject"), )
-    recipients = models.TextField(verbose_name=_("recipients"),
-                                  help_text=_("enter recipients' emails "
-                                              "separated by comma, enter or space"))
+    from_email = models.CharField(max_length=100, choices=get_announcement_from_emails(),
+                                  verbose_name=_('from email'))
+    subject = models.CharField(max_length=1000, verbose_name=_("subject"))
+    recipients = EmailListTextField(verbose_name=_("recipients"))
+    recipients_mailing_lists = models.ManyToManyField(to=MailingList)
     message = RichTextField(verbose_name=_('message (don\'t use table)'),
                             help_text=_("IMPORTANT WARNING: PLEASE DO NOT USE TABLE IN EMAIL! "
                                         "By the time I'm writing this, "
@@ -34,26 +72,11 @@ class Announcement(models.Model):
                                         "containing your desired table. (Don't take account "
                                         "for the previewer of the editor)"))
     language = models.CharField(max_length=2, choices=settings.LANGUAGES,
-                                default=settings.LANGUAGES[0][0])
+                                default=settings.LANGUAGES[0][0], verbose_name=_('language'))
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.subject
-
-    def clean(self):
-        super().clean()
-        self.recipient_list = [recipient for recipient in re.split(',| |\n|\r', self.recipients) if
-                               recipient]
-        invalid_addresses = []
-        for recipient in self.recipient_list:
-            try:
-                validate_email(recipient)
-            except ValidationError:
-                invalid_addresses.append(recipient)
-
-        if invalid_addresses:
-            raise ValidationError(
-                {'recipients': 'Invalid email addresses: ' + ", ".join(invalid_addresses)})
 
     class Meta:
         verbose_name = _("Announcement")
