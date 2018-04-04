@@ -1,10 +1,7 @@
 import html
 
-import os
 from copy import deepcopy
-from django import forms
 from django.contrib import admin
-from django.core.exceptions import ValidationError
 from django.core.mail.message import EmailMultiAlternatives
 from django.template.loader import get_template
 from django.conf import settings
@@ -62,7 +59,7 @@ class AnnouncementAdmin(admin.ModelAdmin):
         return format_html('<br>'.join([str(attachment) for attachment in obj.attachments.all()]))
 
     def message_preview(self, obj):
-        return strip_tags(html.unescape(obj.message))[:20]
+        return strip_tags(html.unescape(obj.message))[:50]
 
     def message_safe(self, obj):
         return format_html(html.unescape(obj.message))
@@ -75,6 +72,7 @@ class AnnouncementAdmin(admin.ModelAdmin):
             former_language = translation.get_language()
             translation.activate(obj.language)
             message = get_template('email/announcement.html').render(context=context)
+            print(form.cleaned_data['all_bcc'])
             email = EmailMultiAlternatives(subject=obj.subject,
                                            from_email=obj.from_email,
                                            body=message, to=form.cleaned_data['all_recipients'],
