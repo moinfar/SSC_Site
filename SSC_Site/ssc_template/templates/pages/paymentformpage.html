@@ -54,6 +54,9 @@
                   method="post"{% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
 
                 <br>
+                {% fields_for form "includes/form_fields.html" %}
+                <br>
+
                 <div class="input-field left-align">
                     <select required name="payment_plan_id">
                         {% for plan in page.paymentformpage.pricegroup_set.all %}
@@ -68,7 +71,6 @@
                 </div>
                 <br>
 
-                {% fields_for form "includes/form_fields.html" %}
                 <div class="form-actions">
                     <input class="submit btn" type="submit" value="{% trans 'Send and Pay' %}" >
                 </div>
