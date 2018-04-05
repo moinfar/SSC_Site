@@ -1,6 +1,6 @@
 from modeltranslation.translator import translator, TranslationOptions
 
-from .models import PaymentFormPage, PriceGroup, PaymentGateway
+from .models import PaymentForm, PriceGroup, PaymentGateway
 
 
 class TranslatedPaymentGateway(TranslationOptions):
@@ -10,15 +10,15 @@ class TranslatedPaymentGateway(TranslationOptions):
 translator.register(PaymentGateway, TranslatedPaymentGateway)
 
 
-class TranslatedPaymentFormPage(TranslationOptions):
-    fields = ("payment_description", "content")
+class TranslatedPaymentForm(TranslationOptions):
+    fields = ("payment_description",) 
 
 
-translator.register(PaymentFormPage, TranslatedPaymentFormPage)
+translator.register(PaymentForm, TranslatedPaymentForm)
 
 
-class TranslatedPriceGroupPage(TranslationOptions):
+class TranslatedPriceGroup(TranslationOptions):
     fields = ("group_identifier",)
 
 
-translator.register(PriceGroup, TranslatedPriceGroupPage)
+translator.register(PriceGroup, TranslatedPriceGroup)

@@ -3,7 +3,7 @@ from django.contrib import admin
 from mezzanine.core import admin as mezzanineAdmin
 from mezzanine.pages.admin import PageAdmin
 
-from .models import PaymentFormPage, PriceGroup, PaymentGateway
+from .models import PaymentForm, PriceGroup, PaymentGateway
 
 
 class PaymentGatewayAdmin(mezzanineAdmin.BaseTranslationModelAdmin):
@@ -28,9 +28,9 @@ class PriceGroupInline(mezzanineAdmin.TabularDynamicInlineAdmin):
     model = PriceGroup
 
 
-class PaymentFormPageAdmin(PageAdmin):
+class PaymentFormAdmin(PageAdmin):
     inlines = (PriceGroupInline,)
     fieldsets = form_fieldsets
 
 
-admin.site.register(PaymentFormPage, PaymentFormPageAdmin)
+#admin.site.register(PaymentForm, PaymentFormAdmin)

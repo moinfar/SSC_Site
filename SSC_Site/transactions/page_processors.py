@@ -18,10 +18,10 @@ from mezzanine.utils.email import split_addresses, send_mail_template
 from random import choice
 from zeep import Client
 
-from .models import PaymentFormPage, PriceGroup, UpalPaymentTransaction, ZpalPaymentTransaction
+from .models import PaymentForm, PriceGroup, UpalPaymentTransaction, ZpalPaymentTransaction
 
 
-@processor_for(PaymentFormPage)
+@processor_for(PaymentForm)
 def payment_form_processor(request, page):
     payment_form = page.paymentformpage.payment_form
     payment_form.form.send_email = False

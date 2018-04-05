@@ -23,8 +23,7 @@ class PaymentGateway(models.Model):
         return "{} - {}".format(self.type, self.title)
 
 
-class PaymentFormPage(Page, RichText):
-    payment_form = models.ForeignKey(Form, null=False, verbose_name=_("Payment Form"))
+class PaymentForm(Form):
     payment_gateway = models.ForeignKey(PaymentGateway, null=False,
                                         verbose_name=_("Payment Gateway"))
     payment_description = models.CharField(max_length=256, blank=False, null=False,
@@ -42,8 +41,7 @@ class PaymentFormPage(Page, RichText):
 
 
 class PriceGroup(Orderable):
-    payment_form_page = models.ForeignKey(PaymentFormPage,
-                                          verbose_name=_("Containing Payment Form"))
+    payment_form = models.ForeignKey(PaymentForm, verbose_name=_("Containing Payment Form"))
     group_identifier = models.CharField(max_length=256, blank=False, null=False,
                                         verbose_name=_("Group Identifier"))
     payment_amount = models.BigIntegerField(verbose_name=_("Amount in Rials"))
