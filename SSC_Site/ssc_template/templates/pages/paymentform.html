@@ -45,7 +45,7 @@
             </table>
             {% endif %}
 
-            {{ page.paymentformpage.content|richtext_filters|safe }}
+            {{ payment_form.content|richtext_filters|safe }}
 
             {% if status == "form" %}
 
@@ -59,7 +59,7 @@
 
                 <div class="input-field left-align">
                     <select required name="payment_plan_id">
-                        {% for plan in page.paymentformpage.pricegroup_set.all %}
+                        {% for plan in payment_form.pricegroup_set.all %}
                         <option value="{{ plan.id }}"
                         {% if plan.is_full %} disabled {% endif %}>
                             {{ plan.group_identifier }} {% if LANGUAGE_CODE == "fa" or LANGUAGE_CODE == "fa-IR" %}({{ plan.payment_amount|get_persian_comma_separated_money }}{% else %}{{plan.payment_amount|intcomma }}{% endif %} {% trans 'Rials' %})
@@ -90,8 +90,8 @@
             {% elif status == "at_full_capacity" %}
             <div>
                 <h5 class="red-text center-align">
-                    {% if page.paymentformpage.at_full_capacity_message %}
-                    {{ page.paymentformpage.at_full_capacity_message }}
+                    {% if payment_form.at_full_capacity_message %}
+                    {{ payment_form.at_full_capacity_message }}
                     {% else %}
                     {% trans 'Unfortunately we have reached our maximum capacity.' %}
                     {% endif %}

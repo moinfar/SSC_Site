@@ -23,22 +23,23 @@ from .models import PaymentForm, PriceGroup, UpalPaymentTransaction, ZpalPayment
 
 @processor_for(PaymentForm)
 def payment_form_processor(request, page):
-    payment_form = page.paymentformpage.payment_form
-    payment_form.form.send_email = False
+    payment_form = page.form.paymentform
+    payment_form.send_email = False
 
-    upal_transactions = get_upal_transactions_info(page.paymentformpage)
-    zpal_transactions = get_zpal_transactions_info(page.paymentformpage)
+    # TODO: This is over-dirty code! Someone please refactor this for God's sake!
+    upal_transactions = get_upal_transactions_info(page)
+    zpal_transactions = get_zpal_transactions_info(page)
 
     successful_payments = 0
-    if page.paymentformpage.payment_gateway.type == "upal":
+    if payment_form.payment_gateway.type == "upal":
         successful_payments += upal_transactions.filter(is_payed=True).count()
-    if page.paymentformpage.payment_gateway.type == "zpal":
+    if payment_form.payment_gateway.type == "zpal":
         successful_payments += zpal_transactions.filter(is_payed=True).count()
 
-    if payment_form.form.fields.filter(label="UUID").count() != 1:
+    if payment_form.fields.filter(label="UUID").count() != 1:
         return {"status": "design_error"}
 
-    uuid_key = "field_{}".format(payment_form.form.fields.get(label="UUID").id)
+    uuid_key = "field_{}".format(payment_form.fields.get(label="UUID").id)
     if request.POST:
         mutable = request.POST._mutable
         request.POST._mutable = True
@@ -50,8 +51,8 @@ def payment_form_processor(request, page):
 
     if isinstance(form, dict) and "form" in form:
         if request.user.has_perm('transactions.can_view_payment_transactions'):
-            if page.paymentformpage.payment_gateway.type == "upal":
-                form_fields = page.paymentformpage.payment_form.form.fields.all().order_by("id")
+            if payment_form.payment_gateway.type == "upal":
+                form_fields = payment_form.fields.all().order_by("id")
                 form_fields = [field.label for field in form_fields]
                 for title in [_("Creation Time"), _("Form Entry UUID"), _("Bank Token"),
                               _("Random Token"),
@@ -81,8 +82,8 @@ def payment_form_processor(request, page):
                             entries.append(value)
                         transactions_info.append(entries)
 
-            if page.paymentformpage.payment_gateway.type == "zpal":
-                form_fields = page.paymentformpage.payment_form.form.fields.all().order_by("id")
+            if payment_form.payment_gateway.type == "zpal":
+                form_fields = payment_form.fields.all().order_by("id")
                 form_fields = [field.label for field in form_fields]
                 for title in [_("Creation Time"), _("Form Entry UUID"), _("Authority"),
                               _("Price Group"),
@@ -112,60 +113,60 @@ def payment_form_processor(request, page):
                             entries.append(value)
                         transactions_info.append(entries)
 
-            return {"status": "form", "form": form["form"],
+            return {"status": "form", "form": form["form"], "payment_form": payment_form,
                     "form_fields": form_fields, "transactions_info": transactions_info}
 
-        if page.paymentformpage.capacity != 0:
-            if successful_payments >= page.paymentformpage.capacity:
+        if payment_form.capacity != 0:
+            if successful_payments >= payment_form.capacity:
                 return {"status": "at_full_capacity"}
 
-        return {"status": "form", "form": form["form"]}
+        return {"status": "form", "form": form["form"], "payment_form": payment_form}
 
     plan = PriceGroup.objects.get(id=request.POST.get("payment_plan_id"))
     if plan.capacity != 0:
         plan_successful_payments = 0
-        if page.paymentformpage.payment_gateway.type == "upal":
+        if payment_form.payment_gateway.type == "upal":
             plan_successful_payments += upal_transactions.filter(is_payed=True,
                                                                  price_group=plan).count()
-        if page.paymentformpage.payment_gateway.type == "zpal":
+        if payment_form.payment_gateway.type == "zpal":
             plan_successful_payments += zpal_transactions.filter(is_payed=True,
                                                                  price_group=plan).count()
 
         if plan_successful_payments >= plan.capacity:
             return {"status": "at_full_capacity"}
 
-    if page.paymentformpage.payment_gateway.type == "upal":
-        transaction = new_upal_payment(request, page.paymentformpage, plan, request_uuid)
-    if page.paymentformpage.payment_gateway.type == "zpal":
-        transaction = new_zpal_payment(request, page.paymentformpage, plan, request_uuid)
+    if payment_form.payment_gateway.type == "upal":
+        transaction = new_upal_payment(request, payment_form, plan, request_uuid)
+    if payment_form.payment_gateway.type == "zpal":
+        transaction = new_zpal_payment(request, payment_form, plan, request_uuid)
 
     if transaction is None:
         return {"status": "gateway_error"}
 
-    if page.paymentformpage.payment_gateway.type == "upal":
+    if payment_form.payment_gateway.type == "upal":
         # payment_url = 'https://upal.ir/transaction/submit?id={}'.format(transaction.bank_token)
         payment_url = 'http://salam.im/transaction/submit?id={}'.format(transaction.bank_token)
-    if page.paymentformpage.payment_gateway.type == "zpal":
+    if payment_form.payment_gateway.type == "zpal":
         payment_url = 'https://www.zarinpal.com/pg/StartPay/{}'.format(transaction.authority)
 
-    if page.paymentformpage.capacity != 0:
-        if page.paymentformpage.payment_gateway.type == "upal":
+    if payment_form.capacity != 0:
+        if payment_form.payment_gateway.type == "upal":
             pending_payments = successful_payments + upal_transactions.filter(
                 is_payed=None,
                 creation_time__gt=timezone.now() - datetime.timedelta(minutes=10)).count()
-        if page.paymentformpage.payment_gateway.type == "zpal":
+        if payment_form.payment_gateway.type == "zpal":
             pending_payments = successful_payments + zpal_transactions.filter(
                 is_payed=None,
                 creation_time__gt=timezone.now() - datetime.timedelta(minutes=10)).count()
-        if pending_payments > page.paymentformpage.capacity:
+        if pending_payments > payment_form.capacity:
             return {"status": "payment", "payment_url": payment_url, "warning": "reserved_list"}
 
     if plan.capacity != 0:
-        if page.paymentformpage.payment_gateway.type == "upal":
+        if payment_form.payment_gateway.type == "upal":
             plan_pending_payments = plan_successful_payments + upal_transactions.filter(
                 is_payed=None, creation_time__gt=timezone.now() - datetime.timedelta(minutes=10),
                 price_group=plan).count()
-        if page.paymentformpage.payment_gateway.type == "zpal":
+        if payment_form.payment_gateway.type == "zpal":
             plan_pending_payments = plan_successful_payments + zpal_transactions.filter(
                 is_payed=None, creation_time__gt=timezone.now() - datetime.timedelta(minutes=10),
                 price_group=plan).count()
@@ -175,7 +176,7 @@ def payment_form_processor(request, page):
     return {"status": "payment", "payment_url": payment_url}
 
 
-def new_upal_payment(request, paymentformpage, plan, request_uuid):
+def new_upal_payment(request, payment_form, plan, request_uuid):
     random_token = ''.join(
         choice(string.lowercase + string.uppercase + string.digits) for i in range(16))
     transaction = UpalPaymentTransaction(creation_time=timezone.now(),
@@ -190,10 +191,10 @@ def new_upal_payment(request, paymentformpage, plan, request_uuid):
         # payment_request = web_request.post("https://upal.ir//transaction/create",
         payment_request = web_request.post("http://salam.im//transaction/create",
                                            data={
-                                               'gateway_id': paymentformpage.payment_gateway.gateway_id,
+                                               'gateway_id': payment_form.payment_gateway.gateway_id,
                                                'amount': plan.payment_amount,
                                                'description': "{}-{}".format(
-                                                   paymentformpage.payment_description,
+                                                   payment_form.payment_description,
                                                    plan.group_identifier),
                                                'rand': random_token,
                                                'redirect_url': return_url,
@@ -210,7 +211,7 @@ def new_upal_payment(request, paymentformpage, plan, request_uuid):
     return transaction
 
 
-def new_zpal_payment(request, paymentformpage, plan, request_uuid):
+def new_zpal_payment(request, payment_form, plan, request_uuid):
     transaction = ZpalPaymentTransaction(creation_time=timezone.now(),
                                          uuid=request_uuid,
                                          price_group=plan,
@@ -221,9 +222,9 @@ def new_zpal_payment(request, paymentformpage, plan, request_uuid):
     try:
         client = Client('https://www.zarinpal.com/pg/services/WebGate/wsdl')
         payment_parameters = {
-            'MerchantID': paymentformpage.payment_gateway.gateway_id,
+            'MerchantID': payment_form.payment_gateway.gateway_id,
             'Amount': plan.payment_amount / 10,
-            'Description': "{}-{}".format(paymentformpage.payment_description,
+            'Description': "{}-{}".format(payment_form.payment_description,
                                           plan.group_identifier),
             'CallbackURL': return_url,
         }
@@ -283,7 +284,7 @@ def from_bank_upal(request, transaction):
 
                 send_payment_main = True
 
-            form = transaction.price_group.payment_form_page.payment_form.form
+            form = transaction.price_group.payment_form_page.payment_form
             form_fields = form.fields.all().order_by("id")
 
             field_entries = get_transaction_entries(transaction)
@@ -349,7 +350,7 @@ def from_bank_zpal(request, transaction):
 
                 send_payment_main = True
 
-            form = transaction.price_group.payment_form_page.payment_form.form
+            form = transaction.price_group.payment_form_page.payment_form
             form_fields = form.fields.all().order_by("id")
 
             field_entries = get_transaction_entries(transaction)
@@ -393,13 +394,13 @@ def from_bank_zpal(request, transaction):
             transaction.save()
 
 
-def get_upal_transactions_info(paymentformpage):
+def get_upal_transactions_info(page):
     transactions = UpalPaymentTransaction.objects.filter(
-        price_group__payment_form_page=paymentformpage)
+        price_group__payment_form=page)
     return transactions
 
 
-def get_zpal_transactions_info(paymentformpage):
+def get_zpal_transactions_info(page):
     transactions = ZpalPaymentTransaction.objects.filter(
-        price_group__payment_form_page=paymentformpage)
+        price_group__payment_form=page)
     return transactions
