@@ -23,18 +23,19 @@
         {% for radio in field %}
         <span>
             {{ radio.tag }}
-            <label for="{{ field.auto_id }}_{{ radio.index }}">
+            <label for="{{ radio.id_for_label }}">
                 <span class="left spaced">{{ radio.choice_label }}</span>
             </label>
         </span>
         {% endfor %}
     <p></p>
     {% elif field.field.widget|is_multiple_checkbox %}
+
     {% if field.label %}<p class="grey-text text-lighten-1">&nbsp;&nbsp;{{ field.label }}</p>{% endif %}
         {% for check in field %}
         <span>
             {{ check.tag }}
-            <label for="{{ field.auto_id }}_{{ check.index }}">
+            <label for="{{ check.id_for_label }}">
                 <span class="left spaced">{{ check.choice_label }}</span>
             </label>
         </span>
