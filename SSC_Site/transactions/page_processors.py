@@ -25,6 +25,7 @@ from .models import PaymentForm, PriceGroup, UpalPaymentTransaction, ZpalPayment
 @processor_for(PaymentForm)
 def payment_form_processor(request, page):
     payment_form = page.form.paymentform
+    content = payment_form.content
     payment_form.send_email = False
 
     # TODO: This is over-dirty code! Someone please refactor this for God's sake!
@@ -38,7 +39,7 @@ def payment_form_processor(request, page):
         successful_payments += zpal_transactions.filter(is_payed=True).count()
 
     if payment_form.fields.filter(label="UUID").count() != 1:
-        return {"status": "design_error"}
+        return {"status": "design_error", "content": content}
 
     uuid_key = "field_{}".format(payment_form.fields.get(label="UUID").id)
     if request.POST:
@@ -117,13 +118,13 @@ def payment_form_processor(request, page):
                         transactions_info.append(entries)
 
             return {"status": "form", "form": form["form"], "payment_form": payment_form,
-                    "form_fields": form_fields, "transactions_info": transactions_info}
+                    "form_fields": form_fields, "transactions_info": transactions_info, "content": content}
 
         if payment_form.capacity != 0:
             if successful_payments >= payment_form.capacity:
-                return {"status": "at_full_capacity"}
+                return {"status": "at_full_capacity", "content": content}
 
-        return {"status": "form", "form": form["form"], "payment_form": payment_form}
+        return {"status": "form", "form": form["form"], "payment_form": payment_form, "content": content}
 
     plan = PriceGroup.objects.get(id=request.POST.get("payment_plan_id"))
     if plan.capacity != 0:
@@ -136,7 +137,7 @@ def payment_form_processor(request, page):
                                                                  price_group=plan).count()
 
         if plan_successful_payments >= plan.capacity:
-            return {"status": "at_full_capacity"}
+            return {"status": "at_full_capacity", "content": content}
 
     if payment_form.payment_gateway.type == "upal":
         transaction = new_upal_payment(request, payment_form, plan, request_uuid)
@@ -144,7 +145,7 @@ def payment_form_processor(request, page):
         transaction = new_zpal_payment(request, payment_form, plan, request_uuid)
 
     if transaction is None:
-        return {"status": "gateway_error"}
+        return {"status": "gateway_error", "content": content}
 
     if payment_form.payment_gateway.type == "upal":
         # payment_url = 'https://upal.ir/transaction/submit?id={}'.format(transaction.bank_token)
@@ -162,7 +163,7 @@ def payment_form_processor(request, page):
                 is_payed=None,
                 creation_time__gt=timezone.now() - datetime.timedelta(minutes=10)).count()
         if pending_payments > payment_form.capacity:
-            return {"status": "payment", "payment_url": payment_url, "warning": "reserved_list"}
+            return {"status": "payment", "payment_url": payment_url, "warning": "reserved_list", "content": content}
 
     if plan.capacity != 0:
         if payment_form.payment_gateway.type == "upal":
@@ -174,9 +175,9 @@ def payment_form_processor(request, page):
                 is_payed=None, creation_time__gt=timezone.now() - datetime.timedelta(minutes=10),
                 price_group=plan).count()
         if plan_pending_payments > plan.capacity:
-            return {"status": "payment", "payment_url": payment_url, "warning": "reserved_list"}
+            return {"status": "payment", "payment_url": payment_url, "warning": "reserved_list", "content": content}
 
-    return {"status": "payment", "payment_url": payment_url}
+    return {"status": "payment", "payment_url": payment_url, "content": content}
 
 
 def new_upal_payment(request, payment_form, plan, request_uuid):

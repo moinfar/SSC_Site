@@ -45,8 +45,7 @@
             </table>
             {% endif %}
 
-            {{ payment_form.content|richtext_filters|safe }}
-
+            {{ content|richtext_filters|safe }}
             {% if status == "form" %}
 
             {% errors_for form %}
