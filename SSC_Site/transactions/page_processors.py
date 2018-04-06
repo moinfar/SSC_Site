@@ -18,6 +18,7 @@ from mezzanine.utils.email import split_addresses, send_mail_template
 from random import choice
 from zeep import Client
 
+from ssc_template.templatetags.other_ssc_tags import is_captcha
 from .models import PaymentForm, PriceGroup, UpalPaymentTransaction, ZpalPaymentTransaction
 
 
@@ -53,7 +54,8 @@ def payment_form_processor(request, page):
         if request.user.has_perm('transactions.can_view_payment_transactions'):
             if payment_form.payment_gateway.type == "upal":
                 form_fields = payment_form.fields.all().order_by("id")
-                form_fields = [field.label for field in form_fields]
+                captcha_indexes = [i for i, field in enumerate(form_fields) if is_captcha(field)]
+                form_fields = [form_fields[i].label for i in range(len(form_fields)) if i not in captcha_indexes]
                 for title in [_("Creation Time"), _("Form Entry UUID"), _("Bank Token"),
                               _("Random Token"),
                               _("Price Group"), _("Amount in Rials"), _("Is Payed"),
@@ -71,7 +73,7 @@ def payment_form_processor(request, page):
                 for transaction in transactions:
                     entries = get_transaction_entries(transaction)
                     if entries is not None:
-                        entries = [entry.value for entry in entries]
+                        entries = [entry.value for i, entry in enumerate(entries) if i not in captcha_indexes]
                         for value in [transaction.creation_time, transaction.uuid,
                                       transaction.bank_token,
                                       transaction.random_token,
@@ -84,7 +86,8 @@ def payment_form_processor(request, page):
 
             if payment_form.payment_gateway.type == "zpal":
                 form_fields = payment_form.fields.all().order_by("id")
-                form_fields = [field.label for field in form_fields]
+                captcha_indexes = [i for i, field in enumerate(form_fields) if is_captcha(field)]
+                form_fields = [form_fields[i].label for i in range(len(form_fields)) if i not in captcha_indexes]
                 for title in [_("Creation Time"), _("Form Entry UUID"), _("Authority"),
                               _("Price Group"),
                               _("Amount in Rials"), _("Is Payed"), _("Reference ID"),
@@ -102,7 +105,7 @@ def payment_form_processor(request, page):
                 for transaction in transactions:
                     entries = get_transaction_entries(transaction)
                     if entries is not None:
-                        entries = [entry.value for entry in entries]
+                        entries = [entry.value for i, entry in enumerate(entries) if i not in captcha_indexes]
                         for value in [transaction.creation_time, transaction.uuid,
                                       transaction.authority,
                                       transaction.price_group.group_identifier + " (" + str(
