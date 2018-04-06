@@ -85,8 +85,8 @@ class UpalPaymentTransaction(PaymentTransaction):
             if our_validation_md5.hexdigest() == validation_hash:
 
                 send_payment_main = False
-                if self.is_payed is None or self.is_payed is False:
-                    self.is_payed = True
+                if self.is_paid is None or self.is_paid is False:
+                    self.is_paid = True
                     self.payment_time = timezone.now()
                     self.save()
 
@@ -131,7 +131,7 @@ class UpalPaymentTransaction(PaymentTransaction):
                                "title": _("Successful Payment Transaction"),
                                "context": context})
             else:
-                self.is_payed = False
+                self.is_paid = False
                 self.save()
 
 
@@ -180,7 +180,7 @@ class ZpalPaymentTransaction(PaymentTransaction):
     def from_bank(self, request):
         authority = request.GET.get('Authority')
         if authority == self.authority:
-            if self.is_payed:
+            if self.is_paid:
                 return
             client = Client('https://www.zarinpal.com/pg/services/WebGate/wsdl')
             validation_parameters = {
@@ -193,8 +193,8 @@ class ZpalPaymentTransaction(PaymentTransaction):
             if validation_request.Status == 100:
 
                 send_payment_main = False
-                if self.is_payed is None or self.is_payed is False:
-                    self.is_payed = True
+                if self.is_paid is None or self.is_paid is False:
+                    self.is_paid = True
                     self.payment_time = timezone.now()
                     self.ref_id = validation_request.RefID
                     self.save()
@@ -240,5 +240,5 @@ class ZpalPaymentTransaction(PaymentTransaction):
                                "title": _("Successful Payment Transaction"),
                                "context": context})
             else:
-                self.is_payed = False
+                self.is_paid = False
                 self.save()

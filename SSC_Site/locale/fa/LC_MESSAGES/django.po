@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-06 15:24+0430\n"
+"POT-Creation-Date: 2018-04-06 17:05+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -606,33 +606,33 @@ msgstr ""
 "برای مشاهده‌ی عکس با کیفیت اصلی <a href='%(url)s'>اینجا</a>  کلیک کنید.\n"
 "                       "
 
-#: ssc_template/templates/pages/paymentform.html:64
+#: ssc_template/templates/pages/paymentform.html:63
 msgid "Tomans"
 msgstr "تومان"
 
-#: ssc_template/templates/pages/paymentform.html:65
+#: ssc_template/templates/pages/paymentform.html:64
 msgid "At Full Capacity"
 msgstr "ظرفیت تکمیل است"
 
-#: ssc_template/templates/pages/paymentform.html:69
+#: ssc_template/templates/pages/paymentform.html:68
 msgid "Choose The Right One"
 msgstr "گزینه‌ی مناسب را انتخاب کنید"
 
-#: ssc_template/templates/pages/paymentform.html:74
+#: ssc_template/templates/pages/paymentform.html:73
 msgid "Send and Pay"
 msgstr "ارسال و پرداخت"
 
-#: ssc_template/templates/pages/paymentform.html:80
+#: ssc_template/templates/pages/paymentform.html:79
 msgid "ERROR: Your form must contain a hidden field labeled UUID."
 msgstr "خطا: فرم شما باید حاوی یک فیلد پنها با عنوان UUID باشد."
 
-#: ssc_template/templates/pages/paymentform.html:86
+#: ssc_template/templates/pages/paymentform.html:85
 msgid "ERROR: Can not connect to payment gateway, please try again."
 msgstr ""
 "خطا: در حال حاضر قادر به اتصال به درگاه پرداخت نیستیم، لطفا مجددا تلاش "
 "نمایید."
 
-#: ssc_template/templates/pages/paymentform.html:95
+#: ssc_template/templates/pages/paymentform.html:94
 msgid "Unfortunately we have reached our maximum capacity."
 msgstr "متاسفانه ظرفیت تکمیل شده‌است."
 
@@ -718,135 +718,133 @@ msgstr "وضعیت"
 msgid "Process ID"
 msgstr "شناسه پردازه"
 
-#: transactions/models.py:11 transactions/models.py:13
+#: transactions/models.py:12 transactions/models.py:14
 msgid "Gateway Type"
 msgstr "نوع درگاه"
 
-#: transactions/models.py:15
+#: transactions/models.py:16
 msgid "Gateway ID"
 msgstr "آی‌دی درگاه"
 
-#: transactions/models.py:17
+#: transactions/models.py:18
 msgid "Gateway API"
 msgstr "ای‌پی‌آی درگاه"
 
-#: transactions/models.py:20 transactions/models.py:62
-#: transactions/models.py:71 transactions/models.py:95
-#: transactions/page_processors.py:62 transactions/page_processors.py:93
-#: transactions/page_processors.py:302 transactions/page_processors.py:370
+#: transactions/models.py:21 transactions/models.py:66
+#: transactions/models.py:75 transactions/page_processors.py:48
+#: transactions/payment_transaction.py:109
+#: transactions/payment_transaction.py:218
 msgid "Price Group"
 msgstr "گروه قیمت"
 
-#: transactions/models.py:21 transactions/models.py:63
+#: transactions/models.py:22 transactions/models.py:67
 msgid "Price Groups"
 msgstr "گروه‌های قیمت"
 
-#: transactions/models.py:29
+#: transactions/models.py:30
 msgid "Payment Gateway"
 msgstr "درگاه پرداخت"
 
-#: transactions/models.py:31
+#: transactions/models.py:32
 msgid "Payment Description"
 msgstr "توضیحات پرداخت"
 
-#: transactions/models.py:32 transactions/models.py:52
+#: transactions/models.py:33 transactions/models.py:53
 msgid "Enter -1 for infinite capacity"
 msgstr ""
 
-#: transactions/models.py:34
+#: transactions/models.py:35
 msgid "At Full Capacity Message"
 msgstr "پیام ظرفیت پر شده"
 
-#: transactions/models.py:37
+#: transactions/models.py:38
 msgid "Payment Form"
 msgstr "فرم پرداخت"
 
-#: transactions/models.py:38
+#: transactions/models.py:39
 msgid "Payment Forms"
 msgstr "فرم‌های پرداخت"
 
-#: transactions/models.py:40
+#: transactions/models.py:41
 msgid "Can View Payment Transactions"
 msgstr "می‌تواند تراکنش‌های پرداختی را مشاهده نماید"
 
-#: transactions/models.py:48
+#: transactions/models.py:49
 msgid "Containing Payment Form"
 msgstr "صفحه‌ی شامل فرم"
 
-#: transactions/models.py:50
+#: transactions/models.py:51
 msgid "Group Identifier"
 msgstr "مشخص‌کننده‌ی گروه"
 
-#: transactions/models.py:51 transactions/models.py:72
-#: transactions/page_processors.py:62 transactions/page_processors.py:94
+#: transactions/models.py:52 transactions/models.py:77
+#: transactions/page_processors.py:48
 msgid "Amount in Tomans"
 msgstr "مقدار به تومان"
 
-#: transactions/models.py:67 transactions/page_processors.py:60
-#: transactions/page_processors.py:92
+#: transactions/models.py:71 transactions/page_processors.py:48
 msgid "Creation Time"
 msgstr "زمان ایجاد"
 
-#: transactions/models.py:69 transactions/page_processors.py:60
+#: transactions/models.py:73
 msgid "Form Entry UUID"
 msgstr "UUID وارد شده"
 
-#: transactions/models.py:71
-msgid "Payment_Transactions"
-msgstr "تراکنش‌های پرداختی"
-
-#: transactions/models.py:73 transactions/page_processors.py:62
-#: transactions/page_processors.py:94
-msgid "Is Payed"
+#: transactions/models.py:78 transactions/page_processors.py:49
+msgid "Is Paid"
 msgstr "پرداخت‌شده"
 
-#: transactions/models.py:74 transactions/page_processors.py:63
-#: transactions/page_processors.py:95
+#: transactions/models.py:79 transactions/page_processors.py:49
 msgid "Payment Time"
 msgstr "زمان پرداخت"
 
-#: transactions/models.py:82 transactions/page_processors.py:60
+#: transactions/page_processors.py:51 transactions/payment_transaction.py:31
 msgid "Bank Token"
 msgstr "توکن بانک"
 
-#: transactions/models.py:84 transactions/page_processors.py:61
-msgid "Random Token"
-msgstr "توکن تصادفی"
-
-#: transactions/models.py:88
-msgid "Zpal Payment Transaction"
-msgstr "تراکنش پرداختی زرین‌پال"
-
-#: transactions/models.py:89
-msgid "Zpal Payment Transactions"
-msgstr "تراکنش‌های پرداختی زرین‌پال"
-
-#: transactions/models.py:93
-msgid "Authority"
-msgstr "قدرت"
-
-#: transactions/models.py:97 transactions/page_processors.py:94
+#: transactions/page_processors.py:53 transactions/payment_transaction.py:140
 msgid "Reference ID"
 msgstr "شناسه ارجاع"
 
-#: transactions/models.py:100
-msgid "Upal Payment Transaction"
-msgstr "تراکنش پرداختی یوپال"
-
-#: transactions/models.py:101
-msgid "Upal Payment Transactions"
-msgstr "تراکنش‌های پرداختی یوپال"
-
-#: transactions/page_processors.py:265
+#: transactions/page_processors.py:126
 msgid "UnSuccessful Payment Transaction"
 msgstr ""
 "تراکنش پرداختی با مشکل مواجه شده‌است. لطفا چنانچه پرداخت شما موفق بوده‌است، ما "
 "را مطلع کنید."
 
-#: transactions/page_processors.py:303 transactions/page_processors.py:371
+#: transactions/payment_transaction.py:33
+msgid "Random Token"
+msgstr "توکن تصادفی"
+
+#: transactions/payment_transaction.py:36
+msgid "Zpal Payment Transaction"
+msgstr "تراکنش پرداختی زرین‌پال"
+
+#: transactions/payment_transaction.py:37
+msgid "Zpal Payment Transactions"
+msgstr "تراکنش‌های پرداختی زرین‌پال"
+
+#: transactions/payment_transaction.py:110
+#: transactions/payment_transaction.py:219
 msgid "Payment Amount in Tomans"
 msgstr "مقدار پرداخت به تومان"
 
-#: transactions/page_processors.py:323 transactions/page_processors.py:391
+#: transactions/payment_transaction.py:131
+#: transactions/payment_transaction.py:240
 msgid "Successful Payment Transaction"
 msgstr "تراکنش پرداختی موفقیت آمیز بود"
+
+#: transactions/payment_transaction.py:139
+msgid "Authority"
+msgstr "قدرت"
+
+#: transactions/payment_transaction.py:143
+msgid "Upal Payment Transaction"
+msgstr "تراکنش پرداختی یوپال"
+
+#: transactions/payment_transaction.py:144
+msgid "Upal Payment Transactions"
+msgstr "تراکنش‌های پرداختی یوپال"
+
+#~ msgid "Payment_Transactions"
+#~ msgstr "تراکنش‌های پرداختی"

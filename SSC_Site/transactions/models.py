@@ -56,9 +56,9 @@ class PriceGroup(Orderable):
     def is_full(self):
         if self.capacity == -1:
             return False
-        successful_payments = self.payment_transactions.filter(is_payed=True).count()
+        successful_payments = self.payment_transactions.filter(is_paid=True).count()
         pending_payments = successful_payments + self.payment_transactions.filter(
-            is_payed=None, creation_time__gt=timezone.now() - datetime.timedelta(minutes=10),
+            is_paid=None, creation_time__gt=timezone.now() - datetime.timedelta(minutes=10),
             price_group=self).count()
         return pending_payments >= self.capacity
 
@@ -75,7 +75,7 @@ class PaymentTransaction(PolymorphicModel):
                                     verbose_name=_("Price Group"),
                                     related_name='payment_transactions')
     payment_amount = models.BigIntegerField(verbose_name=_("Amount in Tomans"))
-    is_payed = models.NullBooleanField(verbose_name=_("Is Payed"))
+    is_paid = models.NullBooleanField(verbose_name=_("Is Paid"))
     payment_time = models.DateTimeField(blank=True, null=True, verbose_name=_("Payment Time"))
 
     class Meta:

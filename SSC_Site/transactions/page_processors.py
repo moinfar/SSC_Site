@@ -23,7 +23,7 @@ def payment_form_processor(request, page):
     transaction_class = get_transaction_class(payment_form.payment_gateway.type)
 
     transactions = transaction_class.objects.filter(price_group__payment_form=page)
-    successful_payments = transactions.filter(is_payed=True).count()
+    successful_payments = transactions.filter(is_paid=True).count()
 
     if payment_form.fields.filter(label="UUID").count() != 1:
         return {"status": "design_error", "content": content}
@@ -46,7 +46,7 @@ def payment_form_processor(request, page):
                            i not in captcha_indexes]
 
             headers = [_("Creation Time"), _("Price Group"), _("Amount in Tomans"),
-                       _("Is Payed"), _("Payment Time")]
+                       _("Is Paid"), _("Payment Time")]
             if transaction_class == UpalPaymentTransaction:
                 headers.append(_("Bank Token"))
             elif transaction_class == ZpalPaymentTransaction:
@@ -55,10 +55,10 @@ def payment_form_processor(request, page):
                 form_fields.append(title)
             transactions.filter(
                 creation_time__lt=timezone.now() - datetime.timedelta(minutes=20),
-                is_payed=None).update(is_payed=False)
-            successful_transactions = transactions.filter(is_payed=True)
-            pending_transactions = transactions.filter(is_payed=None)
-            failed_transactions = transactions.filter(is_payed=False)
+                is_paid=None).update(is_paid=False)
+            successful_transactions = transactions.filter(is_paid=True)
+            pending_transactions = transactions.filter(is_paid=None)
+            failed_transactions = transactions.filter(is_paid=False)
             transactions = chain(successful_transactions, pending_transactions,
                                  failed_transactions)
             transactions_info = []
@@ -72,7 +72,7 @@ def payment_form_processor(request, page):
                         transaction.creation_time,
                         transaction.price_group.group_identifier + " (" + str(transaction.price_group.payment_amount) + ")",
                         transaction.payment_amount,
-                        transaction.is_payed,
+                        transaction.is_paid,
                         transaction.payment_time,
                     ]
 
@@ -100,7 +100,7 @@ def payment_form_processor(request, page):
 
     if payment_form.capacity != -1:
         pending_payments = successful_payments + transactions.filter(
-            is_payed=None,
+            is_paid=None,
             creation_time__gt=timezone.now() - datetime.timedelta(minutes=10)).count()
         if pending_payments >= payment_form.capacity:
             return {"status": "at_full_capacity", "content": content}
