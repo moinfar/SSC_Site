@@ -94,3 +94,24 @@ body .card .card-content .card-title {
 .teal-text.tabs div.indicator {
     background-color: #009688;
 }
+
+/* source: https://stackoverflow.com/a/46032464 */
+/*  align the checkbox to the right    */
+[type="checkbox"]+label:before, [type="checkbox"]+label:after{
+  right: 0px !important;
+}
+
+/*  align the v in the center of the checkbox    */
+[type="checkbox"].filled-in:checked+label:before{
+  right: 11px !important;
+}
+
+/*  align the radio to the right    */
+[type="radio"]+label:before, [type="radio"]+label:after{
+  right: 0px !important;
+}
+
+/*  align the v in the center of the radio    */
+[type="radio"].filled-in:checked+label:before{
+  right: 11px !important;
+}

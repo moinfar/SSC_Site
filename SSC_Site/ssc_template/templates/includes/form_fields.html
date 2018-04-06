@@ -17,30 +17,19 @@
     {% endif %}
 
 
-    <div class="input-field left-align" {% if field.field.type == "booleanfield" %} dir="ltr" {% endif %}>
-    {% if field.field.widget|is_radio_select %}
-    {% if field.label %}<p class="grey-text text-lighten-1">&nbsp;&nbsp;{{ field.label }}</p>{% endif %}
-        {% for radio in field %}
-        <span>
-            {{ radio.tag }}
-            <label for="{{ radio.id_for_label }}">
-                <span class="left spaced">{{ radio.choice_label }}</span>
+    <div class="input-field left-align">
+    {% if field.field.widget|is_radio_select or field.field.widget|is_multiple_checkbox %}
+    {% if field.label %}<p class="right grey-text text-lighten-1">&nbsp;&nbsp;{{ field.label }}</p>{% endif %}
+        <br><br><br>
+        {% for choice in field %}
+        <span class="right">
+            {{ choice.tag }}
+            <label for="{{ choice.id_for_label }}">
+                <span class="left spaced">{{ choice.choice_label }}</span>
             </label>
         </span>
         {% endfor %}
-    <p></p>
-    {% elif field.field.widget|is_multiple_checkbox %}
-
-    {% if field.label %}<p class="grey-text text-lighten-1">&nbsp;&nbsp;{{ field.label }}</p>{% endif %}
-        {% for check in field %}
-        <span>
-            {{ check.tag }}
-            <label for="{{ check.id_for_label }}">
-                <span class="left spaced">{{ check.choice_label }}</span>
-            </label>
-        </span>
-        {% endfor %}
-    <p></p>
+    <br><br>
     {% elif field.field.type == "filefield" %}
         <div class="file-field input-field">
             <div class="btn">

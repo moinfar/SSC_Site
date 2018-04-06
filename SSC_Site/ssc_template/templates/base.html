@@ -27,19 +27,9 @@
 
     <!-- Custom Styles materialize.css -->
     <link type="text/css" rel="stylesheet" href="{{ site_url }}{% static 'base/css/main.css' %}?v=1.2"/>
-    <link type="text/css" rel="stylesheet" href="{{ site_url }}{% static 'base/css/materialize-config.css' %}?v=1.2"/>
+    <link type="text/css" rel="stylesheet" href="{{ site_url }}{% static 'base/css/materialize-config.css' %}?v=1.3"/>
 
     {% block extra_css %}{% endblock %}
-    {% endblock %}
-
-
-    {% block js %}
-    <script type="text/javascript" src="{% static 'base/js/jquery-2.1.3.min.js' %}?v=1.1"></script>
-    <script type="text/javascript" src="{% static 'materialize/js/materialize.min.js' %}?v=1.1"></script>
-    <script type="text/javascript" src="{% static 'base/js/masonry.pkgd.min.js' %}?v=1.1"></script>
-    <script type="text/javascript" src="{% static 'base/js/imagesloaded.pkgd.min.js' %}?v=1.1"></script>
-
-    {% block extra_js %}{% endblock %}
     {% endblock %}
 
     {% block extra_head %}{% endblock %}
@@ -203,6 +193,16 @@
         </section>
 
     {% endblock %}
+
+    {% block js %}
+    <script type="text/javascript" src="{% static 'base/js/jquery-2.1.3.min.js' %}?v=1.1"></script>
+    <script type="text/javascript" src="{% static 'materialize/js/materialize.min.js' %}?v=1.1"></script>
+    <script type="text/javascript" src="{% static 'base/js/masonry.pkgd.min.js' %}?v=1.1"></script>
+    <script type="text/javascript" src="{% static 'base/js/imagesloaded.pkgd.min.js' %}?v=1.1"></script>
+
+    {% block extra_js %}{% endblock %}
+    {% endblock %}
+
 
     <!-- Start of StatCounter Code for Default Guide -->
     {% comment "Slow Stat Counter" %}
