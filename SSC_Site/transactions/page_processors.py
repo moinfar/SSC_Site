@@ -59,7 +59,7 @@ def payment_form_processor(request, page):
                 form_fields = [form_fields[i].label for i in range(len(form_fields)) if i not in captcha_indexes]
                 for title in [_("Creation Time"), _("Form Entry UUID"), _("Bank Token"),
                               _("Random Token"),
-                              _("Price Group"), _("Amount in Rials"), _("Is Payed"),
+                              _("Price Group"), _("Amount in Tomans"), _("Is Payed"),
                               _("Payment Time")]:
                     form_fields.append(title)
                 upal_transactions.filter(
@@ -91,7 +91,7 @@ def payment_form_processor(request, page):
                 form_fields = [form_fields[i].label for i in range(len(form_fields)) if i not in captcha_indexes]
                 for title in [_("Creation Time"), _("Form Entry UUID"), _("Authority"),
                               _("Price Group"),
-                              _("Amount in Rials"), _("Is Payed"), _("Reference ID"),
+                              _("Amount in Tomans"), _("Is Payed"), _("Reference ID"),
                               _("Payment Time")]:
                     form_fields.append(title)
                 zpal_transactions.filter(
@@ -118,13 +118,15 @@ def payment_form_processor(request, page):
                         transactions_info.append(entries)
 
             return {"status": "form", "form": form["form"], "payment_form": payment_form,
-                    "form_fields": form_fields, "transactions_info": transactions_info, "content": content}
+                    "form_fields": form_fields, "transactions_info": transactions_info,
+                    "content": content}
 
         if payment_form.capacity != 0:
             if successful_payments >= payment_form.capacity:
                 return {"status": "at_full_capacity", "content": content}
 
-        return {"status": "form", "form": form["form"], "payment_form": payment_form, "content": content}
+        return {"status": "form", "form": form["form"], "payment_form": payment_form,
+                "content": content}
 
     plan = PriceGroup.objects.get(id=request.POST.get("payment_plan_id"))
     if plan.capacity != 0:
@@ -163,7 +165,8 @@ def payment_form_processor(request, page):
                 is_payed=None,
                 creation_time__gt=timezone.now() - datetime.timedelta(minutes=10)).count()
         if pending_payments > payment_form.capacity:
-            return {"status": "payment", "payment_url": payment_url, "warning": "reserved_list", "content": content}
+            return {"status": "payment", "payment_url": payment_url, "warning": "reserved_list",
+                    "content": content}
 
     if plan.capacity != 0:
         if payment_form.payment_gateway.type == "upal":
@@ -175,7 +178,8 @@ def payment_form_processor(request, page):
                 is_payed=None, creation_time__gt=timezone.now() - datetime.timedelta(minutes=10),
                 price_group=plan).count()
         if plan_pending_payments > plan.capacity:
-            return {"status": "payment", "payment_url": payment_url, "warning": "reserved_list", "content": content}
+            return {"status": "payment", "payment_url": payment_url, "warning": "reserved_list",
+                    "content": content}
 
     return {"status": "payment", "payment_url": payment_url, "content": content}
 
@@ -303,7 +307,7 @@ def from_bank_upal(request, transaction):
                     email_to = field_entry.value
 
             field_tuples.append((_('Price Group'), transaction.price_group.group_identifier))
-            field_tuples.append((_('Payment in Rials'), transaction.payment_amount))
+            field_tuples.append((_('Payment in Tomans'), transaction.payment_amount))
 
             subject = form.email_subject
 
@@ -369,7 +373,7 @@ def from_bank_zpal(request, transaction):
                     email_to = field_entry.value
 
             field_tuples.append((_('Price Group'), transaction.price_group.group_identifier))
-            field_tuples.append((_('Payment in Rials'), transaction.payment_amount))
+            field_tuples.append((_('Payment in Tomans'), transaction.payment_amount))
 
             subject = form.email_subject
 

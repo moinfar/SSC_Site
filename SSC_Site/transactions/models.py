@@ -47,7 +47,7 @@ class PriceGroup(Orderable):
     payment_form = models.ForeignKey(PaymentForm, verbose_name=_("Containing Payment Form"))
     group_identifier = models.CharField(max_length=256, blank=False, null=False,
                                         verbose_name=_("Group Identifier"))
-    payment_amount = models.BigIntegerField(verbose_name=_("Amount in Rials"))
+    payment_amount = models.BigIntegerField(verbose_name=_("Amount in Tomans"))
     capacity = models.IntegerField(default=0)
 
     def is_full(self):
@@ -72,7 +72,7 @@ class UpalPaymentTransaction(models.Model):
                                     verbose_name=_("Random Token"))
     price_group = models.ForeignKey(PriceGroup, blank=False, null=False,
                                     verbose_name=_("Price Group"))
-    payment_amount = models.BigIntegerField(verbose_name=_("Amount in Rials"))
+    payment_amount = models.BigIntegerField(verbose_name=_("Amount in Tomans"))
 
     is_payed = models.NullBooleanField(verbose_name=_("Is Payed"))
     payment_time = models.DateTimeField(blank=True, null=True, verbose_name=_("Payment Time"))
@@ -89,7 +89,7 @@ class ZpalPaymentTransaction(models.Model):
     authority = models.CharField(max_length=36, blank=True, null=True, verbose_name=_("Authority"))
     price_group = models.ForeignKey(PriceGroup, blank=False, null=False,
                                     verbose_name=_("Price Group"))
-    payment_amount = models.BigIntegerField(verbose_name=_("Amount in Rials"))
+    payment_amount = models.BigIntegerField(verbose_name=_("Amount in Tomans"))
 
     is_payed = models.NullBooleanField(verbose_name=_("Is Payed"))
     ref_id = models.CharField(max_length=50, blank=True, null=True, verbose_name=_("Reference ID"))

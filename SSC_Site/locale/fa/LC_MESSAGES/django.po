@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-30 00:56+0430\n"
+"POT-Creation-Date: 2018-04-06 13:10+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,11 +46,11 @@ msgstr "متن ادامه‌ی نوشتار"
 msgid "Parallax Image"
 msgstr "تصویر پارالاکس"
 
-#: SSC_Site/settings.py:142
+#: SSC_Site/settings.py:217
 msgid "Persian"
 msgstr "فارسی"
 
-#: SSC_Site/settings.py:143
+#: SSC_Site/settings.py:218
 msgid "English"
 msgstr "انگلیسی"
 
@@ -66,7 +66,7 @@ msgstr ""
 msgid "Download"
 msgstr ""
 
-#: certificates/models.py:9 ssc_configs/models.py:42
+#: certificates/models.py:9 ssc_configs/models.py:93
 #: ssc_template/templates/generic/includes/comment_form.html:16
 #: ssc_template/templates/pages/groupsinfopage.html:13
 msgid "Name"
@@ -92,11 +92,12 @@ msgstr "صفحه‌ی شامل ویدئو‌ها"
 msgid "Video Container Pages"
 msgstr "صفحات شامل ویدئو‌ها"
 
-#: media_manager/models.py:17 ssc_configs/models.py:74
+#: media_manager/models.py:17 ssc_configs/models.py:125
 msgid "Containing Page"
 msgstr "صفحه‌ی شامل"
 
-#: media_manager/models.py:18 ssc_configs/models.py:55 ssc_configs/models.py:75
+#: media_manager/models.py:18 ssc_configs/models.py:106
+#: ssc_configs/models.py:126
 msgid "Title"
 msgstr "عنوان"
 
@@ -198,82 +199,125 @@ msgstr "تصویر مانیتور"
 msgid "Parallax of index page"
 msgstr "تصویر پارالاکس صفحه‌ی اصلی"
 
-#: ssc_configs/models.py:12
+#: ssc_configs/models.py:26
+msgid "name"
+msgstr "نام"
+
+#: ssc_configs/models.py:27
+msgid "email addresses"
+msgstr "آدرس‌های ایمیل"
+
+#: ssc_configs/models.py:38
+msgid "from email"
+msgstr "ایمیل فرستنده"
+
+#: ssc_configs/models.py:39
 msgid "subject"
 msgstr "عنوان"
 
-#: ssc_configs/models.py:13
+#: ssc_configs/models.py:40
 msgid "recipients"
 msgstr "گیرنده‌ها"
 
-#: ssc_configs/models.py:14
-msgid "enter recipients' emails separated by comma, enter or space"
-msgstr "آدرس ایمیل گیرندگان را وارد کنید. برای جداکردن آدرس‌ها از فاصله یا ویرگول استفاده کنید و یا به خط بعد بروید"
+#: ssc_configs/models.py:42
+msgid "message (don't use table)"
+msgstr "متن پیام (از جدول استفاده نکنید)"
 
-#: ssc_configs/models.py:16
-msgid "message"
-msgstr "متن ایمیل"
+#: ssc_configs/models.py:43
+msgid ""
+"IMPORTANT WARNING: PLEASE DO NOT USE TABLE IN EMAIL! By the time I'm writing "
+"this, tables of this editor are rendered awfully by the mail clients. Make "
+"sure they are ok first by sending a test email containing your desired "
+"table. (Don't take account for the previewer of the editor)"
+msgstr ""
 
-#: ssc_configs/models.py:35
+#: ssc_configs/models.py:51
+msgid "language"
+msgstr ""
+
+#: ssc_configs/models.py:54
+msgid "CC"
+msgstr ""
+
+#: ssc_configs/models.py:56
+msgid "CC mailing lists"
+msgstr ""
+
+#: ssc_configs/models.py:58
+msgid "BCC"
+msgstr ""
+
+#: ssc_configs/models.py:60
+msgid "BCC mailing lists"
+msgstr ""
+
+#: ssc_configs/models.py:66
 msgid "Announcement"
 msgstr "اطلاعیه"
 
-#: ssc_configs/models.py:36
+#: ssc_configs/models.py:67
 msgid "Announcements"
 msgstr "اطلاعیه‌ها"
 
-#: ssc_configs/models.py:40 ssc_configs/models.py:53
+#: ssc_configs/models.py:91 ssc_configs/models.py:104
 msgid "slug"
 msgstr ""
 
-#: ssc_configs/models.py:48 ssc_configs/models.py:84
+#: ssc_configs/models.py:99 ssc_configs/models.py:135
 msgid "Person"
 msgstr "شخص"
 
-#: ssc_configs/models.py:49
+#: ssc_configs/models.py:100
 msgid "Persons"
 msgstr "اشخاص"
 
-#: ssc_configs/models.py:61 ssc_configs/models.py:62 ssc_configs/models.py:85
+#: ssc_configs/models.py:112 ssc_configs/models.py:113
+#: ssc_configs/models.py:136
 #: ssc_template/templates/pages/groupsinfopage.html:14
 msgid "Duty"
 msgstr "وظیفه"
 
-#: ssc_configs/models.py:69
+#: ssc_configs/models.py:120
 msgid "Groups' Info Page"
 msgstr "صفحه‌ی اطلاعات گروه‌ها"
 
-#: ssc_configs/models.py:70
+#: ssc_configs/models.py:121
 msgid "Groups' Info Pages"
 msgstr "صفحات اطلاعات گروه‌ها"
 
-#: ssc_configs/models.py:78
+#: ssc_configs/models.py:129
 msgid "Group Info"
 msgstr "اطلاعات گروه"
 
-#: ssc_configs/models.py:79
+#: ssc_configs/models.py:130
 msgid "Groups Info"
 msgstr "اطلاعات گروه‌ها"
 
-#: ssc_configs/models.py:83
+#: ssc_configs/models.py:134
 msgid "Containing Group"
 msgstr "گروه شامل"
 
-#: ssc_configs/models.py:88
+#: ssc_configs/models.py:139
 msgid "Group Member"
 msgstr "عضو گروه"
 
-#: ssc_configs/models.py:89
+#: ssc_configs/models.py:140
 msgid "Group Members"
 msgstr "اعضای گروه"
 
-#: ssc_configs/models.py:96
+#: ssc_configs/models.py:147
 msgid "Gallery Container Page"
 msgstr "صفحه‌ی شامل گالری‌ها"
 
-#: ssc_configs/models.py:97
+#: ssc_configs/models.py:148
 msgid "Gallery Container Pages"
 msgstr "صفحات شامل گالری‌ها"
+
+#: ssc_configs/utils.py:23
+msgid "enter email addresses separated by comma, enter or space"
+msgstr ""
+"آدرس‌های ایمیل را وارد کنید. برای جداکردن آدرس‌ها از فاصله یا ویرگول "
+"استفاده کنید و یا به خط بعد بروید"
 
 #: ssc_template/templates/base.html:75
 msgid "Change"
@@ -400,11 +444,11 @@ msgstr ""
 msgid "Atom"
 msgstr ""
 
-#: ssc_template/templates/email/email_base.html:51
+#: ssc_template/templates/email/email_base.html:52
 msgid "Students' Scientific Chapter"
 msgstr "            انجمن علمی دانشکده کامپیوتر"
 
-#: ssc_template/templates/email/email_base.html:89
+#: ssc_template/templates/email/email_base.html:90
 #, python-format
 msgid ""
 "\n"
@@ -562,43 +606,43 @@ msgstr ""
 "برای مشاهده‌ی عکس با کیفیت اصلی <a href='%(url)s'>اینجا</a>  کلیک کنید.\n"
 "                       "
 
-#: ssc_template/templates/pages/paymentformpage.html:62
-msgid "Rials"
-msgstr "﷼"
+#: ssc_template/templates/pages/paymentform.html:64
+msgid "Tomans"
+msgstr "تومان"
 
-#: ssc_template/templates/pages/paymentformpage.html:63
+#: ssc_template/templates/pages/paymentform.html:65
 msgid "At Full Capacity"
 msgstr "ظرفیت تکمیل است"
 
-#: ssc_template/templates/pages/paymentformpage.html:67
+#: ssc_template/templates/pages/paymentform.html:69
 msgid "Choose The Right One"
 msgstr "گزینه‌ی مناسب را انتخاب کنید"
 
-#: ssc_template/templates/pages/paymentformpage.html:73
+#: ssc_template/templates/pages/paymentform.html:74
 msgid "Send and Pay"
 msgstr "ارسال و پرداخت"
 
-#: ssc_template/templates/pages/paymentformpage.html:79
+#: ssc_template/templates/pages/paymentform.html:80
 msgid "ERROR: Your form must contain a hidden field labeled UUID."
 msgstr "خطا: فرم شما باید حاوی یک فیلد پنها با عنوان UUID باشد."
 
-#: ssc_template/templates/pages/paymentformpage.html:85
+#: ssc_template/templates/pages/paymentform.html:86
 msgid "ERROR: Can not connect to payment gateway, please try again."
 msgstr ""
 "خطا: در حال حاضر قادر به اتصال به درگاه پرداخت نیستیم، لطفا مجددا تلاش "
 "نمایید."
 
-#: ssc_template/templates/pages/paymentformpage.html:94
+#: ssc_template/templates/pages/paymentform.html:95
 msgid "Unfortunately we have reached our maximum capacity."
 msgstr "متاسفانه ظرفیت تکمیل شده‌است."
 
-#: ssc_template/templates/pages/paymentformpage.html:103
+#: ssc_template/templates/pages/paymentform.html:104
 msgid ""
 "CAUTION: We are going to reach our maximum capacity, so we may put you in "
 "reservation list."
 msgstr "توجه: ظرفیت در حال تکمیل است. ممکن است در لیست رزرو قرار بگیرید."
 
-#: ssc_template/templates/pages/paymentformpage.html:104
+#: ssc_template/templates/pages/paymentform.html:105
 msgid "OK"
 msgstr "متوجه شدم"
 
@@ -696,112 +740,120 @@ msgstr "آی‌دی درگاه"
 msgid "Gateway API"
 msgstr "ای‌پی‌آی درگاه"
 
-#: transactions/models.py:19 transactions/models.py:60
-#: transactions/models.py:73 transactions/models.py:90
-#: transactions/page_processors.py:58 transactions/page_processors.py:88
-#: transactions/page_processors.py:300 transactions/page_processors.py:366
+#: transactions/models.py:19 transactions/models.py:61
+#: transactions/models.py:74 transactions/models.py:91
+#: transactions/page_processors.py:62 transactions/page_processors.py:93
+#: transactions/page_processors.py:309 transactions/page_processors.py:375
 msgid "Price Group"
 msgstr "گروه قیمت"
 
-#: transactions/models.py:20 transactions/models.py:61
+#: transactions/models.py:20 transactions/models.py:62
 msgid "Price Groups"
 msgstr "گروه‌های قیمت"
 
-#: transactions/models.py:27 transactions/models.py:37
-msgid "Payment Form"
-msgstr "فرم پرداخت"
-
-#: transactions/models.py:29
+#: transactions/models.py:28
 msgid "Payment Gateway"
 msgstr "درگاه پرداخت"
 
-#: transactions/models.py:31
+#: transactions/models.py:30
 msgid "Payment Description"
 msgstr "توضیحات پرداخت"
 
-#: transactions/models.py:34
+#: transactions/models.py:33
 msgid "At Full Capacity Message"
 msgstr "پیام ظرفیت پر شده"
 
-#: transactions/models.py:38
+#: transactions/models.py:36
+msgid "Payment Form"
+msgstr "فرم پرداخت"
+
+#: transactions/models.py:37
 msgid "Payment Forms"
 msgstr "فرم‌های پرداخت"
 
-#: transactions/models.py:40
+#: transactions/models.py:39
 msgid "Can View Payment Transactions"
 msgstr "می‌تواند تراکنش‌های پرداختی را مشاهده نماید"
 
-#: transactions/models.py:46
+#: transactions/models.py:47
 msgid "Containing Payment Form"
 msgstr "صفحه‌ی شامل فرم"
 
-#: transactions/models.py:48
+#: transactions/models.py:49
 msgid "Group Identifier"
 msgstr "مشخص‌کننده‌ی گروه"
 
-#: transactions/models.py:49 transactions/models.py:74
-#: transactions/models.py:91 transactions/page_processors.py:58
-#: transactions/page_processors.py:89
-msgid "Amount in Rials"
-msgstr "مقدار به ریال"
+#: transactions/models.py:50 transactions/models.py:75
+#: transactions/models.py:92 transactions/page_processors.py:62
+#: transactions/page_processors.py:94
+#, fuzzy
+#| msgid "Amount in Rials"
+msgid "Amount in Tomans"
+msgstr "مقدار به تومان"
 
-#: transactions/models.py:65 transactions/models.py:85
-#: transactions/page_processors.py:56 transactions/page_processors.py:87
+#: transactions/models.py:66 transactions/models.py:86
+#: transactions/page_processors.py:60 transactions/page_processors.py:92
 msgid "Creation Time"
 msgstr "زمان ایجاد"
 
-#: transactions/models.py:67 transactions/models.py:87
-#: transactions/page_processors.py:56 transactions/page_processors.py:87
+#: transactions/models.py:68 transactions/models.py:88
+#: transactions/page_processors.py:60 transactions/page_processors.py:92
 msgid "Form Entry UUID"
 msgstr "UUID وارد شده"
 
-#: transactions/models.py:69 transactions/page_processors.py:56
+#: transactions/models.py:70 transactions/page_processors.py:60
 msgid "Bank Token"
 msgstr "توکن بانک"
 
-#: transactions/models.py:71 transactions/page_processors.py:57
+#: transactions/models.py:72 transactions/page_processors.py:61
 msgid "Random Token"
 msgstr "توکن تصادفی"
 
-#: transactions/models.py:76 transactions/models.py:93
-#: transactions/page_processors.py:58 transactions/page_processors.py:89
+#: transactions/models.py:77 transactions/models.py:94
+#: transactions/page_processors.py:62 transactions/page_processors.py:94
 msgid "Is Payed"
 msgstr "پرداخت‌شده"
 
-#: transactions/models.py:77 transactions/models.py:95
-#: transactions/page_processors.py:59 transactions/page_processors.py:90
+#: transactions/models.py:78 transactions/models.py:96
+#: transactions/page_processors.py:63 transactions/page_processors.py:95
 msgid "Payment Time"
 msgstr "زمان پرداخت"
 
-#: transactions/models.py:80 transactions/models.py:98
+#: transactions/models.py:81 transactions/models.py:99
 msgid "Upal Payment Transaction"
 msgstr "تراکنش پرداختی یوپال"
 
-#: transactions/models.py:81 transactions/models.py:99
+#: transactions/models.py:82 transactions/models.py:100
 msgid "Upal Payment Transactions"
 msgstr "تراکنش‌های پرداختی یوپال"
 
-#: transactions/models.py:88 transactions/page_processors.py:87
+#: transactions/models.py:89 transactions/page_processors.py:92
 msgid "Authority"
 msgstr "قدرت"
 
-#: transactions/models.py:94 transactions/page_processors.py:89
+#: transactions/models.py:95 transactions/page_processors.py:94
 msgid "Reference ID"
 msgstr "شناسه ارجاع"
 
-#: transactions/page_processors.py:263
+#: transactions/page_processors.py:272
 msgid "UnSuccessful Payment Transaction"
 msgstr ""
 "تراکنش پرداختی با مشکل مواجه شده‌است. لطفا چنانچه پرداخت شما موفق بوده‌است، ما "
 "را مطلع کنید."
 
-#: transactions/page_processors.py:301 transactions/page_processors.py:367
-msgid "Payment in Rials"
-msgstr "مقدار پرداخت به ریال"
+#: transactions/page_processors.py:310 transactions/page_processors.py:376
+msgid "Payment in Tomans"
+msgstr "مقدار پرداخت به تومان"
 
-#: transactions/page_processors.py:321 transactions/page_processors.py:387
+#: transactions/page_processors.py:330 transactions/page_processors.py:396
 msgid "Successful Payment Transaction"
 msgstr "تراکنش پرداختی موفقیت آمیز بود"
+
+#~ msgid "message"
+#~ msgstr "متن ایمیل"
+
+#~ msgid "Rials"
+#~ msgstr "﷼"
 
 #~ msgid "Related announcements"
 #~ msgstr "اطلاعیه‌های مرتبط"
