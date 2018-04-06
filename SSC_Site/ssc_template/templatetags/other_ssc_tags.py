@@ -1,7 +1,6 @@
 import datetime
 
 from mezzanine.forms import fields as mezzanine_fields
-from captcha.fields import ReCaptchaField
 from django.forms.widgets import RadioSelect, CheckboxSelectMultiple
 from django.utils import timezone
 from mezzanine import template
