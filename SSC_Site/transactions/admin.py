@@ -4,7 +4,7 @@ from mezzanine.core import admin as mezzanineAdmin
 from mezzanine.forms.admin import FormAdmin, FieldAdmin
 from mezzanine.pages.admin import PageAdmin
 
-from .models import PaymentForm, PriceGroup, PaymentGateway
+from .models import PaymentForm, PriceGroup, PaymentGateway, DiscountCode
 
 
 class PaymentGatewayAdmin(mezzanineAdmin.BaseTranslationModelAdmin):
@@ -23,8 +23,13 @@ form_fieldsets[0][1]["fields"].insert(+4, "payment_description")
 form_fieldsets[0][1]["fields"].insert(+5, "capacity")
 
 
+class DiscountCodeInline(mezzanineAdmin.TabularDynamicInlineAdmin):
+    model = DiscountCode
+
+
 class PriceGroupInline(mezzanineAdmin.TabularDynamicInlineAdmin):
     model = PriceGroup
+    inlines = [DiscountCodeInline]
 
 
 class PaymentFormAdmin(FormAdmin):

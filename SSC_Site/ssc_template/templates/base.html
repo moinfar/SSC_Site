@@ -138,15 +138,18 @@
         </div>
 
         {% block breadcrumb_wrapper %}
-        {% if request.user.is_staff %}
-            <div class="px-10 vertical spacer"></div>
-            <div class="breadcrumb {% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %} container"
-                 {% if LANGUAGE_BIDI %} dir="rtl"{% endif %} >
-                {% spaceless %}
-                {% block breadcrumb_menu %}{% page_menu "pages/menus/breadcrumb.html" %}{% endblock %}
-                {% endspaceless %}
-            </div>
-        {% endif %}
+            {% if request.user.is_staff %}
+                <div class="px-10 vertical spacer"></div>
+                <div class="breadcrumb {% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %} container"
+                     {% if LANGUAGE_BIDI %} dir="rtl"{% endif %} >
+                    {% spaceless %}
+                    {% block breadcrumb_menu %}{% page_menu "pages/menus/breadcrumb.html" %}{% endblock %}
+                        <span class="card-panel {% if LANGUAGE_BIDI %} left {% else %} right {% endif %}">
+                            <a href="http://google">Google It</a>
+                        </span>
+                    {% endspaceless %}
+                </div>
+            {% endif %}
         {% endblock %}
 
         <div class="row"></div>
@@ -173,20 +176,26 @@
             <div class="container">
                 <div class="row">
 
-                    {% block left_wrapper %}
-                    <div class="{% if not LANGUAGE_BIDI %}right{% endif %} col s12 m4 l4">
-                        {% block left_panel %}
-                        {% if page %}
-                            {% page_menu page "pages/menus/children.html" %}
-                        {% endif %}
+                    {% if page.children.count %}
+                        {% block left_wrapper %}
+                        <div class="{% if not LANGUAGE_BIDI %}right{% endif %} col s12 m4 l4">
+                            {% block left_panel %}
+                            {% if page %}
+                                {% page_menu page "pages/menus/children.html" %}
+                            {% endif %}
+                            {% endblock %}
+                        </div>
                         {% endblock %}
-                    </div>
-                    {% endblock %}
 
-                    <div class="col s12 m8 l8">
+                        <div class="col s12 m8 l8">
+                    {% endif %}
+
                         {% block main %}
                         {% endblock %}
+
+                    {% if page.children.count %}
                     </div>
+                    {% endif %}
 
                 </div>
             </div>

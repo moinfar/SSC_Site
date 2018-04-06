@@ -67,6 +67,11 @@ class PriceGroup(Orderable):
         verbose_name_plural = _("Price Groups")
 
 
+class DiscountCode(models.Model):
+    code = models.CharField(max_length=20, verbose_name=_("Discount Code"))
+    price_group = models.ForeignKey(to=PriceGroup, verbose_name=_("Price Group"), related_name='discount_codes')
+
+
 class PaymentTransaction(PolymorphicModel):
     creation_time = models.DateTimeField(blank=False, null=False, verbose_name=_("Creation Time"))
     uuid = models.CharField(max_length=512, blank=True, null=True,
