@@ -15,6 +15,32 @@
     </script>
 {% endblock %}
 
+{% block form_responses %}
+    {% if perms.transactions.can_view_payment_transactions %}
+    <div class="card-panel" style="overflow-x: scroll">
+        <table class="white bordered striped">
+            <thead>
+            <tr>
+                {% for field in form_fields %}
+                    <th>{{ field }}</th>
+                {% endfor %}
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for entry in transactions_info %}
+            <tr>
+                {% for value in entry %}
+                    <td>{{value}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+{% endblock %}
+
 {% block main %}
 
     {% if status == "payment" %}
@@ -22,29 +48,7 @@
             redirect();
         </script>;
     {% else %}
-        <div class="card-panel" style="overflow-x: scroll">
-            {% if perms.transactions.can_view_payment_transactions %}
-            <table class="white bordered striped">
-                <thead>
-                <tr>
-                    {% for field in form_fields %}
-                        <th>{{ field }}</th>
-                    {% endfor %}
-                </tr>
-                </thead>
-
-                <tbody>
-                {% for entry in transactions_info %}
-                <tr>
-                    {% for value in entry %}
-                        <td>{{value}}</td>
-                    {% endfor %}
-                </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-            {% endif %}
-
+        <div class="card-panel">
             {{ content|richtext_filters|safe }}
             {% if status == "form" %}
 

@@ -180,26 +180,24 @@
             <div class="container">
                 <div class="row">
 
-                    {% if page.children.count %}
-                        {% block left_wrapper %}
-                        <div class="{% if not LANGUAGE_BIDI %}right{% endif %} col s12 m4 l4">
-                            {% block left_panel %}
-                            {% if page %}
-                                {% page_menu page "pages/menus/children.html" %}
-                            {% endif %}
-                            {% endblock %}
-                        </div>
+                    {% block form_responses %}
+                    {% endblock %}
+                    {% block left_wrapper %}
+                    <div class="{% if not LANGUAGE_BIDI %}right{% endif %} col s12 m4 l4">
+                        {% block left_panel %}
+                        {% if page %}
+                            {% page_menu page "pages/menus/children.html" %}
+                        {% endif %}
                         {% endblock %}
+                    </div>
+                    {% endblock %}
 
-                        <div class="col s12 m8 l8">
-                    {% endif %}
+                    <div class="col s12 m8 l8">
 
                         {% block main %}
                         {% endblock %}
 
-                    {% if page.children.count %}
                     </div>
-                    {% endif %}
 
                 </div>
             </div>

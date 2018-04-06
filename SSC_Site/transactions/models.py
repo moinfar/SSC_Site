@@ -18,8 +18,8 @@ class PaymentGateway(models.Model):
                                    verbose_name=_("Gateway API"))
 
     class Meta:
-        verbose_name = _("Price Group")
-        verbose_name_plural = _("Price Groups")
+        verbose_name = _("Payment Gateway")
+        verbose_name_plural = _("Payment Gateways")
 
     def __str__(self):
         return "{} - {}".format(self.type, self.title)
