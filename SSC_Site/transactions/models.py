@@ -53,7 +53,7 @@ class PriceGroup(Orderable):
     def is_full(self):
         if self.capacity == 0:
             return False
-        if self.payment_form_page.payment_gateway.type == "upal":
+        if self.payment_form.payment_gateway.type == "upal":
             return UpalPaymentTransaction.objects.filter(is_payed=True,
                                                          price_group=self).count() >= self.capacity
 

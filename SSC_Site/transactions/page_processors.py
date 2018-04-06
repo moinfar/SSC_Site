@@ -260,7 +260,7 @@ def from_bank(request, transaction_type, transaction_id):
         transaction = ZpalPaymentTransaction.objects.get(id=transaction_id)
         ret = from_bank_zpal(request, transaction)
     return ret or render(request, 'pages/error.html',
-                         {"page": transaction.price_group.payment_form_page,
+                         {"page": transaction.price_group.payment_for,
                           "title": _("UnSuccessful Payment Transaction")})
 
 
@@ -270,9 +270,9 @@ def from_bank_upal(request, transaction):
     if bank_token == transaction.bank_token:
         our_validation_md5 = hashlib.md5()
         our_validation_md5.update(
-            "{}{}{}{}".format(transaction.price_group.payment_form_page.payment_gateway.gateway_id,
+            "{}{}{}{}".format(transaction.price_group.payment_for.payment_gateway.gateway_id,
                               transaction.payment_amount,
-                              transaction.price_group.payment_form_page.payment_gateway.gateway_api,
+                              transaction.price_group.payment_for.payment_gateway.gateway_api,
                               transaction.random_token).encode())
         if our_validation_md5.hexdigest() == validation_hash:
 
@@ -284,7 +284,7 @@ def from_bank_upal(request, transaction):
 
                 send_payment_main = True
 
-            form = transaction.price_group.payment_form_page.payment_form
+            form = transaction.price_group.payment_for.payment_form
             form_fields = form.fields.all().order_by("id")
 
             field_entries = get_transaction_entries(transaction)
@@ -318,7 +318,7 @@ def from_bank_upal(request, transaction):
                                        email_from, email_copies, context)
 
             return render(request, 'pages/message.html',
-                          {"page": transaction.price_group.payment_form_page,
+                          {"page": transaction.price_group.payment_for,
                            "title": _("Successful Payment Transaction"),
                            "context": context})
         else:
@@ -333,7 +333,7 @@ def from_bank_zpal(request, transaction):
     if authority == transaction.authority:
         client = Client('https://www.zarinpal.com/pg/services/WebGate/wsdl')
         validation_parameters = {
-            'MerchantID': transaction.price_group.payment_form_page.payment_gateway.gateway_id,
+            'MerchantID': transaction.price_group.payment_for.payment_gateway.gateway_id,
             'Authority': authority,
             'Amount': transaction.payment_amount / 10,
         }
@@ -350,7 +350,7 @@ def from_bank_zpal(request, transaction):
 
                 send_payment_main = True
 
-            form = transaction.price_group.payment_form_page.payment_form
+            form = transaction.price_group.payment_for.payment_form
             form_fields = form.fields.all().order_by("id")
 
             field_entries = get_transaction_entries(transaction)
@@ -384,7 +384,7 @@ def from_bank_zpal(request, transaction):
                                        email_from, email_copies, context)
 
             return render(request, 'pages/message.html',
-                          {"page": transaction.price_group.payment_form_page,
+                          {"page": transaction.price_group.payment_for,
                            "title": _("Successful Payment Transaction"),
                            "context": context})
         else:
