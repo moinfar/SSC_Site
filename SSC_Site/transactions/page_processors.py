@@ -9,7 +9,7 @@ from django.utils.translation import ugettext as _
 from mezzanine.forms.page_processors import form_processor
 from mezzanine.pages.page_processors import processor_for
 
-from ssc_template.templatetags.other_ssc_tags import is_captcha
+from ssc_template.templatetags.other_ssc_tags import is_captcha, field_value
 from transactions.payment_transaction import UpalPaymentTransaction, ZpalPaymentTransaction, \
     get_transaction_class
 from .models import PaymentForm, PriceGroup
@@ -23,7 +23,7 @@ def payment_form_processor(request, page):
 
     transaction_class = get_transaction_class(payment_form.payment_gateway.type)
 
-    transactions = transaction_class.objects.filter(price_group__payment_form=page)
+    transactions = transaction_class.objects.filter(price_group__payment_form=page).order_by("-id")
     successful_payments = transactions.filter(is_paid=True).count()
 
     if payment_form.fields.filter(label="UUID").count() != 1:
@@ -63,14 +63,9 @@ def payment_form_processor(request, page):
                                  failed_transactions)
             transactions_info = []
             for transaction in transactions:
-                transaction_entries = transaction.get_transaction_entries()
-                if transaction_entries is not None:
-                    entries = []
-                    for form_field in form_fields:
-                        try:
-                            entries.append(transaction_entries.get(field_id=form_field.id).value)
-                        except ObjectDoesNotExist:
-                            entries.append('-----')
+                entries = transaction.get_transaction_entries()
+                if entries is not None:
+                    entries = [field_value(entries, field) for field in form_fields]
 
                     values = [
                         transaction.creation_time,

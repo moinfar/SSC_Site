@@ -18,12 +18,12 @@
             </tr>
             </thead>
             <tbody>
-                {% for entry in page.form.entries.all %}
+                {% for entry in page.form.entries.all|dictsortreversed:"id" %}
                 <tr>
-                    {% for field in entry.fields.all|dictsort:'field_id' %}
-                        {% if not page.form.fields.all|at_index:forloop.counter0|is_captcha %}
-                            <td>{{ field.value }}</td>
-                        {% endif %}
+                    {% for field in page.form.fields.all %}
+                        {% with entries=entry.fields.all %}
+                        <td>{{ entries|field_value:field }} </td>
+                        {% endwith %}
                     {% endfor %}
                 </tr>
                 {% endfor %}

@@ -1,5 +1,6 @@
 import datetime
 
+from django.core.exceptions import ObjectDoesNotExist
 from mezzanine.forms import fields as mezzanine_fields
 from django.forms.widgets import RadioSelect, CheckboxSelectMultiple
 from django.utils import timezone
@@ -71,3 +72,11 @@ def admin_edit_link(page):
         model_name=content_model.__class__.__name__.lower(),
         pk=content_model.pk
     )
+
+
+@register.filter()
+def field_value(entries, field):
+    try:
+        return entries.get(field_id=field.id).value
+    except ObjectDoesNotExist:
+        return '----'
