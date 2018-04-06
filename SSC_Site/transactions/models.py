@@ -85,8 +85,8 @@ class UpalPaymentTransaction(PaymentTransaction):
 
 
     class Meta:
-        verbose_name = _("Upal Payment Transaction")
-        verbose_name_plural = _("Upal Payment Transactions")
+        verbose_name = _("Zpal Payment Transaction")
+        verbose_name_plural = _("Zpal Payment Transactions")
 
 
 class ZpalPaymentTransaction(PaymentTransaction):
