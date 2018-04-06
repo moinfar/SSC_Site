@@ -11,7 +11,38 @@
             window.location = "{{ payment_url }}";
         one_time_flag = 1;
     }
-    window.setTimeout(function() {location.reload();}, 60*5000);
+    $(document).ready(function(){
+        function show_discount_code_error(message) {
+            $('#discount-code-info').addClass('red-text');
+            $('#discount-code-info').removeClass('green-text');
+            $('#discount-code-info').html(message);
+        }
+
+        $('#discount-code-validate').click(function(){
+            var discount_code = $('#discount-code-input').val();
+            if (!discount_code){
+                show_discount_code_error('{% trans 'Please enter discount code' %}');
+                return;
+            }
+            $.ajax({
+                url: '/transactions/check-discount-code/',
+                method: 'POST',
+                data: {
+                    'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+                    'code': discount_code,
+                    'plan': $('#payment-plan-id').val()
+                },
+                error: function(xhr, error){
+                    show_discount_code_error(xhr.responseJSON['error']);
+                },
+                success: function(data) {
+                    $('#discount-code-info').removeClass('red-text');
+                    $('#discount-code-info').addClass('green-text');
+                    $('#discount-code-info').html('{% trans 'Discount code has been applied successfully. New price is ' %}' + intcomma(data['new_price']) + ' {% trans 'Tomans' %}');
+                }
+            });
+        });
+    });
     </script>
 {% endblock %}
 
@@ -53,6 +84,9 @@
             {% if status == "form" %}
 
             {% errors_for form %}
+            {% if discount_code_error %}
+                <div class="alert alert-danger field-error">{% trans "Please correct the errors below." %}</div>
+            {% endif %}
             <form class="mezzanine-form" onsubmit="return sumbit_form();"
                   method="post"{% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
 
@@ -61,7 +95,7 @@
                 <br>
 
                 <div class="input-field left-align">
-                    <select required="required" name="payment_plan_id">
+                    <select required="required" name="payment_plan_id" id="payment-plan-id">
                         {% for plan in payment_form.pricegroup_set.all %}
                         <option value="{{ plan.id }}">
                             {{ plan.group_identifier }} {% if LANGUAGE_CODE == "fa" or LANGUAGE_CODE == "fa-IR" %}({{ plan.payment_amount|get_persian_comma_separated_money }}{% else %}{{plan.payment_amount|intcomma }}{% endif %} {% trans 'Tomans' %})
@@ -69,10 +103,22 @@
                         </option>
                         {% endfor %}
                     </select>
-                    <label>{% trans 'Choose The Right One' %}</label>
+                    <label class="control-label" for="payment-plan-id" dir="rtl">{% trans 'Choose The Right One' %}</label>
                 </div>
-                <br>
 
+                <div class="row">
+                    <div class="input-field left-align right col s6">
+                        <input type="text" id="discount-code-input" name="discount_code" value="{{ discount_code }}">
+                        <label class="control-label" for="discount-code-input" style="padding-right: 20px" dir="rtl">{% trans 'Discount code' %}</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <button type="button" class="btn" id="discount-code-validate">{% trans 'Check' %}</button>
+                    </div>
+                    <p class="help-block red-text right" id="discount-code-info">
+                        {{ discount_code_error }}
+                    </p>
+
+                </div>
                 <div class="form-actions">
                     <input class="submit btn" type="submit" value="{% trans 'Send and Pay' %}" >
                 </div>
@@ -97,8 +143,7 @@
                     {% else %}
                     {% trans 'Unfortunately we have reached our maximum capacity.' %}
                     {% endif %}
-                </h5>
-            </div>
+                </h5></div>
             {% endif %}
         </div>
     {% endif %}

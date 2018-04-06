@@ -3,6 +3,7 @@ import uuid
 from itertools import chain
 
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Q
 from django.shortcuts import render
 from django.utils import timezone
 from django.utils.translation import ugettext as _
@@ -22,9 +23,12 @@ def payment_form_processor(request, page):
     payment_form.send_email = False
 
     transaction_class = get_transaction_class(payment_form.payment_gateway.type)
-
     transactions = transaction_class.objects.filter(price_group__payment_form=page).order_by("-id")
-    successful_payments = transactions.filter(is_paid=True).count()
+
+    if payment_form.capacity != -1:
+        successful_payment_count = transactions.filter(Q(is_paid=True) | Q(is_paid=None,
+                                                                           creation_time__gt=timezone.now() - datetime.timedelta(
+                                                                               minutes=10))).count()
 
     if payment_form.fields.filter(label="UUID").count() != 1:
         return {"status": "design_error", "content": content}
@@ -39,13 +43,13 @@ def payment_form_processor(request, page):
 
     form = form_processor(request, payment_form)
 
-    if isinstance(form, dict) and "form" in form:
+    if isinstance(form, dict) and "form" in form and payment_form.form.is_valid == False:
         if request.user.has_perm('transactions.can_view_payment_transactions'):
             form_fields = payment_form.fields.all().order_by("id")
             form_fields = [field for field in form_fields if not is_captcha(field)]
             form_field_labels = [field.label for field in form_fields]
 
-            headers = [_("Creation Time"), _("Price Group"), _("Amount in Tomans"),
+            headers = [_("Creation Time"), _("Price Group"), _("Amount in Tomans"), _("Discount Code"),
                        _("Is Paid"), _("Payment Time")]
             if transaction_class == UpalPaymentTransaction:
                 headers.append(_("Bank Token"))
@@ -53,9 +57,6 @@ def payment_form_processor(request, page):
                 headers.append(_("Reference ID"))
             for title in headers:
                 form_field_labels.append(title)
-            transactions.filter(
-                creation_time__lt=timezone.now() - datetime.timedelta(minutes=20),
-                is_paid=None).update(is_paid=False)
             successful_transactions = transactions.filter(is_paid=True)
             pending_transactions = transactions.filter(is_paid=None)
             failed_transactions = transactions.filter(is_paid=False)
@@ -69,8 +70,10 @@ def payment_form_processor(request, page):
 
                     values = [
                         transaction.creation_time,
-                        transaction.price_group.group_identifier + " (" + str(transaction.price_group.payment_amount) + ")",
+                        transaction.price_group.group_identifier + " (" + str(
+                            transaction.price_group.payment_amount) + ")",
                         transaction.payment_amount,
+                        transaction.discount_code,
                         transaction.is_paid,
                         transaction.payment_time,
                     ]
@@ -89,7 +92,7 @@ def payment_form_processor(request, page):
                     "content": content}
 
         if payment_form.capacity != -1:
-            if successful_payments >= payment_form.capacity:
+            if successful_payment_count >= payment_form.capacity:
                 return {"status": "at_full_capacity", "content": content}
 
         return {"status": "form", "form": form["form"], "payment_form": payment_form,
@@ -98,16 +101,26 @@ def payment_form_processor(request, page):
     plan = PriceGroup.objects.get(id=request.POST.get("payment_plan_id"))
 
     if payment_form.capacity != -1:
-        pending_payments = successful_payments + transactions.filter(
-            is_paid=None,
-            creation_time__gt=timezone.now() - datetime.timedelta(minutes=10)).count()
-        if pending_payments >= payment_form.capacity:
+        if successful_payment_count >= payment_form.capacity:
             return {"status": "at_full_capacity", "content": content}
 
     if plan.is_full:
         return {"status": "at_full_capacity", "content": content}
 
+    discount_code = request.POST.get('discount_code')
+    payment_amount = None
+    if discount_code:
+        result = plan.validate_discount_code(discount_code)
+        if 'error' in result:
+            return {"status": "form", "form": form["form"], "payment_form": payment_form,
+                    "content": content, "discount_code": discount_code,
+                    "discount_code_error": result['error']}
+        payment_amount = result['new_price']
+    else:
+        discount_code = None
+
     transaction = transaction_class.new_payment_transaction(request, payment_form, plan,
+                                                            discount_code, payment_amount,
                                                             request_uuid)
 
     if transaction is None:

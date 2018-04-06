@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-06 17:59+0430\n"
+"POT-Creation-Date: 2018-04-07 00:26+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -327,15 +327,15 @@ msgstr ""
 "آدرس‌های ایمیل را وارد کنید. برای جداکردن آدرس‌ها از فاصله یا ویرگول استفاده "
 "کنید و یا به خط بعد بروید"
 
-#: ssc_template/templates/base.html:75
+#: ssc_template/templates/base.html:72
 msgid "Change"
 msgstr "تغییر"
 
-#: ssc_template/templates/base.html:149
+#: ssc_template/templates/base.html:147
 msgid "Edit in admin"
 msgstr "ویرایش در صفحه مدیریت"
 
-#: ssc_template/templates/base.html:248
+#: ssc_template/templates/base.html:245
 #, python-format
 msgid ""
 "\n"
@@ -353,7 +353,7 @@ msgstr ""
 "                    <a %(sharif_link_attrs)s >دانشگاه صنعتی شریف</a> است\n"
 "                    "
 
-#: ssc_template/templates/base.html:260
+#: ssc_template/templates/base.html:257
 #, python-format
 msgid ""
 "\n"
@@ -567,7 +567,7 @@ msgstr "مشاهده‌ی گالری"
 msgid "Read More"
 msgstr "ادامه‌ی نوشتار"
 
-#: ssc_template/templates/includes/form_fields.html:46
+#: ssc_template/templates/includes/form_fields.html:40
 msgid "Choose File"
 msgstr "انتخاب فایل"
 
@@ -601,7 +601,7 @@ msgstr "به زودی"
 msgid "Currently on the screens"
 msgstr "اکنون در مانیتور‌های لابی"
 
-#: ssc_template/templates/pages/form.html:11
+#: ssc_template/templates/pages/form.html:9
 msgid "responses"
 msgstr "پاسخ‌ها"
 
@@ -618,33 +618,50 @@ msgstr ""
 "برای مشاهده‌ی عکس با کیفیت اصلی <a href='%(url)s'>اینجا</a>  کلیک کنید.\n"
 "                       "
 
-#: ssc_template/templates/pages/paymentform.html:63
+#: ssc_template/templates/pages/paymentform.html:24
+msgid "Please enter discount code"
+msgstr "لطفا کد تخفیف را وارد کنید"
+
+#: ssc_template/templates/pages/paymentform.html:41
+msgid "Discount code has been applied successfully. New price is "
+msgstr "کد تخفیف با موفقیت اعمال شد. قیمت جدید: "
+
+#: ssc_template/templates/pages/paymentform.html:41
+#: ssc_template/templates/pages/paymentform.html:98
 msgid "Tomans"
 msgstr "تومان"
 
-#: ssc_template/templates/pages/paymentform.html:64
+#: ssc_template/templates/pages/paymentform.html:99
 msgid "At Full Capacity"
 msgstr "ظرفیت تکمیل است"
 
-#: ssc_template/templates/pages/paymentform.html:68
+#: ssc_template/templates/pages/paymentform.html:103
 msgid "Choose The Right One"
 msgstr "گزینه‌ی مناسب را انتخاب کنید"
 
-#: ssc_template/templates/pages/paymentform.html:73
+#: ssc_template/templates/pages/paymentform.html:109
+msgid "Discount code"
+msgstr "کد تخفیف"
+
+#: ssc_template/templates/pages/paymentform.html:112
+msgid "Check"
+msgstr "بررسی"
+
+#: ssc_template/templates/pages/paymentform.html:119
 msgid "Send and Pay"
 msgstr "ارسال و پرداخت"
 
-#: ssc_template/templates/pages/paymentform.html:79
+#: ssc_template/templates/pages/paymentform.html:125
 msgid "ERROR: Your form must contain a hidden field labeled UUID."
 msgstr "خطا: فرم شما باید حاوی یک فیلد پنها با عنوان UUID باشد."
 
-#: ssc_template/templates/pages/paymentform.html:85
+#: ssc_template/templates/pages/paymentform.html:131
 msgid "ERROR: Can not connect to payment gateway, please try again."
 msgstr ""
 "خطا: در حال حاضر قادر به اتصال به درگاه پرداخت نیستیم، لطفا مجددا تلاش "
 "نمایید."
 
-#: ssc_template/templates/pages/paymentform.html:94
+#: ssc_template/templates/pages/paymentform.html:140
 msgid "Unfortunately we have reached our maximum capacity."
 msgstr "متاسفانه ظرفیت تکمیل شده‌است."
 
@@ -730,87 +747,104 @@ msgstr "وضعیت"
 msgid "Process ID"
 msgstr "شناسه پردازه"
 
-#: transactions/models.py:12 transactions/models.py:14
+#: transactions/models.py:16 transactions/models.py:18
 msgid "Gateway Type"
 msgstr "نوع درگاه"
 
-#: transactions/models.py:16
+#: transactions/models.py:20
 msgid "Gateway ID"
 msgstr "آی‌دی درگاه"
 
-#: transactions/models.py:18
+#: transactions/models.py:22
 msgid "Gateway API"
 msgstr "ای‌پی‌آی درگاه"
 
-#: transactions/models.py:21 transactions/models.py:66
-#: transactions/models.py:72 transactions/models.py:80
-#: transactions/page_processors.py:48 transactions/payment_transaction.py:109
-#: transactions/payment_transaction.py:218
-msgid "Price Group"
-msgstr "گروه قیمت"
-
-#: transactions/models.py:22 transactions/models.py:67
-msgid "Price Groups"
-msgstr "گروه‌های قیمت"
-
-#: transactions/models.py:30
+#: transactions/models.py:25 transactions/models.py:34
 msgid "Payment Gateway"
 msgstr "درگاه پرداخت"
 
-#: transactions/models.py:32
+#: transactions/models.py:26
+msgid "Payment Gateways"
+msgstr "درگاه‌های پرداخت"
+
+#: transactions/models.py:36
 msgid "Payment Description"
 msgstr "توضیحات پرداخت"
 
-#: transactions/models.py:33 transactions/models.py:53
+#: transactions/models.py:37 transactions/models.py:59
+#: transactions/models.py:95
 msgid "Enter -1 for infinite capacity"
-msgstr ""
+msgstr "برای ظرفیت نامحدود ۱- را وارد کنید"
 
-#: transactions/models.py:35
+#: transactions/models.py:39
 msgid "At Full Capacity Message"
 msgstr "پیام ظرفیت پر شده"
 
-#: transactions/models.py:38
+#: transactions/models.py:42
 msgid "Payment Form"
 msgstr "فرم پرداخت"
 
-#: transactions/models.py:39
+#: transactions/models.py:43
 msgid "Payment Forms"
 msgstr "فرم‌های پرداخت"
 
-#: transactions/models.py:41
+#: transactions/models.py:45
 msgid "Can View Payment Transactions"
 msgstr "می‌تواند تراکنش‌های پرداختی را مشاهده نماید"
 
-#: transactions/models.py:49
+#: transactions/models.py:51
+msgid "Payment Amount should be multiplier of 100 Tomans"
+msgstr "مقدار پرداخت باید مضربی از ۱۰۰ تومان باشد"
+
+#: transactions/models.py:55
 msgid "Containing Payment Form"
 msgstr "صفحه‌ی شامل فرم"
 
-#: transactions/models.py:51
+#: transactions/models.py:57
 msgid "Group Identifier"
 msgstr "مشخص‌کننده‌ی گروه"
 
-#: transactions/models.py:52 transactions/models.py:82
+#: transactions/models.py:58 transactions/models.py:116
 #: transactions/page_processors.py:48
 msgid "Amount in Tomans"
 msgstr "مقدار به تومان"
 
-#: transactions/models.py:71
-msgid "Discount Code"
-msgstr ""
+#: transactions/models.py:62 transactions/models.py:93
+#: transactions/models.py:114 transactions/page_processors.py:48
+#: transactions/payment_transaction.py:109
+#: transactions/payment_transaction.py:218
+msgid "Price Group"
+msgstr "گروه قیمت"
 
-#: transactions/models.py:76 transactions/page_processors.py:48
+#: transactions/models.py:63
+msgid "Price Groups"
+msgstr "گروه‌های قیمت"
+
+#: transactions/models.py:82
+msgid "The provided discount code is invalid"
+msgstr "کد تخفیف واردشده نامعتبر است"
+
+#: transactions/models.py:86
+msgid "Unfortunately capacity of this code is full"
+msgstr "متاسفانه ظرفیت استفاده از این کد تخفیف به اتمام رسیده‌است."
+
+#: transactions/models.py:92 transactions/models.py:119
+msgid "Discount Code"
+msgstr "کد تخفیف"
+
+#: transactions/models.py:110 transactions/page_processors.py:48
 msgid "Creation Time"
 msgstr "زمان ایجاد"
 
-#: transactions/models.py:78
+#: transactions/models.py:112
 msgid "Form Entry UUID"
 msgstr "UUID وارد شده"
 
-#: transactions/models.py:83 transactions/page_processors.py:49
+#: transactions/models.py:117 transactions/page_processors.py:49
 msgid "Is Paid"
 msgstr "پرداخت‌شده"
 
-#: transactions/models.py:84 transactions/page_processors.py:49
+#: transactions/models.py:118 transactions/page_processors.py:49
 msgid "Payment Time"
 msgstr "زمان پرداخت"
 
@@ -822,7 +856,7 @@ msgstr "توکن بانک"
 msgid "Reference ID"
 msgstr "شناسه ارجاع"
 
-#: transactions/page_processors.py:126
+#: transactions/page_processors.py:125
 msgid "UnSuccessful Payment Transaction"
 msgstr ""
 "تراکنش پرداختی با مشکل مواجه شده‌است. لطفا چنانچه پرداخت شما موفق بوده‌است، ما "
@@ -861,6 +895,10 @@ msgstr "تراکنش پرداختی یوپال"
 #: transactions/payment_transaction.py:144
 msgid "Upal Payment Transactions"
 msgstr "تراکنش‌های پرداختی یوپال"
+
+#: transactions/views.py:13
+msgid "Invalid data or plan id"
+msgstr "داده‌های ارسالی نامعتبر است"
 
 #~ msgid "Payment_Transactions"
 #~ msgstr "تراکنش‌های پرداختی"

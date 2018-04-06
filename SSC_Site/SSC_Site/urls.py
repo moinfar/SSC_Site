@@ -7,6 +7,7 @@ from mezzanine.core.views import direct_to_template
 from shortener import urls as shortener_urls
 
 from certificates import urls as certificate_urls
+from transactions import urls as transaction_urls
 from transactions.page_processors import from_bank
 
 admin.autodiscover()
@@ -30,6 +31,7 @@ urlpatterns += [
         name='transactions_from_bank'),
     url('^go/', include(shortener_urls)),
     url('^cert/', include(certificate_urls)),
+    url('^transactions/', include(transaction_urls)),
     url('^', include('mezzanine.urls')),
 ]
 

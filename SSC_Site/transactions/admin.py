@@ -1,10 +1,12 @@
 from copy import deepcopy
+from django import forms
 from django.contrib import admin
 from django.forms import ModelForm
 from mezzanine.core import admin as mezzanineAdmin
 from mezzanine.forms.admin import FormAdmin, FieldAdmin
 from mezzanine.pages.admin import PageAdmin
 
+from transactions.forms import DiscountCodeForm
 from .models import PaymentForm, PriceGroup, PaymentGateway, DiscountCode
 
 
@@ -24,12 +26,10 @@ form_fieldsets[0][1]["fields"].insert(+4, "payment_description")
 form_fieldsets[0][1]["fields"].insert(+5, "capacity")
 
 
-class DiscountCodeForm(ModelForm):
-    pass
-
 class PriceGroupInline(mezzanineAdmin.TabularDynamicInlineAdmin):
     model = PriceGroup
     form = DiscountCodeForm
+
 
 class PaymentFormAdmin(PageAdmin):
     inlines = [FieldAdmin, PriceGroupInline]

@@ -1,5 +1,10 @@
 import datetime
+
+from django.core.exceptions import ValidationError, ObjectDoesNotExist
+from django.core.validators import MaxValueValidator
 from django.db import models
+from django.db.models import Q
+from django.db.models.deletion import SET_NULL
 from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
 from mezzanine.core.models import Orderable
@@ -42,35 +47,62 @@ class PaymentForm(Form):
         )
 
 
+def payment_amount_validator(value):
+    if value % 100 != 0:
+        raise ValidationError(_('Payment Amount should be multiplier of 100 Tomans'))
+
+
 class PriceGroup(Orderable):
     payment_form = models.ForeignKey(PaymentForm, verbose_name=_("Containing Payment Form"))
     group_identifier = models.CharField(max_length=256, blank=False, null=False,
                                         verbose_name=_("Group Identifier"))
-    payment_amount = models.BigIntegerField(verbose_name=_("Amount in Tomans"))
+    payment_amount = models.BigIntegerField(verbose_name=_("Amount in Tomans"), validators=[payment_amount_validator])
     capacity = models.IntegerField(default=-1, help_text=_("Enter -1 for infinite capacity"))
+
+    class Meta:
+        verbose_name = _("Price Group")
+        verbose_name_plural = _("Price Groups")
+
+    def __str__(self):
+        return '{} of payment form: {}'.format(self.group_identifier, self.payment_form)
 
     @property
     def is_full(self):
         if self.capacity == -1:
             return False
-        successful_payments = self.payment_transactions.filter(is_paid=True).count()
-        pending_payments = successful_payments + self.payment_transactions.filter(
-            is_paid=None, creation_time__gt=timezone.now() - datetime.timedelta(minutes=10),
-            price_group=self).count()
-        return pending_payments >= self.capacity
+        return self.get_pending_payments().count() >= self.capacity
 
-    class Meta:
-        verbose_name = _("Price Group")
-        verbose_name_plural = _("Price Groups")
+    def get_pending_payments(self):
+        return self.payment_transactions.filter(Q(is_paid=True) | Q(is_paid=None, creation_time__gt=timezone.now() - datetime.timedelta(minutes=10)))
+
+    def validate_discount_code(self, code):
+        try:
+            discount_code = self.discount_codes.get(code=code)
+        except ObjectDoesNotExist:
+            return {'error': _('The provided discount code is invalid')}
+        if discount_code.capacity != -1:
+            if self.get_pending_payments().filter(discount_code=code).count() >= discount_code.capacity:
+                return {'error': _('Unfortunately capacity of this code is full')}
+
+        return {'new_price': discount_code.new_price}
 
 
 class DiscountCode(models.Model):
     code = models.CharField(max_length=20, verbose_name=_("Discount Code"))
     price_group = models.ForeignKey(to=PriceGroup, verbose_name=_("Price Group"),
                                     related_name='discount_codes')
+    capacity = models.IntegerField(default=-1, help_text=_("Enter -1 for infinite capacity"))
+    discount_percentage = models.PositiveIntegerField(validators=[MaxValueValidator(100)])
 
     class Meta:
         unique_together = ('code', 'price_group')
+
+    def __str__(self):
+        return '{} for {}'.format(self.code, self.price_group)
+
+    @property
+    def new_price(self):
+        return self.price_group.payment_amount * (100 - self.discount_percentage) / 100
 
 
 class PaymentTransaction(PolymorphicModel):
@@ -83,6 +115,7 @@ class PaymentTransaction(PolymorphicModel):
     payment_amount = models.BigIntegerField(verbose_name=_("Amount in Tomans"))
     is_paid = models.NullBooleanField(verbose_name=_("Is Paid"))
     payment_time = models.DateTimeField(blank=True, null=True, verbose_name=_("Payment Time"))
+    discount_code = models.CharField(max_length=20, verbose_name=_("Discount Code"), null=True, blank=True)
 
     class Meta:
         abstract = True
@@ -95,7 +128,7 @@ class PaymentTransaction(PolymorphicModel):
         return None
 
     @classmethod
-    def new_payment_transaction(cls, request, payment_form, plan, request_uuid):
+    def new_payment_transaction(cls, request, payment_form, price_group, discount_code, payment_amount, request_uuid):
         raise NotImplementedError()
 
     def get_payment_url(self):

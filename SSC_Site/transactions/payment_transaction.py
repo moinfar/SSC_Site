@@ -37,13 +37,14 @@ class UpalPaymentTransaction(PaymentTransaction):
         verbose_name_plural = _("Zpal Payment Transactions")
 
     @classmethod
-    def new_payment_transaction(cls, request, payment_form, price_group, request_uuid):
+    def new_payment_transaction(cls, request, payment_form, price_group, discount_code, payment_amount, request_uuid):
         random_token = ''.join(choice(string.ascii_letters + string.digits) for _ in range(16))
         transaction = UpalPaymentTransaction(creation_time=timezone.now(),
                                              uuid=request_uuid,
                                              random_token=random_token,
                                              price_group=price_group,
-                                             payment_amount=price_group.payment_amount)
+                                             discount_code=discount_code,
+                                             payment_amount=payment_amount or price_group.payment_amount)
         transaction.save()
         return_url = request.build_absolute_uri(
             reverse('transactions_from_bank', args=('upal', transaction.id)))
@@ -51,7 +52,7 @@ class UpalPaymentTransaction(PaymentTransaction):
             payment_request = web_request.post("http://salam.im//transaction/create",
                                                data={
                                                    'gateway_id': payment_form.payment_gateway.gateway_id,
-                                                   'amount': price_group.payment_amount * 10,
+                                                   'amount': (payment_amount or price_group.payment_amount) * 10,
                                                    'description': "{}-{}".format(
                                                        payment_form.payment_description,
                                                        price_group.group_identifier),
@@ -144,11 +145,12 @@ class ZpalPaymentTransaction(PaymentTransaction):
         verbose_name_plural = _("Upal Payment Transactions")
 
     @classmethod
-    def new_payment_transaction(cls, request, payment_form, price_group, request_uuid):
+    def new_payment_transaction(cls, request, payment_form, price_group, discount_code, payment_amount, request_uuid):
         transaction = ZpalPaymentTransaction(creation_time=timezone.now(),
                                              uuid=request_uuid,
                                              price_group=price_group,
-                                             payment_amount=price_group.payment_amount)
+                                             discount_code=discount_code,
+                                             payment_amount=payment_amount or price_group.payment_amount)
         transaction.save()
         return_url = request.build_absolute_uri(
             reverse('transactions_from_bank', args=('zpal', transaction.id)))
@@ -156,7 +158,7 @@ class ZpalPaymentTransaction(PaymentTransaction):
             client = Client('https://www.zarinpal.com/pg/services/WebGate/wsdl')
             payment_parameters = {
                 'MerchantID': payment_form.payment_gateway.gateway_id,
-                'Amount': price_group.payment_amount,
+                'Amount': payment_amount or price_group.payment_amount,
                 'Description': "{}-{}".format(payment_form.payment_description,
                                               price_group.group_identifier),
                 'CallbackURL': return_url,

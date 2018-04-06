@@ -19,9 +19,11 @@
 
     <div class="input-field left-align">
     {% if field.field.widget|is_radio_select or field.field.widget|is_multiple_checkbox %}
-    {% if field.label %}<p class="right grey-text text-lighten-1">&nbsp;&nbsp;{{ field.label }}</p>{% endif %}
-        <br><br><br>
+        <div class="row"> {% if field.label %}<p class="right grey-text text-lighten-1">{% if field.field.required %} * {% endif %}{{ field.label }}</p>{% endif %}
+        </div>
+        <div class="row">
         {% for choice in field %}
+
         <span class="right">
             {{ choice.tag }}
             <label for="{{ choice.id_for_label }}">
@@ -29,15 +31,18 @@
             </label>
         </span>
         {% endfor %}
+        </div>
     <br><br>
     {% elif field.field.type == "filefield" %}
-        <div class="file-field input-field">
-            <div class="btn">
-                <span>{% trans "Choose File" %}</span>
-                <input id="{{ field.auto_id }}" name="{{ field.name }}"  type="file">
-            </div>
-            <div class="file-path-wrapper">
-                <input class="file-path validate" type="text">
+        <div class="row">
+            <div class="file-field input-field">
+                <div class="btn">
+                    <span>{% if field.field.required %} * {% endif %}{% trans "Choose File" %}</span>
+                    <input id="{{ field.auto_id }}" name="{{ field.name }}"  type="file">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
             </div>
         </div>
     {% else %}
