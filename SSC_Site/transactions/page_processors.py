@@ -120,7 +120,7 @@ def payment_form_processor(request, page):
                     "form_fields": form_fields, "transactions_info": transactions_info,
                     "content": content}
 
-        if payment_form.capacity != 0:
+        if payment_form.capacity != -1:
             if successful_payments >= payment_form.capacity:
                 return {"status": "at_full_capacity", "content": content}
 
@@ -136,7 +136,7 @@ def payment_form_processor(request, page):
         plan_successful_payments += zpal_transactions.filter(is_payed=True,
                                                              price_group=plan).count()
 
-    if payment_form.capacity != 0:
+    if payment_form.capacity != -1:
         if payment_form.payment_gateway.type == "upal":
             pending_payments = successful_payments + upal_transactions.filter(
                 is_payed=None,
@@ -148,7 +148,7 @@ def payment_form_processor(request, page):
         if pending_payments > payment_form.capacity:
             return {"status": "at_full_capacity", "content": content}
 
-    if plan.capacity != 0:
+    if plan.capacity != -1:
         if payment_form.payment_gateway.type == "upal":
             plan_pending_payments = plan_successful_payments + upal_transactions.filter(
                 is_payed=None, creation_time__gt=timezone.now() - datetime.timedelta(minutes=10),
@@ -332,6 +332,8 @@ def from_bank_upal(request, transaction):
 def from_bank_zpal(request, transaction):
     authority = request.GET.get('Authority')
     if authority == transaction.authority:
+        if transaction.is_payed:
+            return
         client = Client('https://www.zarinpal.com/pg/services/WebGate/wsdl')
         validation_parameters = {
             'MerchantID': transaction.price_group.payment_form.payment_gateway.gateway_id,
@@ -389,8 +391,6 @@ def from_bank_zpal(request, transaction):
                            "title": _("Successful Payment Transaction"),
                            "context": context})
         else:
-            # print(our_validation_md5.hexdigest())
-            # print(validation_hash)
             transaction.is_payed = False
             transaction.save()
 
