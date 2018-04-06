@@ -179,7 +179,7 @@ def payment_form_processor(request, page):
 
 def new_upal_payment(request, payment_form, plan, request_uuid):
     random_token = ''.join(
-        choice(string.lowercase + string.uppercase + string.digits) for i in range(16))
+        choice(string.ascii_letters + string.digits) for _ in range(16))
     transaction = UpalPaymentTransaction(creation_time=timezone.now(),
                                          uuid=request_uuid,
                                          random_token=random_token,

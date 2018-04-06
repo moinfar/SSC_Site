@@ -10,7 +10,7 @@ class PaymentGateway(models.Model):
     title = models.CharField(max_length=255, blank=False, null=False,
                              verbose_name=_("Gateway Type"))
     type = models.CharField(max_length=64, blank=False, null=False,
-                            default="upal", verbose_name=_("Gateway Type"))
+                            default="zpal", verbose_name=_("Gateway Type"))
     gateway_id = models.CharField(max_length=256, blank=False, null=False,
                                   verbose_name=_("Gateway ID"))
     gateway_api = models.CharField(max_length=512, blank=False, null=False,
@@ -52,10 +52,13 @@ class PriceGroup(Orderable):
     capacity = models.IntegerField(default=-1, help_text=_("Enter -1 for infinite capacity"))
 
     def is_full(self):
-        if self.capacity == 0:
+        if self.capacity == -1:
             return False
         if self.payment_form.payment_gateway.type == "upal":
             return UpalPaymentTransaction.objects.filter(is_payed=True,
+                                                         price_group=self).count() >= self.capacity
+        if self.payment_form.payment_gateway.type == "zpal":
+            return ZpalPaymentTransaction.objects.filter(is_payed=True,
                                                          price_group=self).count() >= self.capacity
 
     class Meta:
