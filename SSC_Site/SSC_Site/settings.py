@@ -369,7 +369,6 @@ INSTALLED_APPS = (
     'certificates',
     'subprocess_manager',
     'dbbackup',
-    'compressor',
     'ckeditor',
 )
 
