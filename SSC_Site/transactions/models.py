@@ -1,7 +1,7 @@
 import datetime
 
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
-from django.core.validators import MaxValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.db.models import Q
 from django.db.models.deletion import SET_NULL
@@ -46,17 +46,20 @@ class PaymentForm(Form):
             ("can_view_payment_transactions", _("Can View Payment Transactions")),
         )
 
-
-def payment_amount_validator(value):
-    if value % 100 != 0:
-        raise ValidationError(_('Payment Amount should be multiplier of 100 Tomans'))
+    @property
+    def has_discount_code(self):
+        for price_group in self.price_groups.all():
+            if price_group.discount_codes.count():
+                return True
+        return False
 
 
 class PriceGroup(Orderable):
-    payment_form = models.ForeignKey(PaymentForm, verbose_name=_("Containing Payment Form"))
+    payment_form = models.ForeignKey(PaymentForm, verbose_name=_("Containing Payment Form"),
+                                     related_name='price_groups')
     group_identifier = models.CharField(max_length=256, blank=False, null=False,
                                         verbose_name=_("Group Identifier"))
-    payment_amount = models.BigIntegerField(verbose_name=_("Amount in Tomans"), validators=[payment_amount_validator])
+    payment_amount = models.BigIntegerField(verbose_name=_("Amount in Tomans"), validators=[MinValueValidator(100)])
     capacity = models.IntegerField(default=-1, help_text=_("Enter -1 for infinite capacity"))
 
     class Meta:

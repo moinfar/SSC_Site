@@ -96,7 +96,7 @@
 
                 <div class="input-field left-align">
                     <select required="required" name="payment_plan_id" id="payment-plan-id">
-                        {% for plan in payment_form.pricegroup_set.all %}
+                        {% for plan in payment_form.price_groups.all %}
                         <option value="{{ plan.id }}">
                             {{ plan.group_identifier }} {% if LANGUAGE_CODE == "fa" or LANGUAGE_CODE == "fa-IR" %}({{ plan.payment_amount|get_persian_comma_separated_money }}{% else %}{{plan.payment_amount|intcomma }}{% endif %} {% trans 'Tomans' %})
                             {% if plan.is_full %} - {% trans 'At Full Capacity' %} {% endif %}
@@ -106,6 +106,7 @@
                     <label class="control-label" for="payment-plan-id" dir="rtl">{% trans 'Choose The Right One' %}</label>
                 </div>
 
+                {% if payment_form.has_discount_code %}
                 <div class="row">
                     <div class="input-field left-align right col s6">
                         <input type="text" id="discount-code-input" name="discount_code" value="{{ discount_code }}">
@@ -117,8 +118,9 @@
                     <p class="help-block red-text right" id="discount-code-info">
                         {{ discount_code_error }}
                     </p>
-
                 </div>
+                {% endif %}
+
                 <div class="form-actions">
                     <input class="submit btn" type="submit" value="{% trans 'Send and Pay' %}" >
                 </div>
