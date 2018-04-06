@@ -1,8 +1,9 @@
+import datetime
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.utils import timezone
 from mezzanine.core.models import Orderable
-from mezzanine.forms.models import Form
-from mezzanine.pages.models import Page, RichText
+from mezzanine.forms.models import Form, FieldEntry
 from polymorphic.models import PolymorphicModel
 
 
@@ -51,15 +52,15 @@ class PriceGroup(Orderable):
     payment_amount = models.BigIntegerField(verbose_name=_("Amount in Tomans"))
     capacity = models.IntegerField(default=-1, help_text=_("Enter -1 for infinite capacity"))
 
+    @property
     def is_full(self):
         if self.capacity == -1:
             return False
-        if self.payment_form.payment_gateway.type == "upal":
-            return UpalPaymentTransaction.objects.filter(is_payed=True,
-                                                         price_group=self).count() >= self.capacity
-        if self.payment_form.payment_gateway.type == "zpal":
-            return ZpalPaymentTransaction.objects.filter(is_payed=True,
-                                                         price_group=self).count() >= self.capacity
+        successful_payments = self.payment_transactions.filter(is_payed=True).count()
+        pending_payments = successful_payments + self.payment_transactions.filter(
+            is_payed=None, creation_time__gt=timezone.now() - datetime.timedelta(minutes=10),
+            price_group=self).count()
+        return pending_payments >= self.capacity
 
     class Meta:
         verbose_name = _("Price Group")
@@ -69,9 +70,10 @@ class PriceGroup(Orderable):
 class PaymentTransaction(PolymorphicModel):
     creation_time = models.DateTimeField(blank=False, null=False, verbose_name=_("Creation Time"))
     uuid = models.CharField(max_length=512, blank=True, null=True,
-                        verbose_name=_("Form Entry UUID"))
+                            verbose_name=_("Form Entry UUID"))
     price_group = models.ForeignKey(PriceGroup, blank=False, null=False,
-                                    verbose_name=_("Price Group"), related_name=_('Payment_Transactions'))
+                                    verbose_name=_("Price Group"),
+                                    related_name='payment_transactions')
     payment_amount = models.BigIntegerField(verbose_name=_("Amount in Tomans"))
     is_payed = models.NullBooleanField(verbose_name=_("Is Payed"))
     payment_time = models.DateTimeField(blank=True, null=True, verbose_name=_("Payment Time"))
@@ -79,26 +81,19 @@ class PaymentTransaction(PolymorphicModel):
     class Meta:
         abstract = True
 
+    def get_transaction_entries(self):
+        if FieldEntry.objects.filter(value=self.uuid).count() == 1:
+            entry = FieldEntry.objects.get(value=self.uuid).entry
+            field_entries = FieldEntry.objects.filter(entry=entry).order_by("field_id")
+            return field_entries
+        return None
 
-class UpalPaymentTransaction(PaymentTransaction):
-    bank_token = models.CharField(max_length=256, blank=True, null=True,
-                                  verbose_name=_("Bank Token"))
-    random_token = models.CharField(max_length=64, blank=False, null=False,
-                                    verbose_name=_("Random Token"))
+    @classmethod
+    def new_payment_transaction(cls, request, payment_form, plan, request_uuid):
+        raise NotImplementedError()
 
+    def get_payment_url(self):
+        raise NotImplementedError()
 
-    class Meta:
-        verbose_name = _("Zpal Payment Transaction")
-        verbose_name_plural = _("Zpal Payment Transactions")
-
-
-class ZpalPaymentTransaction(PaymentTransaction):
-    authority = models.CharField(max_length=36, blank=True, null=True, verbose_name=_("Authority"))
-    price_group = models.ForeignKey(PriceGroup, blank=False, null=False,
-                                    verbose_name=_("Price Group"))
-
-    ref_id = models.CharField(max_length=50, blank=True, null=True, verbose_name=_("Reference ID"))
-
-    class Meta:
-        verbose_name = _("Upal Payment Transaction")
-        verbose_name_plural = _("Upal Payment Transactions")
+    def from_bank(self, request):
+        raise NotImplementedError()

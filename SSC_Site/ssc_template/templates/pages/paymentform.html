@@ -57,10 +57,9 @@
                 <br>
 
                 <div class="input-field left-align">
-                    <select required name="payment_plan_id">
+                    <select required="required" name="payment_plan_id">
                         {% for plan in payment_form.pricegroup_set.all %}
-                        <option value="{{ plan.id }}"
-                        {% if plan.is_full %} disabled {% endif %}>
+                        <option value="{{ plan.id }}">
                             {{ plan.group_identifier }} {% if LANGUAGE_CODE == "fa" or LANGUAGE_CODE == "fa-IR" %}({{ plan.payment_amount|get_persian_comma_separated_money }}{% else %}{{plan.payment_amount|intcomma }}{% endif %} {% trans 'Tomans' %})
                             {% if plan.is_full %} - {% trans 'At Full Capacity' %} {% endif %}
                         </option>
