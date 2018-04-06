@@ -72,7 +72,6 @@ class AnnouncementAdmin(admin.ModelAdmin):
             former_language = translation.get_language()
             translation.activate(obj.language)
             message = get_template('email/announcement.html').render(context=context)
-            print(form.cleaned_data['all_bcc'])
             email = EmailMultiAlternatives(subject=obj.subject,
                                            from_email=obj.from_email,
                                            body=message, to=form.cleaned_data['all_recipients'],
