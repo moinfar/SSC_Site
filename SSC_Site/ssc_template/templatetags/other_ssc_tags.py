@@ -60,5 +60,15 @@ def is_captcha(field):
 
 
 @register.filter()
-def get_at_index(list, index):
+def at_index(list, index):
     return list[index]
+
+
+@register.filter()
+def admin_edit_link(page):
+    content_model = page.get_content_model()
+    return '/en/admin/{app_label}/{model_name}/{pk}/change'.format(
+        app_label=content_model._meta.app_label,
+        model_name=content_model.__class__.__name__.lower(),
+        pk=content_model.pk
+    )

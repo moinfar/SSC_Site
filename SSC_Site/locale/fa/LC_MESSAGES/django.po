@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-06 17:05+0430\n"
+"POT-Creation-Date: 2018-04-06 17:59+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,7 +66,7 @@ msgstr ""
 msgid "Download"
 msgstr ""
 
-#: certificates/models.py:9 ssc_configs/models.py:93
+#: certificates/models.py:9 ssc_configs/models.py:97
 #: ssc_template/templates/generic/includes/comment_form.html:16
 #: ssc_template/templates/pages/groupsinfopage.html:13
 msgid "Name"
@@ -92,12 +92,12 @@ msgstr "صفحه‌ی شامل ویدئو‌ها"
 msgid "Video Container Pages"
 msgstr "صفحات شامل ویدئو‌ها"
 
-#: media_manager/models.py:17 ssc_configs/models.py:125
+#: media_manager/models.py:17 ssc_configs/models.py:129
 msgid "Containing Page"
 msgstr "صفحه‌ی شامل"
 
-#: media_manager/models.py:18 ssc_configs/models.py:106
-#: ssc_configs/models.py:126
+#: media_manager/models.py:18 ssc_configs/models.py:110
+#: ssc_configs/models.py:130
 msgid "Title"
 msgstr "عنوان"
 
@@ -207,23 +207,31 @@ msgstr "نام"
 msgid "email addresses"
 msgstr "آدرس‌های ایمیل"
 
-#: ssc_configs/models.py:38
+#: ssc_configs/models.py:36
+msgid "Mailing List"
+msgstr ""
+
+#: ssc_configs/models.py:37
+msgid "Mailing Lists"
+msgstr ""
+
+#: ssc_configs/models.py:42
 msgid "from email"
 msgstr "ایمیل فرستنده"
 
-#: ssc_configs/models.py:39
+#: ssc_configs/models.py:43
 msgid "subject"
 msgstr "عنوان"
 
-#: ssc_configs/models.py:40
+#: ssc_configs/models.py:44
 msgid "recipients"
 msgstr "گیرنده‌ها"
 
-#: ssc_configs/models.py:42
+#: ssc_configs/models.py:46
 msgid "message (don't use table)"
 msgstr "متن پیام (از جدول استفاده نکنید)"
 
-#: ssc_configs/models.py:43
+#: ssc_configs/models.py:47
 msgid ""
 "IMPORTANT WARNING: PLEASE DO NOT USE TABLE IN EMAIL! By the time I'm writing "
 "this, tables of this editor are rendered awfully by the mail clients. Make "
@@ -231,85 +239,85 @@ msgid ""
 "table. (Don't take account for the previewer of the editor)"
 msgstr ""
 
-#: ssc_configs/models.py:51
+#: ssc_configs/models.py:55
 msgid "language"
-msgstr ""
+msgstr "زبان"
 
-#: ssc_configs/models.py:54
+#: ssc_configs/models.py:58
 msgid "CC"
 msgstr ""
 
-#: ssc_configs/models.py:56
+#: ssc_configs/models.py:60
 msgid "CC mailing lists"
 msgstr ""
 
-#: ssc_configs/models.py:58
+#: ssc_configs/models.py:62
 msgid "BCC"
 msgstr ""
 
-#: ssc_configs/models.py:60
+#: ssc_configs/models.py:64
 msgid "BCC mailing lists"
 msgstr ""
 
-#: ssc_configs/models.py:66
+#: ssc_configs/models.py:70
 msgid "Announcement"
 msgstr "اطلاعیه"
 
-#: ssc_configs/models.py:67
+#: ssc_configs/models.py:71
 msgid "Announcements"
 msgstr "اطلاعیه‌ها"
 
-#: ssc_configs/models.py:91 ssc_configs/models.py:104
+#: ssc_configs/models.py:95 ssc_configs/models.py:108
 msgid "slug"
 msgstr ""
 
-#: ssc_configs/models.py:99 ssc_configs/models.py:135
+#: ssc_configs/models.py:103 ssc_configs/models.py:139
 msgid "Person"
 msgstr "شخص"
 
-#: ssc_configs/models.py:100
+#: ssc_configs/models.py:104
 msgid "Persons"
 msgstr "اشخاص"
 
-#: ssc_configs/models.py:112 ssc_configs/models.py:113
-#: ssc_configs/models.py:136
+#: ssc_configs/models.py:116 ssc_configs/models.py:117
+#: ssc_configs/models.py:140
 #: ssc_template/templates/pages/groupsinfopage.html:14
 msgid "Duty"
 msgstr "وظیفه"
 
-#: ssc_configs/models.py:120
+#: ssc_configs/models.py:124
 msgid "Groups' Info Page"
 msgstr "صفحه‌ی اطلاعات گروه‌ها"
 
-#: ssc_configs/models.py:121
+#: ssc_configs/models.py:125
 msgid "Groups' Info Pages"
 msgstr "صفحات اطلاعات گروه‌ها"
 
-#: ssc_configs/models.py:129
+#: ssc_configs/models.py:133
 msgid "Group Info"
 msgstr "اطلاعات گروه"
 
-#: ssc_configs/models.py:130
+#: ssc_configs/models.py:134
 msgid "Groups Info"
 msgstr "اطلاعات گروه‌ها"
 
-#: ssc_configs/models.py:134
+#: ssc_configs/models.py:138
 msgid "Containing Group"
 msgstr "گروه شامل"
 
-#: ssc_configs/models.py:139
+#: ssc_configs/models.py:143
 msgid "Group Member"
 msgstr "عضو گروه"
 
-#: ssc_configs/models.py:140
+#: ssc_configs/models.py:144
 msgid "Group Members"
 msgstr "اعضای گروه"
 
-#: ssc_configs/models.py:147
+#: ssc_configs/models.py:151
 msgid "Gallery Container Page"
 msgstr "صفحه‌ی شامل گالری‌ها"
 
-#: ssc_configs/models.py:148
+#: ssc_configs/models.py:152
 msgid "Gallery Container Pages"
 msgstr "صفحات شامل گالری‌ها"
 
@@ -323,7 +331,11 @@ msgstr ""
 msgid "Change"
 msgstr "تغییر"
 
-#: ssc_template/templates/base.html:237
+#: ssc_template/templates/base.html:149
+msgid "Edit in admin"
+msgstr "ویرایش در صفحه مدیریت"
+
+#: ssc_template/templates/base.html:248
 #, python-format
 msgid ""
 "\n"
@@ -341,7 +353,7 @@ msgstr ""
 "                    <a %(sharif_link_attrs)s >دانشگاه صنعتی شریف</a> است\n"
 "                    "
 
-#: ssc_template/templates/base.html:249
+#: ssc_template/templates/base.html:260
 #, python-format
 msgid ""
 "\n"
@@ -731,8 +743,8 @@ msgid "Gateway API"
 msgstr "ای‌پی‌آی درگاه"
 
 #: transactions/models.py:21 transactions/models.py:66
-#: transactions/models.py:75 transactions/page_processors.py:48
-#: transactions/payment_transaction.py:109
+#: transactions/models.py:72 transactions/models.py:80
+#: transactions/page_processors.py:48 transactions/payment_transaction.py:109
 #: transactions/payment_transaction.py:218
 msgid "Price Group"
 msgstr "گروه قیمت"
@@ -777,24 +789,28 @@ msgstr "صفحه‌ی شامل فرم"
 msgid "Group Identifier"
 msgstr "مشخص‌کننده‌ی گروه"
 
-#: transactions/models.py:52 transactions/models.py:77
+#: transactions/models.py:52 transactions/models.py:82
 #: transactions/page_processors.py:48
 msgid "Amount in Tomans"
 msgstr "مقدار به تومان"
 
-#: transactions/models.py:71 transactions/page_processors.py:48
+#: transactions/models.py:71
+msgid "Discount Code"
+msgstr ""
+
+#: transactions/models.py:76 transactions/page_processors.py:48
 msgid "Creation Time"
 msgstr "زمان ایجاد"
 
-#: transactions/models.py:73
+#: transactions/models.py:78
 msgid "Form Entry UUID"
 msgstr "UUID وارد شده"
 
-#: transactions/models.py:78 transactions/page_processors.py:49
+#: transactions/models.py:83 transactions/page_processors.py:49
 msgid "Is Paid"
 msgstr "پرداخت‌شده"
 
-#: transactions/models.py:79 transactions/page_processors.py:49
+#: transactions/models.py:84 transactions/page_processors.py:49
 msgid "Payment Time"
 msgstr "زمان پرداخت"
 

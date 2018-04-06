@@ -32,6 +32,10 @@ class MailingList(models.Model):
     def get_emails_list(self):
         return EmailListTextField.to_list(self.email_addresses)
 
+    class Meta:
+        verbose_name = _("Mailing List")
+        verbose_name_plural = _("Mailing Lists")
+
 
 class Announcement(models.Model):
     from_email = models.CharField(max_length=100, choices=get_announcement_from_emails(),
