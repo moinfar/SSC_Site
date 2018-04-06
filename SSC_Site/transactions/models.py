@@ -41,9 +41,6 @@ class PaymentForm(Form):
             ("can_view_payment_transactions", _("Can View Payment Transactions")),
         )
 
-    def get_content_model(self):
-        return 'paymentform'
-
 
 class PriceGroup(Orderable):
     payment_form = models.ForeignKey(PaymentForm, verbose_name=_("Containing Payment Form"))

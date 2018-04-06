@@ -2,6 +2,7 @@ import datetime
 import uuid
 from itertools import chain
 
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render
 from django.utils import timezone
 from django.utils.translation import ugettext as _
@@ -41,9 +42,8 @@ def payment_form_processor(request, page):
     if isinstance(form, dict) and "form" in form:
         if request.user.has_perm('transactions.can_view_payment_transactions'):
             form_fields = payment_form.fields.all().order_by("id")
-            captcha_indexes = [i for i, field in enumerate(form_fields) if is_captcha(field)]
-            form_fields = [form_fields[i].label for i in range(len(form_fields)) if
-                           i not in captcha_indexes]
+            form_fields = [field for field in form_fields if not is_captcha(field)]
+            form_field_labels = [field.label for field in form_fields]
 
             headers = [_("Creation Time"), _("Price Group"), _("Amount in Tomans"),
                        _("Is Paid"), _("Payment Time")]
@@ -52,7 +52,7 @@ def payment_form_processor(request, page):
             elif transaction_class == ZpalPaymentTransaction:
                 headers.append(_("Reference ID"))
             for title in headers:
-                form_fields.append(title)
+                form_field_labels.append(title)
             transactions.filter(
                 creation_time__lt=timezone.now() - datetime.timedelta(minutes=20),
                 is_paid=None).update(is_paid=False)
@@ -63,10 +63,14 @@ def payment_form_processor(request, page):
                                  failed_transactions)
             transactions_info = []
             for transaction in transactions:
-                entries = transaction.get_transaction_entries()
-                if entries is not None:
-                    entries = [entry.value for i, entry in enumerate(entries) if
-                               i not in captcha_indexes]
+                transaction_entries = transaction.get_transaction_entries()
+                if transaction_entries is not None:
+                    entries = []
+                    for form_field in form_fields:
+                        try:
+                            entries.append(transaction_entries.get(field_id=form_field.id).value)
+                        except ObjectDoesNotExist:
+                            entries.append('-----')
 
                     values = [
                         transaction.creation_time,
@@ -86,7 +90,7 @@ def payment_form_processor(request, page):
                     transactions_info.append(entries)
 
             return {"status": "form", "form": form["form"], "payment_form": payment_form,
-                    "form_fields": form_fields, "transactions_info": transactions_info,
+                    "form_fields": form_field_labels, "transactions_info": transactions_info,
                     "content": content}
 
         if payment_form.capacity != -1:
