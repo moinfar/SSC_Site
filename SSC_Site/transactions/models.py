@@ -69,7 +69,11 @@ class PriceGroup(Orderable):
 
 class DiscountCode(models.Model):
     code = models.CharField(max_length=20, verbose_name=_("Discount Code"))
-    price_group = models.ForeignKey(to=PriceGroup, verbose_name=_("Price Group"), related_name='discount_codes')
+    price_group = models.ForeignKey(to=PriceGroup, verbose_name=_("Price Group"),
+                                    related_name='discount_codes')
+
+    class Meta:
+        unique_together = ('code', 'price_group')
 
 
 class PaymentTransaction(PolymorphicModel):
