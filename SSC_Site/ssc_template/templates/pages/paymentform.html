@@ -17,7 +17,7 @@
 
 {% block main %}
 
-    {% if status == "payment" and not warning %}
+    {% if status == "payment" %}
         <script>
             redirect();
         </script>;
@@ -96,18 +96,6 @@
                     {% endif %}
                 </h5>
             </div>
-            {% elif status == "payment" %}
-            <div>
-                <p class="center-align">
-                    {% if warning and warning == "reserved_list" %}
-                    <h6 class="red-text center-align">
-                        {% trans 'CAUTION: We are going to reach our maximum capacity, so we may put you in reservation list.' %}
-                        <p class="center-align"><button class="btn" onclick="redirect();" >{% trans 'OK' %}</button></p>
-                    </h6>
-                    {% endif %}
-                </p>
-            </div>
-
             {% endif %}
         </div>
     {% endif %}

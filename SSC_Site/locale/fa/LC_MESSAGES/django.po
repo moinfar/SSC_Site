@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-06 13:10+0430\n"
+"POT-Creation-Date: 2018-04-06 14:41+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -316,8 +316,8 @@ msgstr "صفحات شامل گالری‌ها"
 #: ssc_configs/utils.py:23
 msgid "enter email addresses separated by comma, enter or space"
 msgstr ""
-"آدرس‌های ایمیل را وارد کنید. برای جداکردن آدرس‌ها از فاصله یا ویرگول "
-"استفاده کنید و یا به خط بعد بروید"
+"آدرس‌های ایمیل را وارد کنید. برای جداکردن آدرس‌ها از فاصله یا ویرگول استفاده "
+"کنید و یا به خط بعد بروید"
 
 #: ssc_template/templates/base.html:75
 msgid "Change"
@@ -636,16 +636,6 @@ msgstr ""
 msgid "Unfortunately we have reached our maximum capacity."
 msgstr "متاسفانه ظرفیت تکمیل شده‌است."
 
-#: ssc_template/templates/pages/paymentform.html:104
-msgid ""
-"CAUTION: We are going to reach our maximum capacity, so we may put you in "
-"reservation list."
-msgstr "توجه: ظرفیت در حال تکمیل است. ممکن است در لیست رزرو قرار بگیرید."
-
-#: ssc_template/templates/pages/paymentform.html:105
-msgid "OK"
-msgstr "متوجه شدم"
-
 #: ssc_template/templates/pages/screenpage.html:24
 msgid "View Full Screen Slider"
 msgstr "مشاهده‌ی تمام صفحه‌ی تصاویر"
@@ -743,7 +733,7 @@ msgstr "ای‌پی‌آی درگاه"
 #: transactions/models.py:19 transactions/models.py:61
 #: transactions/models.py:74 transactions/models.py:91
 #: transactions/page_processors.py:62 transactions/page_processors.py:93
-#: transactions/page_processors.py:309 transactions/page_processors.py:375
+#: transactions/page_processors.py:303 transactions/page_processors.py:369
 msgid "Price Group"
 msgstr "گروه قیمت"
 
@@ -786,8 +776,6 @@ msgstr "مشخص‌کننده‌ی گروه"
 #: transactions/models.py:50 transactions/models.py:75
 #: transactions/models.py:92 transactions/page_processors.py:62
 #: transactions/page_processors.py:94
-#, fuzzy
-#| msgid "Amount in Rials"
 msgid "Amount in Tomans"
 msgstr "مقدار به تومان"
 
@@ -835,64 +823,16 @@ msgstr "قدرت"
 msgid "Reference ID"
 msgstr "شناسه ارجاع"
 
-#: transactions/page_processors.py:272
+#: transactions/page_processors.py:266
 msgid "UnSuccessful Payment Transaction"
 msgstr ""
 "تراکنش پرداختی با مشکل مواجه شده‌است. لطفا چنانچه پرداخت شما موفق بوده‌است، ما "
 "را مطلع کنید."
 
-#: transactions/page_processors.py:310 transactions/page_processors.py:376
-msgid "Payment in Tomans"
+#: transactions/page_processors.py:304 transactions/page_processors.py:370
+msgid "Payment Amount in Tomans"
 msgstr "مقدار پرداخت به تومان"
 
-#: transactions/page_processors.py:330 transactions/page_processors.py:396
+#: transactions/page_processors.py:324 transactions/page_processors.py:390
 msgid "Successful Payment Transaction"
 msgstr "تراکنش پرداختی موفقیت آمیز بود"
-
-#~ msgid "message"
-#~ msgstr "متن ایمیل"
-
-#~ msgid "Rials"
-#~ msgstr "﷼"
-
-#~ msgid "Related announcements"
-#~ msgstr "اطلاعیه‌های مرتبط"
-
-#~ msgid "Recent announcements"
-#~ msgstr "اطلاعیه‌های اخیر"
-
-#~ msgid "You are going to be redirected to Redirecting to Payment Page ..."
-#~ msgstr "شما در حال ارسال به درگاه پرداخت هستید."
-
-#~ msgid "Click here if you were not redirected in 5 seconds"
-#~ msgstr "اگر در ۵ ثانیه به درگاه منتقل نشدید، اینجا کلیک کنید."
-
-#~ msgid "Comment"
-#~ msgstr "نظر"
-
-#~ msgid "Please enter the captcha"
-#~ msgstr "حروف تصویر را وارد کنید"
-
-#~ msgid "Submit Time"
-#~ msgstr "زمان ارسال"
-
-#~ msgid "Last Change"
-#~ msgstr "آخرین تغییر"
-
-#~ msgid "Click here"
-#~ msgstr "اینجا کلیک‌کنید"
-
-#~ msgid "Full Name"
-#~ msgstr "نام و نام خانوادگی"
-
-#~ msgid "related_posts"
-#~ msgstr "نوشتار‌های مرتبط"
-
-#~ msgid "Posts"
-#~ msgstr "نوشتار‌ها"
-
-#~ msgid "Login"
-#~ msgstr "ورود"
-
-#~ msgid "%(sometime)s ago"
-#~ msgstr "%(sometime)s پیش"

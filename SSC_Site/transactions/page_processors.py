@@ -89,7 +89,7 @@ def payment_form_processor(request, page):
                 form_fields = payment_form.fields.all().order_by("id")
                 captcha_indexes = [i for i, field in enumerate(form_fields) if is_captcha(field)]
                 form_fields = [form_fields[i].label for i in range(len(form_fields)) if i not in captcha_indexes]
-                for title in [_("Creation Time"), _("Form Entry UUID"), _("Authority"),
+                for title in [_("Creation Time"),
                               _("Price Group"),
                               _("Amount in Tomans"), _("Is Payed"), _("Reference ID"),
                               _("Payment Time")]:
@@ -107,8 +107,7 @@ def payment_form_processor(request, page):
                     entries = get_transaction_entries(transaction)
                     if entries is not None:
                         entries = [entry.value for i, entry in enumerate(entries) if i not in captcha_indexes]
-                        for value in [transaction.creation_time, transaction.uuid,
-                                      transaction.authority,
+                        for value in [transaction.creation_time,
                                       transaction.price_group.group_identifier + " (" + str(
                                           transaction.price_group.payment_amount) + ")",
                                       transaction.payment_amount,
@@ -129,16 +128,36 @@ def payment_form_processor(request, page):
                 "content": content}
 
     plan = PriceGroup.objects.get(id=request.POST.get("payment_plan_id"))
-    if plan.capacity != 0:
-        plan_successful_payments = 0
-        if payment_form.payment_gateway.type == "upal":
-            plan_successful_payments += upal_transactions.filter(is_payed=True,
-                                                                 price_group=plan).count()
-        if payment_form.payment_gateway.type == "zpal":
-            plan_successful_payments += zpal_transactions.filter(is_payed=True,
-                                                                 price_group=plan).count()
+    plan_successful_payments = 0
+    if payment_form.payment_gateway.type == "upal":
+        plan_successful_payments += upal_transactions.filter(is_payed=True,
+                                                             price_group=plan).count()
+    if payment_form.payment_gateway.type == "zpal":
+        plan_successful_payments += zpal_transactions.filter(is_payed=True,
+                                                             price_group=plan).count()
 
-        if plan_successful_payments >= plan.capacity:
+    if payment_form.capacity != 0:
+        if payment_form.payment_gateway.type == "upal":
+            pending_payments = successful_payments + upal_transactions.filter(
+                is_payed=None,
+                creation_time__gt=timezone.now() - datetime.timedelta(minutes=10)).count()
+        if payment_form.payment_gateway.type == "zpal":
+            pending_payments = successful_payments + zpal_transactions.filter(
+                is_payed=None,
+                creation_time__gt=timezone.now() - datetime.timedelta(minutes=10)).count()
+        if pending_payments > payment_form.capacity:
+            return {"status": "at_full_capacity", "content": content}
+
+    if plan.capacity != 0:
+        if payment_form.payment_gateway.type == "upal":
+            plan_pending_payments = plan_successful_payments + upal_transactions.filter(
+                is_payed=None, creation_time__gt=timezone.now() - datetime.timedelta(minutes=10),
+                price_group=plan).count()
+        if payment_form.payment_gateway.type == "zpal":
+            plan_pending_payments = plan_successful_payments + zpal_transactions.filter(
+                is_payed=None, creation_time__gt=timezone.now() - datetime.timedelta(minutes=10),
+                price_group=plan).count()
+        if plan_pending_payments > plan.capacity:
             return {"status": "at_full_capacity", "content": content}
 
     if payment_form.payment_gateway.type == "upal":
@@ -154,32 +173,6 @@ def payment_form_processor(request, page):
         payment_url = 'http://salam.im/transaction/submit?id={}'.format(transaction.bank_token)
     if payment_form.payment_gateway.type == "zpal":
         payment_url = 'https://www.zarinpal.com/pg/StartPay/{}'.format(transaction.authority)
-
-    if payment_form.capacity != 0:
-        if payment_form.payment_gateway.type == "upal":
-            pending_payments = successful_payments + upal_transactions.filter(
-                is_payed=None,
-                creation_time__gt=timezone.now() - datetime.timedelta(minutes=10)).count()
-        if payment_form.payment_gateway.type == "zpal":
-            pending_payments = successful_payments + zpal_transactions.filter(
-                is_payed=None,
-                creation_time__gt=timezone.now() - datetime.timedelta(minutes=10)).count()
-        if pending_payments > payment_form.capacity:
-            return {"status": "payment", "payment_url": payment_url, "warning": "reserved_list",
-                    "content": content}
-
-    if plan.capacity != 0:
-        if payment_form.payment_gateway.type == "upal":
-            plan_pending_payments = plan_successful_payments + upal_transactions.filter(
-                is_payed=None, creation_time__gt=timezone.now() - datetime.timedelta(minutes=10),
-                price_group=plan).count()
-        if payment_form.payment_gateway.type == "zpal":
-            plan_pending_payments = plan_successful_payments + zpal_transactions.filter(
-                is_payed=None, creation_time__gt=timezone.now() - datetime.timedelta(minutes=10),
-                price_group=plan).count()
-        if plan_pending_payments > plan.capacity:
-            return {"status": "payment", "payment_url": payment_url, "warning": "reserved_list",
-                    "content": content}
 
     return {"status": "payment", "payment_url": payment_url, "content": content}
 
@@ -200,7 +193,7 @@ def new_upal_payment(request, payment_form, plan, request_uuid):
         payment_request = web_request.post("http://salam.im//transaction/create",
                                            data={
                                                'gateway_id': payment_form.payment_gateway.gateway_id,
-                                               'amount': plan.payment_amount,
+                                               'amount': plan.payment_amount * 10,
                                                'description': "{}-{}".format(
                                                    payment_form.payment_description,
                                                    plan.group_identifier),
@@ -231,7 +224,7 @@ def new_zpal_payment(request, payment_form, plan, request_uuid):
         client = Client('https://www.zarinpal.com/pg/services/WebGate/wsdl')
         payment_parameters = {
             'MerchantID': payment_form.payment_gateway.gateway_id,
-            'Amount': plan.payment_amount / 10,
+            'Amount': plan.payment_amount,
             'Description': "{}-{}".format(payment_form.payment_description,
                                           plan.group_identifier),
             'CallbackURL': return_url,
@@ -268,7 +261,7 @@ def from_bank(request, transaction_type, transaction_id):
         transaction = ZpalPaymentTransaction.objects.get(id=transaction_id)
         ret = from_bank_zpal(request, transaction)
     return ret or render(request, 'pages/error.html',
-                         {"page": transaction.price_group.payment_for,
+                         {"page": transaction.price_group.payment_form,
                           "title": _("UnSuccessful Payment Transaction")})
 
 
@@ -278,9 +271,9 @@ def from_bank_upal(request, transaction):
     if bank_token == transaction.bank_token:
         our_validation_md5 = hashlib.md5()
         our_validation_md5.update(
-            "{}{}{}{}".format(transaction.price_group.payment_for.payment_gateway.gateway_id,
-                              transaction.payment_amount,
-                              transaction.price_group.payment_for.payment_gateway.gateway_api,
+            "{}{}{}{}".format(transaction.price_group.payment_form.payment_gateway.gateway_id,
+                              transaction.payment_amount * 10,
+                              transaction.price_group.payment_form.payment_gateway.gateway_api,
                               transaction.random_token).encode())
         if our_validation_md5.hexdigest() == validation_hash:
 
@@ -292,7 +285,7 @@ def from_bank_upal(request, transaction):
 
                 send_payment_main = True
 
-            form = transaction.price_group.payment_for.payment_form
+            form = transaction.price_group.payment_form.payment_form
             form_fields = form.fields.all().order_by("id")
 
             field_entries = get_transaction_entries(transaction)
@@ -307,7 +300,7 @@ def from_bank_upal(request, transaction):
                     email_to = field_entry.value
 
             field_tuples.append((_('Price Group'), transaction.price_group.group_identifier))
-            field_tuples.append((_('Payment in Tomans'), transaction.payment_amount))
+            field_tuples.append((_('Payment Amount in Tomans'), transaction.payment_amount))
 
             subject = form.email_subject
 
@@ -326,7 +319,7 @@ def from_bank_upal(request, transaction):
                                        email_from, email_copies, context)
 
             return render(request, 'pages/message.html',
-                          {"page": transaction.price_group.payment_for,
+                          {"page": transaction.price_group.payment_form,
                            "title": _("Successful Payment Transaction"),
                            "context": context})
         else:
@@ -341,9 +334,9 @@ def from_bank_zpal(request, transaction):
     if authority == transaction.authority:
         client = Client('https://www.zarinpal.com/pg/services/WebGate/wsdl')
         validation_parameters = {
-            'MerchantID': transaction.price_group.payment_for.payment_gateway.gateway_id,
+            'MerchantID': transaction.price_group.payment_form.payment_gateway.gateway_id,
             'Authority': authority,
-            'Amount': transaction.payment_amount / 10,
+            'Amount': transaction.payment_amount,
         }
         validation_request = client.service.PaymentVerification(**validation_parameters)
 
@@ -358,7 +351,7 @@ def from_bank_zpal(request, transaction):
 
                 send_payment_main = True
 
-            form = transaction.price_group.payment_for.payment_form
+            form = transaction.price_group.payment_form
             form_fields = form.fields.all().order_by("id")
 
             field_entries = get_transaction_entries(transaction)
@@ -373,7 +366,7 @@ def from_bank_zpal(request, transaction):
                     email_to = field_entry.value
 
             field_tuples.append((_('Price Group'), transaction.price_group.group_identifier))
-            field_tuples.append((_('Payment in Tomans'), transaction.payment_amount))
+            field_tuples.append((_('Payment Amount in Tomans'), transaction.payment_amount))
 
             subject = form.email_subject
 
@@ -392,7 +385,7 @@ def from_bank_zpal(request, transaction):
                                        email_from, email_copies, context)
 
             return render(request, 'pages/message.html',
-                          {"page": transaction.price_group.payment_for,
+                          {"page": transaction.price_group.payment_form,
                            "title": _("Successful Payment Transaction"),
                            "context": context})
         else:
