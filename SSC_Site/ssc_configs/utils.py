@@ -26,7 +26,10 @@ class EmailListTextField(models.TextField):
 
     def validate(self, value, model_instance):
         invalid_addresses = []
-        for email in self.to_list(value):
+        list = self.to_list(value)
+        if not list and not self.null:
+            raise ValidationError('Please enter at least one email address')
+        for email in list:
             try:
                 validate_email(email)
             except ValidationError:
