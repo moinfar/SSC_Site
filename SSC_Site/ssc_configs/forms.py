@@ -17,10 +17,6 @@ class AnnouncementForm(forms.ModelForm):
         all_recipients = EmailListTextField.to_list(self.cleaned_data['recipients']) + [
             email for mailing_list in self.cleaned_data['recipients_mailing_lists'] for email in mailing_list.get_emails_list()
         ]
-        if not all_recipients:
-            raise ValidationError('Recipients email address cannot be empty. Please enter '
-                                  'at least one valid email address or select mailing lists '
-                                  'with valid emails')
         self.cleaned_data['all_recipients'] = all_recipients
 
         self.cleaned_data['all_cc'] = EmailListTextField.to_list(self.cleaned_data['cc']) + [
