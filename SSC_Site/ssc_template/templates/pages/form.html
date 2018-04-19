@@ -21,9 +21,11 @@
                 {% for entry in page.form.entries.all|dictsortreversed:"id" %}
                 <tr>
                     {% for field in page.form.fields.all %}
-                        {% with entries=entry.fields.all %}
-                        <td>{{ entries|field_value:field }} </td>
-                        {% endwith %}
+                        {% if not field|is_captcha %}
+                            {% with entries=entry.fields.all %}
+                            <td>{{ entries|field_value:field }} </td>
+                            {% endwith %}
+                        {% endif %}
                     {% endfor %}
                 </tr>
                 {% endfor %}
