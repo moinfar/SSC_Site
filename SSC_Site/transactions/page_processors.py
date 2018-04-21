@@ -49,7 +49,7 @@ def payment_form_processor(request, page):
             form_fields = [field for field in form_fields if not is_captcha(field)]
             form_field_labels = [field.label for field in form_fields]
 
-            headers = [_("Creation Time"), _("Price Group"), _("Amount in Tomans"), _("Discount Code"),
+            headers = [_("Creation Time"), _("Price Group"), _("Discount Code"), _("Paid Amount in Tomans"),
                        _("Is Paid"), _("Payment Time")]
             if transaction_class == UpalPaymentTransaction:
                 headers.append(_("Bank Token"))
@@ -72,8 +72,8 @@ def payment_form_processor(request, page):
                         transaction.creation_time,
                         transaction.price_group.group_identifier + " (" + str(
                             transaction.price_group.payment_amount) + ")",
-                        transaction.payment_amount,
                         transaction.discount_code,
+                        transaction.payment_amount,
                         transaction.is_paid,
                         transaction.payment_time,
                     ]
