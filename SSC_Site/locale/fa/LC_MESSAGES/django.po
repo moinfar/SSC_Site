@@ -458,7 +458,7 @@ msgstr ""
 
 #: ssc_template/templates/email/email_base.html:52
 msgid "Students' Scientific Chapter"
-msgstr "            انجمن علمی دانشکده کامپیوتر"
+msgstr "انجمن علمی دانشکده مهندسی کامپیوتر"
 
 #: ssc_template/templates/email/email_base.html:90
 #, python-format
