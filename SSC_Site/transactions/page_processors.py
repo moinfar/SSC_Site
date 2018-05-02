@@ -41,7 +41,7 @@ def payment_form_processor(request, page):
         request.POST[uuid_key] = request_uuid
         request.POST._mutable = mutable
 
-    form = form_processor(request, payment_form)
+    form = form_processor(request, payment_form, response_redirect=False)
 
     if isinstance(form, dict) and "form" in form and payment_form.form.is_valid == False:
         if request.user.has_perm('transactions.can_view_payment_transactions'):
