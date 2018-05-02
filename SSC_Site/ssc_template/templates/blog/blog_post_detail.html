@@ -5,7 +5,7 @@
 
 {% block meta_og %}
     <meta property="og:title" content="{{ blog_post.meta_title }">
-    <meta property="og:description" content="{{ blog_post.content|striptags|prefix:65 }}">
+    <meta property="og:description" content="{{ blog_post.content|striptags|prefix:140 }}">
 {% endblock %}
 
 {% block meta_keywords %}{% metablock %}
