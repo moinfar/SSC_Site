@@ -9,11 +9,13 @@
     <meta name="description" content="{% block meta_description %}{% endblock %}">
 
     <meta property="og:site_name" content="{{ settings.SITE_TITLE }}">
-    <meta property="og:image" content="{{ site_url }}{% static 'image/SSC-new-logo.jpg'%}">
+    <meta property="og:image" content="{{ site_url }}{% static 'base/image/SSC-new-logo.jpg'%}">
     {% block meta_og %}
+        <meta property="og:title" content="{{page.meta_title}}">
+        <meta property="og:description" content="{{page.description}}">
     {% endblock %}
 
-    <title>{% block meta_title %}{% endblock %}{{ settings.SITE_TITLE }}</title>
+    <title>{% block meta_title %}{{ settings.SITE_TITLE }}{% endblock %}</title>
     <link rel="shortcut icon" href="{{ site_url }}{% static 'img/favicon.ico' %}">
 
     {% ifinstalled mezzanine.blog %}

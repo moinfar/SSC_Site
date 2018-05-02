@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load mezzanine_tags keyword_tags %}
+{% load mezzanine_tags keyword_tags other_ssc_tags %}
 
 {% block left_panel %}
 {{ block.super }}
@@ -10,8 +10,8 @@
 
 
 {% block meta_og %}
-    <meta property="og:title" content="{{page.meta_title}}">
-    <meta property="og:description" content="{{page.description}}">
+    <meta property="og:title" content="{{ page.title }}">
+    <meta property="og:description" content="{{ page.content|prefix:65 }}">
 {% endblock %}
 
 {% block meta_title %}{{ page.meta_title }}{% endblock %}

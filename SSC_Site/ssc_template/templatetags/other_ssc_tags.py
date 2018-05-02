@@ -80,3 +80,8 @@ def field_value(entries, field):
         return entries.get(field_id=field.id).value
     except ObjectDoesNotExist:
         return '----'
+
+
+@register.filter()
+def prefix(s, ind):
+    return s[:ind]
