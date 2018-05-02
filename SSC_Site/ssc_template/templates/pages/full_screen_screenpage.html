@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
     <meta name="description" content="{% block meta_description %}{% endblock %}">
-    <title>{{ page.screenpage.title }}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
+    <title>{{ page.screenpage.title }}{{ settings.SITE_TITLE }}</title>
     <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
 
     {% ifinstalled mezzanine.blog %}
