@@ -3,6 +3,11 @@
 {% load mezzanine_tags %}
 {% load other_ssc_tags i18n %}
 
+{% block meta_og %}
+    {{ block.super }}
+    <meta property="og:description" content="{{ page_form.content|striptags|prefix:65 }}">
+{% endblock %}
+
 {% block form_responses %}
     <div class="card-panel" style="overflow-x: scroll">
     {% if perms.forms.add_form %} <!-- TODO @Kianoosh: This is not standard! Add a new permission in forms:'view_entries' -->

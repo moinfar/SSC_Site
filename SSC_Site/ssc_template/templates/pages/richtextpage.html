@@ -4,7 +4,6 @@
 {% block main %}
 <div class="main card-panel">
     {{ block.super }}
-
     {{ page.richtextpage.content|richtext_filters|safe }}
 </div>
 {% endblock %}

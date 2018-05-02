@@ -10,8 +10,7 @@
 
 
 {% block meta_og %}
-    <meta property="og:title" content="{{ page.title }}">
-    <meta property="og:description" content="{{ page.content|prefix:65 }}">
+    <meta property="og:title" content="{{ page.meta_title }}">
 {% endblock %}
 
 {% block meta_title %}{{ page.meta_title }}{% endblock %}

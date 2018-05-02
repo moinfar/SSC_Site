@@ -1,6 +1,11 @@
 {% extends "pages/page.html" %}
 {% load mezzanine_tags i18n %}
 
+{% block meta_og %}
+    {{ block.super }}
+    <meta property="og:description" content="{{ page.videocontainerpage.content|striptags|prefix:65 }}">
+{% endblock %}
+
 {% block main %}
 <div class="main card-panel">
     {{ block.super }}

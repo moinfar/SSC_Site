@@ -1,6 +1,11 @@
 {% extends "pages/page.html" %}
 {% load mezzanine_tags i18n %}
 
+{% block meta_og %}
+    {{ block.super }}
+    <meta property="og:description" content="{{page.title}}">
+{% endblock %}
+
 {% block main %}{{ block.super }}
 <ul class="collapsible popout" data-collapsible="accordion">
     {% for group_info in page.groupsinfopage.groupinfo_set.all %}

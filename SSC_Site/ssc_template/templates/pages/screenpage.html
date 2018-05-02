@@ -6,6 +6,10 @@
 <link type="text/css" rel="stylesheet" href="/static/base/css/screen.css?v=1.2"/>
 {% endblock %}
 
+{% block meta_og %}
+    {{ block.super }}
+    <meta property="og:description" content="{{ page.screenpage.content|striptags|prefix:65 }}">
+{% endblock %}
 
 {% block left_wrapper %}
 {% endblock %}

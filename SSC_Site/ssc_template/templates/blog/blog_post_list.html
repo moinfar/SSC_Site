@@ -1,7 +1,13 @@
 {% extends "base.html" %}
 {% load i18n mezzanine_tags blog_tags keyword_tags disqus_tags %}
 
-{% block meta_title %}{% if page %}{{ page.meta_title }}{% else %}{% trans "Blog" %}{% endif %}{% endblock %}
+{% block meta_title %}{% trans "Blog" %}{% endblock %}
+
+{% block meta_og %}
+    <meta property="og:title" content="{% trans 'Blog' %}">
+    <meta property="og:description" content="{% trans 'Blog posts of the SSC Site' %}">
+{% endblock %}
+
 
 {% block meta_keywords %}{% metablock %}
 {% keywords_for page as keywords %}
@@ -12,9 +18,8 @@
 {% endmetablock %}{% endblock %}
 
 {% block meta_description %}{% metablock %}
-{{ page.description }}
+{% trans 'View Blog posts of the SSC Site' %}
 {% endmetablock %}{% endblock %}
-
 
 {% block breadcrumb_menu %}
 {{ block.super }}

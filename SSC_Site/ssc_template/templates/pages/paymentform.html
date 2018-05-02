@@ -2,6 +2,11 @@
 
 {% load mezzanine_tags l10n i18n humanize other_ssc_tags %}
 
+{% block meta_og %}
+    {{ block.super }}
+    <meta property="og:description" content="{{ content|striptags|prefix:65 }}">
+{% endblock %}
+
 {% block extra_js %}
     {{ block.super }}
     <script>
