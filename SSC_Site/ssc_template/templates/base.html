@@ -9,8 +9,8 @@
     <meta name="description" content="{% block meta_description %}{% endblock %}">
 
     <meta property="og:site_name" content="{{ settings.SITE_TITLE }}">
+    <meta property="og:image" content="{{ site_url }}{% static 'image/SSC-new-logo.jpg'%}">
     {% block meta_og %}
-        <meta property="og:title" content="main page">
     {% endblock %}
 
     <title>{% block meta_title %}{% endblock %}{{ settings.SITE_TITLE }}</title>

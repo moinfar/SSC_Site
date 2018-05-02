@@ -9,6 +9,11 @@
 {% endblock %}
 
 
+{% block meta_og %}
+    <meta property="og:title" content="{{page.meta_title}}">
+    <meta property="og:description" content="{{page.description}}">
+{% endblock %}
+
 {% block meta_title %}{{ page.meta_title }}{% endblock %}
 
 {% block meta_keywords %}{% metablock %}
