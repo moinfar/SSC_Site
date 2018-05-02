@@ -9,8 +9,8 @@
 {% endblock %}
 
 {% block form_responses %}
-    <div class="card-panel" style="overflow-x: scroll">
     {% if perms.forms.add_form %} <!-- TODO @Kianoosh: This is not standard! Add a new permission in forms:'view_entries' -->
+    <div class="card-panel" style="overflow-x: scroll">
         <h2 class="blue-text">{% trans 'responses' %} ({{ page.form.entries.count }})</h2>
         <table class="white bordered striped">
             <thead>
@@ -36,8 +36,8 @@
                 {% endfor %}
             </tbody>
         </table>
-    {% endif %}
     </div>
+    {% endif %}
 {% endblock %}
 
 <div class="col-md-{% block main_col_size %}8{% endblock %}">
