@@ -1,6 +1,11 @@
 {% extends "pages/page.html" %}
 {% load mezzanine_tags %}
 
+{% block meta_og %}
+    {{ block.super }}
+    <meta property="og:description" content="{{ page.richtextpage.content|striptags|prefix:140 }}">
+{% endblock %}
+
 {% block main %}
 <div class="main card-panel">
     {{ block.super }}
