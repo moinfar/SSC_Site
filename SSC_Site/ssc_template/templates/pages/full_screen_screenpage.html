@@ -85,7 +85,9 @@
             });
 
             $('#screen-image-slider').slider({interval: 10000, indicators: false, height: $(window).height()});
-
+            $(window).resize(()=>
+                $('#screen-image-slider').slider({interval: 10000, indicators: false, height: $(window).height()});
+            )
         });
     };
 
