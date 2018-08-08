@@ -45,6 +45,11 @@
 <script type="text/javascript">
 
     var last_hash = 0;
+    
+    function setHeight()
+    {
+        $('#screen-image-slider').slider({interval: 10000, indicators: false, height: $(window).height()});
+    };
 
     function load_slides() {
 
@@ -83,10 +88,8 @@
                                 </div>\
                             </li>');
             });
-
-            $(window).resize(()=>{
-                $('#screen-image-slider').slider({interval: 10000, indicators: false, height: $(window).height()});
-            });
+            setHeight();
+            $(window).resize(setHeight);
         });
     };
 
