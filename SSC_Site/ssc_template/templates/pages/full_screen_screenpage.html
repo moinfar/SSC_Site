@@ -68,7 +68,7 @@
                     $('#screen-image-slider .slides').append('<li style="background-color:white;">\
                                 <img style="background-size: contain;\
                                             background-repeat: no-repeat;\
-                                            background-position: center top;\
+                                            background-position: center center;\
                                             background-color:black;"\
                                  src="'+ image +'">\
                                 <div class="large-screen black-text screen-text center-align caption">\
@@ -84,7 +84,6 @@
                             </li>');
             });
 
-            $('#screen-image-slider').slider({interval: 10000, indicators: false, height: $(window).height()});
             $(window).resize(()=>{
                 $('#screen-image-slider').slider({interval: 10000, indicators: false, height: $(window).height()});
             });
