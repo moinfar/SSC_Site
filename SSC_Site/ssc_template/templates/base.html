@@ -14,7 +14,7 @@
     {% endblock %}
 
     <title>{% block meta_title %}{{ settings.SITE_TITLE }}{% endblock %}</title>
-    <link rel="shortcut icon" href="{{ site_url }}{% static 'img/favicon.ico' %}">
+    <link rel="shortcut icon" href="{{ site_url }}{% static 'base/image/favicon.ico' %}">
 
     {% ifinstalled mezzanine.blog %}
     <link rel="alternate" type="application/rss+xml" title="RSS" href="{% url 'blog_post_feed' 'rss' %}">
