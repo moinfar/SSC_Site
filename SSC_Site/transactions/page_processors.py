@@ -25,10 +25,10 @@ def payment_form_processor(request, page):
     transaction_class = get_transaction_class(payment_form.payment_gateway.type)
     transactions = transaction_class.objects.filter(price_group__payment_form=page).order_by("-id")
 
-    if payment_form.capacity != -1:
-        successful_payment_count = transactions.filter(Q(is_paid=True) | Q(is_paid=None,
+    successful_payment_count = transactions.filter(Q(is_paid=True) | Q(is_paid=None,
                                                                            creation_time__gt=timezone.now() - datetime.timedelta(
-                                                                               minutes=10))).count()
+                                                                            minutes=10))).count()
+    content['valid_count']=successful_payment_count
 
     if payment_form.fields.filter(label="UUID").count() != 1:
         return {"status": "design_error", "content": content}
@@ -93,10 +93,10 @@ def payment_form_processor(request, page):
 
         if payment_form.capacity != -1:
             if successful_payment_count >= payment_form.capacity:
-                return {"status": "at_full_capacity", "content": content, "successful_payment_count":successful_payment_count}
+                return {"status": "at_full_capacity", "content": content }
 
         return {"status": "form", "form": form["form"], "payment_form": payment_form,
-                "content": content, "successful_payment_count":successful_payment_count}
+                "content": content}
 
     plan = PriceGroup.objects.get(id=request.POST.get("payment_plan_id"))
 
