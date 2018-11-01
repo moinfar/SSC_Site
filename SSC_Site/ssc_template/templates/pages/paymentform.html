@@ -46,10 +46,14 @@
     </script>
 {% endblock %}
 
-{% block form_responses %}
+{% block extra_head %}
+{{ block.super }}
     {% if valid_count %}
-        <div style="display:none" id="valid_count">{{ valid_count }}</div>
+        <meta id="valid_count" content="{{ valid_count }}">
     {% endif %}
+{% endblock %}
+
+{% block form_responses %}
     {% if perms.transactions.can_view_payment_transactions %}
     <div class="card-panel" style="overflow-x: scroll">
         <table class="white bordered striped">
