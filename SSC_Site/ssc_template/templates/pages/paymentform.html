@@ -47,8 +47,8 @@
 {% endblock %}
 
 {% block form_responses %}
-    {% if content.valid_count %}
-        <div style="display:none" id="valid_count">{{ content.valid_count }}</div>
+    {% if valid_count %}
+        <div style="display:none" id="valid_count">{{ valid_count }}</div>
     {% endif %}
     {% if perms.transactions.can_view_payment_transactions %}
     <div class="card-panel" style="overflow-x: scroll">

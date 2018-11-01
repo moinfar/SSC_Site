@@ -101,10 +101,10 @@ def payment_form_processor(request, page):
 
     if payment_form.capacity != -1:
         if successful_payment_count >= payment_form.capacity:
-            return {"status": "at_full_capacity", "content": content}
+            return {"status": "at_full_capacity", "content": content,"valid_count":successful_payment_count}
 
     if plan.is_full:
-        return {"status": "at_full_capacity", "content": content}
+        return {"status": "at_full_capacity", "content": content,"valid_count":successful_payment_count}
 
     discount_code = request.POST.get('discount_code')
     payment_amount = None
@@ -113,7 +113,7 @@ def payment_form_processor(request, page):
         if 'error' in result:
             return {"status": "form", "form": form["form"], "payment_form": payment_form,
                     "content": content, "discount_code": discount_code,
-                    "discount_code_error": result['error']}
+                    "discount_code_error": result['error'],"valid_count":successful_payment_count}
         payment_amount = result['new_price']
     else:
         discount_code = None
@@ -123,9 +123,9 @@ def payment_form_processor(request, page):
                                                             request_uuid)
 
     if transaction is None:
-        return {"status": "gateway_error", "content": content}
+        return {"status": "gateway_error", "content": content,"valid_count":successful_payment_count}
 
-    return {"status": "payment", "payment_url": transaction.get_payment_url(), "content": content}
+    return {"status": "payment", "payment_url": transaction.get_payment_url(), "content": content,"valid_count":successful_payment_count}
 
 
 def from_bank(request, transaction_type, transaction_id):
