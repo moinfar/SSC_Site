@@ -7,6 +7,8 @@ from django.db.models import Q
 from django.shortcuts import render
 from django.utils import timezone
 from django.utils.translation import ugettext as _
+from django.http import HttpResponse
+
 from mezzanine.forms.page_processors import form_processor
 from mezzanine.pages.page_processors import processor_for
 
@@ -28,6 +30,8 @@ def payment_form_processor(request, page):
     successful_payment_count = transactions.filter(Q(is_paid=True) | Q(is_paid=None,
                                                                            creation_time__gt=timezone.now() - datetime.timedelta(
                                                                             minutes=10))).count()
+    if request.GET and request.GET['successful_payment_count']:
+        return HttpResponse(successful_payment_count)
 
     if payment_form.fields.filter(label="UUID").count() != 1:
         return {"status": "design_error", "content": content}
@@ -88,23 +92,23 @@ def payment_form_processor(request, page):
 
             return {"status": "form", "form": form["form"], "payment_form": payment_form,
                     "form_fields": form_field_labels, "transactions_info": transactions_info,
-                    "content": content, "valid_count":successful_payment_count}
+                    "content": content}
 
         if payment_form.capacity != -1:
             if successful_payment_count >= payment_form.capacity:
-                return {"status": "at_full_capacity", "content": content, "valid_count":successful_payment_count}
+                return {"status": "at_full_capacity", "content": content}
 
         return {"status": "form", "form": form["form"], "payment_form": payment_form,
-                "content": content,"valid_count":successful_payment_count}
+                "content": content}
 
     plan = PriceGroup.objects.get(id=request.POST.get("payment_plan_id"))
 
     if payment_form.capacity != -1:
         if successful_payment_count >= payment_form.capacity:
-            return {"status": "at_full_capacity", "content": content,"valid_count":successful_payment_count}
+            return {"status": "at_full_capacity", "content": conten}
 
     if plan.is_full:
-        return {"status": "at_full_capacity", "content": content,"valid_count":successful_payment_count}
+        return {"status": "at_full_capacity", "content": content}
 
     discount_code = request.POST.get('discount_code')
     payment_amount = None
@@ -113,7 +117,7 @@ def payment_form_processor(request, page):
         if 'error' in result:
             return {"status": "form", "form": form["form"], "payment_form": payment_form,
                     "content": content, "discount_code": discount_code,
-                    "discount_code_error": result['error'],"valid_count":successful_payment_count}
+                    "discount_code_error": result['error']}
         payment_amount = result['new_price']
     else:
         discount_code = None
@@ -123,9 +127,9 @@ def payment_form_processor(request, page):
                                                             request_uuid)
 
     if transaction is None:
-        return {"status": "gateway_error", "content": content,"valid_count":successful_payment_count}
+        return {"status": "gateway_error", "content": content}
 
-    return {"status": "payment", "payment_url": transaction.get_payment_url(), "content": content,"valid_count":successful_payment_count}
+    return {"status": "payment", "payment_url": transaction.get_payment_url(), "content": content}
 
 
 def from_bank(request, transaction_type, transaction_id):
