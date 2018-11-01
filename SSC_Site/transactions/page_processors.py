@@ -93,10 +93,10 @@ def payment_form_processor(request, page):
 
         if payment_form.capacity != -1:
             if successful_payment_count >= payment_form.capacity:
-                return {"status": "at_full_capacity", "content": content}
+                return {"status": "at_full_capacity", "content": content, "successful_payment_count":successful_payment_count}
 
         return {"status": "form", "form": form["form"], "payment_form": payment_form,
-                "content": content}
+                "content": content, "successful_payment_count":successful_payment_count}
 
     plan = PriceGroup.objects.get(id=request.POST.get("payment_plan_id"))
 

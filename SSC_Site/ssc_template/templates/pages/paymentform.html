@@ -47,6 +47,9 @@
 {% endblock %}
 
 {% block form_responses %}
+    {% if successful_payment_count %}
+        <div style="display:none" id="count">{{ successful_payment_count }}</div>
+    {% endif %}
     {% if perms.transactions.can_view_payment_transactions %}
     <div class="card-panel" style="overflow-x: scroll">
         <table class="white bordered striped">
