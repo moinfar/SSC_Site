@@ -7,6 +7,8 @@ from django.db.models import Q
 from django.shortcuts import render
 from django.utils import timezone
 from django.utils.translation import ugettext as _
+from django.http import HttpResponse
+
 from mezzanine.forms.page_processors import form_processor
 from mezzanine.pages.page_processors import processor_for
 
@@ -25,10 +27,11 @@ def payment_form_processor(request, page):
     transaction_class = get_transaction_class(payment_form.payment_gateway.type)
     transactions = transaction_class.objects.filter(price_group__payment_form=page).order_by("-id")
 
-    if payment_form.capacity != -1:
-        successful_payment_count = transactions.filter(Q(is_paid=True) | Q(is_paid=None,
+    successful_payment_count = transactions.filter(Q(is_paid=True) | Q(is_paid=None,
                                                                            creation_time__gt=timezone.now() - datetime.timedelta(
-                                                                               minutes=10))).count()
+                                                                            minutes=10))).count()
+    if request.GET and request.GET['successful_payment_count']:
+        return HttpResponse(successful_payment_count)
 
     if payment_form.fields.filter(label="UUID").count() != 1:
         return {"status": "design_error", "content": content}
@@ -102,7 +105,7 @@ def payment_form_processor(request, page):
 
     if payment_form.capacity != -1:
         if successful_payment_count >= payment_form.capacity:
-            return {"status": "at_full_capacity", "content": content}
+            return {"status": "at_full_capacity", "content": conten}
 
     if plan.is_full:
         return {"status": "at_full_capacity", "content": content}

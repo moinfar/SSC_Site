@@ -6,7 +6,7 @@
        style="display:block;
               background-image: url('{{ MEDIA_URL }}{% thumbnail screenimage.image 400 0 %}');
               background-repeat: no-repeat;
-              background-position: center top;
+              background-position: center center;
               background-size: contain;"
        href="{{ MEDIA_URL }}{% thumbnail screenimage.image 900 0 %}" data-lightbox="gallery"
        data-title="<span {% if LANGUAGE_BIDI %} dir='rtl'{% endif %}>{{screenimage.content|striptags|safe}}</span>"
