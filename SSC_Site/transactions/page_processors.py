@@ -20,7 +20,7 @@ from .models import PaymentForm, PriceGroup
 def payment_form_processor(request, page):
     payment_form = page.form.paymentform
     content = payment_form.content
-    payment_form.send_email = False
+    payment_form.form.send_email = False
 
     transaction_class = get_transaction_class(payment_form.payment_gateway.type)
     transactions = transaction_class.objects.filter(price_group__payment_form=page).order_by("-id")
