@@ -11,7 +11,7 @@ body {
 #top-logo {
 	background-image: url('/static/base/image/SSC-logo-white.png');
 	background-repeat: no-repeat;
-	background-size: contain;
+	background-size: 80%;
 	padding-left: 100px;
 	background-position: center;
 }
