@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-21 10:53+0430\n"
+"POT-Creation-Date: 2018-12-21 15:43+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,7 +68,7 @@ msgstr ""
 
 #: certificates/models.py:9 ssc_configs/models.py:97
 #: ssc_template/templates/generic/includes/comment_form.html:16
-#: ssc_template/templates/pages/groupsinfopage.html:13
+#: ssc_template/templates/pages/groupsinfopage.html:18
 msgid "Name"
 msgstr "نام"
 
@@ -102,8 +102,8 @@ msgid "Title"
 msgstr "عنوان"
 
 #: media_manager/models.py:19
-#: ssc_template/templates/pages/videocontainerpage.html:22
-#: ssc_template/templates/pages/videocontainerpage.html:26
+#: ssc_template/templates/pages/videocontainerpage.html:27
+#: ssc_template/templates/pages/videocontainerpage.html:31
 msgid "Description"
 msgstr "توضیحات"
 
@@ -281,7 +281,7 @@ msgstr "اشخاص"
 
 #: ssc_configs/models.py:116 ssc_configs/models.py:117
 #: ssc_configs/models.py:140
-#: ssc_template/templates/pages/groupsinfopage.html:14
+#: ssc_template/templates/pages/groupsinfopage.html:19
 msgid "Duty"
 msgstr "وظیفه"
 
@@ -327,15 +327,19 @@ msgstr ""
 "آدرس‌های ایمیل را وارد کنید. برای جداکردن آدرس‌ها از فاصله یا ویرگول استفاده "
 "کنید و یا به خط بعد بروید"
 
-#: ssc_template/templates/base.html:72
+#: ssc_template/templates/admin/transactions/change_form.html:5
+msgid "View entries"
+msgstr ""
+
+#: ssc_template/templates/base.html:86
 msgid "Change"
 msgstr "تغییر"
 
-#: ssc_template/templates/base.html:147
+#: ssc_template/templates/base.html:161
 msgid "Edit in admin"
 msgstr "ویرایش در صفحه مدیریت"
 
-#: ssc_template/templates/base.html:245
+#: ssc_template/templates/base.html:259
 #, python-format
 msgid ""
 "\n"
@@ -353,7 +357,7 @@ msgstr ""
 "                    <a %(sharif_link_attrs)s >دانشگاه صنعتی شریف</a> است\n"
 "                    "
 
-#: ssc_template/templates/base.html:257
+#: ssc_template/templates/base.html:271
 #, python-format
 msgid ""
 "\n"
@@ -376,44 +380,55 @@ msgstr ""
 "                    %(maintainer)s\n"
 "                    "
 
-#: ssc_template/templates/blog/blog_post_detail.html:61
+#: ssc_template/templates/blog/blog_post_detail.html:66
 msgid "Related blog posts"
 msgstr "پست‌های مرتبط"
 
 #: ssc_template/templates/blog/blog_post_list.html:4
-#: ssc_template/templates/blog/blog_post_list.html:22
+#: ssc_template/templates/blog/blog_post_list.html:7
+#: ssc_template/templates/blog/blog_post_list.html:27
 msgid "Blog"
 msgstr "بلاگ"
 
-#: ssc_template/templates/blog/blog_post_list.html:27
+#: ssc_template/templates/blog/blog_post_list.html:8
+msgid "Blog posts of the SSC Site"
+msgstr ""
+
+#: ssc_template/templates/blog/blog_post_list.html:21
+#, fuzzy
+#| msgid "Viewing blog posts for the category"
+msgid "View Blog posts of the SSC Site"
+msgstr "پست‌های با موضوع"
+
+#: ssc_template/templates/blog/blog_post_list.html:32
 msgid "Tag:"
 msgstr "برچسب:"
 
-#: ssc_template/templates/blog/blog_post_list.html:29
+#: ssc_template/templates/blog/blog_post_list.html:34
 msgid "Category:"
 msgstr "دسته:"
 
-#: ssc_template/templates/blog/blog_post_list.html:33
+#: ssc_template/templates/blog/blog_post_list.html:38
 msgid "Author:"
 msgstr "نویسنده"
 
-#: ssc_template/templates/blog/blog_post_list.html:48
+#: ssc_template/templates/blog/blog_post_list.html:53
 msgid "Viewing blog posts tagged"
 msgstr "پست‌های با برچسب"
 
-#: ssc_template/templates/blog/blog_post_list.html:50
+#: ssc_template/templates/blog/blog_post_list.html:55
 msgid "Viewing blog posts for the category"
 msgstr "پست‌های با موضوع"
 
-#: ssc_template/templates/blog/blog_post_list.html:52
+#: ssc_template/templates/blog/blog_post_list.html:57
 msgid "Viewing blog posts from"
 msgstr "پست‌های نوشته‌شده به دست"
 
-#: ssc_template/templates/blog/blog_post_list.html:55
+#: ssc_template/templates/blog/blog_post_list.html:60
 msgid "Viewing blog posts by"
 msgstr "پست‌های نوشته‌شده به دست"
 
-#: ssc_template/templates/blog/blog_post_list.html:61
+#: ssc_template/templates/blog/blog_post_list.html:66
 msgid "Recent blog posts"
 msgstr "پست‌های اخیر بلاگ"
 
@@ -487,14 +502,13 @@ msgid "Your information has been recorded in the SSC site as provided below."
 msgstr "اطلاعات شما به شرح زیر در سایت انجمن علمی ثبت شد."
 
 #: ssc_template/templates/email/form_response.html:13
-#, python-format
 msgid ""
 "\n"
 "        In case of any inconsistencies, please contact us via\n"
 "        <a %(contact_us_link_attrs)s >\n"
 "        contact us form\n"
 "        </a>\n"
-"        and never reply this email.\n"
+"        and do not reply this email.\n"
 "    "
 msgstr ""
 "\n"
@@ -530,7 +544,7 @@ msgid "There are currently no comments"
 msgstr "نظری تا کنون ثبت نشده‌است."
 
 #: ssc_template/templates/generic/includes/comment_form.html:20
-#: ssc_template/templates/index.html:30
+#: ssc_template/templates/index.html:29
 msgid "Email"
 msgstr "رایانامه"
 
@@ -579,8 +593,7 @@ msgstr "صفحه"
 msgid "of"
 msgstr "از"
 
-#: ssc_template/templates/index.html:3 ssc_template/templates/index.html:4
-#: ssc_template/templates/index.html:17
+#: ssc_template/templates/index.html:3 ssc_template/templates/index.html:16
 #: ssc_template/templates/pages/menus/breadcrumb.html:8
 #: ssc_template/templates/pages/menus/left_menu.html:11
 #: ssc_template/templates/pages/menus/main_menu.html:11
@@ -589,23 +602,23 @@ msgstr "از"
 msgid "Home"
 msgstr "صفحه‌ی اصلی"
 
-#: ssc_template/templates/index.html:31
+#: ssc_template/templates/index.html:30
 msgid "password"
 msgstr "گذرواژه"
 
-#: ssc_template/templates/index.html:35
+#: ssc_template/templates/index.html:34
 msgid "Coming Soon"
 msgstr "به زودی"
 
-#: ssc_template/templates/index.html:96
+#: ssc_template/templates/index.html:95
 msgid "Currently on the screens"
 msgstr "اکنون در مانیتور‌های لابی"
 
-#: ssc_template/templates/pages/form.html:9
+#: ssc_template/templates/pages/form.html:14
 msgid "responses"
 msgstr "پاسخ‌ها"
 
-#: ssc_template/templates/pages/gallery.html:35
+#: ssc_template/templates/pages/gallery.html:40
 #: ssc_template/templates/pages/gallerycontainerpage.html:32
 #, python-format
 msgid ""
@@ -669,11 +682,11 @@ msgstr ""
 msgid "Unfortunately we have reached our maximum capacity."
 msgstr "متاسفانه ظرفیت تکمیل شده‌است."
 
-#: ssc_template/templates/pages/screenpage.html:24
+#: ssc_template/templates/pages/screenpage.html:28
 msgid "View Full Screen Slider"
 msgstr "مشاهده‌ی تمام صفحه‌ی تصاویر"
 
-#: ssc_template/templates/pages/screenpage.html:73
+#: ssc_template/templates/pages/screenpage.html:77
 msgid "Show All Items"
 msgstr "نمایش تمام موارد"
 
@@ -809,7 +822,7 @@ msgid "Amount in Tomans"
 msgstr "مقدار به تومان"
 
 #: transactions/models.py:66 transactions/models.py:95
-#: transactions/models.py:116 transactions/page_processors.py:52
+#: transactions/models.py:116 transactions/page_processors.py:55
 #: transactions/payment_transaction.py:110
 #: transactions/payment_transaction.py:220
 msgid "Price Group"
@@ -828,11 +841,11 @@ msgid "Unfortunately capacity of this code is full"
 msgstr "متاسفانه ظرفیت استفاده از این کد تخفیف به اتمام رسیده‌است."
 
 #: transactions/models.py:94 transactions/models.py:121
-#: transactions/page_processors.py:52
+#: transactions/page_processors.py:55
 msgid "Discount Code"
 msgstr "کد تخفیف"
 
-#: transactions/models.py:112 transactions/page_processors.py:52
+#: transactions/models.py:112 transactions/page_processors.py:55
 msgid "Creation Time"
 msgstr "زمان ایجاد"
 
@@ -840,27 +853,27 @@ msgstr "زمان ایجاد"
 msgid "Form Entry UUID"
 msgstr "UUID وارد شده"
 
-#: transactions/models.py:119 transactions/page_processors.py:53
+#: transactions/models.py:119 transactions/page_processors.py:56
 msgid "Is Paid"
 msgstr "پرداخت‌شده"
 
-#: transactions/models.py:120 transactions/page_processors.py:53
+#: transactions/models.py:120 transactions/page_processors.py:56
 msgid "Payment Time"
 msgstr "زمان پرداخت"
 
-#: transactions/page_processors.py:52
+#: transactions/page_processors.py:55
 msgid "Paid Amount in Tomans"
 msgstr "مقدار پرداختی به تومان"
 
-#: transactions/page_processors.py:55 transactions/payment_transaction.py:31
+#: transactions/page_processors.py:58 transactions/payment_transaction.py:31
 msgid "Bank Token"
 msgstr "توکن بانک"
 
-#: transactions/page_processors.py:57 transactions/payment_transaction.py:141
+#: transactions/page_processors.py:60 transactions/payment_transaction.py:141
 msgid "Reference ID"
 msgstr "شناسه ارجاع"
 
-#: transactions/page_processors.py:138
+#: transactions/page_processors.py:141
 msgid "UnSuccessful Payment Transaction"
 msgstr ""
 "تراکنش پرداختی با مشکل مواجه شده‌است. لطفا چنانچه پرداخت شما موفق بوده‌است، ما "

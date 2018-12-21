@@ -3,7 +3,7 @@
 
 {% block message %}
     {% if message %}
-        {{ message|safe }}
+        {{ message|linebreaks|safe }}
     {% else %}
         {% trans 'Hi.' %}
         <br>
@@ -15,7 +15,7 @@
         <a {{ contact_us_link_attrs }} >
         contact us form
         </a>
-        and never reply this email.
+        and do not reply this email.
     {% endblocktrans %}
 {% endblock %}
 

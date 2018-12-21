@@ -103,7 +103,7 @@ class UpalPaymentTransaction(PaymentTransaction):
                 field_tuples = []
                 email_to = None
                 for field, field_entry in zip(form_fields, field_entries):
-                    field_tuples.append((field.label, field_entry.value))
+                    field_tuples.append((field, field_entry.value))
                     if field.is_a(fields.EMAIL):
                         email_to = field_entry.value
 
@@ -116,6 +116,7 @@ class UpalPaymentTransaction(PaymentTransaction):
                     "fields": field_tuples,
                     "message": form.email_message,
                     "request": request,
+                    "site_url": settings.SITE_URL,
                 }
 
                 if send_payment_main:
@@ -226,6 +227,7 @@ class ZpalPaymentTransaction(PaymentTransaction):
                     "fields": field_tuples,
                     "message": form.email_message,
                     "request": request,
+                    "site_url": settings.SITE_URL,
                 }
 
                 if send_payment_main:
