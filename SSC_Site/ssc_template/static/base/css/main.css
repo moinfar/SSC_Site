@@ -9,7 +9,7 @@ body {
 }
 
 #top-logo {
-	background-image: url('/static/base/image/SSC-Logo-White.png');
+	background-image: url('/static/base/image/SSC-logo-white.png?v=2');
 	background-repeat: no-repeat;
 	background-size: 80%;
 	padding-left: 100px;
