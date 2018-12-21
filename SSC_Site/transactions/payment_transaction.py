@@ -213,7 +213,7 @@ class ZpalPaymentTransaction(PaymentTransaction):
                 field_tuples = []
                 email_to = None
                 for field, field_entry in zip(form_fields, field_entries):
-                    field_tuples.append((field.label, field_entry.value))
+                    field_tuples.append((field, field_entry.value))
                     if field.is_a(fields.EMAIL):
                         email_to = field_entry.value
 

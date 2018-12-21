@@ -56,7 +56,10 @@ def get_screenpage(screen_lable):
 
 @register.filter()
 def is_captcha(field):
-    return field.field_type == mezzanine_fields.CAPTCHA
+    try:
+        return field.field_type == mezzanine_fields.CAPTCHA
+    except:
+        return False
 
 
 @register.filter()
