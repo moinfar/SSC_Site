@@ -39,7 +39,7 @@ table, td, tr {
     <link type="text/css" rel="stylesheet" href="{{ site_url }}{% static 'base/font/iransans/style.css' %}?v=1.2"/>
     <link type="text/css" rel="stylesheet" href="{{ site_url }}{% static 'materialize/css/materialize.css' %}?v=1.2"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="{{ site_url }}{% static 'lightbox/css/lightbox.css' %}?v=1.2">
-    <link type="text/css" rel="stylesheet" href="{{ site_url }}{% static 'base/css/main.css' %}?v=1.2"/>
+    <link type="text/css" rel="stylesheet" href="{{ site_url }}{% static 'base/css/main.css' %}?v=1.3.3"/>
     <link type="text/css" rel="stylesheet" href="{{ site_url }}{% static 'base/css/materialize-config.css' %}?v=1.2"/>
 
 </head>
@@ -47,7 +47,7 @@ table, td, tr {
 <body>
     {% autoescape off %}
     <header style="width: 100%; height: 50px; background: #082e68;">
-        <a href="{{ site_url }}"><img src="{{ site_url }}{% static 'base/image/SSC-unofficial-logo-white.png' %}" style="float: {% if LANGUAGE_BIDI %} left {% else %} right {% endif %}; height: 50px;"></a>
+        <a href="{{ site_url }}"><img src="{{ site_url }}{% static 'base/image/SSC-logo-white.png' %}" style="float: {% if LANGUAGE_BIDI %} left {% else %} right {% endif %}; height: 50px;"></a>
         <span style="float: {% if LANGUAGE_BIDI %} right {% else %} left {% endif %}; color: white; margin-right: 5px; height: 50px; line-height: 50px; vertical-align: middle; font-size: 15px;">
             {% trans "Students' Scientific Chapter" %}
         </span>
