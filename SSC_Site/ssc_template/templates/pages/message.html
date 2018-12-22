@@ -15,8 +15,10 @@
 <div class="card-panel">
     <h4 class="blue-text center-align">{{ title }}</h4>
     <p>{{ context.message }}</p>
-    {% for field, entry in context.fields %}
-    <p><h6>{{ field }}:</h6> {{ entry }}</p>
+    {% for field, value in context.fields %}
+        {% if not field|is_captcha %}
+        <p><h6>{{ field }}:</h6> {{ value }}</p>
+        {% endif %}
     {% endfor %}
 </div>
 {% endblock %}
