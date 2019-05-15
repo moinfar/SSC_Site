@@ -1,0 +1,4 @@
+<script src="https://bibot.ir/bibot.min.js"></script>
+<div class="bibot-captcha"{% for name, value in widget.attrs.items %}{% if value is not False %}
+    {{ name }}{% if value is not True %}="{{ value|stringformat:'s' }}"{% endif %}{% endif %}{% endfor %}>
+</div>

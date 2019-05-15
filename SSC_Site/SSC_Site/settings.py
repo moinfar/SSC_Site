@@ -96,9 +96,8 @@ BLOG_USE_FEATURED_IMAGE = True
 
 BLOG_SLUG = 'blog'
 
-# ReCaptcha settings
-RECAPTCHA_PUBLIC_KEY = '6LeQbTMUAAAAANtR7JIMvi6UpUiHdCvXYAwJt1WD'
-NOCAPTCHA = True
+# BIBOT Captcha settings
+BIBOT_PUBLIC_KEY = '5e69a6986024c134f7d6f118202421a8'
 COMMENT_FORM_CLASS = 'mezzacaptcha.forms.CaptchaThreadedCommentForm'
 
 # RichTextField Settings
@@ -347,7 +346,6 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
     'djcelery_email',
     'ssc_template',
-    'captcha',
     'mezzacaptcha',
     'mezzanine.boot',
     'mezzanine.conf',
