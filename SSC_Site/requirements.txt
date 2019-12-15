@@ -1,14 +1,14 @@
-amqp==2.2.2
+amqp==2.5.2
 appdirs==1.4.3
 beautifulsoup4==4.6.0
-billiard==3.5.0.3
+billiard==3.6.1.0
 bleach==2.1.1
 cached-property==1.3.1
-celery==4.1.0
+celery==4.3.0
 certifi==2017.7.27.1
 chardet==3.0.4
 defusedxml==0.5.0
-Django==1.11.12
+Django==1.11.26
 django-appconf==1.0.2
 django-auth-ldap==1.2.16
 django-celery-email==2.0.0
@@ -20,28 +20,31 @@ django-extensions==2.0.6
 django-js-asset==1.0.0
 django-modeltranslation==0.12.1
 django-polymorphic==2.0
--e git://github.com/khodabande/Shortener.git#egg=django_shortener
+-e git://github.com/khodabande/Shortener.git@ad2578e111ab7019cc11003b64851d53c10fd1eb#egg=django_shortener
 django-widget-tweaks==1.4.1
--e git://github.com/stephenmcd/filebrowser-safe.git@400655f0600277accdd807e6b5967a5930164806#egg=filebrowser-safe
+-e git://github.com/stephenmcd/filebrowser-safe.git@400655f0600277accdd807e6b5967a5930164806#egg=filebrowser_safe
 future==0.16.0
 grappelli-safe==0.4.7
 gunicorn==19.7.1
 html5lib==1.0b10
 idna==2.6
+importlib-metadata==1.3.0
 isodate==0.5.4
 jdatetime==1.9.0
-kombu==4.1.0
-lxml==4.0.0
--e git://github.com/Kianoosh76/mezzanine.git#egg=Mezzanine
+kombu==4.6.7
+lxml==4.4.2
+-e git://github.com/Kianoosh76/mezzanine.git@a5e396936ffe1da78d714cde3455b0d5df288987#egg=Mezzanine
+more-itertools==8.0.2
 oauthlib==2.0.4
 olefile==0.44
 Pillow==6.2.0
+pkg-resources==0.0.0
 psycopg2==2.7.3.1
 pyldap==2.4.37
 python-memcached==1.58
 pytz==2017.2
 rcssmin==1.0.6
-redis==2.10.6
+redis==3.3.11
 requests==2.18.4
 requests-oauthlib==0.8.0
 requests-toolbelt==0.8.0
@@ -50,6 +53,7 @@ six==1.11.0
 Tempita==0.5.2
 tzlocal==1.4
 urllib3==1.22
-vine==1.1.4
+vine==1.3.0
 webencodings==0.5.1
 zeep==2.4.0
+zipp==0.6.0
