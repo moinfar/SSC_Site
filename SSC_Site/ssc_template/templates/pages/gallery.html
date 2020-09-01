@@ -10,7 +10,7 @@
 
 {% block meta_og %}
     {{ block.super }}
-    <meta property="og:description" content="{{ page.gallery.content|striptags|prefix:140 }}">
+    <meta property="og:description" content="{{ page.gallery.content|striptags }}">
 {% endblock %}
 
 {% block main_wrapper %}
